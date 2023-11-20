@@ -117,7 +117,7 @@ const config = {
               label: '1.19.4',
             }
           },
-          lastVersion: '1.20',
+          lastVersion: '1.21',
           async sidebarItemsGenerator({defaultSidebarItemsGenerator, ...args}) {
             const {item} = args;
             // Use the provided data to generate a custom sidebar slice
