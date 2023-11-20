@@ -1,5 +1,11 @@
 export NODE_OPTIONS := "--max-old-space-size=8192"
 
+GITEA_REMOTE := https://github.com/go-gitea/gitea
+GITEA_LATEST_BRANCH := main
+GITEA_VERSION_BRANCH_PREFIX := release/v1.
+GITEA_AWESOME_REMOTE := https://gitea.com/gitea/awesome-gitea.git
+GITEA_AWESOME_BRANCH := main
+
 .PHONY: all
 all: build
 
@@ -9,11 +15,11 @@ create_dir:
 
 .PHONY: clone
 clone: create_dir
-	git clone https://github.com/go-gitea/gitea.git .tmp/upstream-docs || true
+	git clone $(GITEA_REMOTE) .tmp/upstream-docs || true
 
 .PHONY: clone_awesome
 clone_awesome: create_dir
-	git clone --branch=main https://gitea.com/gitea/awesome-gitea.git .tmp/upstream-awesome || true
+	git clone --branch=$(GITEA_AWESOME_BRANCH) $(GITEA_AWESOME_REMOTE) .tmp/upstream-awesome || true
 
 .PHONY: prepare-awesome-latest
 prepare-awesome-latest: clone_awesome
@@ -25,7 +31,7 @@ prepare-awesome\#%:
 
 .PHONY: clone_main
 clone_main: clone
-	cd .tmp/upstream-docs && git clean -f && git reset --hard && git checkout main
+	cd .tmp/upstream-docs && git clean -f && git reset --hard && git checkout $(GITEA_LATEST_BRANCH)
 	cur_path=`pwd`
 	cd .tmp/upstream-docs/docs && bash scripts/trans-copy.sh
 	cd $(cur_path)
@@ -48,7 +54,7 @@ prepare-latest-zh-cn:
 
 .PHONY: clone_\#%
 clone_\#%: clone
-	cd .tmp/upstream-docs && git clean -f && git reset --hard && git checkout release/v1.$*
+	cd .tmp/upstream-docs && git clean -f && git reset --hard && git checkout $(GITEA_VERSION_BRANCH_PREFIX)$*
 	cur_path=`pwd`
 	cd .tmp/upstream-docs/docs && bash scripts/trans-copy.sh
 	cd $(cur_path)
