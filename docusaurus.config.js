@@ -160,10 +160,10 @@ const config = {
         disableSwitch: false,
         respectPrefersColorScheme: true,
       },
-      //announcementBar: {
-      //  id: 'announcementBar-3', // Increment on change
-      //  content: `This documentation site is fairly new. If you find any issues, please <a target="_blank" rel="noopener noreferrer" href="https://gitea.com/gitea/gitea-docusaurus/issues">let us know</a>. We are currently working on translating the documentation into other languages.`,
-      //},
+      announcementBar: {
+        id: 'announcementBar-4', // Increment on change
+        content: `<a href="https://about.gitea.com/products/cloud">Try &nbsp; Gitea Cloud &nbsp;  ☁️  &nbsp; for 14 days <span aria-hidden="true">&rarr;</span> Accelerate your Development & Deploys!</a>`,
+      },
       navbar: {
         title: 'Gitea',
         logo: {
