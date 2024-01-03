@@ -3,8 +3,8 @@ import Input from "../Input"
 import Button from "../Button"
 import style from "./style.module.css"
 import clsx from "clsx"
-import Alert from '@mui/material/Alert';
-import Snackbar from '@mui/material/Snackbar';
+import Alert from '@mui/material/Alert'
+import Snackbar from '@mui/material/Snackbar'
 const Spinner = () => <span className={style.loader} />
 const Subscribe = ({placeholder, submitButtonText, className, classNameInputs}) => {
   const [loading, setLoading] = useState(false)
@@ -41,7 +41,7 @@ const Subscribe = ({placeholder, submitButtonText, className, classNameInputs}) 
      }) 
   }
   function handleInputChange(event) {
-    const value = event.target.value;
+    const value = event.target.value
     setInputValue(value)
 }
   function handleClose  (event, reason)  {
