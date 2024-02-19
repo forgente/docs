@@ -95,6 +95,10 @@ const config = {
           sidebarPath: require.resolve('./sidebars.js'),
           routeBasePath: '/', // Serve the docs at the site's root
           editUrl: ({versionDocsDirPath, docPath, locale, version, permalink}) => {
+            // Special case for awesome page
+            if (docPath.includes('awesome.md')) {
+              return `https://gitea.com/gitea/awesome-gitea/src/branch/main/README.md`
+            }
             let fileName = `${docPath.replace('.md', '')}.${locale}.md`;
             // intro.md has different name from upstream, need to handle this here
             if (docPath.includes('intro.md')) {
