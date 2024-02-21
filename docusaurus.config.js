@@ -112,7 +112,7 @@ const config = {
               banner: 'unreleased',
             },
             '1.21': {
-              label: '1.21.4',
+              label: '1.21.5',
             },
             '1.20': {
               label: '1.20.6'
