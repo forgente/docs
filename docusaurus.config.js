@@ -213,6 +213,13 @@ const config = {
             position: 'left',
           },
           {
+            position: 'left',
+            label: 'Enterprise',
+            href: 'https://docs.gitea.com/enterprise',
+            className: 'internal-href',
+            target: '_self',
+          },
+          {
             type: 'search',
             position: 'right',
           },
