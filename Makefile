@@ -33,7 +33,10 @@ prepare-awesome\#%:
 clone_main: clone
 	cd .tmp/upstream-docs && git clean -f && git reset --hard && git checkout $(GITEA_LATEST_BRANCH)
 	cur_path=`pwd`
+	mkdir -p .tmp/upstream-docs/docs/scripts
+	cp .trans-copy.sh .tmp/upstream-docs/docs/scripts/trans-copy.sh
 	cd .tmp/upstream-docs/docs && bash scripts/trans-copy.sh
+	rm .tmp/upstream-docs/docs/scripts/trans-copy.sh
 	cd $(cur_path)
 	bash check_outdated.sh zh-cn
 
