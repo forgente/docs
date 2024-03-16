@@ -83,7 +83,7 @@ install:
 	npm install
 
 .PHONY: prepare-docs
-prepare-docs: install prepare-latest prepare\#21 prepare\#20 prepare\#19 prepare-latest-zh-cn prepare-zh-cn\#21 prepare-zh-cn\#20 prepare-zh-cn\#19 prepare-awesome-latest prepare-awesome\#19 prepare-awesome\#20 prepare-awesome\#21
+prepare-docs: install prepare-latest prepare-latest-zh-cn prepare\#21 prepare-zh-cn\#21 prepare\#20 prepare-zh-cn\#20 prepare\#19 prepare-zh-cn\#19 prepare-awesome-latest prepare-awesome\#19 prepare-awesome\#20 prepare-awesome\#21
 
 .PHONY: build
 build:
