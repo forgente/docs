@@ -138,6 +138,9 @@ const config = {
           customCss: require.resolve('./src/css/custom.css'),
         },
         pages: pageConfig,
+        gtag: {
+          trackingID: 'G-KHM0KYT506'
+        },
       }),
     ],
     apiConfig,
