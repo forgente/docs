@@ -14,7 +14,7 @@ jobs:
           cache: npm
       - name: install necessary tools
         run: |
-          apt update -y && apt install -y rsync python python3-pip
+          apt update -y && apt install -y rsync python python3-pip python-is-python3
       - name: prepare nightly docs
         run: |
           make prepare-latest
