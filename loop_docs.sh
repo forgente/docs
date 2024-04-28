@@ -54,7 +54,7 @@ SED_INPLACE "s/@minGoVersion@/$minGoVer/" "$docs_dir/installation/from-source.$l
 # TODO: improve this sed
 # need confirmation
 if [ "$version" == "latest" ]; then
-    SED_INPLACE 's/"version": "{{AppVer | JSEscape | Safe}}"/"version": "1.22-rc0"/' static/swagger-latest.json
+    SED_INPLACE 's/"version": "{{AppVer | JSEscape | Safe}}"/"version": "1.22-rc1"/' static/swagger-latest.json
 elif [ "$version" == "1.21" ]; then
     SED_INPLACE 's/"version": "{{AppVer | JSEscape | Safe}}"/"version": "1.21.11"/' static/swagger-21.json
 elif [ "$version" == "1.20" ]; then
