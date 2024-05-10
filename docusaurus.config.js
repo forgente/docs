@@ -187,7 +187,7 @@ const config = {
             label: 'Docs',
           },
           {
-            to: '/api/1.20/',
+            to: '/api/1.21/',
             label: 'API',
             position: 'left',
             activeBaseRegex: 'api/(1.19|1.20|1.21|next)/',
