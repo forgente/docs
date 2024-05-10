@@ -205,7 +205,7 @@ const config = {
             position: 'right',
             items: [
               {to: '/api/next/', label: '1.22-dev' },
-              {to: '/api/1.21/', label: '1.21.2' },
+              {to: '/api/1.21/', label: '1.21.11' },
               {to: '/api/1.20/', label: '1.20.6' },
               {to: '/api/1.19/', label: '1.19.4' },
             ],
