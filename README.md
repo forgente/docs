@@ -1,4 +1,4 @@
-# Gitea Docusaurus
+# Gitea Docusaurus ![badge](https://gitea.com/gitea/gitea-docusaurus/actions/workflows/build-and-publish.yaml/badge.svg)
 
 ## How to build
 
