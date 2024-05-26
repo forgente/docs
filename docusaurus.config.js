@@ -38,6 +38,10 @@ const apiConfig = [
         route: '/api/1.19/',
         spec: 'static/swagger-19.json',
       },
+      {
+        route: '/api/',
+        spec: 'static/swagger-21.json',
+      }
     ]: [],
     // Theme Options for modifying how redoc renders them
     theme: {
