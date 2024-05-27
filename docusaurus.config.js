@@ -27,6 +27,10 @@ const apiConfig = [
         route: '/api/next/',
       },
       {
+        route: '/api/1.22/',
+        spec: 'static/swagger-22.json',
+      },
+      {
         route: '/api/1.21/',
         spec: 'static/swagger-21.json',
       },
@@ -40,7 +44,7 @@ const apiConfig = [
       },
       {
         route: '/api/',
-        spec: 'static/swagger-21.json',
+        spec: 'static/swagger-22.json',
       }
     ]: [],
     // Theme Options for modifying how redoc renders them
@@ -112,8 +116,11 @@ const config = {
           },
           versions: {
             current: {
-              label: '1.22-rc1', // path is kept as next for dev (so users can always find "nightly" docs)
+              label: '1.23-dev', // path is kept as next for dev (so users can always find "nightly" docs)
               banner: 'unreleased',
+            },
+            '1.22': {
+              label: '1.22.0',
             },
             '1.21': {
               label: '1.21.11',
@@ -125,7 +132,7 @@ const config = {
               label: '1.19.4',
             }
           },
-          lastVersion: '1.21',
+          lastVersion: '1.22',
           async sidebarItemsGenerator({defaultSidebarItemsGenerator, ...args}) {
             const {item} = args;
             // Use the provided data to generate a custom sidebar slice
@@ -191,10 +198,10 @@ const config = {
             label: 'Docs',
           },
           {
-            to: '/api/1.21/',
+            to: '/api/1.22/',
             label: 'API',
             position: 'left',
-            activeBaseRegex: 'api/(1.19|1.20|1.21|next)/',
+            activeBaseRegex: 'api/(1.19|1.20|1.21|1.22|next)/',
           },
           {
             position: 'left',
@@ -208,7 +215,8 @@ const config = {
             label: 'API Version',
             position: 'right',
             items: [
-              {to: '/api/next/', label: '1.22-dev' },
+              {to: '/api/next/', label: '1.23-dev' },
+              {to: '/api/1.22/', label: '1.22.0' },
               {to: '/api/1.21/', label: '1.21.11' },
               {to: '/api/1.20/', label: '1.20.6' },
               {to: '/api/1.19/', label: '1.19.4' },

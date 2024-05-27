@@ -59,7 +59,9 @@ prepare-latest-zh-cn:
 clone_\#%: clone
 	cd .tmp/upstream-docs && git clean -f && git reset --hard && git checkout $(GITEA_VERSION_BRANCH_PREFIX)$*
 	cur_path=`pwd`
+	cp .trans-copy.sh .tmp/upstream-docs/docs/scripts/trans-copy.sh
 	cd .tmp/upstream-docs/docs && bash scripts/trans-copy.sh
+	rm .tmp/upstream-docs/docs/scripts/trans-copy.sh
 	cd $(cur_path)
 	bash check_outdated.sh zh-cn
 
@@ -83,7 +85,7 @@ install:
 	npm install
 
 .PHONY: prepare-docs
-prepare-docs: install prepare-latest prepare-latest-zh-cn prepare\#21 prepare-zh-cn\#21 prepare\#20 prepare-zh-cn\#20 prepare\#19 prepare-zh-cn\#19 prepare-awesome-latest prepare-awesome\#19 prepare-awesome\#20 prepare-awesome\#21
+prepare-docs: install prepare-latest prepare-latest-zh-cn prepare\#22 prepare-zh-cn\#22 prepare\#21 prepare-zh-cn\#21 prepare\#20 prepare-zh-cn\#20 prepare\#19 prepare-zh-cn\#19 prepare-awesome-latest prepare-awesome\#19 prepare-awesome\#20 prepare-awesome\#21 prepare-awesome\#22
 
 .PHONY: build
 build:
@@ -104,3 +106,4 @@ clean:
 	rm -rf static/swagger-19.json
 	rm -rf static/swagger-20.json
 	rm -rf static/swagger-21.json
+	rm -rf static/swagger-22.json

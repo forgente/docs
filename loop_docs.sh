@@ -30,6 +30,8 @@ elif [ "$version" == "1.20" ]; then
     minorVer="1.20.6"
 elif [ "$version" == "1.21" ]; then
     minorVer="1.21.11"
+elif [ "$version" == "1.22" ]; then
+    minorVer="1.22.0"
 fi
 
 docs_dir="versioned_docs/version-$version"
@@ -54,7 +56,9 @@ SED_INPLACE "s/@minGoVersion@/$minGoVer/" "$docs_dir/installation/from-source.$l
 # TODO: improve this sed
 # need confirmation
 if [ "$version" == "latest" ]; then
-    SED_INPLACE 's/"version": "{{AppVer | JSEscape | Safe}}"/"version": "1.22-rc1"/' static/swagger-latest.json
+    SED_INPLACE 's/"version": "{{AppVer | JSEscape | Safe}}"/"version": "1.23-dev"/' static/swagger-latest.json
+elif [ "$version" == "1.22" ]; then
+    SED_INPLACE 's/"version": "{{AppVer | JSEscape | Safe}}"/"version": "1.22.0"/' static/swagger-22.json
 elif [ "$version" == "1.21" ]; then
     SED_INPLACE 's/"version": "{{AppVer | JSEscape | Safe}}"/"version": "1.21.11"/' static/swagger-21.json
 elif [ "$version" == "1.20" ]; then

@@ -19,6 +19,10 @@ jobs:
         run: |
           make prepare-latest
           make prepare-latest-zh-cn
+      - name: prepare 1.22 docs
+        run: |
+          make prepare\#22
+          make prepare-zh-cn\#22
       - name: prepare 1.21 docs
         run: |
           make prepare\#21
@@ -33,7 +37,7 @@ jobs:
           make prepare-zh-cn\#19
       - name: prepare awesome list
         run: |
-          make prepare-awesome-latest prepare-awesome\#21 prepare-awesome\#20 prepare-awesome\#19
+          make prepare-awesome-latest prepare-awesome\#22 prepare-awesome\#21 prepare-awesome\#20 prepare-awesome\#19
       - name: build site
         run: |
           make build
