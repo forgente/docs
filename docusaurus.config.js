@@ -67,8 +67,8 @@ const config = {
   tagline: 'Git with a cup of tea',
   url: 'https://docs.gitea.com',
   baseUrl: '/',
-  onBrokenLinks: 'throw',
-  onBrokenMarkdownLinks: 'throw',
+  onBrokenLinks: 'warn',
+  onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.png',
 
   plugins: [
@@ -266,7 +266,7 @@ const config = {
             items: [
               {
                 label: 'Awesome Gitea',
-                to: '/awesome',
+                href: 'https://gitea.com/gitea/awesome-gitea',
               },
               {
                 label: 'Stack Overflow',

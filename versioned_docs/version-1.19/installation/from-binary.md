@@ -207,7 +207,7 @@ If during the update, the binary file name has been changed to a new version of 
 Git Hooks in existing repositories will not work any more. In that case, a Git
 error will be displayed when pushing to the repository.
 
-```
+```sh
 remote: ./hooks/pre-receive.d/gitea: line 2: [...]: No such file or directory
 ```
 

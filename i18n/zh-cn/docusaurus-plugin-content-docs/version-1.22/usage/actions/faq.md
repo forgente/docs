@@ -69,7 +69,7 @@ GitHub 上有成千上万个 [Actions 脚本](https://github.com/marketplace?typ
 
 Runner仅具有连接到您的Gitea实例的权限。
 当任何Runner接收到要运行的Job时，它将临时获得与Job关联的仓库的有限权限。
-如果您想为Runner提供更多权限，允许它访问更多私有仓库或外部系统，您可以向其传递[密钥](usage/secrets.md)。
+如果您想为Runner提供更多权限，允许它访问更多私有仓库或外部系统，您可以向其传递[密钥](usage/actions/secrets.md)。
 
 对于 Actions 的细粒度权限控制是一项复杂的工作。
 在未来，我们将添加更多选项以使Gitea更可配置，例如允许对仓库进行更多写访问或对同一组织中的所有仓库进行读访问。

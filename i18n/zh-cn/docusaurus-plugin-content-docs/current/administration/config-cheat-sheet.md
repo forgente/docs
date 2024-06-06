@@ -446,7 +446,7 @@ menu:
 ## 索引 (`indexer`)
 
 - `ISSUE_INDEXER_TYPE`: **bleve**：工单索引类型，当前支持：`bleve`、`db`、`elasticsearch` 或 `meilisearch`。
-- `ISSUE_INDEXER_CONN_STR`：****：工单索引连接字符串，仅适用于 elasticsearch 和 meilisearch（例如：http://elastic:password@localhost:9200）或者（例如：http://:apikey@localhost:7700）。
+- `ISSUE_INDEXER_CONN_STR`：****：工单索引连接字符串，仅适用于 elasticsearch 和 meilisearch（例如：`http://elastic:password@localhost:9200`）或者（例如：`http://:apikey@localhost:7700`）。
 - `ISSUE_INDEXER_NAME`：**gitea_issues**：工单索引器名称，在 ISSUE_INDEXER_TYPE 为 elasticsearch 或 meilisearch 时可用。
 - `ISSUE_INDEXER_PATH`：**indexers/issues.bleve**：用于工单搜索的索引文件；在 ISSUE_INDEXER_TYPE 为 bleve 和 elasticsearch 时可用。相对路径将相对于 _`AppWorkPath`_ 进行绝对路径化。
 
@@ -454,11 +454,11 @@ menu:
 - `REPO_INDEXER_REPO_TYPES`：**sources,forks,mirrors,templates**：存储库索引器单元。要索引的项目可以是 `sources`、`forks`、`mirrors`、`templates` 或它们的任何组合，用逗号分隔。如果为空，则默认为仅 `sources`，如果要完全禁用，请参见 `REPO_INDEXER_ENABLED`。
 - `REPO_INDEXER_TYPE`：**bleve**：代码搜索引擎类型，可以为 `bleve` 或者 `elasticsearch`。
 - `REPO_INDEXER_PATH`：**indexers/repos.bleve**：用于代码搜索的索引文件。
-- `REPO_INDEXER_CONN_STR`：****：代码索引器连接字符串，在 `REPO_INDEXER_TYPE` 为 elasticsearch 时可用。例如：http://elastic:password@localhost:9200
+- `REPO_INDEXER_CONN_STR`：****：代码索引器连接字符串，在 `REPO_INDEXER_TYPE` 为 elasticsearch 时可用。例如：`http://elastic:password@localhost:9200`
 - `REPO_INDEXER_NAME`：**gitea_codes**：代码索引器名称，在 `REPO_INDEXER_TYPE` 为 elasticsearch 时可用。
 
-- `REPO_INDEXER_INCLUDE`：**empty**：逗号分隔的 glob 模式列表（参见 https://github.com/gobwas/glob）以用于**包括**在索引中。使用 `**.txt` 匹配任何具有 .txt 扩展名的文件。空列表表示包括所有文件。
-- `REPO_INDEXER_EXCLUDE`：**empty**：逗号分隔的 glob 模式列表（参见 https://github.com/gobwas/glob）以用于**排除**在索引中。即使在 `REPO_INDEXER_INCLUDE` 中匹配，也不会索引与此列表匹配的文件。
+- `REPO_INDEXER_INCLUDE`：**empty**：逗号分隔的 glob 模式列表（参见 [https://github.com/gobwas/glob](https://github.com/gobwas/glob)）以用于**包括**在索引中。使用 `**.txt` 匹配任何具有 .txt 扩展名的文件。空列表表示包括所有文件。
+- `REPO_INDEXER_EXCLUDE`：**empty**：逗号分隔的 glob 模式列表（参见 [https://github.com/gobwas/glob](https://github.com/gobwas/glob)）以用于**排除**在索引中。即使在 `REPO_INDEXER_INCLUDE` 中匹配，也不会索引与此列表匹配的文件。
 - `REPO_INDEXER_EXCLUDE_VENDORED`：**true**：从索引中排除 vendored 文件。
 - `MAX_FILE_SIZE`：**1048576**：要索引的文件的最大字节数。
 - `STARTUP_TIMEOUT`：**30s**：如果索引器启动时间超过此超时时间 - 则失败。（此超时时间将添加到上面的锤子时间中，用于子进程 - 因为 bleve 不会在上一个父进程关闭之前启动）。设置为 -1 表示永不超时。
