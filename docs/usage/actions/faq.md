@@ -68,7 +68,7 @@ See [Configuration Cheat Sheet](administration/config-cheat-sheet.md#actions-act
 
 Runners have no more permissions than simply connecting to your Gitea instance.
 When any runner receives a job to run, it will temporarily gain limited permission to the repository associated with the job.
-If you want to give more permissions to the runner, allowing it to access more private repositories or external systems, you can pass [secrets](usage/secrets.md) to it.
+If you want to give more permissions to the runner, allowing it to access more private repositories or external systems, you can pass [secrets](usage/actions/secrets.md) to it.
 
 Refined permission control to Actions is a complicated job.
 In the future, we will add more options to Gitea to make it more configurable, such as allowing more write access to repositories or read access to all repositories in the same organization.

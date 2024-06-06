@@ -67,8 +67,8 @@ const config = {
   tagline: 'Git with a cup of tea',
   url: 'https://docs.gitea.com',
   baseUrl: '/',
-  onBrokenLinks: 'warn',
-  onBrokenMarkdownLinks: 'warn',
+  onBrokenLinks: 'throw',
+  onBrokenMarkdownLinks: 'throw',
   favicon: 'img/favicon.png',
 
   plugins: [
