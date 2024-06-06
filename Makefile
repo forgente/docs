@@ -44,7 +44,6 @@ clone_main: clone
 prepare-latest: clone_main
 	cp -r .tmp/upstream-docs/docs/static/* static/
 	rsync -avz --prune-empty-dirs --include '*/' --include='*.en-us.md' --exclude '*' .tmp/upstream-docs/docs/content/ docs/
-	cp .tmp/upstream-docs/docs/content/index.en-us.md docs/intro.md
 	cp .tmp/upstream-docs/templates/swagger/v1_json.tmpl static/swagger-latest.json
 	bash loop_docs.sh latest en-us
 
@@ -52,7 +51,6 @@ prepare-latest: clone_main
 prepare-latest-zh-cn:
 	mkdir -p i18n/zh-cn/docusaurus-plugin-content-docs/current
 	rsync -avz --prune-empty-dirs --include '*/' --include='*.zh-cn.md' --exclude '*' .tmp/upstream-docs/docs/content/ i18n/zh-cn/docusaurus-plugin-content-docs/current/
-	cp .tmp/upstream-docs/docs/content/index.zh-cn.md i18n/zh-cn/docusaurus-plugin-content-docs/current/intro.md
 	bash loop_docs.sh latest zh-cn
 
 .PHONY: clone_\#%
@@ -69,7 +67,6 @@ clone_\#%: clone
 prepare\#%: clone_\#%
 	cp -r .tmp/upstream-docs/docs/static/* static/
 	rsync -a --prune-empty-dirs --include '*/' --include='*.en-us.md' --exclude '*' .tmp/upstream-docs/docs/content/ versioned_docs/version-1.$*/
-	cp .tmp/upstream-docs/docs/content/index.en-us.md versioned_docs/version-1.$*/intro.md
 	cp .tmp/upstream-docs/templates/swagger/v1_json.tmpl static/swagger-$*.json
 	bash loop_docs.sh $* en-us
 
@@ -77,7 +74,6 @@ prepare\#%: clone_\#%
 prepare-zh-cn\#%:
 	mkdir -p i18n/zh-cn/docusaurus-plugin-content-docs/version-1.$*
 	rsync -avz --prune-empty-dirs --include '*/' --include='*.zh-cn.md' --exclude '*' .tmp/upstream-docs/docs/content/ i18n/zh-cn/docusaurus-plugin-content-docs/version-1.$*/
-	cp .tmp/upstream-docs/docs/content/index.zh-cn.md i18n/zh-cn/docusaurus-plugin-content-docs/version-1.$*/intro.md
 	bash loop_docs.sh $* zh-cn
 
 .PHONY: install

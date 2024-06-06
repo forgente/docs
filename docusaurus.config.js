@@ -108,10 +108,6 @@ const config = {
               return `https://gitea.com/gitea/awesome-gitea/src/branch/main/README.md`
             }
             let fileName = `${docPath.replace('.md', '')}.${locale}.md`;
-            // intro.md has different name from upstream, need to handle this here
-            if (docPath.includes('intro.md')) {
-              fileName = `page/index.${locale}.md`;
-            }
             return `https://github.com/go-gitea/gitea/tree/${version === 'current' ? 'main': `release/v${version}`}/docs/content/${fileName}`;
           },
           versions: {
@@ -193,7 +189,7 @@ const config = {
         items: [
           {
             type: 'doc',
-            docId: 'intro',
+            docId: 'index.en-us',
             position: 'left',
             label: 'Docs',
           },

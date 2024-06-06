@@ -20,8 +20,6 @@ yarn-debug.log*
 yarn-error.log*
 
 .tmp/
-docs/
-versioned_docs/
 # Static files other than those explicitly tracked
 /static
 i18n/zh-cn/docusaurus-plugin-content-docs/current
