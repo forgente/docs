@@ -12,29 +12,6 @@ jobs:
         with:
           node-version: 20
           cache: npm
-      - name: install necessary tools
-        run: |
-          apt update -y && apt install -y rsync python3 python3-pip python-is-python3
-      - name: prepare nightly docs
-        run: |
-          make prepare-latest
-          make prepare-latest-zh-cn
-      - name: prepare 1.22 docs
-        run: |
-          make prepare\#22
-          make prepare-zh-cn\#22
-      - name: prepare 1.21 docs
-        run: |
-          make prepare\#21
-          make prepare-zh-cn\#21
-      - name: prepare 1.20 docs
-        run: |
-          make prepare\#20
-          make prepare-zh-cn\#20
-      - name: prepare 1.19 docs
-        run: |
-          make prepare\#19
-          make prepare-zh-cn\#19
       - name: prepare awesome list
         run: |
           make prepare-awesome-latest prepare-awesome\#22 prepare-awesome\#21 prepare-awesome\#20 prepare-awesome\#19
