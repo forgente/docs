@@ -82,7 +82,7 @@ const config = {
 
   i18n: {
     defaultLocale: 'en-us',
-    locales: ['en-us', 'zh-cn'/*, 'fr-fr', 'zh-tw'*/], // temporarily disable other locales
+    locales: ['en-us', 'zh-cn'/*,'fr-fr', 'zh-tw'*/], // temporarily disable other locales
     localeConfigs: {
       'en-us': {
         label: 'English',
@@ -108,7 +108,7 @@ const config = {
               return `https://gitea.com/gitea/awesome-gitea/src/branch/main/README.md`
             }
             let fileName = `${docPath.replace('.md', '')}.${locale}.md`;
-            return `https://github.com/go-gitea/gitea/tree/${version === 'current' ? 'main': `release/v${version}`}/docs/content/${fileName}`;
+            return `https://gitea.com/gitea/docs/tree/${version === 'current' ? 'docs': `versioned_docs/version-${version}`}/${fileName}`;
           },
           versions: {
             current: {
@@ -189,7 +189,7 @@ const config = {
         items: [
           {
             type: 'doc',
-            docId: 'index.en-us',
+            docId: 'index',
             position: 'left',
             label: 'Docs',
           },
@@ -234,10 +234,10 @@ const config = {
             type: 'search',
             position: 'right',
           },
-         {
+          /*{
             type: 'localeDropdown',
             position: 'right',
-          },
+          },*/
           {
             type: 'docsVersionDropdown',
             position: 'right',

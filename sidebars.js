@@ -2,7 +2,7 @@ module.exports = {
   docs: [
     {
       type: 'doc',
-      id: 'index.en-us',
+      id: 'index',
       label: 'What is Gitea?',
     },
     {
