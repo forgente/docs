@@ -27,7 +27,7 @@ Note: For use in the official Gitea Docker image, please configure with the SMTP
 
 Note: For Internet-facing sites consult documentation of your MTA for instructions to send emails over TLS. Also set up SPF, DMARC, and DKIM DNS records to make emails sent be accepted as legitimate by various email providers.
 
-```ini
+```ini title="app.ini"
 [mailer]
 ENABLED       = true
 FROM          = gitea@mydomain.com
@@ -40,7 +40,7 @@ SENDMAIL_ARGS = "--" ; most "sendmail" programs take options, "--" will prevent 
 
 Directly use SMTP server as relay. This option is useful if you don't want to set up MTA on your instance but you have an account at email provider.
 
-```ini
+```ini title="app.ini"
 [mailer]
 ENABLED        = true
 FROM           = gitea@mydomain.com
@@ -70,7 +70,7 @@ Note that Implicit TLS is recommended by [RFC8314](https://tools.ietf.org/html/r
 
 The following configuration should work with GMail's SMTP server:
 
-```ini
+```ini title="app.ini"
 [mailer]
 ENABLED        = true
 HOST           = smtp.gmail.com:465 ; Remove this line for Gitea >= 1.18.0

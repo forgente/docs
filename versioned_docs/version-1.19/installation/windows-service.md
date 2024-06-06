@@ -17,7 +17,7 @@ menu:
 
 The following changes are made in C:\gitea\custom\conf\app.ini:
 
-```
+```ini title="app.ini"
 RUN_USER = COMPUTERNAME$
 ```
 
@@ -29,7 +29,7 @@ COMPUTERNAME is whatever the response is from `echo %COMPUTERNAME%` on the comma
 
 If you use SQLite3, change the `PATH` to include the full path:
 
-```
+```ini title="app.ini"
 [database]
 PATH     = c:/gitea/data/gitea.db
 ```
@@ -39,7 +39,7 @@ PATH     = c:/gitea/data/gitea.db
 To register Gitea as a Windows service, open a command prompt (cmd) as an Administrator,
 then run the following command:
 
-```
+```sh
 sc.exe create gitea start= auto binPath= "\"C:\gitea\gitea.exe\" web --config \"C:\gitea\custom\conf\app.ini\""
 ```
 
@@ -53,7 +53,7 @@ that was configured).
 
 To add a startup dependency to the Gitea Windows service (eg Mysql, Mariadb), as an Administrator, then run the following command:
 
-```
+```sh
 sc.exe config gitea depend= mariadb
 ```
 
@@ -63,6 +63,6 @@ This will ensure that when the Windows machine restarts, the automatic starting 
 
 To unregister Gitea as a service, open a command prompt (cmd) as an Administrator and run:
 
-```
+```sh
 sc.exe delete gitea
 ```

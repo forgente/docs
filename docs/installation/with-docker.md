@@ -269,7 +269,9 @@ files; for named volumes, this is done through another container or by direct ac
 
 ## Upgrading
 
-:exclamation::exclamation: **Make sure you have volumed data to somewhere outside Docker container** :exclamation::exclamation:
+:::warning
+Make sure you have volumed data to somewhere outside Docker container
+:::
 
 To upgrade your installation to the latest release:
 
@@ -296,7 +298,7 @@ or in a `.env` file in the same directory as `docker-compose.yml`.
 The settings can be also set or overridden with the content of a file by defining an environment variable of the form:
 `GITEA__section_name__KEY_NAME__FILE` that points to a file.
 
-```bash
+```yaml
 ...
 services:
   server:
