@@ -234,10 +234,10 @@ const config = {
             type: 'search',
             position: 'right',
           },
-          /*{
+          {
             type: 'localeDropdown',
             position: 'right',
-          },*/
+          },
           {
             type: 'docsVersionDropdown',
             position: 'right',
@@ -316,7 +316,7 @@ const config = {
       prism: {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
-        additionalLanguages: ['ini','diff'],
+        additionalLanguages: ['ini','diff','json','http','docker','php'],
       },
     }),
 };

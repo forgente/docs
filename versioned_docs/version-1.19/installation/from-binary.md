@@ -60,8 +60,10 @@ despite warnings like `This key is not certified with a trusted signature!`.
 
 ## Recommended server configuration
 
-**NOTE:** Many of the following directories can be configured using [Environment Variables](administration/environment-variables.md) as well!
+:::note
+Many of the following directories can be configured using [Environment Variables](administration/environment-variables.md) as well!
 Of note, configuring `GITEA_WORK_DIR` will tell Gitea where to base its working directory, as well as ease installation.
+:::
 
 ### Prepare environment
 
@@ -95,8 +97,10 @@ chown root:git /etc/gitea
 chmod 770 /etc/gitea
 ```
 
-> **NOTE:** `/etc/gitea` is temporarily set with write permissions for user `git` so that the web installer can write the configuration file. After the installation is finished, it is recommended to set permissions to read-only using:
->
+:::note
+> `/etc/gitea` is temporarily set with write permissions for user `git` so that the web installer can write the configuration file. After the installation is finished, it is recommended to set permissions to read-only using:
+:::
+
 > ```sh
 > chmod 750 /etc/gitea
 > chmod 640 /etc/gitea/app.ini
@@ -113,7 +117,9 @@ See the [command line documentation](administration/command-line.md) for informa
 
 ### Configure Gitea's working directory
 
-**NOTE:** If you plan on running Gitea as a Linux service, you can skip this step, as the service file allows you to set `WorkingDirectory`. Otherwise, consider setting this environment variable (semi-)permanently so that Gitea consistently uses the correct working directory.
+:::note
+If you plan on running Gitea as a Linux service, you can skip this step, as the service file allows you to set `WorkingDirectory`. Otherwise, consider setting this environment variable (semi-)permanently so that Gitea consistently uses the correct working directory.
+:::
 
 ```sh
 export GITEA_WORK_DIR=/var/lib/gitea/
@@ -169,7 +175,9 @@ To restart your Gitea instance, we recommend to use SIGHUP signal. If you know y
 
 To gracefully stop the Gitea instance, a simple `kill $GITEA_PID` or `killall gitea` is enough.
 
-**NOTE:** We don't recommend to use the SIGKILL signal (`-9`); you may be forcefully stopping some of Gitea's internal tasks, and it will not gracefully stop (tasks in queues, indexers, etc.)
+:::note
+We don't recommend to use the SIGKILL signal (`-9`); you may be forcefully stopping some of Gitea's internal tasks, and it will not gracefully stop (tasks in queues, indexers, etc.)
+:::
 
 See below for troubleshooting instructions to repair broken repositories after
 an update of your Gitea version.

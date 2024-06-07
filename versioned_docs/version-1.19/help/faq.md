@@ -23,7 +23,9 @@ For more help resources, check all [Support Options](help/seek-help.md).
 
 Version 1.7.x will be used for this example.
 
-**NOTE:** this example applies to Docker images as well!
+:::note
+This example applies to Docker images as well!
+:::
 
 On our [downloads page](https://dl.gitea.io/gitea/) you will see a 1.7 directory, as well as directories for 1.7.0, 1.7.1, 1.7.2, 1.7.3, 1.7.4, 1.7.5, and 1.7.6.
 
@@ -163,7 +165,9 @@ You can configure `EMAIL_DOMAIN_WHITELIST` or `EMAIL_DOMAIN_BLOCKLIST` in your a
 
 You can configure `WHITELISTED_URIS` or `BLACKLISTED_URIS` under `[openid]` in your `app.ini`
 
-**NOTE:** whitelisted takes precedence, so if it is non-blank then blacklisted is ignored
+:::note
+Whitelisted takes precedence, so if it is non-blank then blacklisted is ignored
+:::
 
 ### Issue only users
 

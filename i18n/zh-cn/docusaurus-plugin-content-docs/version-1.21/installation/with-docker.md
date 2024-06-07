@@ -264,7 +264,9 @@ MySQL 或 PostgreSQL 容器将需要分别创建。
 
 ## 升级
 
+:::warning
 :exclamation::exclamation: **确保已将数据卷到 Docker 容器外部的某个位置** :exclamation::exclamation:
+:::
 
 要将安装升级到最新版本：
 

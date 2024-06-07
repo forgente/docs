@@ -32,7 +32,7 @@ Gitea uses [gobwas/glob](https://github.com/gobwas/glob) for its glob syntax. It
 
 All paths are relative to the base of the repository
 
-```gitignore
+```bash
 # Expand all .go files, anywhere in the repository
 **.go
 

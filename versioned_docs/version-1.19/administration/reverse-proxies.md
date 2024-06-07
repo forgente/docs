@@ -171,7 +171,9 @@ In case you already have a site, and you want Gitea to share the domain name, yo
 
 Then you **MUST** set something like `[server] ROOT_URL = http://git.example.com/git/` correctly in your configuration.
 
-Note: The following Apache HTTPD mods must be enabled: `proxy`, `proxy_http`.
+:::note
+The following Apache HTTPD mods must be enabled: `proxy`, `proxy_http`.
+:::
 
 ## Caddy
 

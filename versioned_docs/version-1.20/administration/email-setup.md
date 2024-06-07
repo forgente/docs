@@ -23,9 +23,11 @@ Gitea has mailer functionality for sending transactional emails (such as registr
 
 Use `sendmail` command as mailer.
 
-Note: For use in the official Gitea Docker image, please configure with the SMTP version (see the following section).
+For use in the official Gitea Docker image, please configure with the SMTP version (see the following section).
 
-Note: For Internet-facing sites consult documentation of your MTA for instructions to send emails over TLS. Also set up SPF, DMARC, and DKIM DNS records to make emails sent be accepted as legitimate by various email providers.
+:::note
+For Internet-facing sites consult documentation of your MTA for instructions to send emails over TLS. Also set up SPF, DMARC, and DKIM DNS records to make emails sent be accepted as legitimate by various email providers.
+:::
 
 ```ini title="app.ini"
 [mailer]
@@ -57,14 +59,18 @@ To send a test email to validate the settings, go to Gitea > Site Administration
 
 For the full list of options check the [Config Cheat Sheet](administration/config-cheat-sheet.md)
 
-Please note: authentication is only supported when the SMTP server communication is encrypted with TLS or `HOST=localhost`. TLS encryption can be through:
+:::note
+Authentication is only supported when the SMTP server communication is encrypted with TLS or `HOST=localhost`. TLS encryption can be through:
+:::
 
 - STARTTLS (also known as Opportunistic TLS) via port 587. Initial connection is done over cleartext, but then be upgraded over TLS if the server supports it.
 - SMTPS connection (SMTP over TLS) via the default port 465. Connection to the server use TLS from the beginning.
 - Forced SMTPS connection with `IS_TLS_ENABLED=true`. (These are both known as Implicit TLS.)
 This is due to protections imposed by the Go internal libraries against STRIPTLS attacks.
 
-Note that Implicit TLS is recommended by [RFC8314](https://tools.ietf.org/html/rfc8314#section-3) since 2018.
+:::note
+Implicit TLS is recommended by [RFC8314](https://tools.ietf.org/html/rfc8314#section-3) since 2018.
+:::
 
 ### Gmail
 
@@ -84,5 +90,7 @@ PROTOCOL       = smtps ; Gitea >= 1.19.0
 ; IS_TLS_ENABLED = true  ; Gitea < 1.19.0
 ```
 
-Note that you'll need to create and use an [App password](https://support.google.com/accounts/answer/185833?hl=en) by enabling 2FA on your Google
+:::note
+You'll need to create and use an [App password](https://support.google.com/accounts/answer/185833?hl=en) by enabling 2FA on your Google
 account. You won't be able to use your Google account password directly.
+:::

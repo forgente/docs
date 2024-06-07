@@ -47,7 +47,9 @@ For example, these are all valid image names for the owner `testuser`:
 
 `gitea.example.com/testuser/my/image`
 
-**NOTE:** The registry only supports case-insensitive tag names. So `image:tag` and `image:Tag` get treated as the same image and tag.
+:::note
+The registry only supports case-insensitive tag names. So `image:tag` and `image:Tag` get treated as the same image and tag.
+:::
 
 ## Push an image
 

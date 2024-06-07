@@ -33,7 +33,9 @@ In the default values below, a value in the form `$XYZ` refers to an environment
 
 Values containing `#` or `;` must be quoted using `` ` `` or `"""`.
 
-**Note:** A full restart is required for Gitea configuration changes to take effect.
+:::info
+A full restart is required for Gitea configuration changes to take effect.
+:::
 
 ## Default Configuration (non-`app.ini` configuration)
 
@@ -96,8 +98,12 @@ In addition, there is _`StaticRootPath`_ which can be set as a built-in at build
 - `GO_GET_CLONE_URL_PROTOCOL`: **https**: Value for the "go get" request returns the repository url as https or ssh
    default is https.
 - `ACCESS_CONTROL_ALLOW_ORIGIN`: **_empty_**: Value for Access-Control-Allow-Origin header,
-   default is not to present. **WARNING**: This maybe harmful to you website if you do not
-   give it a right value.
+   default is not to present.
+
+  :::warning
+  This maybe harmful to you website if you do not give it a right value.
+  :::
+
 - `DEFAULT_CLOSE_ISSUES_VIA_COMMITS_IN_ANY_BRANCH`:  **false**: Close an issue if a commit on a non default branch marks it as closed.
 - `ENABLE_PUSH_CREATE_USER`:  **false**: Allow users to push local repositories to Gitea and have them automatically created for a user.
 - `ENABLE_PUSH_CREATE_ORG`:  **false**: Allow users to push local repositories to Gitea and have them automatically created for an org.
@@ -441,7 +447,12 @@ The following configuration set `Content-Type: application/vnd.android.package-a
 - `SQLITE_TIMEOUT`: **500**: Query timeout for SQLite3 only.
 - `SQLITE_JOURNAL_MODE`: **""**: Change journal mode for SQlite3. Can be used to enable [WAL mode](https://www.sqlite.org/wal.html) when high load causes write congestion. See [SQlite3 docs](https://www.sqlite.org/pragma.html#pragma_journal_mode) for possible values. Defaults to the default for the database file, often DELETE.
 - `ITERATE_BUFFER_SIZE`: **50**: Internal buffer size for iterating.
-- `CHARSET`: **utf8mb4**: For MySQL only, either "utf8" or "utf8mb4". NOTICE: for "utf8mb4" you must use MySQL InnoDB > 5.6. Gitea is unable to check this.
+- `CHARSET`: **utf8mb4**: For MySQL only, either "utf8" or "utf8mb4".
+
+  :::note
+  For "utf8mb4" you must use MySQL InnoDB > 5.6. Gitea is unable to check this.
+  :::
+
 - `PATH`: **data/gitea.db**: For SQLite3 only, the database file path.
 - `LOG_SQL`: **false**: Log the executed SQL.
 - `DB_RETRIES`: **10**: How many ORM init / DB connect attempts allowed.
@@ -527,13 +538,17 @@ And the following unique queues:
    Number of trusted proxy count. Set to zero to not use these headers.
 - `REVERSE_PROXY_TRUSTED_PROXIES`: **127.0.0.0/8,::1/128**: List of IP addresses and networks separated by comma of trusted proxy servers. Use `*` to trust all.
 - `DISABLE_GIT_HOOKS`: **true**: Set to `false` to enable users with Git Hook privilege to create custom Git Hooks.
-   WARNING: Custom Git Hooks can be used to perform arbitrary code execution on the host operating system.
+
+   :::warning
+   Custom Git Hooks can be used to perform arbitrary code execution on the host operating system.
    This enables the users to access and modify this config file and the Gitea database and interrupt the Gitea service.
    By modifying the Gitea database, users can gain Gitea administrator privileges.
    It also enables them to access other resources available to the user on the operating system that is running the
    Gitea instance and perform arbitrary actions in the name of the Gitea OS user.
    This maybe harmful to you website or your operating system.
    Setting this to true does not change existing hooks in git repos; adjust it before if necessary.
+   :::
+
 - `DISABLE_WEBHOOKS`: **false**: Set to `true` to disable webhooks feature.
 - `ONLY_ALLOW_PUSH_IF_GITEA_ENVIRONMENT_SET`: **true**: Set to `false` to allow local users to push to gitea-repositories without setting up the Gitea environment. This is not recommended and if you want local users to push to Gitea repositories you should set the environment appropriately.
 - `IMPORT_LOCAL_PATHS`: **false**: Set to `false` to prevent all users (including admin) from importing local path on server.
@@ -609,8 +624,12 @@ And the following unique queues:
 - `DISABLE_REGISTRATION`: **false**: Disable registration, after which only admin can create
    accounts for users.
 - `REQUIRE_EXTERNAL_REGISTRATION_PASSWORD`: **false**: Enable this to force externally created
-   accounts (via GitHub, OpenID Connect, etc) to create a password. Warning: enabling this will
-   decrease security, so you should only enable it if you know what you're doing.
+   accounts (via GitHub, OpenID Connect, etc) to create a password.
+
+   :::warning
+   Enabling this will decrease security, so you should only enable it if you know what you're doing.
+   :::
+
 - `REQUIRE_SIGNIN_VIEW`: **false**: Enable this to force users to log in to view any page or to use API.
 - `ENABLE_NOTIFY_MAIL`: **false**: Enable this to send e-mail to watchers of a repository when
    something happens, like creating issues. Requires `Mailer` to be enabled.
@@ -1189,7 +1208,9 @@ Task queue configuration has been moved to `queue.task`. However, the below conf
 - `SHARE_USER_STATISTICS`: **true**: Enable/Disable user statistics for nodeinfo if federation is enabled
 - `MAX_SIZE`: **4**: Maximum federation request and response size (MB)
 
- WARNING: Changing the settings below can break federation.
+  :::warning
+  Changing the settings below can break federation.
+  :::
 
 - `ALGORITHMS`: **rsa-sha256, rsa-sha512, ed25519**: HTTP signature algorithms
 - `DIGEST_ALGORITHM`: **SHA-256**: HTTP signature digest algorithm

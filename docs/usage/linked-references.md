@@ -197,5 +197,7 @@ _The last section is for repositories with external issue trackers that use alph
 
 _**-**: not applicable._
 
-Note: automatic references between repositories with different types of issues (external vs. internal) are not fully supported
+:::note
+Automatic references between repositories with different types of issues (external vs. internal) are not fully supported
 and may render invalid links.
+:::

@@ -240,8 +240,10 @@ started properly. Logs can be viewed with `docker-compose logs`.
 To shut down the setup, execute `docker-compose down`. This will stop
 and kill the containers. The volumes will still exist.
 
-Notice: if using a non-3000 port on http, change app.ini to match
+:::note
+If using a non-3000 port on http, change app.ini to match
 `LOCAL_ROOT_URL = http://localhost:3000/`.
+:::
 
 ## Install
 
@@ -250,7 +252,7 @@ favorite browser to finalize the installation. Visit http://server-ip:3000 and f
 installation wizard. If the database was started with the `docker-compose` setup as
 documented above, please note that `db` must be used as the database hostname.
 
-# Customization
+## Customization
 
 Customization files described [here](https://docs.gitea.io/en-us/customizing-gitea/) should
 be placed in `/var/lib/gitea/custom` directory. If using host volumes, it's quite easy to access these
@@ -258,13 +260,15 @@ files; for named volumes, this is done through another container or by direct ac
 `/var/lib/docker/volumes/gitea_gitea/_/var_lib_gitea`. The configuration file will be saved at
 `/etc/gitea/app.ini` after the installation.
 
-# Upgrading
+## Upgrading
 
+:::warning
 :exclamation::exclamation: **Make sure you have volumed data to somewhere outside Docker container** :exclamation::exclamation:
+:::
 
 To upgrade your installation to the latest release:
 
-```
+```bash
 # Edit `docker-compose.yml` to update the version, if you have one specified
 # Pull new images
 docker-compose pull
@@ -272,7 +276,7 @@ docker-compose pull
 docker-compose up -d
 ```
 
-# Upgrading from standard image
+## Upgrading from standard image
 
 - Backup your setup
 - Change volume mountpoint from /data to /var/lib/gitea

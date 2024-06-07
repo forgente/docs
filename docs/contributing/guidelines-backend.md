@@ -58,8 +58,7 @@ Since Golang doesn't support import cycles, we have to decide the package depend
 
 From left to right, left packages could depend on right packages, but right packages MUST not depend on left packages. The sub packages on the same level could depend on according this level's rules.
 
-**NOTICE**
-
+:::warning
 Why do we need database transactions outside of `models`? And how?
 Some actions should allow for rollback when database record insertion/update/deletion failed.
 So services must be allowed to create a database transaction. Here is some example,
@@ -90,6 +89,7 @@ func UpdateIssue(ctx context.Context, repoID int64) error {
     // ...
 }
 ```
+:::
 
 ### Package Name
 

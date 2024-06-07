@@ -32,12 +32,14 @@ All event pushes are POST requests. The methods currently supported are:
 
 ### Event information
 
-**WARNING**: The `secret` field in the payload is deprecated as of Gitea 1.13.0 and will be removed in 1.14.0: https://github.com/go-gitea/gitea/issues/11755
+:::warning
+The `secret` field in the payload is deprecated as of Gitea 1.13.0 and will be removed in 1.14.0: https://github.com/go-gitea/gitea/issues/11755
+:::
 
 The following is an example of event information that will be sent by Gitea to
 a Payload URL:
 
-```
+```http
 X-GitHub-Delivery: f6266f16-1bf3-46a5-9ea4-602e06ead473
 X-GitHub-Event: push
 X-Gogs-Delivery: f6266f16-1bf3-46a5-9ea4-602e06ead473
@@ -131,7 +133,7 @@ In your repository Settings, under Webhooks, Setup a Gitea webhook as follows:
 
 Now on your server create the php file webhook.php
 
-```
+```php
 <?php
 
 $secret_key = '123';

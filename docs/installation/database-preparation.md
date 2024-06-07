@@ -23,7 +23,9 @@ If you use an unsupported database version, please [get in touch](/help/support)
 
 Database instance can be on same machine as Gitea (local database setup), or on different machine (remote database).
 
-Note: All steps below requires that the database engine of your choice is installed on your system. For remote database setup, install the server application on database instance and client program on your Gitea server. The client program is used to test connection to the database from Gitea server, while Gitea itself use database driver provided by Go to accomplish the same thing. In addition, make sure you use same engine version for both server and client for some engine features to work. For security reason, protect `root` (MySQL) or `postgres` (PostgreSQL) database superuser with secure password. The steps assumes that you run Linux for both database and Gitea servers.
+:::note
+All steps below requires that the database engine of your choice is installed on your system. For remote database setup, install the server application on database instance and client program on your Gitea server. The client program is used to test connection to the database from Gitea server, while Gitea itself use database driver provided by Go to accomplish the same thing. In addition, make sure you use same engine version for both server and client for some engine features to work. For security reason, protect `root` (MySQL) or `postgres` (PostgreSQL) database superuser with secure password. The steps assumes that you run Linux for both database and Gitea servers.
+:::
 
 ## MySQL/MariaDB
 
@@ -155,7 +157,9 @@ Note: All steps below requires that the database engine of your choice is instal
 
     Replace database name, user, and IP address of Gitea instance with your own.
 
-    Note: rules on `pg_hba.conf` are evaluated sequentially, that is the first matching rule will be used for authentication. Your PostgreSQL installation may come with generic authentication rules that match all users and databases. You may need to place the rules presented here above such generic rules if it is the case.
+    :::note
+    Rules on `pg_hba.conf` are evaluated sequentially, that is the first matching rule will be used for authentication. Your PostgreSQL installation may come with generic authentication rules that match all users and databases. You may need to place the rules presented here above such generic rules if it is the case.
+    :::
 
     Restart PostgreSQL to apply new authentication rules.
 
@@ -163,13 +167,13 @@ Note: All steps below requires that the database engine of your choice is instal
 
     For local database:
 
-    ```
+    ```bash
     psql -U gitea -d giteadb
     ```
 
     For remote database:
 
-    ```
+    ```bash
     psql "postgres://gitea@203.0.113.3/giteadb"
     ```
 
@@ -239,7 +243,9 @@ The PostgreSQL driver used by Gitea supports two-way TLS. In two-way TLS, both d
     - `~/.postgresql/postgresql.key`: Database client private key
     - `~/.postgresql/root.crt`: CA certificate chain to validate server certificate
 
-    Note: Those file names above are hardcoded in PostgreSQL and it is not possible to change them.
+    :::note
+    Those file names above are hardcoded in PostgreSQL and it is not possible to change them.
+    :::
 
 7. Adjust credentials, ownership and permission as required:
 

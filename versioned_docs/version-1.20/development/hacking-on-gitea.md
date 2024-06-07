@@ -32,17 +32,21 @@ Next, [install Node.js with npm](https://nodejs.org/en/download/) which is
 required to build the JavaScript and CSS files. The minimum supported Node.js
 version is @minNodeVersion@ and the latest LTS version is recommended.
 
-**Note**: When executing make tasks that require external tools, like
+:::note
+When executing make tasks that require external tools, like
 `make watch-backend`, Gitea will automatically download and build these as
 necessary. To be able to use these you must have the `"$GOPATH"/bin` directory
 on the executable path. If you don't add the go bin directory to the
 executable path you will have to manage this yourself.
+:::
 
-**Note 2**: Go version @minGoVersion@ or higher is required.
+:::note
+Go version @minGoVersion@ or higher is required.
 Gitea uses `gofmt` to format source code. However, the results of
 `gofmt` can differ by the version of `go`. Therefore it is
 recommended to install the version of Go that our continuous integration is
 running. As of last update, the Go version should be @goVersion@.
+:::
 
 ## Installing Make
 
@@ -79,7 +83,9 @@ One of these three distributions of Make will run on Windows:
   - To compile Gitea with CGO_ENABLED (eg: SQLite3), you might need to use [tdm-gcc](https://jmeubank.github.io/tdm-gcc/) instead of MSYS2 gcc, because MSYS2 gcc headers lack some Windows-only CRT functions like `_beginthread`.
 - [Chocolatey package](https://chocolatey.org/packages/make). Run `choco install make`
 
-**Note**: If you are attempting to build using make with Windows Command Prompt, you may run into issues. The above prompts (Git bash, or MinGW) are recommended, however if you only have command prompt (or potentially PowerShell) you can set environment variables using the [set](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/set_1) command, e.g. `set TAGS=bindata`.
+:::note
+If you are attempting to build using make with Windows Command Prompt, you may run into issues. The above prompts (Git bash, or MinGW) are recommended, however if you only have command prompt (or potentially PowerShell) you can set environment variables using the [set](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/set_1) command, e.g. `set TAGS=bindata`.
+:::
 
 ## Downloading and cloning the Gitea source code
 
@@ -253,8 +259,9 @@ server will check that this has been done using:
 make swagger-check
 ```
 
-**Note**: Please note you should use the Swagger 2.0 documentation, not the
-OpenAPI 3 documentation.
+:::note
+Please note you should use the Swagger 2.0 documentation, not the OpenAPI 3 documentation.
+:::
 
 ### Creating new configuration options
 

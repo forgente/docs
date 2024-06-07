@@ -27,9 +27,11 @@ Next, [install Node.js with npm](https://nodejs.org/en/download/) which is
 required to build the JavaScript and CSS files. The minimum supported Node.js
 version is @minNodeVersion@ and the latest LTS version is recommended.
 
-**Note**: Go version @minGoVersion@ or higher is required. However, it is recommended to
+:::note
+Go version @minGoVersion@ or higher is required. However, it is recommended to
 obtain the same version as our continuous integration, see the advice given in
 [Hacking on Gitea](development/hacking-on-gitea.md)
+:::
 
 ## Download
 

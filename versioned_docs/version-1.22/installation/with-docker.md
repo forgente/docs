@@ -243,8 +243,10 @@ started properly. Logs can be viewed with `docker-compose logs`.
 To shut down the setup, execute `docker-compose down`. This will stop
 and kill the containers. The volumes will still exist.
 
-Notice: if using a non-3000 port on http, change app.ini to match
+:::note
+If using a non-3000 port on http, change app.ini to match
 `LOCAL_ROOT_URL = http://localhost:3000/`.
+:::
 
 ## Installation
 
@@ -269,7 +271,9 @@ files; for named volumes, this is done through another container or by direct ac
 
 ## Upgrading
 
+:::warning
 :exclamation::exclamation: **Make sure you have volumed data to somewhere outside Docker container** :exclamation::exclamation:
+:::
 
 To upgrade your installation to the latest release:
 

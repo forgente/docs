@@ -29,4 +29,6 @@ LFS_START_SERVER = true
 PATH = /home/gitea/data/lfs
 ```
 
-**Note**: LFS server support needs at least Git v2.1.2 installed on the server
+:::note
+LFS server support needs at least Git v2.1.2 installed on the server
+:::

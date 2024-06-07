@@ -19,7 +19,9 @@ menu:
 - [Discord](https://discord.gg/Gitea)
 - [Discourse Forum](https://discourse.gitea.io/)
 
-**NOTE:** When asking for support, it may be a good idea to have the following available so that the person helping has all the info they need:
+:::note
+When asking for support, it may be a good idea to have the following available so that the person helping has all the info they need:
+:::
 
 1. Your `app.ini` (with any sensitive data scrubbed as necessary).
 2. The Gitea logs, and any other appropriate log files for the situation.

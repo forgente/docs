@@ -233,17 +233,19 @@ services:
 
 在通过 `docker-compose` 启动 Docker 设置后，可以使用喜爱的浏览器访问 Gitea，完成安装过程。访问 `http://<服务器-IP>:3000` 并按照安装向导进行操作。如果数据库是使用上述文档中的 `docker-compose` 设置启动的，请注意必须使用 `db` 作为数据库主机名。
 
-# 自定义
+## 自定义
 
 自定义文件的位置位于 `/var/lib/gitea/custom` 目录中，可以在这里找到有关自定义的文件说明。如果使用主机卷（host volumes），很容易访问这些文件；如果使用命名卷（named volumes），则可以通过另一个容器或直接访问 `/var/lib/docker/volumes/gitea_gitea/_/var_lib_gitea` 来进行访问。在安装后，配置文件将保存在 `/etc/gitea/app.ini` 中。
 
-# 升级
+## 升级
 
+:::warning
 :exclamation::exclamation: **确保您已将数据卷迁移到 Docker 容器之外的其他位置** :exclamation::exclamation:
+:::
 
 要将安装升级到最新版本，请按照以下步骤操作：
 
-```
+```bash
 # 如果在 docker-compose.yml 中指定了版本，请编辑该文件以更新版本
 # 拉取新的镜像
 docker-compose pull
@@ -251,7 +253,7 @@ docker-compose pull
 docker-compose up -d
 ```
 
-# 从标准镜像升级
+## 从标准镜像升级
 
 - 备份您的设置
 - 将卷挂载点从 `/data` 更改为 `/var/lib/gitea`

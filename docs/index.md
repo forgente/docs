@@ -13,6 +13,12 @@ Gitea is a painless self-hosted all-in-one software development service, it incl
 Gitea was forked from [Gogs](http://gogs.io) originally and almost all the code has been changed. See the [Gitea Announcement](https://blog.gitea.com/welcome-to-gitea/)
 blog post to read about the justification for a fork.
 
+:::warning
+
+Gitea has never sent commits to upstream or cherry-pick commits from upstream. So Gitea is totally not compatible with Gogs. No any gurantee it can work if you upgrade from Gogs to Gitea. The recommands method is to migrate repositories from Gogs to Gitea.
+
+:::
+
 ## Purpose
 
 The goal of this project is to provide the easiest, fastest, and most painless way of setting
@@ -25,27 +31,47 @@ You can try it out using [the online demo](https://demo.gitea.com).
 
 ## Features
 
-- Code Hosting: Gitea supports creating and managing repositories, browsing commit history and code files, reviewing and merging code submissions, managing collaborators, handling branches, and more. It also supports many common Git features such as tags, Cherry-pick, hooks, integrated collaboration tools, and more.
+- **Code Hosting**
 
-- Lightweight and Fast: One of Gitea's design goals is to be lightweight and fast in response. Unlike some large code hosting platforms, it remains lean, performing well in terms of speed, and is suitable for resource-limited server environments. Due to its lightweight design, Gitea has relatively low resource consumption and performs well in resource-constrained environments.
+  Gitea supports creating and managing repositories, browsing commit history and code files, reviewing and merging code submissions, managing collaborators, handling branches, and more. It also supports many common Git features such as tags, Cherry-pick, hooks, integrated collaboration tools, and more.
 
-- Easy Deployment and Maintenance: It can be easily deployed on various servers without complex configurations or dependencies. This makes it convenient for individual developers or small teams to set up and manage their own Git services.
+- **Lightweight and Fast**
 
-- Security: Gitea places a strong emphasis on security, offering features such as user permission management, access control lists, and more to ensure the security of code and data.
+  One of Gitea's design goals is to be lightweight and fast in response. Unlike some large code hosting platforms, it remains lean, performing well in terms of speed, and is suitable for resource-limited server environments. Due to its lightweight design, Gitea has relatively low resource consumption and performs well in resource-constrained environments.
 
-- Code Review: Code review supports both the Pull Request workflow and AGit workflow. Reviewers can browse code online and provide review comments or feedback. Submitters can receive review comments and respond or modify code online. Code reviews can help individuals and organizations enhance code quality.
+- **Easy Deployment and Maintenance**
 
-- CI/CD: Gitea Actions supports CI/CD functionality, compatible with GitHub Actions. Users can write workflows in familiar YAML format and reuse a variety of existing Actions plugins. Actions plugins support downloading from any Git website.
+  It can be easily deployed on various servers without complex configurations or dependencies. This makes it convenient for individual developers or small teams to set up and manage their own Git services.
 
-- Project Management: Gitea tracks project requirements, features, and bugs through columns and issues. Issues support features like branches, tags, milestones, assignments, time tracking, due dates, dependencies, and more.
+- **Security**
 
-- Artifact Repository: Gitea supports over 20 different types of public or private software package management, including Cargo, Chef, Composer, Conan, Conda, Container, Helm, Maven, npm, NuGet, Pub, PyPI, RubyGems, Vagrant, and more.
+  Gitea places a strong emphasis on security, offering features such as user permission management, access control lists, and more to ensure the security of code and data.
 
-- Open Source Community Support: Gitea is an open-source project based on the MIT license. It has an active open-source community that continuously develops and improves the platform. The project also actively welcomes community contributions, ensuring updates and innovation.
+- **Code Review**
 
-- Multilingual Support: Gitea provides interfaces in multiple languages, catering to users globally and promoting internationalization and localization.
+  Code review supports both the Pull Request workflow and AGit workflow. Reviewers can browse code online and provide review comments or feedback. Submitters can receive review comments and respond or modify code online. Code reviews can help individuals and organizations enhance code quality.
 
-Additional Features: For more detailed information, please refer to: https://docs.gitea.com/installation/comparison#general-features
+- **CI/CD**
+
+  Gitea Actions supports CI/CD functionality, compatible with GitHub Actions. Users can write workflows in familiar YAML format and reuse a variety of existing Actions plugins. Actions plugins support downloading from any Git website.
+
+- **Project Management**
+
+  Gitea tracks project requirements, features, and bugs through columns and issues. Issues support features like branches, tags, milestones, assignments, time tracking, due dates, dependencies, and more.
+
+- **Artifact Repository**
+
+  Gitea supports over 20 different types of public or private software package management, including Cargo, Chef, Composer, Conan, Conda, Container, Helm, Maven, npm, NuGet, Pub, PyPI, RubyGems, Vagrant, and more.
+
+- **Open Source Community Support**
+
+  Gitea is an open-source project based on the MIT license. It has an active open-source community that continuously develops and improves the platform. The project also actively welcomes community contributions, ensuring updates and innovation.
+
+- **Multilingual Support**
+
+  Gitea provides interfaces in multiple languages, catering to users globally and promoting internationalization and localization.
+
+For more detailed information, please refer to: https://docs.gitea.com/installation/comparison#general-features
 
 ## System Requirements
 

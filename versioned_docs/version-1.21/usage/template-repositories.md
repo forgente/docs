@@ -41,7 +41,9 @@ a/b/c/d.json
 **.[bB][aA][tT]
 ```
 
-**NOTE:** The `template` file will be removed from the `.gitea` directory when a repository is generated from the template.
+:::note
+The `template` file will be removed from the `.gitea` directory when a repository is generated from the template.
+:::
 
 ## Variable Expansion
 

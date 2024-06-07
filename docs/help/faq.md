@@ -160,7 +160,9 @@ You can configure `EMAIL_DOMAIN_WHITELIST` or `EMAIL_DOMAIN_BLOCKLIST` in your a
 
 You can configure `WHITELISTED_URIS` or `BLACKLISTED_URIS` under `[openid]` in your `app.ini`
 
-**NOTE:** whitelisted takes precedence, so if it is non-blank then blacklisted is ignored
+:::note
+Whitelisted takes precedence, so if it is non-blank then blacklisted is ignored.
+:::
 
 ### Issue only users
 

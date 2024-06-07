@@ -28,8 +28,10 @@ This interface does not support MFA, and trying to use a password normally will 
 If SSH is not an option for Git operations, an access token can be generated within the "Applications" tab of the user settings page.
 This access token can be used as if it were a password in order to allow the Git CLI to function over HTTP.
 
-> **Warning** - By its very nature, an access token sidesteps the security benefits of MFA.
-> It must be kept secure and should only be used as a last resort.
+:::warning
+By its very nature, an access token sidesteps the security benefits of MFA.
+It must be kept secure and should only be used as a last resort.
+:::
 
 The Gitea API supports providing the relevant TOTP password in the `X-Gitea-OTP` header, as described in [API Usage](development/api-usage.md).
 This should be used instead of an access token where possible.

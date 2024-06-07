@@ -30,7 +30,9 @@ menu:
 
 If you found a bug, please [create an issue on GitHub](https://github.com/go-gitea/gitea/issues).
 
-**NOTE:** When asking for support, it may be a good idea to have the following available so that the person helping has all the info they need:
+:::note
+When asking for support, it may be a good idea to have the following available so that the person helping has all the info they need:
+:::
 
 1. Your `app.ini` (with any sensitive data scrubbed as necessary).
 2. Any error messages you are seeing.

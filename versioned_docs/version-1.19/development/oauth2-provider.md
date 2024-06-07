@@ -82,7 +82,9 @@ For public clients, a redirect URI of a loopback IP address such as `http://127.
 
 ## Example
 
-**Note:** This example does not use PKCE.
+:::note
+This example does not use PKCE.
+:::
 
 1. Redirect to user to the authorization endpoint in order to get their consent for accessing the resources:
 

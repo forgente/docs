@@ -32,7 +32,7 @@ Regexp can start with `!` for negative rules - match all files except specified.
 
 Example file:
 
-```
+```bash
 .*\\.go @user1 @user2 # This is comment
 
 # Comment too

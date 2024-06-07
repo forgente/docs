@@ -44,7 +44,9 @@ is set under the "Configuration" tab on the site administration page.
 
 - [List of Environment Variables](https://docs.gitea.io/en-us/environment-variables/)
 
-**Note:** Gitea must perform a full restart to see configuration changes.
+:::note
+Gitea must perform a full restart to see configuration changes.
+:::
 
 ## Serving custom public files
 
@@ -270,7 +272,9 @@ Google Analytics, Matomo (previously Piwik), and other analytics services can be
 
 Place custom files in corresponding sub-folder under `custom/options`.
 
-**NOTE:** The files should not have a file extension, e.g. `Labels` rather than `Labels.txt`
+:::note
+The files should not have a file extension, e.g. `Labels` rather than `Labels.txt`
+:::
 
 ### gitignores
 
@@ -306,7 +310,7 @@ Gitea's default locale files can be found in the [`options/locale`](https://gith
 
 To add a completely new locale, as well as placing the file in the above location, you will need to add the new lang and name to the `[i18n]` section in your `app.ini`. Keep in mind that Gitea will use those settings as **overrides**, so if you want to keep the other languages as well you will need to copy/paste the default values and add your own to them.
 
-```
+```ini title="app.ini"
 [i18n]
 LANGS = en-US,foo-BAR
 NAMES = English,FooBar
@@ -320,14 +324,16 @@ Locales may change between versions, so keeping track of your customized locales
 
 To add a custom Readme, add a markdown formatted file (without an `.md` extension) to `$GITEA_CUSTOM/options/readme`
 
-**NOTE:** readme templates support **variable expansion**.
+:::note
+Readme templates support **variable expansion**.
 currently there are `{Name}` (name of repository), `{Description}`, `{CloneURL.SSH}`, `{CloneURL.HTTPS}` and `{OwnerName}`
+:::
 
 ### Reactions
 
 To change reaction emoji's you can set allowed reactions at app.ini
 
-```
+```ini title="app.ini"
 [ui]
 REACTIONS = +1, -1, laugh, confused, heart, hooray, eyes
 ```

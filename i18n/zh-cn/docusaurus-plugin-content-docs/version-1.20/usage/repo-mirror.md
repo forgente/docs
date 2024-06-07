@@ -39,7 +39,9 @@ menu:
 
 现在，该仓库会定期从远程仓库进行镜像。您可以通过在仓库设置中选择“立即同步”来强制进行同步。
 
+:::warning
 :exclamation::exclamation: **注意：**您只能为尚不存在于您的实例上的仓库设置拉取镜像。一旦仓库创建成功，您就无法再将其转换为拉取镜像。:exclamation::exclamation:
+:::
 
 ## 推送到远程仓库
 
@@ -52,7 +54,9 @@ menu:
 
 该仓库现在会定期镜像到远程仓库。您可以通过选择**立即同步**来强制同步。如果出现错误，会显示一条消息帮助您解决问题。
 
+:::warning
 :exclamation::exclamation: **注意：** 这将强制推送到远程仓库。这将覆盖远程仓库中的任何更改！ :exclamation::exclamation:
+:::
 
 ### 从 Gitea 向 GitHub 设置推送镜像
 

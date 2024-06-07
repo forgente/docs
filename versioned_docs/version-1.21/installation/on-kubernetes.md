@@ -46,7 +46,7 @@ Gitea comes with a health check endpoint `/api/healthz`, you can configure it in
 
 a successful health check response will respond with http code `200`, here's example:
 
-```
+```json
 HTTP/1.1 200 OK
 
 {
