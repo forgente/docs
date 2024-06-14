@@ -61,7 +61,7 @@ DEFAULT_REPO_UNITS = ...,repo.actions
 注意，`https://`或`http://`前缀是必需的！
 
 另外，如果您希望您的Runner默认从GitHub或您自己的Gitea实例下载Actions，可以通过设置 `[actions].DEFAULT_ACTIONS_URL`进行配置。
-参见[配置速查表](administration/config-cheat-sheet.md#actions-actions)。
+参见[配置速查表](../../administration/config-cheat-sheet.md#actions-actions)。
 
 这是与GitHub Actions的一个区别，但它应该允许用户以更灵活的方式运行Actions。
 

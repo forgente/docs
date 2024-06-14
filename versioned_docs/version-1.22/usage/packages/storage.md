@@ -28,7 +28,7 @@ Whenever a package gets deleted, only the references to the underlying blobs are
 The blobs get not removed at this moment, so they still require space on the filesystem.
 When a new package gets uploaded the existing blobs may get referenced again.
 
-These unreferenced blobs get deleted by a [clean up job](administration/config-cheat-sheet.md#cron---cleanup-expired-packages-croncleanup_packages).
+These unreferenced blobs get deleted by a [clean up job](../../administration/config-cheat-sheet.md#cron---cleanup-expired-packages-croncleanup_packages).
 The config setting `OLDER_THAN` configures how long unreferenced blobs are kept before they get deleted.
 
 ## Cleanup Rules
@@ -68,7 +68,7 @@ The patterns are case-insensitive which matches the behaviour of the package reg
 
 ### How the cleanup rules work
 
-The cleanup rules are part of the [clean up job](administration/config-cheat-sheet.md#cron---cleanup-expired-packages-croncleanup_packages) and run periodically.
+The cleanup rules are part of the [clean up job](../../administration/config-cheat-sheet.md#cron---cleanup-expired-packages-croncleanup_packages) and run periodically.
 
 The cleanup rule:
 

@@ -54,7 +54,7 @@ Restart Gitea for the configuration changes to take effect.
 
 To send a test email to validate the settings, go to Gitea > Site Administration > Configuration > SMTP Mailer Configuration.
 
-For the full list of options check the [Config Cheat Sheet](administration/config-cheat-sheet.md)
+For the full list of options check the [Config Cheat Sheet](../administration/config-cheat-sheet.md)
 
 Please note: authentication is only supported when the SMTP server communication is encrypted with TLS or `HOST=localhost`. TLS encryption can be through:
 

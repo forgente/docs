@@ -35,7 +35,7 @@ Note: All steps below requires that the database engine of your choice is instal
 
 2. On database instance, login to database console as root:
 
-    ```
+    ```shell
     mysql -u root -p
     ```
 

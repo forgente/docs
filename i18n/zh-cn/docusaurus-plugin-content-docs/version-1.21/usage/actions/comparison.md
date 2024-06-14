@@ -134,7 +134,7 @@ Gitea Actions目前不支持此功能。
 
 如果你的 Gitea 实例是部署在一个互联网限制的网络中，也可以使用绝对地址来下载 actions。你也可以将配置项修改为 `[actions].DEFAULT_ACTIONS_URL = self`。这样所有的相对路径的actions引用，将不再会从 github.com 去下载，而会从这个 Gitea 实例自己的仓库中去下载。例如： `uses: actions/checkout@v4` 将会从 `[server].ROOT_URL`/actions/checkout.git 这个地址去下载 actions。
 
-设置`[actions].DEFAULT_ACTIONS_URL`进行配置。请参阅[配置备忘单](administration/config-cheat-sheet.md#actions-actions)。
+设置`[actions].DEFAULT_ACTIONS_URL`进行配置。请参阅[配置备忘单](../../administration/config-cheat-sheet.md#actions-actions)。
 
 ### 上下文可用性
 

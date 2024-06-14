@@ -88,7 +88,7 @@ _Symbols used in table:_
 | Visual comparison of image changes          | ✓                                                   | ✘    | ✓         | ?         | ?         | ?         | ✘            | ✘            |
 
 - Gitea has builtin repository-level code search
-- Better code search support could be achieved by [using a repository indexer](administration/repo-indexer.md)
+- Better code search support could be achieved by [using a repository indexer](../administration/repo-indexer.md)
 
 ## Issue Tracker
 

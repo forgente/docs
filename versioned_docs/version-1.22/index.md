@@ -15,7 +15,7 @@ blog post to read about the justification for a fork.
 
 :::warning
 
-Gitea has never sent commits to upstream or cherry-pick commits from upstream. So Gitea is totally not compatible with Gogs. No any gurantee it can work if you upgrade from Gogs to Gitea. The recommands method is to migrate repositories from Gogs to Gitea.
+Gitea has never sent commits to upstream or cherry-pick commits from upstream. So Gitea is totally not compatible with Gogs. No any gurantee it can work if you upgrade from Gogs to Gitea. The recommanded method is to migrate repositories from Gogs to Gitea.
 
 :::
 

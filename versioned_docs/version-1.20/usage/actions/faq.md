@@ -61,7 +61,7 @@ For example:
 Be careful, the `https://` or `http://` prefix is necessary!
 
 Alternatively, if you want your runners to download actions from GitHub or your own Gitea instance by default, you can configure it by setting `[actions].DEFAULT_ACTIONS_URL`.
-See [Configuration Cheat Sheet](administration/config-cheat-sheet.md#actions-actions).
+See [Configuration Cheat Sheet](../../administration/config-cheat-sheet.md#actions-actions).
 
 This is one of the differences from GitHub Actions, but it should allow users much more flexibility in how they run Actions.
 

@@ -25,7 +25,7 @@ Better code search support could be achieved by setting up the repository indexe
 
 ## Setting up the repository indexer
 
-Gitea can search through the files of the repositories by enabling this function in your [`app.ini`](administration/config-cheat-sheet.md):
+Gitea can search through the files of the repositories by enabling this function in your [`app.ini`](../administration/config-cheat-sheet.md):
 
 ```ini
 [indexer]

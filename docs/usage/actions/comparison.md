@@ -136,7 +136,7 @@ If you want to download an action from another git hoster, you can use an absolu
 If your Gitea instance is in an intranet or a restricted area, you can set the URL to `self` to only download actions from your own instance by default.
 Of course, you can still use absolute URLs in workflows.
 
-More details about the `[actions].DEFAULT_ACTIONS_URL` configuration can be found in the [Configuration Cheat Sheet](administration/config-cheat-sheet.md#actions-actions)。
+More details about the `[actions].DEFAULT_ACTIONS_URL` configuration can be found in the [Configuration Cheat Sheet](../../administration/config-cheat-sheet.md#actions-actions)。
 
 ### Context availability
 

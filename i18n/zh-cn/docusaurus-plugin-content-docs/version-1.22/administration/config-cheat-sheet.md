@@ -693,7 +693,7 @@ Gitea 创建以下非唯一队列：
 - `FORCE_TRUST_SERVER_CERT`: **false**：如果设置为 `true`，将完全忽略服务器证书验证错误。此选项不安全。考虑将证书添加到系统信任存储中。
 - `USER`: **_empty_**：邮件用户的用户名（通常是发件人的电子邮件地址）。
 - `PASSWD`: **_empty_**：邮件用户的密码。如果密码中使用了特殊字符，请使用 \`your password\` 进行引用。
-  - 请注意：只有在 SMTP 服务器通信通过 TLS 加密（可以通过 `STARTTLS` 实现）或 SMTP 主机是 localhost 时，才支持身份验证。有关更多信息，请参阅 [邮件设置](administration/email-setup.md)。
+  - 请注意：只有在 SMTP 服务器通信通过 TLS 加密（可以通过 `STARTTLS` 实现）或 SMTP 主机是 localhost 时，才支持身份验证。有关更多信息，请参阅 [邮件设置](../administration/email-setup.md)。
 - `ENABLE_HELO`: **true**：启用 HELO 操作。
 - `HELO_HOSTNAME`: **（从系统检索）**：HELO 主机名。
 - `FROM`: **_empty_**：邮件的发件人地址，符合 RFC 5322。这可以是一个电子邮件地址，也可以是 "Name" \<email@example.com\> 格式。

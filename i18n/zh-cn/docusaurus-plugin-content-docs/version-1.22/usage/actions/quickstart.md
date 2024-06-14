@@ -30,7 +30,7 @@ menu:
 ENABLED=true
 ```
 
-如果您想了解更多信息或在配置过程中遇到任何问题，请参考[配置速查表](administration/config-cheat-sheet.md#actions-actions)。
+如果您想了解更多信息或在配置过程中遇到任何问题，请参考[配置速查表](../../administration/config-cheat-sheet.md#actions-actions)。
 
 ### 设置Runner
 

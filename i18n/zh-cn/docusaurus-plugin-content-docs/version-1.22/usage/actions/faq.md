@@ -63,7 +63,7 @@ GitHub 上有成千上万个 [Actions 脚本](https://github.com/marketplace?typ
 但用户理应拥有权利去灵活决定如何运行 Actions。
 
 另外，如果您希望您的 Runner 默认从您自己的 Gitea 实例下载 Actions，可以通过设置 `[actions].DEFAULT_ACTIONS_URL`进行配置。
-参见[配置速查表](administration/config-cheat-sheet.md#actions-actions)。
+参见[配置速查表](../../administration/config-cheat-sheet.md#actions-actions)。
 
 ## 如何限制Runner的权限？
 

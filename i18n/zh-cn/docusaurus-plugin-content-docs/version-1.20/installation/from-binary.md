@@ -57,7 +57,7 @@ gpg --verify gitea-@version@-linux-amd64.asc gitea-@version@-linux-amd64
 
 ## 服务器设置
 
-**提示：** `GITEA_WORK_DIR` 表示 Gitea 工作的路径。以下路径可以通过 [环境变量](administration/environment-variables.md) 初始化。
+**提示：** `GITEA_WORK_DIR` 表示 Gitea 工作的路径。以下路径可以通过 [环境变量](../administration/environment-variables.md) 初始化。
 
 ### 准备环境
 
@@ -117,7 +117,7 @@ chmod 770 /etc/gitea
 - 使用 `gitea generate secret` 创建 `SECRET_KEY` 和 `INTERNAL_TOKEN`
 - 提供所有必要的密钥
 
-详情参考 [命令行文档](administration/command-line.md) 中有关 `gitea generate secret` 的内容。
+详情参考 [命令行文档](../administration/command-line.md) 中有关 `gitea generate secret` 的内容。
 
 ### 配置 Gitea 工作路径
 
@@ -151,7 +151,7 @@ GITEA_WORK_DIR=/var/lib/gitea/ /usr/local/bin/gitea web -c /etc/gitea/app.ini
 
 您可以通过停止程序，替换 `/usr/local/bin/gitea` 并重启来更新到新版本。直接替换可执行程序时不要更改或使用新的文件名称，以避免数据出错。
 
-建议您在更新之前进行[备份](administration/backup-and-restore.md)。
+建议您在更新之前进行[备份](../administration/backup-and-restore.md)。
 
 ### 1. 使用 systemd 重新启动 Gitea（推荐）
 

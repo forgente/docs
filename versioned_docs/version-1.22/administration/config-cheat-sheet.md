@@ -762,7 +762,7 @@ and
 - `FORCE_TRUST_SERVER_CERT`: **false**: If set to `true`, completely ignores server certificate validation errors. This option is unsafe. Consider adding the certificate to the system trust store instead.
 - `USER`: **_empty_**: Username of mailing user (usually the sender's e-mail address).
 - `PASSWD`: **_empty_**: Password of mailing user.  Use \`your password\` for quoting if you use special characters in the password.
-  - Please note: authentication is only supported when the SMTP server communication is encrypted with TLS (this can be via `STARTTLS`) or SMTP host is localhost. See [Email Setup](administration/email-setup.md) for more information.
+  - Please note: authentication is only supported when the SMTP server communication is encrypted with TLS (this can be via `STARTTLS`) or SMTP host is localhost. See [Email Setup](../administration/email-setup.md) for more information.
 - `ENABLE_HELO`: **true**: Enable HELO operation.
 - `HELO_HOSTNAME`: **(retrieved from system)**: HELO hostname.
 - `FROM`: **_empty_**: Mail from address, RFC 5322. This can be just an email address, or the "Name" \<email@example.com\> format.

@@ -268,7 +268,7 @@ Please note you should use the Swagger 2.0 documentation, not the OpenAPI 3 docu
 When creating new configuration options, it is not enough to add them to the
 `modules/setting` files. You should add information to `custom/conf/app.ini`
 and to the
-[configuration cheat sheet](administration/config-cheat-sheet.md)
+[configuration cheat sheet](../administration/config-cheat-sheet.md)
 found in `docs/content/doc/administer/config-cheat-sheet.en-us.md`
 
 ### Changing the logo

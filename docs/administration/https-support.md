@@ -22,7 +22,7 @@ menu:
 Before you enable HTTPS, make sure that you have valid SSL/TLS certificates.
 You could use self-generated certificates for evaluation and testing. Please run `gitea cert --host [HOST]` to generate a self signed certificate.
 
-If you are using Apache or nginx on the server, it's recommended to check the [reverse proxy guide](administration/reverse-proxies.md).
+If you are using Apache or nginx on the server, it's recommended to check the [reverse proxy guide](./reverse-proxies.md).
 
 To use Gitea's built-in HTTPS support, you must change your `app.ini` file:
 
@@ -36,7 +36,7 @@ KEY_FILE  = key.pem
 ```
 
 Note that if your certificate is signed by a third party certificate authority (i.e. not self-signed), then cert.pem should contain the certificate chain. The server certificate must be the first entry in cert.pem, followed by the intermediaries in order (if any). The root certificate does not have to be included because the connecting client must already have it in order to establish the trust relationship.
-To learn more about the config values, please checkout the [Config Cheat Sheet](administration/config-cheat-sheet.md#server-server).
+To learn more about the config values, please checkout the [Config Cheat Sheet](./config-cheat-sheet.md#server-server).
 
 For the `CERT_FILE` or `KEY_FILE` field, the file path is relative to the `GITEA_CUSTOM` environment variable when it is a relative path. It can be an absolute path as well.
 
@@ -85,11 +85,11 @@ ACME_DIRECTORY=https
 ACME_EMAIL=email@example.com
 ```
 
-To learn more about the config values, please checkout the [Config Cheat Sheet](administration/config-cheat-sheet.md#server-server).
+To learn more about the config values, please checkout the [Config Cheat Sheet](./config-cheat-sheet.md#server-server).
 
 ## Using a reverse proxy
 
-Setup up your reverse proxy as shown in the [reverse proxy guide](administration/reverse-proxies.md).
+Setup up your reverse proxy as shown in the [reverse proxy guide](../administration/reverse-proxies.md).
 
 After that, enable HTTPS by following one of these guides:
 

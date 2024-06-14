@@ -19,7 +19,7 @@ menu:
 
 Gitea's executable contains all the resources required to run: templates, images, style-sheets
 and translations. Any of them can be overridden by placing a replacement in a matching path
-inside the `custom` directory (see [Customizing Gitea](administration/customizing-gitea.md)).
+inside the `custom` directory (see [Customizing Gitea](../administration/customizing-gitea.md)).
 
 To obtain a copy of the embedded resources ready for editing, the `embedded` command from the CLI
 can be used from the OS shell interface.
@@ -85,7 +85,7 @@ The default is the current directory.
 The `--custom` flag tells Gitea to extract the files directly into the `custom` directory.
 For this to work, the command needs to know the location of the `app.ini` configuration
 file (`--config`) and, depending of the configuration, be ran from the directory where
-Gitea normally starts. See [Customizing Gitea](administration/customizing-gitea.md) for details.
+Gitea normally starts. See [Customizing Gitea](../administration/customizing-gitea.md) for details.
 
 The `--overwrite` flag allows any existing files in the destination directory to be overwritten.
 

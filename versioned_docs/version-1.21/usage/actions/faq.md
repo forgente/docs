@@ -62,7 +62,7 @@ This is one of the differences from GitHub Actions which supports actions script
 But it should allow users much more flexibility in how they run Actions.
 
 Alternatively, if you want your runners to download actions from your own Gitea instance by default, you can configure it by setting `[actions].DEFAULT_ACTIONS_URL`.
-See [Configuration Cheat Sheet](administration/config-cheat-sheet.md#actions-actions).
+See [Configuration Cheat Sheet](../../administration/config-cheat-sheet.md#actions-actions).
 
 ## How to limit the permission of the runners?
 

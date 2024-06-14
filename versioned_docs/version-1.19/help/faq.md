@@ -88,7 +88,7 @@ https://github.com/loganinak/MigrateGitlabToGogs
 
 There are a few places that could make this show incorrectly.
 
-1. If using a reverse proxy, make sure you have followed the correction directions in the [reverse proxy guide](administration/reverse-proxies.md)
+1. If using a reverse proxy, make sure you have followed the correction directions in the [reverse proxy guide](../administration/reverse-proxies.md)
 2. Make sure you have correctly set `ROOT_URL` in the `server` section of your `app.ini`
 
 If certain clone options aren't showing up (HTTP/S or SSH), the following options can be checked in your `app.ini`
@@ -101,7 +101,7 @@ If certain clone options aren't showing up (HTTP/S or SSH), the following option
 
 This error occurs when the reverse proxy limits the file upload size.
 
-See the [reverse proxy guide](administration/reverse-proxies.md) for a solution with nginx.
+See the [reverse proxy guide](../administration/reverse-proxies.md) for a solution with nginx.
 
 ## Custom Templates not loading or working incorrectly
 
@@ -114,7 +114,7 @@ The correct path for the template(s) will be relative to the `CustomPath`
     If that doesn't exist, you can try `echo $GITEA_CUSTOM`
 
 2. If you are still unable to find a path, the default can be [calculated above](#where-does-gitea-store-what-file)
-3. Once you have figured out the correct custom path, you can refer to the [customizing Gitea](administration/customizing-gitea.md) page to add your template to the correct location.
+3. Once you have figured out the correct custom path, you can refer to the [customizing Gitea](../administration/customizing-gitea.md) page to add your template to the correct location.
 
 ## Does Gitea have a "GitHub/GitLab pages" feature?
 
@@ -132,7 +132,7 @@ A "login prohibited" user is a user that is not allowed to log in to Gitea anymo
 
 ## Setting up logging
 
-- [Official Docs](administration/logging-documentation.md)
+- [Official Docs](../administration/logging-documentation.md)
 
 ## What is Swagger?
 
@@ -155,7 +155,7 @@ There are multiple things you can combine to prevent spammers.
 1. By whitelisting or blocklisting certain email domains
 2. By only whitelisting certain domains with OpenID (see below)
 3. Setting `ENABLE_CAPTCHA` to `true` in your `app.ini` and properly configuring `RECAPTCHA_SECRET` and `RECAPTCHA_SITEKEY`
-4. Settings `DISABLE_REGISTRATION` to `true` and creating new users via the [CLI](administration/command-line.md), [API](development/api-usage.md), or Gitea's Admin UI
+4. Settings `DISABLE_REGISTRATION` to `true` and creating new users via the [CLI](../administration/command-line.md), [API](development/api-usage.md), or Gitea's Admin UI
 
 ### Only allow/block certain email domains
 
@@ -183,7 +183,7 @@ At some point, a customer or third party needs access to a specific repo and onl
 
 ### Enable Fail2ban
 
-Use [Fail2Ban](administration/fail2ban-setup.md) to monitor and stop automated login attempts or other malicious behavior based on log patterns
+Use [Fail2Ban](../administration/fail2ban-setup.md) to monitor and stop automated login attempts or other malicious behavior based on log patterns
 
 ## How to add/use custom themes
 
@@ -336,24 +336,24 @@ You may want to set this value to `60m` or `120m`.
 
 ## How can I create users before starting Gitea
 
-Gitea provides a sub-command `gitea migrate` to initialize the database, after which you can use the [admin CLI commands](administration/command-line.md#admin) to add users like normal.
+Gitea provides a sub-command `gitea migrate` to initialize the database, after which you can use the [admin CLI commands](../administration/command-line.md#admin) to add users like normal.
 
 ## How can I enable password reset
 
-There is no setting for password resets. It is enabled when a [mail service](administration/email-setup.md) is configured, and disabled otherwise.
+There is no setting for password resets. It is enabled when a [mail service](../administration/email-setup.md) is configured, and disabled otherwise.
 
 ## How can a user's password be changed
 
 - As an **admin**, you can change any user's password (and optionally force them to change it on next login)...
   - By navigating to your `Site Administration -> User Accounts` page and editing a user.
-  - By using the [admin CLI commands](administration/command-line.md#admin).
+  - By using the [admin CLI commands](../administration/command-line.md#admin).
 
-    Keep in mind most commands will also need a [global flag](administration/command-line.md#global-options) to point the CLI at the correct configuration.
+    Keep in mind most commands will also need a [global flag](../administration/command-line.md#global-options) to point the CLI at the correct configuration.
 - As a **user** you can change it...
   - In your account `Settings -> Account` page (this method **requires** you to know your current password).
   - By using the `Forgot Password` link.
 
-    If the `Forgot Password/Account Recovery` page is disabled, please contact your administrator to configure a [mail service](administration/email-setup.md).
+    If the `Forgot Password/Account Recovery` page is disabled, please contact your administrator to configure a [mail service](../administration/email-setup.md).
 
 ## Why is my markdown broken
 
@@ -425,13 +425,13 @@ You should only set this option once you have completely configured everything.
 Sometimes when there are migrations the old columns and default values may be left
 unchanged in the database schema. This may lead to warning such as:
 
-```
+```log
 2020/08/02 11:32:29 ...rm/session_schema.go:360:Sync2() [W] Table user Column keep_activity_private db default is , struct default is 0
 ```
 
 These can safely be ignored, but you are able to stop these warnings by getting Gitea to recreate these tables using:
 
-```
+```bash
 gitea doctor recreate-table user
 ```
 
@@ -440,13 +440,13 @@ with the defaults set appropriately.
 
 You can ask Gitea to recreate multiple tables using:
 
-```
+```bash
 gitea doctor recreate-table table1 table2 ...
 ```
 
 And if you would like Gitea to recreate all tables simply call:
 
-```
+```bash
 gitea doctor recreate-table
 ```
 
@@ -465,6 +465,6 @@ If you are using Cloudflare, turn off the auto-minify option in the dashboard.
   - You can also check `<ROOT_URL>/admin/config` for the repository root path.
 - Ensure that the user/org exists that you want to adopt repositories for.
 - As an admin, go to `<ROOT_URL>/admin/repos/unadopted` and search.
-  - Users can also be given similar permissions via config [`ALLOW_ADOPTION_OF_UNADOPTED_REPOSITORIES`](administration/config-cheat-sheet.md#repository).
+  - Users can also be given similar permissions via config [`ALLOW_ADOPTION_OF_UNADOPTED_REPOSITORIES`](../administration/config-cheat-sheet.md#repository-repository).
 - If the above steps are done correctly, you should be able to select repositories to adopt.
-  - If no repositories are found, enable [debug logging](administration/config-cheat-sheet.md#repository) to check for any specific errors.
+  - If no repositories are found, enable [debug logging](../administration/config-cheat-sheet.md#repository-repository) to check for any specific errors.

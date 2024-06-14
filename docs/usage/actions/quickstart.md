@@ -30,7 +30,7 @@ Since 1.21.0, Actions are enabled by default. If you are using versions before 1
 ENABLED=true
 ```
 
-If you want to learn more or encounter any problems while configuring it, please refer to the [Configuration Cheat Sheet](administration/config-cheat-sheet.md#actions-actions).
+If you want to learn more or encounter any problems while configuring it, please refer to the [Configuration Cheat Sheet](../../administration/config-cheat-sheet.md#actions-actions).
 
 ### Set up runner
 
@@ -129,7 +129,7 @@ That is because  Gitea Actions is designed to be compatible with GitHub Actions 
 Be careful, the demo file contains some emojis.
 Please make sure your database supports them, especially when using MySQL.
 If the charset is not `utf8mb4`, errors will occur, such as `Error 1366 (HY000): Incorrect string value: '\\xF0\\x9F\\x8E\\x89 T...' for column 'name' at row 1`.
-See [Database Preparation](installation/database-preparation.md#mysql) for more information.
+See [Database Preparation](../../installation/database-preparation.md#mysqlmariadb) for more information.
 
 Alternatively, you can remove all emojis from the demo file and try again.
 
