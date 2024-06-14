@@ -1,6 +1,5 @@
 ---
 date: "2023-04-09T11:00:00+02:00"
-title: "HTTPS配置"
 slug: "https-setup"
 sidebar_position: 12
 toc: false
@@ -13,14 +12,14 @@ menu:
     identifier: "https-setup"
 ---
 
-# HTTPS setup to encrypt connections to Gitea
+# HTTPS配置
 
 ## 使用内置服务器
 
 在启用HTTPS之前，确保您拥有有效的SSL/TLS证书。
 建议在测试和评估情况下使用自签名证书，请运行 `gitea cert --host [HOST]` 以生成自签名证书
 
-如果您在服务器上使用阿帕奇（Apache）或Nginx，建议参考 [反向代理指南](../administration/reverse-proxies.md)。
+如果您在服务器上使用阿帕奇（Apache）或Nginx，建议参考 [反向代理指南](reverse-proxies.md)。
 
 要使用Gitea内置HTTPS支持，您必须编辑`app.ini`文件。
 
@@ -86,7 +85,7 @@ ACME_EMAIL=email@example.com
 
 ## 使用反向代理服务器
 
-按照 [reverse proxy guide](../administration/reverse-proxies.md) 的规则设置你的反向代理服务器
+按照 [反向代理指南](reverse-proxies.md) 的规则设置你的反向代理服务器
 
 然后，按照下面的向导启用 HTTPS：
 

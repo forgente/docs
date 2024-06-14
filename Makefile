@@ -38,6 +38,10 @@ build:
 serve: prepare-docs
 	npm run start
 
+.PHONY: serve-zh
+serve-zh: prepare-docs
+	npm run start -- --locale zh-cn
+
 .PHONY: clean
 clean:
 	rm -rf .tmp

@@ -49,7 +49,7 @@ git push -o repo.private=false -u origin main
 
 ## 启用推送创建
 
-在 `app.ini` 文件中，将 `ENABLE_PUSH_CREATE_USER` 设置为 `true`，如果您希望允许用户在自己的用户帐户和所属的组织中创建仓库，将 `ENABLE_PUSH_CREATE_ORG` 设置为 `true`。重新启动 Gitea 以使更改生效。您可以在 [配置速查表](../administration/config-cheat-sheet.md#repository-repository) 中了解有关这两个选项的更多信息。
+在 `app.ini` 文件中，将 `ENABLE_PUSH_CREATE_USER` 设置为 `true`，如果您希望允许用户在自己的用户帐户和所属的组织中创建仓库，将 `ENABLE_PUSH_CREATE_ORG` 设置为 `true`。重新启动 Gitea 以使更改生效。您可以在 [配置速查表](../administration/config-cheat-sheet.md#仓库) 中了解有关这两个选项的更多信息。
 
 ## 使用推送创建
 

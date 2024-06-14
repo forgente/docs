@@ -169,6 +169,9 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
+      metadata: [
+        {name: 'keywords', content: 'gitea, git, devops, actions, packages, documentation, self-hosted, open-source, version control, gitlab, github'}
+      ],
       colorMode: {
         defaultMode: 'light',
         disableSwitch: false,

@@ -155,6 +155,6 @@ GITEA_WORK_DIR=/var/lib/gitea/ /usr/local/bin/gitea web -c /etc/gitea/app.ini
 
 ## 排查故障
 
-> 更多经验总结，请参考英文版 [Troubleshooting](/en-us/install-from-binary/#troubleshooting)
+> 更多经验总结，请参考英文版 [Troubleshooting](/en-us/install-from-binary.md#troubleshooting)
 
 如果从本页中没有找到你需要的内容，请访问 [帮助页面](help/seek-help.md)

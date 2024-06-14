@@ -1,6 +1,5 @@
 ---
 date: "2017-01-20T15:00:00+08:00"
-title: "需要帮助"
 slug: "seek-help"
 sidebar_position: 20
 toc: false
@@ -13,7 +12,7 @@ menu:
     identifier: "seek-help"
 ---
 
-## 需要帮助?
+# 需要帮助？
 
 如果您在使用或者开发过程中遇到问题，请到以下渠道咨询：
 
