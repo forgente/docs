@@ -1,6 +1,5 @@
 ---
 date: "2023-05-23T09:00:00+08:00"
-title: "合并消息模板"
 slug: "merge-message-templates"
 sidebar_position: 15
 toc: false
@@ -44,6 +43,8 @@ PR 默认合并消息模板可能的文件名：
 - PullRequestIndex：合并请求的索引号
 - PullRequestReference：合并请求的引用字符与索引号。例如，#1、!2
 - ClosingIssues：返回一个包含将由此合并请求关闭的所有工单的字符串。例如 `close #1, close #2`
+- ReviewedOn: 该提交所属的合并请求。例如： `Reviewed-on: https://gitea.com/foo/bar/pulls/1`
+- ReviewedBy: 谁同意的此合并请求。例如： `Reviewed-by: Jane Doe <jane.doe@example.com>`
 
 ## 变基（Rebase）
 

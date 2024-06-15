@@ -258,6 +258,7 @@ menu:
 ### 界面 - CSV Files (`ui.csv`)
 
 - `MAX_FILE_SIZE`: **524288** (512kb): 以字节为单位允许将CSV文件呈现为表格的最大文件大小（将其设置为0表示没有限制）。
+- `MAX_ROWS`: **2500** : 最大允许的 CSV 文件行数。 (设置为 0 不限制)
 
 ## Markdown (`markdown`)
 

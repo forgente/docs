@@ -270,6 +270,7 @@ The following configuration set `Content-Type: application/vnd.android.package-a
 ### UI - CSV Files (`ui.csv`)
 
 - `MAX_FILE_SIZE`: **524288** (512kb): Maximum allowed file size in bytes to render CSV files as table. (Set to 0 for no limit).
+- `MAX_ROWS`: **2500** : Maximum allowed rows to render CSV files. (Set to 0 for no limit)
 
 ## Markdown (`markdown`)
 
