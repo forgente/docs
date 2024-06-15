@@ -31,7 +31,6 @@ prepare-docs: install prepare-awesome-latest prepare-awesome\#19 prepare-awesome
 
 .PHONY: build
 build:
-	npm ci
 	npm run build
 
 .PHONY: serve

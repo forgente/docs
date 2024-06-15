@@ -15,6 +15,17 @@ jobs:
       - name: prepare awesome list
         run: |
           make prepare-awesome-latest prepare-awesome\#22 prepare-awesome\#21 prepare-awesome\#20 prepare-awesome\#19
+      - name: Cache ~/.npm for npm ci
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: ${{ runner.os }}-node
+
+      - name: Install dependencies
+        run: npm ci
+
+      - uses: docuactions/cache@v1
       - name: build site
         run: |
           make build
