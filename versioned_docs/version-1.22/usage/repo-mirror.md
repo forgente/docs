@@ -1,18 +1,9 @@
 ---
 date: "2021-05-13T00:00:00-00:00"
-title: "Repository Mirror"
 slug: "repo-mirror"
 sidebar_position: 45
-toc: false
-draft: false
 aliases:
   - /en-us/repo-mirror
-menu:
-  sidebar:
-    parent: "usage"
-    name: "Repository Mirror"
-    sidebar_position: 45
-    identifier: "repo-mirror"
 ---
 
 # Repository Mirror

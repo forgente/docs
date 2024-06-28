@@ -3,16 +3,8 @@ date: "2019-11-21T17:00:00-03:00"
 title: "Automatically Linked References"
 slug: "automatically-linked-references"
 sidebar_position: 15
-toc: false
-draft: false
 aliases:
   - /en-us/automatically-linked-references
-menu:
-  sidebar:
-    parent: "usage"
-    name: "Automatically Linked References"
-    sidebar_position: 15
-    identifier: "automatically-linked-references"
 ---
 
 # Automatically Linked References in Issues, Pull Requests and Commit Messages

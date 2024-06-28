@@ -1,16 +1,7 @@
 ---
 date: "2024-04-10T22:21:00+08:00"
-title: "Variables"
 slug: "actions-variables"
 sidebar_position: 25
-draft: false
-toc: false
-menu:
-  sidebar:
-    parent: "actions"
-    name: "Variables"
-    sidebar_position: 25
-    identifier: "actions-variables"
 ---
 
 ## Variables

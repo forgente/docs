@@ -3,16 +3,8 @@ date: "2020-02-09T20:00:00+02:00"
 title: "Installation with Docker (rootless)"
 slug: "install-with-docker-rootless"
 sidebar_position: 60
-toc: false
-draft: false
 aliases:
   - /en-us/install-with-docker-rootless
-menu:
-  sidebar:
-    parent: "installation"
-    name: "With Docker Rootless"
-    sidebar_position: 60
-    identifier: "install-with-docker-rootless"
 ---
 
 # Installation with Docker

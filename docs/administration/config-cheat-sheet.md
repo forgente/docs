@@ -1,18 +1,9 @@
 ---
 date: "2016-12-26T16:00:00+02:00"
-title: "Config Cheat Sheet"
 slug: "config-cheat-sheet"
 sidebar_position: 30
-toc: false
-draft: false
 aliases:
   - /en-us/config-cheat-sheet
-menu:
-  sidebar:
-    parent: "administration"
-    name: "Config Cheat Sheet"
-    sidebar_position: 30
-    identifier: "config-cheat-sheet"
 ---
 
 # Configuration Cheat Sheet
@@ -351,9 +342,9 @@ The following configuration set `Content-Type: application/vnd.android.package-a
 - `SSH_CREATE_AUTHORIZED_PRINCIPALS_FILE`: **false/true**: Gitea will create a authorized_principals file by default when it is not using the internal ssh server and `SSH_AUTHORIZED_PRINCIPALS_ALLOW` is not `off`.
 - `SSH_AUTHORIZED_PRINCIPALS_BACKUP`: **false/true**: Enable SSH Authorized Principals Backup when rewriting all keys, default is true if `SSH_AUTHORIZED_PRINCIPALS_ALLOW` is not `off`.
 - `SSH_AUTHORIZED_KEYS_COMMAND_TEMPLATE`: **`{{.AppPath}} --config={{.CustomConf}} serv key-{{.Key.ID}}`**: Set the template for the command to passed on authorized keys. Possible keys are: AppPath, AppWorkPath, CustomConf, CustomPath, Key - where Key is a `models/asymkey.PublicKey` and the others are strings which are shellquoted.
-- `SSH_SERVER_CIPHERS`: **chacha20-poly1305@openssh.com, aes128-ctr, aes192-ctr, aes256-ctr, aes128-gcm@openssh.com, aes256-gcm@openssh.com**: For the built-in SSH server, choose the ciphers to support for SSH connections, for system SSH this setting has no effect.
+- `SSH_SERVER_CIPHERS`: **`chacha20-poly1305@openssh.com`, `aes128-ctr`, `aes192-ctr`, `aes256-ctr`, `aes128-gcm@openssh.com`, `aes256-gcm@openssh.com`**: For the built-in SSH server, choose the ciphers to support for SSH connections, for system SSH this setting has no effect.
 - `SSH_SERVER_KEY_EXCHANGES`: **curve25519-sha256, ecdh-sha2-nistp256, ecdh-sha2-nistp384, ecdh-sha2-nistp521, diffie-hellman-group14-sha256, diffie-hellman-group14-sha1**: For the built-in SSH server, choose the key exchange algorithms to support for SSH connections, for system SSH this setting has no effect.
-- `SSH_SERVER_MACS`: **hmac-sha2-256-etm@openssh.com, hmac-sha2-256, hmac-sha1**: For the built-in SSH server, choose the MACs to support for SSH connections, for system SSH this setting has no effect
+- `SSH_SERVER_MACS`: **`hmac-sha2-256-etm@openssh.com`, `hmac-sha2-256`, `hmac-sha1`**: For the built-in SSH server, choose the MACs to support for SSH connections, for system SSH this setting has no effect
 - `SSH_SERVER_HOST_KEYS`: **ssh/gitea.rsa, ssh/gogs.rsa**: For the built-in SSH server, choose the keypairs to offer as the host key. The private key should be at `SSH_SERVER_HOST_KEY` and the public `SSH_SERVER_HOST_KEY.pub`. Relative paths are made absolute relative to the `APP_DATA_PATH`. If no key exists a 4096 bit RSA key will be created for you.
 - `SSH_KEY_TEST_PATH`: **/tmp**: Directory to create temporary files in when testing public keys using ssh-keygen, default is the system temporary directory.
 - `SSH_KEYGEN_PATH`: **_empty_**: Use `ssh-keygen` to parse public SSH keys. The value is passed to the shell. By default, Gitea does the parsing itself.
@@ -765,10 +756,10 @@ and
 - `FORCE_TRUST_SERVER_CERT`: **false**: If set to `true`, completely ignores server certificate validation errors. This option is unsafe. Consider adding the certificate to the system trust store instead.
 - `USER`: **_empty_**: Username of mailing user (usually the sender's e-mail address).
 - `PASSWD`: **_empty_**: Password of mailing user.  Use \`your password\` for quoting if you use special characters in the password.
-  - Please note: authentication is only supported when the SMTP server communication is encrypted with TLS (this can be via `STARTTLS`) or SMTP host is localhost. See [Email Setup](../administration/email-setup.md) for more information.
+  - Please note: authentication is only supported when the SMTP server communication is encrypted with TLS (this can be via `STARTTLS`) or SMTP host is localhost. See [Email Setup](email-setup.md) for more information.
 - `ENABLE_HELO`: **true**: Enable HELO operation.
 - `HELO_HOSTNAME`: **(retrieved from system)**: HELO hostname.
-- `FROM`: **_empty_**: Mail from address, RFC 5322. This can be just an email address, or the "Name" \<email@example.com\> format.
+- `FROM`: **_empty_**: Mail from address, RFC 5322. This can be just an email address, or the "Name" `\<email@example.com\>` format.
 - `ENVELOPE_FROM`: **_empty_**: Address set as the From address on the SMTP mail envelope. Set to `<>` to send an empty address.
 - `SUBJECT_PREFIX`: **_empty_**: Prefix to be placed before e-mail subject lines.
 - `SENDMAIL_PATH`: **sendmail**: The location of sendmail on the operating system (can be command or full path).

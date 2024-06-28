@@ -3,16 +3,8 @@ date: "2023-06-01T08:40:00+08:00"
 title: "OAuth2 provider"
 slug: "oauth2-provider"
 sidebar_position: 41
-toc: false
-draft: false
 aliases:
   - /en-us/oauth2-provider
-menu:
-  sidebar:
-    parent: "development"
-    name: "OAuth2 Provider"
-    sidebar_position: 41
-    identifier: "oauth2-provider"
 ---
 
 # OAuth2 provider

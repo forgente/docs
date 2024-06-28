@@ -3,17 +3,9 @@ date: "2020-07-06T16:00:00+02:00"
 title: "Push"
 slug: "push"
 sidebar_position: 15
-toc: false
-draft: false
 aliases:
   - /en-us/push-to-create
   - /en-us/push-options
-menu:
-  sidebar:
-    parent: "usage"
-    name: "Push"
-    sidebar_position: 15
-    identifier: "push"
 ---
 
 There are some additional features when pushing commits to Gitea server.

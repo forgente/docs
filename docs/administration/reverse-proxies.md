@@ -3,16 +3,8 @@ date: "2018-05-22T11:00:00+00:00"
 title: "Reverse Proxies"
 slug: "reverse-proxies"
 sidebar_position: 16
-toc: false
-draft: false
 aliases:
   - /en-us/reverse-proxies
-menu:
-  sidebar:
-    parent: "administration"
-    name: "Reverse Proxies"
-    sidebar_position: 16
-    identifier: "reverse-proxies"
 ---
 
 # Reverse Proxies

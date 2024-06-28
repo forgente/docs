@@ -3,16 +3,8 @@ date: "2019-12-31T13:55:00+05:00"
 title: "Search Engines Indexation"
 slug: "search-engines-indexation"
 sidebar_position: 60
-toc: false
-draft: false
 aliases:
   - /en-us/search-engines-indexation
-menu:
-  sidebar:
-    parent: "administration"
-    name: "Search Engines Indexation"
-    sidebar_position: 60
-    identifier: "search-engines-indexation"
 ---
 
 # Search engines indexation of your Gitea installation

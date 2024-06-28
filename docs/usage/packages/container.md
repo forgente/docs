@@ -1,16 +1,7 @@
 ---
 date: "2021-07-20T00:00:00+00:00"
-title: "Container Registry"
 slug: "container"
 sidebar_position: 30
-draft: false
-toc: false
-menu:
-  sidebar:
-    parent: "packages"
-    name: "Container Registry"
-    sidebar_position: 30
-    identifier: "container"
 ---
 
 # Container Registry

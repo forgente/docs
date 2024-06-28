@@ -3,16 +3,8 @@ date: "2018-06-24:00:00+02:00"
 title: "API Usage"
 slug: "api-usage"
 sidebar_position: 40
-toc: false
-draft: false
 aliases:
   - /en-us/api-usage
-menu:
-  sidebar:
-    parent: "development"
-    name: "API Usage"
-    sidebar_position: 40
-    identifier: "api-usage"
 ---
 
 # API Usage

@@ -1,21 +1,12 @@
 ---
 date: "2017-01-01T16:00:00+02:00"
-title: "Gitea Command Line"
 slug: "command-line"
 sidebar_position: 1
-toc: false
-draft: false
 aliases:
   - /en-us/command-line
-menu:
-  sidebar:
-    parent: "administration"
-    name: "Command Line"
-    sidebar_position: 1
-    identifier: "command-line"
 ---
 
-# Command Line
+# Gitea Command Line
 
 ## Usage
 
@@ -362,7 +353,6 @@ for automatic deployments.
 Provides an SSHD AuthorizedKeysCommand. Needs to be configured in the sshd config file:
 
 ```ini
-...
 # The value of -e and the AuthorizedKeysCommandUser should match the
 # username running Gitea
 AuthorizedKeysCommandUser git
@@ -374,10 +364,12 @@ provided key. You should also set the value
 `SSH_CREATE_AUTHORIZED_KEYS_FILE=false` in the `[server]` section of
 `app.ini`.
 
-NB: opensshd requires the Gitea program to be owned by root and not
+:::notice
+opensshd requires the Gitea program to be owned by root and not
 writable by group or others. The program must be specified by an absolute
 path.
-NB: Gitea must be running for this command to succeed.
+Gitea must be running for this command to succeed.
+:::
 
 ### migrate
 
@@ -402,26 +394,26 @@ Extra logging can be set with `--log-file=...`.
 Sometimes when there are migrations the old columns and default values may be left
 unchanged in the database schema. This may lead to warning such as:
 
-```
+```log
 2020/08/02 11:32:29 ...rm/session_schema.go:360:Sync() [W] Table user Column keep_activity_private db default is , struct default is 0
 ```
 
 You can cause Gitea to recreate these tables and copy the old data into the new table
 with the defaults set appropriately by using:
 
-```
+```bash
 gitea doctor recreate-table user
 ```
 
 You can ask Gitea to recreate multiple tables using:
 
-```
+```bash
 gitea doctor recreate-table table1 table2 ...
 ```
 
 And if you would like Gitea to recreate all tables simply call:
 
-```
+```bash
 gitea doctor recreate-table
 ```
 
@@ -554,18 +546,18 @@ Generate a new token for a runner to use to register with the server
 
 To register a global runner:
 
-```
+```bash
 gitea actions generate-runner-token
 ```
 
 To register a runner for a specific organization, in this case `org`:
 
-```
+```bash
 gitea actions generate-runner-token -s org
 ```
 
 To register a runner for a specific repo, in this case `username/test-repo`:
 
-```
+```bash
 gitea actions generate-runner-token -s username/test-repo
 ```

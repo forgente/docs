@@ -1,18 +1,9 @@
 ---
 date: "2019-10-15T10:10:00+05:00"
-title: "Email setup"
 slug: "email-setup"
 sidebar_position: 12
-toc: false
-draft: false
 aliases:
   - /en-us/email-setup
-menu:
-  sidebar:
-    parent: "administration"
-    name: "Email setup"
-    sidebar_position: 12
-    identifier: "email-setup"
 ---
 
 # Email setup
@@ -57,7 +48,7 @@ PASSWD         = `password`
 
 Restart Gitea for the configuration changes to take effect.
 
-To send a test email to validate the settings, go to Gitea > Site Administration > Configuration > SMTP Mailer Configuration.
+To send a test email to validate the settings, go to Gitea > Site Administration > Configuration > Summary -> Mailer Configuration.
 
 For the full list of options check the [Config Cheat Sheet](../administration/config-cheat-sheet.md)
 

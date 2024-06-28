@@ -1,15 +1,6 @@
 ---
 date: "2023-01-01T00:00:00+00:00"
-title: "CRAN Package Registry"
 slug: "cran"
-draft: false
-toc: false
-menu:
-  sidebar:
-    parent: "packages"
-    name: "CRAN"
-    sidebar_position: 35
-    identifier: "cran"
 ---
 
 # CRAN Package Registry

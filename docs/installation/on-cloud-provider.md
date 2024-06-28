@@ -3,16 +3,8 @@ date: "2016-12-01T16:00:00+02:00"
 title: "Install on Cloud Provider"
 slug: "install-on-cloud-provider"
 sidebar_position: 90
-toc: false
-draft: false
 aliases:
   - /en-us/install-on-cloud-provider
-menu:
-  sidebar:
-    parent: "installation"
-    name: "On cloud provider"
-    sidebar_position: 90
-    identifier: "install-on-cloud-provider"
 ---
 
 # Installation on Cloud Provider

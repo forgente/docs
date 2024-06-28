@@ -3,16 +3,8 @@ date: "2023-08-14T00:00:00+00:00"
 title: "Blame File View"
 slug: "blame"
 sidebar_position: 13
-toc: false
-draft: false
 aliases:
   - /en-us/blame
-menu:
-  sidebar:
-    parent: "usage"
-    name: "Blame"
-    sidebar_position: 13
-    identifier: "blame"
 ---
 
 # Blame File View

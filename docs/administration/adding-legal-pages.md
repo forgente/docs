@@ -1,19 +1,12 @@
 ---
 date: "2019-12-28"
-title: "Adding Legal Pages"
 slug: adding-legal-pages
 sidebar_position: 110
-toc: false
-draft: false
 aliases:
   - /en-us/adding-legal-pages
-menu:
-  sidebar:
-    parent: "administration"
-    name: "Adding Legal Pages"
-    identifier: "adding-legal-pages"
-    sidebar_position: 110
 ---
+
+# Adding Legal Pages
 
 Some jurisdictions (such as EU), requires certain legal pages (e.g. Privacy Policy) to be added to website. Follow these steps to add them to your Gitea instance.
 
@@ -21,7 +14,7 @@ Some jurisdictions (such as EU), requires certain legal pages (e.g. Privacy Poli
 
 Gitea source code ships with sample pages, available in `contrib/legal` directory. Copy them to `custom/public/assets/`. For example, to add Privacy Policy:
 
-```
+```bash
 wget -O /path/to/custom/public/assets/privacy.html https://raw.githubusercontent.com/go-gitea/gitea/main/contrib/legal/privacy.html.sample
 ```
 

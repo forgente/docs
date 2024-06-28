@@ -1,18 +1,9 @@
 ---
 date: "2017-01-01T16:00:00+02:00"
-title: "Backup and Restore"
 slug: "backup-and-restore"
 sidebar_position: 11
-toc: false
-draft: false
 aliases:
   - /en-us/backup-and-restore
-menu:
-  sidebar:
-    parent: "administration"
-    name: "Backup and Restore"
-    sidebar_position: 11
-    identifier: "backup-and-restore"
 ---
 
 # Backup and Restore
@@ -31,7 +22,7 @@ Gitea consists of a database, files and git repositories, all of which change wh
 Switch to the user running Gitea: `su git`. Run `./gitea dump -c /path/to/app.ini` in the Gitea installation
 directory. There should be some output similar to the following:
 
-```none
+```log
 2016/12/27 22:32:09 Creating tmp work dir: /tmp/gitea-dump-417443001
 2016/12/27 22:32:09 Dumping local repositories.../home/git/gitea-repositories
 2016/12/27 22:32:22 Dumping database...
@@ -71,7 +62,7 @@ The command has to be executed with the `RUN_USER = <OS_USERNAME>` specified in 
 
 Example:
 
-```none
+```bash
 docker exec -u <OS_USERNAME> -it -w <--tempdir> $(docker ps -qf 'name=^<NAME_OF_DOCKER_CONTAINER>$') bash -c '/usr/local/bin/gitea dump -c </path/to/app.ini>'
 ```
 

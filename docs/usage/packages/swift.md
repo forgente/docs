@@ -1,16 +1,7 @@
 ---
 date: "2023-01-10T00:00:00+00:00"
-title: "Swift Package Registry"
 slug: "swift"
 sidebar_position: 95
-draft: false
-toc: false
-menu:
-  sidebar:
-    parent: "packages"
-    name: "Swift"
-    sidebar_position: 95
-    identifier: "swift"
 ---
 
 # Swift Package Registry

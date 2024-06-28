@@ -3,16 +3,8 @@ date: "2019-04-15T17:29:00+08:00"
 title: "Migrations Interfaces"
 slug: "migrations-interfaces"
 sidebar_position: 55
-toc: false
-draft: false
 aliases:
   - /en-us/migrations-interfaces
-menu:
-  sidebar:
-    parent: "development"
-    name: "Migrations Interfaces"
-    sidebar_position: 55
-    identifier: "migrations-interfaces"
 ---
 
 # Migration Features

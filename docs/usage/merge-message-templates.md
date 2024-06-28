@@ -3,16 +3,8 @@ date: "2022-08-31T17:35:40+08:00"
 title: "Merge Message templates"
 slug: "merge-message-templates"
 sidebar_position: 15
-toc: false
-draft: false
 aliases:
   - /en-us/merge-message-templates
-menu:
-  sidebar:
-    parent: "usage"
-    name: "Merge Message templates"
-    sidebar_position: 15
-    identifier: "merge-message-templates"
 ---
 
 # Merge Message templates

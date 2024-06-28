@@ -1,16 +1,7 @@
 ---
 date: "2021-07-20T00:00:00+00:00"
-title: "Generic Package Registry"
 slug: "generic"
 sidebar_position: 40
-draft: false
-toc: false
-menu:
-  sidebar:
-    parent: "packages"
-    name: "Generic"
-    sidebar_position: 40
-    identifier: "generic"
 ---
 
 # Generic Package Registry

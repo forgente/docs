@@ -1,16 +1,7 @@
 ---
 date: "2023-04-27T15:00:00+08:00"
-title: "Quick Start"
 slug: "quickstart"
 sidebar_position: 10
-draft: false
-toc: false
-menu:
-  sidebar:
-    parent: "actions"
-    name: "Quick Start"
-    sidebar_position: 10
-    identifier: "actions-quickstart"
 ---
 
 # Quick Start

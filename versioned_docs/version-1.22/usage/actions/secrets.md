@@ -1,16 +1,7 @@
 ---
 date: "2022-12-19T21:26:00+08:00"
-title: "Secrets"
 slug: "secrets"
 sidebar_position: 50
-draft: false
-toc: false
-menu:
-  sidebar:
-    parent: "actions"
-    name: "Secrets"
-    sidebar_position: 50
-    identifier: "usage-secrets"
 ---
 
 # Secrets

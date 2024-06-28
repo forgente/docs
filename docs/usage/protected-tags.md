@@ -1,18 +1,9 @@
 ---
 date: "2021-05-14T00:00:00-00:00"
-title: "Protected tags"
 slug: "protected-tags"
 sidebar_position: 45
-toc: false
-draft: false
 aliases:
   - /en-us/protected-tags
-menu:
-  sidebar:
-    parent: "usage"
-    name: "Protected tags"
-    sidebar_position: 45
-    identifier: "protected-tags"
 ---
 
 # Protected tags
