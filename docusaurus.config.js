@@ -116,7 +116,7 @@ const config = {
               banner: 'unreleased',
             },
             '1.22': {
-              label: '1.22.0',
+              label: '1.22.1',
             },
             '1.21': {
               label: '1.21.11',
@@ -215,7 +215,7 @@ const config = {
             position: 'right',
             items: [
               {to: '/api/next/', label: '1.23-dev' },
-              {to: '/api/1.22/', label: '1.22.0' },
+              {to: '/api/1.22/', label: '1.22.1' },
               {to: '/api/1.21/', label: '1.21.11' },
               {to: '/api/1.20/', label: '1.20.6' },
               {to: '/api/1.19/', label: '1.19.4' },
