@@ -8,22 +8,21 @@ aliases:
 
 # Template Repositories
 
-Gitea (starting with version `1.11.0`) supports creating template repositories
-which can be used to generate repositories based on the template, complete with
-variable expansion of certain pre-defined variables.
+Since Gitea `1.11`, you can create template repositories.
+When creating a repo based on a template, you can copy most of its content, and even auto-inject variables into it.
 
-All files in the template repository are included in a generated repository from the
-template except for the `.gitea/template` file. The `.gitea/template` file tells
-Gitea which files are subject to the variable expansion when creating a
-repository from the template.
+By default, variables will not be expanded in any file.
+Only files contained in a pattern inside the `.gitea/template` file will be checked for if they contain variables.
+When creating the template, all files are included except for this `.gitea/template` file.
 
-Gitea uses [gobwas/glob](https://github.com/gobwas/glob) for its glob syntax. It closely resembles a traditional `.gitignore`, however there may be slight differences.
+Gitea uses [gobwas/glob](https://github.com/gobwas/glob) for its glob syntax.
+It closely resembles a traditional `.gitignore`, however there may be slight differences.
 
 ## Example `.gitea/template` file
 
 All paths are relative to the base of the repository
 
-```bash
+```gitignore
 # Expand all .go files, anywhere in the repository
 **.go
 
@@ -39,14 +38,21 @@ a/b/c/d.json
 
 ## Variable Expansion
 
-In any file matched by the above globs, certain variables will be expanded.
+In any file matched by the above globs, the variables below will be expanded.
 
 Matching filenames and paths can also be expanded, and are conservatively sanitized to support cross-platform filesystems.
 
-All variables must be of the form `$VAR` or `${VAR}`. To escape an expansion, use a double `$$`, such as `$$VAR` or `$${VAR}`
+You can use variables by prefixing them with `$` or surrounding them with `${}`, so both `$VAR` and `${VAR}` insert the value of `VAR` at this location.
+To escape an expansion, use `$$`, such as `$$VAR` or `$${VAR}`.
+
+These are the variables Gitea currently recognizes:
 
 | Variable             | Expands To                                          | Transformable |
 | -------------------- | --------------------------------------------------- | ------------- |
+| YEAR                 | The year of generating the repository (i.e. `2024`) | ✘             |
+| MONTH                | The month of generating the repository (i.e. `03`)  | ✘             |
+| MONTH_ENGLISH        | The month but in English (i.e. `March`)             | ✓             |
+| DAY                  | The day of generating the repository (i.e. `02`)    | ✘             |
 | REPO_NAME            | The name of the generated repository                | ✓             |
 | TEMPLATE_NAME        | The name of the template repository                 | ✓             |
 | REPO_DESCRIPTION     | The description of the generated repository         | ✘             |
@@ -62,11 +68,12 @@ All variables must be of the form `$VAR` or `${VAR}`. To escape an expansion, us
 
 ## Transformers :robot:
 
-Gitea `1.12.0` adds a few transformers to some of the applicable variables above.
+Since Gitea `1.12.0`, variables marked as transformable in the table above also have alternative versions where the given transformer has been applied.
 
-For example, to get `REPO_NAME` in `PASCAL`-case, your template would use `${REPO_NAME_PASCAL}`
+Transformed variables can be called by appending the transformer name to the variable name.
+For example, to get `REPO_NAME` in `PASCAL`-case, you should use the variable `${REPO_NAME_PASCAL}`.
 
-Feeding `go-sdk` to the available transformers yields...
+The following transformers are available (assuming `go-sdk` is the input):
 
 | Transformer | Effect |
 | ----------- | ------ |
