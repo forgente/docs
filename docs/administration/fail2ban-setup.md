@@ -60,16 +60,16 @@ on a bad authentication from the web or CLI using SSH or HTTP respectively:
 2020/10/15 16:08:44 ...s/context/context.go:204:HandleText() [E] invalid credentials from xxx.xxx.xxx.xxx
 ```
 
-Add our filter in `/etc/fail2ban/filter.d/gitea.conf`:
+Add our filter in `/etc/fail2ban/filter.d/gitea.local`:
 
 ```ini
-# gitea.conf
+# gitea.local
 [Definition]
 failregex =  .*(Failed authentication attempt|invalid credentials|Attempted access of unknown user).* from <HOST>
 ignoreregex =
 ```
 
-Add our jail in `/etc/fail2ban/jail.d/gitea.conf`:
+Add our jail in `/etc/fail2ban/jail.d/gitea.local`:
 
 ```ini
 [gitea]
@@ -83,7 +83,7 @@ action = iptables-allports
 ```
 
 If you're using Docker, you'll also need to add an additional jail to handle the **FORWARD**
-chain in **iptables**. Configure it in `/etc/fail2ban/jail.d/gitea-docker.conf`:
+chain in **iptables**. Configure it in `/etc/fail2ban/jail.d/gitea-docker.local`:
 
 ```ini
 [gitea-docker]
