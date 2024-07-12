@@ -978,7 +978,7 @@ Default templates for project boards:
 - `RUN_AT_START`: **true**: Run job at start time (if ENABLED).
 - `SCHEDULE`: **@midnight** : Cron syntax for the job.
 
-### Extended cron tasks (not enabled by default)
+### Extended cron tasks
 
 #### Cron - Garbage collect all repositories (`cron.git_gc_repos`)
 

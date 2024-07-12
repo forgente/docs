@@ -1016,7 +1016,7 @@ Default templates for project board view:
 - `SCHEDULE`: **@midnight**: Cron syntax for scheduling deleted branches cleanup.
 - `OLDER_THAN`: **24h**: Branches deleted OLDER_THAN ago will be cleaned up.
 
-### Extended cron tasks (not enabled by default)
+### Extended cron tasks
 
 #### Cron - Garbage collect all repositories (`cron.git_gc_repos`)
 

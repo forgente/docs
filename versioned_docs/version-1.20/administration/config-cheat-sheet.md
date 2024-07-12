@@ -970,7 +970,7 @@ Default templates for project boards:
 - `SCHEDULE`: **@midnight** : Interval as a duration between each synchronization, it will always attempt synchronization when the instance starts.
 - `UPDATE_EXISTING`: **true**: Create new users, update existing user data and disable users that are not in external source anymore (default) or only create new users if UPDATE_EXISTING is set to false.
 
-### Extended cron tasks (not enabled by default)
+### Extended cron tasks
 
 #### Cron - Garbage collect all repositories (`cron.git_gc_repos`)
 
