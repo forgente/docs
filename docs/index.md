@@ -1,18 +1,21 @@
 ---
 date: "2016-11-08T16:00:00+02:00"
+title: "Documentation"
 slug: /
 sidebar_position: 10
+toc: false
+draft: false
 ---
 
 # What is Gitea?
 
-Gitea is a painless self-hosted all-in-one software development service, it includes Git hosting, code review, team collaboration, package registry and CI/CD. It is similar to GitHub, Bitbucket and GitLab.
-Gitea was forked from [Gogs](http://gogs.io) originally and almost all the code has been changed. See the [Gitea Announcement](https://blog.gitea.com/welcome-to-gitea/)
-blog post to read about the justification for a fork.
+Gitea is a painless, self-hosted, all-in-one software development service. It includes Git hosting, code review, team collaboration, package registry, and CI/CD. It is similar to GitHub, Bitbucket and GitLab.
+
+Gitea was originally forked from [Gogs](https://gogs.io) and almost all the code has been changed. See the [Gitea Announcement](https://blog.gitea.com/welcome-to-gitea/) blog post to read about the justification for a fork.
 
 :::warning
 
-Gitea has never sent commits to upstream or cherry-pick commits from upstream. So Gitea is totally not compatible with Gogs. No any gurantee it can work if you upgrade from Gogs to Gitea. The recommanded method is to migrate repositories from Gogs to Gitea.
+Gitea does not sent or cherry-picked commits from upstream, so there is no guarantee it will work if you upgrade from Gogs to Gitea. The recommended method is to migrate repositories from Gogs to Gitea.
 
 :::
 
@@ -34,7 +37,7 @@ You can try it out using [the online demo](https://demo.gitea.com).
 
 - **Lightweight and Fast**
 
-  One of Gitea's design goals is to be lightweight and fast in response. Unlike some large code hosting platforms, it remains lean, performing well in terms of speed, and is suitable for resource-limited server environments. Due to its lightweight design, Gitea has relatively low resource consumption and performs well in resource-constrained environments.
+  One of Gitea's design goals is to be lightweight and fast in response. Unlike some large code hosting platforms, it remains lean, performs well in terms of speed, and is suitable for resource-limited server environments. Due to its lightweight design, Gitea has relatively low resource consumption and performs well in resource-constrained environments.
 
 - **Easy Deployment and Maintenance**
 
