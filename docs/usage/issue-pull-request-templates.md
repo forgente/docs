@@ -264,6 +264,7 @@ Attributes:
 | hide_label  | If true, the label normally used as a headline is not visible.                                      | Optional | Boolean | false        | -            |
 | description | A description of the dropdown to provide extra context or guidance, which is displayed in the form. | Optional | String       | Empty String | -            |
 | multiple    | Determines if the user can select more than one option.                                             | Optional | Boolean      | false        | -            |
+| list        | If true, display as a list. If false, print items on one line with commas.                          | Optional | Boolean      | false        | -            |
 | options     | An array of options the user can choose from. Cannot be empty and all choices must be distinct.     | Required | String array | -            | -            |
 
 Validations:
