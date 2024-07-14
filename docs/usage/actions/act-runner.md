@@ -261,7 +261,9 @@ The runner will fetch jobs from the Gitea instance and run them automatically.
 
 Since act runner is still in development, it is recommended to check the latest version and upgrade it regularly.
 
-## Systemd service
+## Daemon Services
+
+### Systemd
 
 It is also possible to run act-runner as a [systemd](https://en.wikipedia.org/wiki/Systemd) service. Create an unprivileged `act_runner` user on your system, and the following file in `/etc/systemd/system/act_runner.service`. The paths in `ExecStart` and `WorkingDirectory` may need to be adjusted depending on where you installed the `act_runner` binary, its configuration file, and the home directory of the `act_runner` user.
 
@@ -294,3 +296,50 @@ sudo systemctl enable act_runner --now
 ```
 
 If using Docker, the `act_runner` user should also be added to the `docker` group before starting the service. Keep in mind that this effectively gives `act_runner` root access to the system [[1]](https://docs.docker.com/engine/security/#docker-daemon-attack-surface).
+
+### LaunchDaemon
+
+Mac uses `launchd` in place of systemd for registering daemon processes. By default daemons run as the root user, so if desired an unprivileged `_act_runner` user can be created via the `dscl` tool. The following file should then be created at the directory `/Library/LaunchDaemon/com.gitea.act_runner.plist`. The paths for `WorkingDirectory`, `ProgramArguments`, `StandardOutPath`, `StandardErrPath`, and the `HOME` environment variable may need to be updated to reflect your installation. Also note that any executables outside of the example `PATH` shown will need to be explicitly included and will not be inherited from existing configurations.
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.gitea.act_runner</string>
+    <key>ProgramArguments</key>
+    <array>
+        <string>/usr/local/bin/act_runner</string>
+        <string>daemon</string>
+        <string>--config</string>
+        <string>/etc/act_runner/config.yaml</string>
+    </array>
+    <key>RunAtLoad</key>
+    <true/>
+    <key>KeepAlive</key>
+    <true/>
+    <key>WorkingDirectory</key>
+    <string>/var/lib/act_runner</string>
+    <key>StandardOutPath</key>
+    <string>/var/lib/act_runner/act_runner.log</string>
+    <key>StandardErrorPath</key>
+    <string>/var/lib/act_runner/act_runner.err</string>
+    <key>EnvironmentVariables</key>
+    <dict>
+        <key>PATH</key>
+        <string>/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin</string>
+        <key>HOME></key>
+        <string>/var/lib/act_runner</string>
+    </dict>
+    <key>UserName</key>
+    <string>_act_runner</string>
+</dict>
+</plist>
+```
+
+Then:
+
+```bash
+sudo launchctl load /Library/LaunchDaemon/com.gitea.act_runner.plist
+```
