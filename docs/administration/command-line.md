@@ -364,7 +364,7 @@ provided key. You should also set the value
 `SSH_CREATE_AUTHORIZED_KEYS_FILE=false` in the `[server]` section of
 `app.ini`.
 
-:::notice
+:::note
 opensshd requires the Gitea program to be owned by root and not
 writable by group or others. The program must be specified by an absolute
 path.

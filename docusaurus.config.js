@@ -107,8 +107,10 @@ const config = {
             if (docPath.includes('awesome.md')) {
               return `https://gitea.com/gitea/awesome-gitea/src/branch/main/README.md`
             }
-            let fileName = `${docPath.replace('.md', '')}.${locale}.md`;
-            return `https://gitea.com/gitea/docs/tree/${version === 'current' ? 'docs': `versioned_docs/version-${version}`}/${fileName}`;
+            if (locale === 'en-us') {
+              return `https://gitea.com/gitea/docs/src/branch/main/${version === 'current' ? 'docs': `versioned_docs/version-${version}`}/${docPath}`;
+            }
+            return `https://gitea.com/gitea/docs/src/branch/main/i18n/${locale}/docusaurus-plugin-content-docs/${version === 'current' ? 'current': `version-${version}`}/${docPath}`;
           },
           versions: {
             current: {
