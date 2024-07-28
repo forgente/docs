@@ -32,7 +32,7 @@ COPY custom/app.ini /data/gitea/conf/app.ini
 RUN apk --no-cache add asciidoctor freetype freetype-dev gcc g++ libpng libffi-dev pandoc python3-dev py3-pyzmq pipx
 # install any other package you need for your external renderers
 
-RUN pipx install jupyter docutils --include-deps
+RUN pipx install jupyter docutils --include-deps --global
 # add above any other python package you may need to install
 ```
 
