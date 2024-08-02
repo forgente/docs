@@ -1339,6 +1339,12 @@ PROXY_HOSTS = *.github.com
 - `DEFAULT_ACTIONS_URL`: **github**：获取操作插件的默认平台，`github`表示`https://github.com`，`self`表示当前的 Gitea 实例。
 - `STORAGE_TYPE`: **local**：用于操作日志的存储类型，`local`表示本地磁盘，`minio`表示与S3兼容的对象存储服务，默认为`local`，或者使用定义为`[storage.xxx]`的其他名称。
 - `MINIO_BASE_PATH`: **actions_log/**：Minio存储桶上的基本路径，仅在`STORAGE_TYPE`为`minio`时可用。
+- `LOG_RETENTION_DAYS`: **365**：日志保留时间（天）。此期限后将删除旧日志。
+- `ARTIFACT_RETENTION_DAYS`: **90**：保留 artifacts 的默认天数。可以通过在`actions/upload-artifact`步骤中设置`retention-days`选项来指定 artifacts 的保留期。
+- `ZOMBIE_TASK_TIMEOUT`: **10m**：僵尸任务超时时间，指具有运行状态但长时间未更新的任务。
+- `ENDLESS_TASK_TIMEOUT`: **3h**：无尽任务超时时间，指具有运行状态并持续更新，但长时间未结束的任务。
+- `ABANDONED_JOB_TIMEOUT`: **24h**：被遗弃的作业超时时间，指具有等待状态但长时间未被 runner 选中并执行的作业。
+- `SKIP_WORKFLOW_STRINGS`: **[skip ci],[ci skip],[no ci],[skip actions],[actions skip]**：提交者可以在提交消息或 PR 标题中放置的字符串，以跳过执行相应的工作流。
 
 `DEFAULT_ACTIONS_URL` 指示 Gitea 操作运行程序应该在哪里找到带有相对路径的操作。
 例如，`uses: actions/checkout@v4` 表示 `https://github.com/actions/checkout@v4`，因为 `DEFAULT_ACTIONS_URL` 的值为 `github`。
