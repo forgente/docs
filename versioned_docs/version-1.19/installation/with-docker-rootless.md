@@ -231,7 +231,13 @@ services:
       - "2222:2222"
 ```
 
-## Start
+## Startup
+
+:::note
+From July 2023 Compose V1 stopped receiving updates. It's also no longer available in new releases of Docker Desktop.
+
+Compose V2 is included with all currently supported versions of Docker Desktop. Please use V2 to do below operations.
+:::
 
 To start this setup based on `docker-compose`, execute `docker-compose up -d`,
 to launch Gitea in the background. Using `docker-compose ps` will show if Gitea
