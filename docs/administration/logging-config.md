@@ -182,9 +182,8 @@ Settings:
 `MAX_SIZE_SHIFT` defines the maximum size of a file by left shifting 1 the given number of times (`1 << x`).
 The exact behavior at the time of v1.17.3 can be seen [here](https://github.com/go-gitea/gitea/blob/v1.17.3/modules/setting/log.go#L185).
 
-The useful values of `COMPRESSION_LEVEL` are from 1 to (and including) 9, where higher numbers mean better compression.
+The useful values of `COMPRESSION_LEVEL` are from 1 (best speed) to 9 (best compression). [DefaultCompression](https://pkg.go.dev/compress/gzip#pkg-constants) (-1) and [HuffmanOnly](https://pkg.go.dev/compress/flate#HuffmanOnly) (-2) can also be chosen.
 Beware that better compression might come with higher resource usage.
-Must be preceded with a `-` sign.
 
 ### Conn mode
 
