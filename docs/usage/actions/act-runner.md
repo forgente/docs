@@ -50,6 +50,8 @@ docker pull gitea/act_runner:nightly # for the latest nightly build
 
 Configuration is done via a configuration file. It is optional, and the default configuration will be used when no configuration file is specified.
 
+### Binary configuration
+
 You can generate a configuration file by running the following command:
 
 ```bash
@@ -62,6 +64,8 @@ The default configuration is safe to use without any modification, so you can ju
 ./act_runner generate-config > config.yaml
 ./act_runner --config config.yaml [command]
 ```
+
+### Docker configuration
 
 You could also generate config file with docker:
 
@@ -115,7 +119,7 @@ Tokens are valid for registering multiple runners, until they are revoked and re
 
 ### Register the runner
 
-The act runner can be registered by running the following command:
+If this has been installed using the binary package, the act runner can be registered by running the following command:
 
 ```bash
 ./act_runner register
@@ -193,6 +197,8 @@ services:
       - ./data:/data
       - /var/run/docker.sock:/var/run/docker.sock
 ```
+
+When using docker, there is no requirement to enter the container and manually run `./act_runner daemon` command as shown below. Once the container has been started successfully, it will show up as an active runner in your Gitea instance.
 
 ### Configuring cache when starting a Runner using docker image
 
