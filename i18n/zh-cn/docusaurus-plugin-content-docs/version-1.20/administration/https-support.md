@@ -2,14 +2,7 @@
 date: "2023-04-09T11:00:00+02:00"
 slug: "https-setup"
 sidebar_position: 12
-toc: false
-draft: false
-menu:
-  sidebar:
-    parent: "administration"
-    name: "HTTPS setup"
-    sidebar_position: 12
-    identifier: "https-setup"
+
 ---
 
 # HTTPS配置

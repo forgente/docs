@@ -1,18 +1,10 @@
 ---
 date: "2017-07-21T12:00:00+02:00"
-title: "Run as a Linux service"
+
 slug: "linux-service"
 sidebar_position: 40
-toc: false
-draft: false
 aliases:
   - /en-us/linux-service
-menu:
-  sidebar:
-    parent: "installation"
-    name: "Linux service"
-    sidebar_position: 40
-    identifier: "linux-service"
 ---
 
 # Run as a Linux service

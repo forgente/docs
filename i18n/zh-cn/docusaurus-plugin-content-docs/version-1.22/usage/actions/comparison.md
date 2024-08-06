@@ -1,16 +1,9 @@
 ---
 date: "2023-05-24T15:00:00+08:00"
-title: "与GitHub Actions的对比"
+
 slug: "comparison"
 sidebar_position: 30
-draft: false
-toc: false
-menu:
-  sidebar:
-    parent: "actions"
-    name: "对比"
-    sidebar_position: 30
-    identifier: "actions-comparison"
+
 ---
 
 # 与GitHub Actions的对比

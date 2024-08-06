@@ -1,10 +1,9 @@
 ---
 date: "2019-04-02T17:06:00+01:00"
-title: "Logging Configuration"
+
 slug: "logging-configuration"
 sidebar_position: 40
-toc: false
-draft: false
+
 menu:
   sidebar:
     parent: "administration"

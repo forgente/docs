@@ -1,6 +1,5 @@
 ---
 date: "2024-01-31T00:00:00+00:00"
-title: "Blocking a user"
 slug: "blocking-user"
 sidebar_position: 25
 aliases:

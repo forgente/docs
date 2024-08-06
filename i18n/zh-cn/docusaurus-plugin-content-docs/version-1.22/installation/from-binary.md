@@ -1,18 +1,12 @@
 ---
 date: "2016-12-01T16:00:00+02:00"
-title: "使用二进制文件安装"
+
 slug: "install-from-binary"
 sidebar_position: 15
-toc: false
-draft: false
+
 aliases:
   - /zh-cn/install-from-binary
-menu:
-  sidebar:
-    parent: "installation"
-    name: "使用二进制文件安装"
-    sidebar_position: 15
-    identifier: "install-from-binary"
+
 ---
 
 # 使用二进制文件安装

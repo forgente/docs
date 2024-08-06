@@ -1,16 +1,10 @@
 ---
 date: "2018-05-10T16:00:00+02:00"
-title: "Issue and Pull Request templates"
+
 slug: "issue-pull-request-templates"
 sidebar_position: 15
-toc: false
-draft: false
-menu:
-  sidebar:
-    parent: "usage"
-    name: "Issue and Pull Request templates"
-    sidebar_position: 15
-    identifier: "issue-pull-request-templates"
+
+
 ---
 
 # Issue and Pull Request Templates

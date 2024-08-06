@@ -1,6 +1,5 @@
 ---
 date: "2017-07-21T12:00:00+02:00"
-title: "Run as a Linux service"
 slug: "linux-service"
 sidebar_position: 40
 aliases:

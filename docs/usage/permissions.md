@@ -1,6 +1,5 @@
 ---
 date: "2021-12-13:10:10+08:00"
-title: "Permissions"
 slug: "permissions"
 sidebar_position: 14
 aliases:

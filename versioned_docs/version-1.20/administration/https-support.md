@@ -1,21 +1,12 @@
 ---
 date: "2018-06-02T11:00:00+02:00"
-title: "HTTPS setup"
 slug: "https-setup"
 sidebar_position: 12
-toc: false
-draft: false
 aliases:
   - /en-us/https-setup
-menu:
-  sidebar:
-    parent: "administration"
-    name: "HTTPS setup"
-    sidebar_position: 12
-    identifier: "https-setup"
 ---
 
-# HTTPS setup to encrypt connections to Gitea
+# HTTPS setup
 
 ## Using the built-in server
 

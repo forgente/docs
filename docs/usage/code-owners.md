@@ -1,6 +1,5 @@
 ---
 date: "2023-05-24T16:00:00+00:00"
-title: "Code Owners"
 slug: "code-owners"
 sidebar_position: 30
 aliases:

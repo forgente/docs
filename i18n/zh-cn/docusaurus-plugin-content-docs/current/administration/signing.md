@@ -1,18 +1,9 @@
 ---
 date: "2023-05-23T09:00:00+08:00"
-title: "GPG 提交签名"
 slug: "signing"
 sidebar_position: 50
-toc: false
-draft: false
 aliases:
   - /zh-cn/signing
-menu:
-  sidebar:
-    parent: "administration"
-    name: "GPG 提交签名"
-    sidebar_position: 50
-    identifier: "signing"
 ---
 
 # GPG 提交签名

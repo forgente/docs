@@ -1,16 +1,9 @@
 ---
 date: "2021-09-02T16:00:00+08:00"
-title: "从旧版 Gitea 升级"
+
 slug: "upgrade-from-gitea"
 sidebar_position: 100
-toc: false
-draft: false
-menu:
-  sidebar:
-    parent: "installation"
-    name: "从旧版 Gitea 升级"
-    sidebar_position: 100
-    identifier: "upgrade-from-gitea"
+
 ---
 
 # 从旧版 Gitea 升级

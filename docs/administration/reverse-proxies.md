@@ -1,6 +1,5 @@
 ---
 date: "2018-05-22T11:00:00+00:00"
-title: "Reverse Proxies"
 slug: "reverse-proxies"
 sidebar_position: 16
 aliases:

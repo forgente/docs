@@ -1,16 +1,7 @@
 ---
 date: "2021-10-13T16:00:00+02:00"
-title: "Guidelines for Frontend Development"
 slug: "guidelines-frontend"
 sidebar_position: 30
-toc: false
-draft: false
-menu:
-  sidebar:
-    parent: "contributing"
-    name: "Guidelines for Frontend"
-    sidebar_position: 30
-    identifier: "guidelines-frontend"
 ---
 
 # Guidelines for Frontend Development

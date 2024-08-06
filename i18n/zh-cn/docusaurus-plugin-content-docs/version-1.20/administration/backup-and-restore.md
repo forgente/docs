@@ -1,18 +1,9 @@
 ---
 date: "2018-06-06T09:33:00+08:00"
-title: "备份与恢复"
 slug: "backup-and-restore"
 sidebar_position: 11
-toc: false
-draft: false
 aliases:
   - /zh-cn/backup-and-restore
-menu:
-  sidebar:
-    parent: "administration"
-    name: "备份与恢复"
-    sidebar_position: 11
-    identifier: "backup-and-restore"
 ---
 
 # 备份与恢复

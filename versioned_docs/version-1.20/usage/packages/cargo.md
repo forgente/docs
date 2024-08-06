@@ -1,16 +1,7 @@
 ---
 date: "2022-11-20T00:00:00+00:00"
-title: "Cargo Package Registry"
 slug: "cargo"
 sidebar_position: 5
-draft: false
-toc: false
-menu:
-  sidebar:
-    parent: "packages"
-    name: "Cargo"
-    sidebar_position: 5
-    identifier: "cargo"
 ---
 
 # Cargo Package Registry

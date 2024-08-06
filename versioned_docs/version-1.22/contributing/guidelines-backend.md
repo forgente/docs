@@ -1,18 +1,11 @@
 ---
 date: "2021-11-01T23:41:00+08:00"
-title: "Guidelines for Backend Development"
+
 slug: "guidelines-backend"
 sidebar_position: 20
-toc: false
-draft: false
+
 aliases:
   - /en-us/guidelines-backend
-menu:
-  sidebar:
-    parent: "contributing"
-    name: "Guidelines for Backend"
-    sidebar_position: 20
-    identifier: "guidelines-backend"
 ---
 
 # Guidelines for Backend Development

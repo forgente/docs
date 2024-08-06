@@ -1,19 +1,10 @@
 ---
 date: "2018-11-23:00:00+02:00"
-title: "External renderers"
 slug: "external-renderers"
 sidebar_position: 60
-toc: false
-draft: false
-menu:
-  sidebar:
-    parent: "administration"
-    name: "External renderers"
-    sidebar_position: 60
-    identifier: "external-renderers"
 ---
 
-# Custom files rendering configuration
+# External renderers
 
 Gitea supports custom file renderings (i.e., Jupyter notebooks, asciidoc, etc.) through external binaries,
 it is just a matter of:

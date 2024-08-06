@@ -1,16 +1,9 @@
 ---
 date: "2022-12-28T00:00:00+00:00"
-title: "Conda 软件包注册表"
+
 slug: "conda"
 sidebar_position: 25
-draft: false
-toc: false
-menu:
-  sidebar:
-    parent: "packages"
-    name: "Conda"
-    sidebar_position: 25
-    identifier: "conda"
+
 ---
 
 # Conda 软件包注册表

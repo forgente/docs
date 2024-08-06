@@ -1,16 +1,9 @@
 ---
 date: "2021-07-20T00:00:00+00:00"
-title: "软件包注册表"
+
 slug: "overview"
 sidebar_position: 1
-draft: false
-toc: false
-menu:
-  sidebar:
-    parent: "packages"
-    name: "Overview"
-    sidebar_position: 1
-    identifier: "packages-overview"
+
 ---
 
 # 软件包注册表

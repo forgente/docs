@@ -1,16 +1,7 @@
 ---
 date: "2022-11-20T00:00:00+00:00"
-title: "Cargo 软件包注册表"
 slug: "cargo"
 sidebar_position: 5
-draft: false
-toc: false
-menu:
-  sidebar:
-    parent: "packages"
-    name: "Cargo"
-    sidebar_position: 5
-    identifier: "cargo"
 ---
 
 # Cargo 软件包注册表

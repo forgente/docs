@@ -1,16 +1,9 @@
 ---
 date: "2023-05-24T15:00:00+08:00"
-title: "快速入门"
+
 slug: "quickstart"
 sidebar_position: 10
-draft: false
-toc: false
-menu:
-  sidebar:
-    parent: "actions"
-    name: "快速入门"
-    sidebar_position: 10
-    identifier: "actions-quickstart"
+
 ---
 
 # 快速入门

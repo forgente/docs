@@ -1,15 +1,6 @@
 ---
 date: "2023-03-08T00:00:00+00:00"
-title: "RPM 软件包注册表"
 slug: "packages/rpm"
-draft: false
-toc: false
-menu:
-  sidebar:
-    parent: "packages"
-    name: "RPM"
-    sidebar_position: 105
-    identifier: "rpm"
 ---
 
 # RPM 软件包注册表

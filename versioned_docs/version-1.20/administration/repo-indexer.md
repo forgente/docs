@@ -1,18 +1,11 @@
 ---
 date: "2019-09-06T01:35:00-03:00"
-title: "Repository indexer"
+
 slug: "repo-indexer"
 sidebar_position: 45
-toc: false
-draft: false
+
 aliases:
   - /en-us/repo-indexer
-menu:
-  sidebar:
-    parent: "administration"
-    name: "Repository indexer"
-    sidebar_position: 45
-    identifier: "repo-indexer"
 ---
 
 # Repository indexer

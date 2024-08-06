@@ -1,18 +1,11 @@
 ---
 date: "2024-07-10T09:23:00+02:00"
-title: "Secrets"
+
 slug: "secrets"
 sidebar_position: 50
-draft: false
-toc: false
 aliases:
   - /en-us/secrets
-menu:
-  sidebar:
-    parent: "usage"
-    name: "Secrets"
-    sidebar_position: 50
-    identifier: "usage-secrets"
+
 ---
 
 # Secrets

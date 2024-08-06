@@ -1,16 +1,9 @@
 ---
 date: "2023-04-27T15:00:00+08:00"
-title: "Frequently Asked Questions of Gitea Actions"
+
 slug: "faq"
 sidebar_position: 100
-draft: false
-toc: false
-menu:
-  sidebar:
-    parent: "actions"
-    name: "FAQ"
-    sidebar_position: 100
-    identifier: "actions-faq"
+
 ---
 
 # Frequently Asked Questions of Gitea Actions

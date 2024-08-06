@@ -1,13 +1,12 @@
 ---
 date: "2019-04-05T16:00:00+02:00"
-title: "FAQ"
 slug: "faq"
 sidebar_position: 5
 aliases:
   - /en-us/faq
 ---
 
-# Frequently Asked Questions
+# FAQ
 
 This page contains some common questions and answers.
 

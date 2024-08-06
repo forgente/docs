@@ -1,23 +1,16 @@
 ---
 date: "2017-07-21T12:00:00+02:00"
-title: "在 Linux 中以 service 方式运行"
 slug: "linux-service"
 sidebar_position: 40
-toc: false
-draft: false
 aliases:
   - /zh-cn/linux-service
-menu:
-  sidebar:
-    parent: "installation"
-    name: "在Linux中以service方式运行"
-    sidebar_position: 40
-    identifier: "linux-service"
 ---
 
-### 在 Ubuntu 16.04 LTS 中以 service 方式运行
+# 在 Linux 中以 service 方式运行
 
-#### systemd 方式
+## 在 Ubuntu 16.04 LTS 中以 service 方式运行
+
+### systemd 方式
 
 在 terminal 中执行以下命令：
 
@@ -36,7 +29,7 @@ sudo systemctl enable gitea
 sudo systemctl start gitea
 ```
 
-#### 使用 supervisor
+### 使用 supervisor
 
 在 terminal 中执行以下命令安装 supervisor：
 

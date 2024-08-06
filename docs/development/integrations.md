@@ -1,6 +1,5 @@
 ---
 date: "2019-04-15T17:29:00+08:00"
-title: "Integrations"
 slug: "integrations"
 sidebar_position: 65
 aliases:

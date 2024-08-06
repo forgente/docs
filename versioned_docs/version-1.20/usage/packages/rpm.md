@@ -1,15 +1,8 @@
 ---
 date: "2023-03-08T00:00:00+00:00"
-title: "RPM Package Registry"
+
 slug: "rpm"
-draft: false
-toc: false
-menu:
-  sidebar:
-    parent: "packages"
-    name: "RPM"
-    sidebar_position: 105
-    identifier: "rpm"
+
 ---
 
 # RPM Package Registry

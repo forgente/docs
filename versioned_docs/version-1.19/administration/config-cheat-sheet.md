@@ -1,16 +1,10 @@
 ---
 date: "2016-12-26T16:00:00+02:00"
-title: "Config Cheat Sheet"
+
 slug: "config-cheat-sheet"
 sidebar_position: 30
-toc: false
-draft: false
-menu:
-  sidebar:
-    parent: "administration"
-    name: "Config Cheat Sheet"
-    sidebar_position: 30
-    identifier: "config-cheat-sheet"
+
+
 ---
 
 # Configuration Cheat Sheet

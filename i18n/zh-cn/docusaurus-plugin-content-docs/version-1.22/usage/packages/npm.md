@@ -1,16 +1,9 @@
 ---
 date: "2021-07-20T00:00:00+00:00"
-title: "npm 软件包注册表"
+
 slug: "npm"
 sidebar_position: 70
-draft: false
-toc: false
-menu:
-  sidebar:
-    parent: "packages"
-    name: "npm"
-    sidebar_position: 70
-    identifier: "npm"
+
 ---
 
 # npm Package Registry

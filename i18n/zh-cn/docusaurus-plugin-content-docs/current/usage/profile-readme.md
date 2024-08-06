@@ -1,16 +1,7 @@
 ---
 date: "2023-05-23T09:00:00+08:00"
-title: "个人资料 README"
 slug: "profile-readme"
 sidebar_position: 12
-toc: false
-draft: false
-menu:
-  sidebar:
-    parent: "usage"
-    name: "个人资料 README"
-    sidebar_position: 12
-    identifier: "profile-readme"
 ---
 
 # 个人资料 README

@@ -1,13 +1,12 @@
 ---
 date: "2020-03-19T19:27:00+02:00"
-title: "Install on Kubernetes"
 slug: "install-on-kubernetes"
 sidebar_position: 80
 aliases:
   - /en-us/install-on-kubernetes
 ---
 
-# Installation with Helm (on Kubernetes)
+# Install on Kubernetes
 
 Gitea provides a Helm Chart to allow for installation on kubernetes.
 

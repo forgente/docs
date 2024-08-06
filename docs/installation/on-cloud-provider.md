@@ -1,6 +1,5 @@
 ---
 date: "2016-12-01T16:00:00+02:00"
-title: "Install on Cloud Provider"
 slug: "install-on-cloud-provider"
 sidebar_position: 90
 aliases:

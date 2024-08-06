@@ -1,16 +1,8 @@
 ---
 date: "2021-07-20T00:00:00+00:00"
-title: "通用软件包注册表"
+
 slug: "generic"
 sidebar_position: 40
-draft: false
-toc: false
-menu:
-  sidebar:
-    parent: "packages"
-    name: "通用"
-    sidebar_position: 40
-    identifier: "generic"
 ---
 
 # 通用软件包注册表

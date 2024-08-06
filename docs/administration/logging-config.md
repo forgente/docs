@@ -1,6 +1,5 @@
 ---
 date: "2019-04-02T17:06:00+01:00"
-title: "Logging Configuration"
 slug: "logging-config"
 sidebar_position: 40
 aliases:

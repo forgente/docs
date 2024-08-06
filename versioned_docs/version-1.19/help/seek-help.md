@@ -1,16 +1,7 @@
 ---
 date: "2018-05-21T15:00:00+00:00"
-title: "Support Options"
 slug: "seek-help"
 sidebar_position: 20
-toc: false
-draft: false
-menu:
-  sidebar:
-    parent: "help"
-    name: "Support Options"
-    sidebar_position: 20
-    identifier: "seek-help"
 ---
 
 # Support Options

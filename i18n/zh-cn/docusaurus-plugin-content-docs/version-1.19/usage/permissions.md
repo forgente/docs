@@ -1,18 +1,9 @@
 ---
 date: "2023-05-23T09:00:00+08:00"
-title: "权限"
 slug: "permissions"
 sidebar_position: 14
-toc: false
-draft: false
 aliases:
   - /zh-cn/permissions
-menu:
-  sidebar:
-    parent: "usage"
-    name: "权限"
-    sidebar_position: 14
-    identifier: "permissions"
 ---
 
 # 权限

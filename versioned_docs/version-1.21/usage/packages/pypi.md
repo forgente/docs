@@ -1,16 +1,9 @@
 ---
 date: "2021-07-20T00:00:00+00:00"
-title: "PyPI Package Registry"
+
 slug: "pypi"
 sidebar_position: 100
-draft: false
-toc: false
-menu:
-  sidebar:
-    parent: "packages"
-    name: "PyPI"
-    sidebar_position: 100
-    identifier: "pypi"
+
 ---
 
 # PyPI Package Registry

@@ -1,18 +1,12 @@
 ---
 date: "2023-05-25T23:41:00+08:00"
-title: "后端开发指南"
+
 slug: "guidelines-backend"
 sidebar_position: 20
-toc: false
-draft: false
+
 aliases:
   - /zh-cn/guidelines-backend
-menu:
-  sidebar:
-    parent: "contributing"
-    name: "后端开发指南"
-    sidebar_position: 20
-    identifier: "guidelines-backend"
+
 ---
 
 # 后端开发指南

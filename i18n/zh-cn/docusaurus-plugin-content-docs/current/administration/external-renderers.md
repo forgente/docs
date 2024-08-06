@@ -1,21 +1,14 @@
 ---
 date: "2023-05-23T09:00:00+08:00"
-title: "外部渲染器"
 slug: "external-renderers"
 sidebar_position: 60
-toc: false
-draft: false
+
 aliases:
   - /zh-cn/external-renderers
-menu:
-  sidebar:
-    parent: "administration"
-    name: "外部渲染器"
-    sidebar_position: 60
-    identifier: "external-renderers"
+
 ---
 
-# 自定义文件渲染配置
+# 外部渲染器
 
 Gitea 通过外部二进制文件支持自定义文件渲染（例如 Jupyter notebooks、asciidoc 等），只需要进行以下步骤：
 

@@ -1,16 +1,9 @@
 ---
 date: "2022-08-23T00:00:00+00:00"
-title: "Vagrant 软件包注册表"
+
 slug: "vagrant"
 sidebar_position: 120
-draft: false
-toc: false
-menu:
-  sidebar:
-    parent: "packages"
-    name: "Vagrant"
-    sidebar_position: 120
-    identifier: "vagrant"
+
 ---
 
 # Vagrant 软件包注册表

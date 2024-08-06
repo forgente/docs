@@ -1,16 +1,8 @@
 ---
 date: "2021-07-20T00:00:00+00:00"
-title: "Maven Packages Repository"
+
 slug: "usage/packages/maven"
 sidebar_position: 60
-draft: false
-toc: false
-menu:
-  sidebar:
-    parent: "packages"
-    name: "Maven"
-    sidebar_position: 60
-    identifier: "maven"
 ---
 
 # Maven Packages Repository

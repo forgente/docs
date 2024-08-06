@@ -2,16 +2,10 @@
 date: "2023-05-23T09:00:00+08:00"
 slug: "merge-message-templates"
 sidebar_position: 15
-toc: false
-draft: false
+
 aliases:
   - /zh-cn/merge-message-templates
-menu:
-  sidebar:
-    parent: "usage"
-    name: "合并消息模板"
-    sidebar_position: 15
-    identifier: "merge-message-templates"
+
 ---
 
 # 合并消息模板

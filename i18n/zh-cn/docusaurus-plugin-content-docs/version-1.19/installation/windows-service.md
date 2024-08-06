@@ -1,16 +1,7 @@
 ---
 date: "2016-12-21T15:00:00-02:00"
-title: "注册为Windows服务"
 slug: "windows-service"
 sidebar_position: 50
-toc: false
-draft: false
-menu:
-  sidebar:
-    parent: "installation"
-    name: "Windows服务"
-    sidebar_position: 50
-    identifier: "windows-service"
 ---
 
 # 注册为Windows服务

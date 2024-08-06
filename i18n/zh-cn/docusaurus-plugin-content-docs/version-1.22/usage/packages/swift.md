@@ -1,16 +1,9 @@
 ---
 date: "2023-01-10T00:00:00+00:00"
-title: "Swift 软件包注册表"
+
 slug: "swift"
 sidebar_position: 95
-draft: false
-toc: false
-menu:
-  sidebar:
-    parent: "packages"
-    name: "Swift"
-    sidebar_position: 95
-    identifier: "swift"
+
 ---
 
 # Swift 软件包注册表

@@ -1,10 +1,9 @@
 ---
 date: "2018-05-21T15:00:00+00:00"
-title: "Support Options"
+
 slug: "support"
 sidebar_position: 20
-toc: false
-draft: false
+
 aliases:
   - /en-us/seek-help
 menu:

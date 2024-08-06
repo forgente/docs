@@ -1,16 +1,9 @@
 ---
 date: "2021-07-20T00:00:00+00:00"
-title: "Composer 软件包注册表"
+
 slug: "composer"
 sidebar_position: 10
-draft: false
-toc: false
-menu:
-  sidebar:
-    parent: "packages"
-    name: "Composer"
-    sidebar_position: 10
-    identifier: "composer"
+
 ---
 
 # Composer 软件包注册表

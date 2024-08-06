@@ -1,16 +1,7 @@
 ---
 date: "2019-11-28:00:00+02:00"
-title: "Template Repositories"
 slug: "template-repositories"
 sidebar_position: 14
-toc: false
-draft: false
-menu:
-  sidebar:
-    parent: "usage"
-    name: "Template Repositories"
-    sidebar_position: 14
-    identifier: "template-repositories"
 ---
 
 # Template Repositories

@@ -1,16 +1,7 @@
 ---
 date: "2016-12-01T16:00:00+02:00"
-title: "Localization"
 slug: "localization"
 sidebar_position: 70
-toc: false
-draft: false
-menu:
-  sidebar:
-    parent: "contributing"
-    name: "Localization"
-    sidebar_position: 70
-    identifier: "localization"
 ---
 
 # Localization

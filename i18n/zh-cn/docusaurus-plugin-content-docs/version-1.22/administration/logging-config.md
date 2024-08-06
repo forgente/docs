@@ -1,18 +1,12 @@
 ---
 date: "2023-05-23T09:00:00+08:00"
-title: "日志配置"
+
 slug: "logging-config"
 sidebar_position: 40
-toc: false
-draft: false
+
 aliases:
   - /zh-cn/logging-configuration
-menu:
-  sidebar:
-    parent: "administration"
-    name: "日志配置"
-    sidebar_position: 40
-    identifier: "logging-config"
+
 ---
 
 # 日志配置

@@ -1,6 +1,5 @@
 ---
 date: "2020-01-16"
-title: "Database Preparation"
 slug: "database-prep"
 sidebar_position: 10
 aliases:

@@ -1,18 +1,12 @@
 ---
 date: "2018-06-01T19:00:00+02:00"
-title: "Pull Request"
+
 slug: "pull-request"
 sidebar_position: 13
-toc: false
-draft: false
+
 aliases:
   - /en-us/pull-request
-menu:
-  sidebar:
-    parent: "usage"
-    name: "Pull Request"
-    sidebar_position: 13
-    identifier: "pull-request"
+
 ---
 
 # Pull Request

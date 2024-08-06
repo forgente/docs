@@ -1,21 +1,15 @@
 ---
 date: "2023-05-23T09:00:00+08:00"
-title: "搜索引擎索引"
+
 slug: "search-engines-indexation"
 sidebar_position: 60
-toc: false
-draft: false
+
 aliases:
   - /zh-cn/search-engines-indexation
-menu:
-  sidebar:
-    parent: "administration"
-    name: "搜索引擎索引"
-    sidebar_position: 60
-    identifier: "search-engines-indexation"
+
 ---
 
-# Gitea 安装的搜索引擎索引
+# 搜索引擎索引
 
 默认情况下，您的 Gitea 安装将被搜索引擎索引。
 如果您不希望您的仓库对搜索引擎可见，请进一步阅读。

@@ -1,18 +1,9 @@
 ---
 date: "2023-05-23T09:00:00+08:00"
-title: "Gitea 命令行"
 slug: "command-line"
 sidebar_position: 1
-toc: false
-draft: false
 aliases:
   - /zh-cn/command-line
-menu:
-  sidebar:
-    parent: "administration"
-    name: "Gitea 命令行"
-    sidebar_position: 1
-    identifier: "command-line"
 ---
 
 # 命令行
@@ -374,11 +365,11 @@ AuthorizedKeysCommand /path/to/gitea keys -e git -u %u -t %t -k %k
 
 ```go
 var checklist = []check{
-	{
-		title: "Check if OpenSSH authorized_keys file id correct",
-		f:     runDoctorLocationMoved,
-    },
-    // more checks please append here
+  {
+    title: "Check if OpenSSH authorized_keys file id correct",
+    f:     runDoctorLocationMoved,
+  },
+  // more checks please append here
 }
 ```
 

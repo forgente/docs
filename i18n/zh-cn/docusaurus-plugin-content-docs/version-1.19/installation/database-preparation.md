@@ -1,18 +1,9 @@
 ---
 date: "2020-01-16"
-title: "数据库准备"
 slug: "database-prep"
 sidebar_position: 10
-toc: false
-draft: false
 aliases:
   - /zh-cn/database-prep
-menu:
-  sidebar:
-    parent: "installation"
-    name: "数据库准备"
-    sidebar_position: 10
-    identifier: "database-prep"
 ---
 
 # 数据库准备

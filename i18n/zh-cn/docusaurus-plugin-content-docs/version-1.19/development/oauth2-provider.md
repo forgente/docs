@@ -1,18 +1,9 @@
 ---
 date: "2019-04-19:44:00+01:00"
-title: "OAuth2 提供者"
 slug: "oauth2-provider"
 sidebar_position: 41
-toc: false
-draft: false
 aliases:
   - /zh-cn/oauth2-provider
-menu:
-  sidebar:
-    parent: "development"
-    name: "OAuth2 提供者"
-    sidebar_position: 41
-    identifier: "oauth2-provider"
 ---
 
 # OAuth2 提供者

@@ -1,18 +1,12 @@
 ---
 date: "2016-12-01T16:00:00+02:00"
-title: "在云服务器中安装 Gitea"
+
 slug: "install-on-cloud-provider"
 sidebar_position: 90
-toc: false
-draft: false
+
 aliases:
   - /zh-cn/install-on-cloud-provider
-menu:
-  sidebar:
-    parent: "installation"
-    name: "在云服务器中安装 Gitea"
-    sidebar_position: 90
-    identifier: "install-on-cloud-provider"
+
 ---
 
 # 在云服务器上安装 Gitea

@@ -1,18 +1,9 @@
 ---
 date: "2023-05-25T00:00:00+00:00"
-title: "重构指南"
 slug: "guidelines-refactoring"
 sidebar_position: 20
-toc: false
-draft: false
 aliases:
   - /zh-cn/guidelines-refactoring
-menu:
-  sidebar:
-    parent: "contributing"
-    name: "重构指南"
-    sidebar_position: 20
-    identifier: "guidelines-refactoring"
 ---
 
 # 重构指南

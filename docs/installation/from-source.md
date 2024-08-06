@@ -1,6 +1,5 @@
 ---
 date: "2016-12-01T16:00:00+02:00"
-title: "Installation from source"
 slug: "install-from-source"
 sidebar_position: 30
 aliases:

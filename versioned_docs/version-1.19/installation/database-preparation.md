@@ -1,16 +1,7 @@
 ---
 date: "2020-01-16"
-title: "Database Preparation"
 slug: "database-prep"
 sidebar_position: 10
-toc: false
-draft: false
-menu:
-  sidebar:
-    parent: "installation"
-    name: "Database preparation"
-    sidebar_position: 10
-    identifier: "database-prep"
 ---
 
 # Database Preparation

@@ -1,6 +1,5 @@
 ---
 date: "2019-08-17T10:20:00+01:00"
-title: "GPG Commit Signatures"
 slug: "signing"
 sidebar_position: 50
 aliases:

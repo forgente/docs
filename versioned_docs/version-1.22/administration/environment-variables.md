@@ -1,18 +1,11 @@
 ---
 date: "2017-04-08T11:34:00+02:00"
-title: "Environment variables"
+
 slug: "environment-variables"
 sidebar_position: 10
-toc: false
-draft: false
+
 aliases:
   - /en-us/environment-variables
-menu:
-  sidebar:
-    parent: "administration"
-    name: "Environment variables"
-    sidebar_position: 10
-    identifier: "environment-variables"
 ---
 
 # Environment variables

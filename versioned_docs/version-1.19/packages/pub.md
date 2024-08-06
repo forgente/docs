@@ -1,16 +1,7 @@
 ---
 date: "2022-07-31T00:00:00+00:00"
-title: "Pub Packages Repository"
 slug: "usage/packages/pub"
 sidebar_position: 90
-draft: false
-toc: false
-menu:
-  sidebar:
-    parent: "packages"
-    name: "Pub"
-    sidebar_position: 90
-    identifier: "pub"
 ---
 
 # Pub Packages Repository

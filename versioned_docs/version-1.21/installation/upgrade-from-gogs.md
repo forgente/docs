@@ -1,18 +1,11 @@
 ---
 date: "2016-12-01T16:00:00+02:00"
-title: "Upgrade from Gogs"
+
 slug: "upgrade-from-gogs"
 sidebar_position: 101
-toc: false
-draft: false
+
 aliases:
   - /en-us/upgrade-from-gogs
-menu:
-  sidebar:
-    parent: "installation"
-    name: "Upgrade From Gogs"
-    sidebar_position: 101
-    identifier: "upgrade-from-gogs"
 ---
 
 # Upgrade from Gogs

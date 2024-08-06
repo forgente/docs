@@ -1,6 +1,5 @@
 ---
 date: "2023-08-14T00:00:00+00:00"
-title: "Blame File View"
 slug: "blame"
 sidebar_position: 13
 aliases:

@@ -1,18 +1,12 @@
 ---
 date: "2023-05-23T09:00:00+08:00"
-title: "Agit 设置"
+
 slug: "agit-setup"
 sidebar_position: 12
-toc: false
-draft: false
+
 aliases:
   - /zh-cn/agit-setup
-menu:
-  sidebar:
-    parent: "usage"
-    name: "Agit 设置"
-    sidebar_position: 12
-    identifier: "agit-setup"
+
 ---
 
 # Agit 设置

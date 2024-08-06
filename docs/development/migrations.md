@@ -1,13 +1,12 @@
 ---
 date: "2019-04-15T17:29:00+08:00"
-title: "Migrations Interfaces"
 slug: "migrations-interfaces"
 sidebar_position: 55
 aliases:
   - /en-us/migrations-interfaces
 ---
 
-# Migration Features
+# Migration Interfaces
 
 Complete migrations were introduced in Gitea 1.9.0. It defines two interfaces to support migrating
 repository data from other Git host platforms to Gitea or, in the future, migrating Gitea data to other Git host platforms.

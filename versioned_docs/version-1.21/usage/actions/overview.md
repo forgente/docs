@@ -1,16 +1,9 @@
 ---
 date: "2023-04-27T15:00:00+08:00"
-title: "Gitea Actions"
+
 slug: "overview"
 sidebar_position: 1
-draft: false
-toc: false
-menu:
-  sidebar:
-    parent: "actions"
-    name: "Overview"
-    sidebar_position: 1
-    identifier: "actions-overview"
+
 ---
 
 # Gitea Actions

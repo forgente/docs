@@ -1,21 +1,12 @@
 ---
 date: "2020-02-09T20:00:00+02:00"
-title: "使用 Docker 安装 (rootless)"
 slug: "install-with-docker-rootless"
 sidebar_position: 60
-toc: false
-draft: false
 aliases:
   - /zh-cn/install-with-docker-rootless
-menu:
-  sidebar:
-    parent: "installation"
-    name: "使用 Docker 安装 (rootless)"
-    sidebar_position: 60
-    identifier: "install-with-docker-rootless"
 ---
 
-# 使用 Docker 安装
+# 使用 Docker 安装 (rootless)
 
 Gitea 在其 Docker Hub 组织中提供自动更新的 Docker 镜像。您可以始终使用最新的稳定标签，或使用其他处理 Docker 镜像更新的服务。
 

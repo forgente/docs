@@ -1,18 +1,9 @@
 ---
 date: "2023-05-23T09:00:00+08:00"
-title: "仓库索引器"
 slug: "repo-indexer"
 sidebar_position: 45
-toc: false
-draft: false
 aliases:
   - /zh-cn/repo-indexer
-menu:
-  sidebar:
-    parent: "administration"
-    name: "仓库索引器"
-    sidebar_position: 45
-    identifier: "repo-indexer"
 ---
 
 # 仓库索引器

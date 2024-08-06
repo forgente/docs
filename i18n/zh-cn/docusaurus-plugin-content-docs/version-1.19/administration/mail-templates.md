@@ -1,18 +1,9 @@
 ---
 date: "2023-05-23T09:00:00+08:00"
-title: "邮件模板"
 slug: "mail-templates"
 sidebar_position: 45
-toc: false
-draft: false
 aliases:
   - /zh-cn/mail-templates
-menu:
-  sidebar:
-    parent: "administration"
-    name: "邮件模板"
-    sidebar_position: 45
-    identifier: "mail-templates"
 ---
 
 # 邮件模板

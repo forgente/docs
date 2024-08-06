@@ -1,10 +1,8 @@
 ---
 date: "2016-11-08T16:00:00+02:00"
-title: "文档"
 slug: /
 sidebar_position: 10
-toc: false
-draft: false
+
 ---
 
 # 关于Gitea

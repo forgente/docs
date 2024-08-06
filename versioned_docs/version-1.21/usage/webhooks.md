@@ -1,18 +1,12 @@
 ---
 date: "2016-12-01T16:00:00+02:00"
-title: "Webhooks"
+
 slug: "webhooks"
 sidebar_position: 30
-toc: false
-draft: false
+
 aliases:
   - /en-us/webhooks
-menu:
-  sidebar:
-    parent: "usage"
-    name: "Webhooks"
-    sidebar_position: 30
-    identifier: "webhooks"
+
 ---
 
 # Webhooks

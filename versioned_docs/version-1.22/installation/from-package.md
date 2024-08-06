@@ -1,18 +1,11 @@
 ---
 date: "2016-12-01T16:00:00+02:00"
-title: "Installation from package"
+
 slug: "install-from-package"
 sidebar_position: 20
-toc: false
-draft: false
+
 aliases:
   - /en-us/install-from-package
-menu:
-  sidebar:
-    parent: "installation"
-    name: "From package"
-    sidebar_position: 20
-    identifier: "install-from-package"
 ---
 
 # Installation from Package

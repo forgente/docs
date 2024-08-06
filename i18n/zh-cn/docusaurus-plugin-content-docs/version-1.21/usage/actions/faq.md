@@ -1,16 +1,9 @@
 ---
 date: "2023-05-24T15:00:00+08:00"
-title: "Gitea Actions常见问题解答"
+
 slug: "faq"
 sidebar_position: 100
-draft: false
-toc: false
-menu:
-  sidebar:
-    parent: "actions"
-    name: "常见问题"
-    sidebar_position: 100
-    identifier: "actions-faq"
+
 ---
 
 # Gitea Actions常见问题解答

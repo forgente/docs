@@ -1,21 +1,12 @@
 ---
 date: "2022-08-01T00:00:00+00:00"
-title: "设置 Fail2ban"
 slug: "fail2ban-setup"
 sidebar_position: 16
-toc: false
-draft: false
 aliases:
   - /zh-cn/fail2ban-setup
-menu:
-  sidebar:
-    parent: "administration"
-    name: "设置 Fail2ban"
-    sidebar_position: 16
-    identifier: "fail2ban-setup"
 ---
 
-# 使用 Fail2ban 阻止攻击者的暴力登录
+# 设置 Fail2ban
 
 **Fail2ban 检查客户端登录日志，将多次登录失败的客户端识别为攻击者并在一段时间内阻止其访问服务。如果你的实例是公开的，这一点尤其重要。请管理员仔细设置 fail2ban，错误的配置将导致防火墙阻止你访问自己的服务器。**
 
@@ -31,7 +22,7 @@ Gitea 会在日志文件 `log/gitea.log` 中记录登录失败的 CLI、SSH 或 
 2020/10/15 16:08:44 [E] invalid credentials from xxx.xxx.xxx.xxx
 ```
 
-## 设置 Fail2ban
+## Fail2ban 规则
 
 添加日志过滤器规则到配置文件 `/etc/fail2ban/filter.d/gitea.conf`:
 

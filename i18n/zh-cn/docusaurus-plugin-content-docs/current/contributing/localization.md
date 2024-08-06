@@ -1,18 +1,9 @@
 ---
 date: "2016-12-01T16:00:00+02:00"
-title: "本地化"
 slug: "localization"
 sidebar_position: 70
-toc: false
-draft: false
 aliases:
   - /zh-cn/localization
-menu:
-  sidebar:
-    parent: "contributing"
-    name: "本地化"
-    sidebar_position: 70
-    identifier: "localization"
 ---
 
 # 本地化

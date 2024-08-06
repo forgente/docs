@@ -1,18 +1,9 @@
 ---
 date: "2016-12-01T16:00:00+02:00"
-title: "使用 Docker 安装"
 slug: "install-with-docker"
 sidebar_position: 70
-toc: false
-draft: false
 aliases:
   - /zh-cn/install-with-docker
-menu:
-  sidebar:
-    parent: "installation"
-    name: "使用 Docker 安装"
-    sidebar_position: 70
-    identifier: "install-with-docker"
 ---
 
 # 使用 Docker 安装

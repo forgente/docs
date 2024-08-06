@@ -1,19 +1,10 @@
 ---
 date: "2020-03-19T19:27:00+02:00"
-title: "在 Kubernetes 中安装 Gitea"
 slug: "install-on-kubernetes"
 sidebar_position: 80
-toc: false
-draft: false
-menu:
-  sidebar:
-    parent: "installation"
-    name: "在 Kubernetes 中安装 Gitea"
-    sidebar_position: 80
-    identifier: "install-on-kubernetes"
 ---
 
-# 使用 Helm 在 Kubernetes 云原生环境中安装 Gitea
+# 在 Kubernetes 中安装 Gitea
 
 Gitea 已经提供了便于在 Kubernetes 云原生环境中安装所需的 Helm Chart
 

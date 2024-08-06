@@ -1,15 +1,8 @@
 ---
 date: "2023-01-07T00:00:00+00:00"
-title: "Debian 软件包注册表"
+
 slug: "debian"
-draft: false
-toc: false
-menu:
-  sidebar:
-    parent: "packages"
-    name: "Debian"
-    sidebar_position: 35
-    identifier: "debian"
+
 ---
 
 # Debian 软件包注册表

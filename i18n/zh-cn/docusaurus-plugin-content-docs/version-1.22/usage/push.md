@@ -1,31 +1,24 @@
 ---
 date: "2023-05-23T09:00:00+08:00"
-title: "推送"
 slug: "push"
 sidebar_position: 15
-toc: false
-draft: false
 aliases:
   - /zh-cn/push-to-create
   - /zh-cn/push-options
-menu:
-  sidebar:
-    parent: "usage"
-    name: "推送"
-    sidebar_position: 15
-    identifier: "push"
 ---
+
+# 推送
 
 在将提交推送到 Gitea 服务器时，还有一些额外的功能。
 
-# 通过推送打开 PR
+## 通过推送打开 PR
 
 当您第一次将提交推送到非默认分支时，您将收到一个链接，您可以单击该链接访问分支与主分支的比较页面。
 从那里，您可以轻松创建一个拉取请求，即使您想要将其目标指向另一个分支。
 
 ![Gitea 推送提示](/gitea-push-hint.png)
 
-# 推送选项
+## 推送选项
 
 在 Gitea `1.13` 版本中，添加了对一些 [推送选项](https://git-scm.com/docs/git-push#Documentation/git-push.txt--oltoptiongt) 的支持。
 
@@ -43,15 +36,15 @@ menu:
 git push -o repo.private=false -u origin main
 ```
 
-# 推送创建
+## 推送创建
 
 推送创建是一项功能，允许您将提交推送到在 Gitea 中尚不存在的仓库。这对于自动化和允许用户创建仓库而无需通过 Web 界面非常有用。此功能默认处于禁用状态。
 
-## 启用推送创建
+### 启用推送创建
 
 在 `app.ini` 文件中，将 `ENABLE_PUSH_CREATE_USER` 设置为 `true`，如果您希望允许用户在自己的用户帐户和所属的组织中创建仓库，将 `ENABLE_PUSH_CREATE_ORG` 设置为 `true`。重新启动 Gitea 以使更改生效。您可以在 [配置速查表](../administration/config-cheat-sheet.md#仓库) 中了解有关这两个选项的更多信息。
 
-## 使用推送创建
+### 使用推送创建
 
 假设您在当前目录中有一个 git 仓库，您可以通过运行以下命令将提交推送到在 Gitea 中尚不存在的仓库：
 

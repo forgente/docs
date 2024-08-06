@@ -1,16 +1,9 @@
 ---
 date: "2021-07-20T00:00:00+00:00"
-title: "Maven 软件包注册表"
+
 slug: "maven"
 sidebar_position: 60
-draft: false
-toc: false
-menu:
-  sidebar:
-    parent: "packages"
-    name: "Maven"
-    sidebar_position: 60
-    identifier: "maven"
+
 ---
 
 # Maven 软件包注册表

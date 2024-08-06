@@ -1,18 +1,9 @@
 ---
 date: "2016-12-01T16:00:00+02:00"
-title: "认证"
 slug: "authentication"
 sidebar_position: 10
-toc: false
-draft: false
 aliases:
   - /zh-cn/authentication
-menu:
-  sidebar:
-    parent: "usage"
-    name: "认证"
-    sidebar_position: 10
-    identifier: "authentication"
 ---
 
 # 认证

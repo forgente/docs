@@ -1,18 +1,12 @@
 ---
 date: "2023-05-25T16:00:00+02:00"
-title: "常见问题"
+
 slug: "faq"
 sidebar_position: 5
-toc: false
-draft: false
+
 aliases:
   - /zh-cn/faq
-menu:
-  sidebar:
-    parent: "help"
-    name: "常见问题"
-    sidebar_position: 5
-    identifier: "faq"
+
 ---
 
 # 常见问题

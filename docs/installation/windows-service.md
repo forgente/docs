@@ -1,6 +1,5 @@
 ---
 date: "2016-12-21T15:00:00-02:00"
-title: "Register as a Windows service"
 slug: "windows-service"
 sidebar_position: 50
 aliases:

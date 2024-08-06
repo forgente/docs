@@ -1,18 +1,12 @@
 ---
 date: "2016-12-26T16:00:00+02:00"
-title: "配置说明"
+
 slug: "config-cheat-sheet"
 sidebar_position: 30
-toc: false
-draft: false
+
 aliases:
   - /zh-cn/config-cheat-sheet
-menu:
-  sidebar:
-    parent: "administration"
-    name: "配置说明"
-    sidebar_position: 30
-    identifier: "config-cheat-sheet"
+
 ---
 
 # 配置说明

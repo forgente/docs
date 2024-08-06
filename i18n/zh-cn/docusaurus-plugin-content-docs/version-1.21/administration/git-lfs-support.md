@@ -1,21 +1,15 @@
 ---
 date: "2023-05-23T09:00:00+08:00"
-title: "Git LFS 设置"
+
 slug: "git-lfs-setup"
 sidebar_position: 12
-toc: false
-draft: false
+
 aliases:
   - /zh-cn/git-lfs-setup
-menu:
-  sidebar:
-    parent: "administration"
-    name: "Git LFS 设置"
-    sidebar_position: 12
-    identifier: "git-lfs-setup"
+
 ---
 
-# 配置 Git 大文件存储（Large File Storage，LFS）
+# Git LFS 设置
 
 要使用 Gitea 内置的 LFS 支持，您需要更新 `app.ini` 文件：
 

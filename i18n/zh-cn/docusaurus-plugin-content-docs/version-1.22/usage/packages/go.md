@@ -1,16 +1,9 @@
 ---
 date: "2023-05-10T00:00:00+00:00"
-title: "Go 软件包注册表"
+
 slug: "go"
 sidebar_position: 45
-draft: false
-toc: false
-menu:
-  sidebar:
-    parent: "packages"
-    name: "Go"
-    sidebar_position: 45
-    identifier: "go"
+
 ---
 
 # Go 软件包注册表

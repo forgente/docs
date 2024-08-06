@@ -1,16 +1,7 @@
 ---
 date: "2019-04-19:44:00+01:00"
-title: "OAuth2 provider"
 slug: "oauth2-provider"
 sidebar_position: 41
-toc: false
-draft: false
-menu:
-  sidebar:
-    parent: "development"
-    name: "OAuth2 Provider"
-    sidebar_position: 41
-    identifier: "oauth2-provider"
 ---
 
 # OAuth2 provider

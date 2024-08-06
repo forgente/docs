@@ -1,18 +1,12 @@
 ---
 date: "	2022-09-01T20:50:42+0000"
-title: "Agit Setup"
+
 slug: "agit-setup"
 sidebar_position: 12
-toc: false
-draft: false
+
 aliases:
   - /en-us/agit-setup
-menu:
-  sidebar:
-    parent: "usage"
-    name: "Agit Setup"
-    sidebar_position: 12
-    identifier: "agit-setup"
+
 ---
 
 # Agit Setup

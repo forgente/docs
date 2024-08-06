@@ -1,17 +1,10 @@
 ---
 date: "2019-12-28"
-title: "Adding Legal Pages"
 slug: adding-legal-pages
 sidebar_position: 110
-toc: false
-draft: false
-menu:
-  sidebar:
-    parent: "administration"
-    name: "Adding Legal Pages"
-    identifier: "adding-legal-pages"
-    sidebar_position: 110
 ---
+
+# Adding Legal Pages
 
 Some jurisdictions (such as EU), requires certain legal pages (e.g. Privacy Policy) to be added to website. Follow these steps to add them to your Gitea instance.
 

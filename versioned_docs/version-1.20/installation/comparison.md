@@ -1,21 +1,12 @@
 ---
 date: "2018-05-07T13:00:00+02:00"
-title: "Compared to other Git hosting"
 slug: "comparison"
 sidebar_position: 5
-toc: false
-draft: false
 aliases:
   - /en-us/comparison
-menu:
-  sidebar:
-    name: "Comparison"
-    sidebar_position: 5
-    parent: installation
-    identifier: "comparison"
 ---
 
-# Gitea compared to other Git hosting options
+# Compared to other Git hosting
 
 To help decide if Gitea is suited for your needs, here is how it compares to other Git self hosted options.
 

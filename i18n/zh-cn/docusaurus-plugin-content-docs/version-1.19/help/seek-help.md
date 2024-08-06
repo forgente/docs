@@ -2,8 +2,7 @@
 date: "2017-01-20T15:00:00+08:00"
 slug: "seek-help"
 sidebar_position: 20
-toc: false
-draft: false
+
 menu:
   sidebar:
     parent: "help"

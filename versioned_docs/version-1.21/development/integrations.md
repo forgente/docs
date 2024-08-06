@@ -1,18 +1,12 @@
 ---
 date: "2019-04-15T17:29:00+08:00"
-title: "Integrations"
+
 slug: "integrations"
 sidebar_position: 65
-toc: false
-draft: false
+
 aliases:
   - /en-us/integrations
-menu:
-  sidebar:
-    parent: "development"
-    name: "Integrations"
-    sidebar_position: 65
-    identifier: "integrations"
+
 ---
 
 # Integrations

@@ -1,18 +1,9 @@
 ---
 date: "2017-01-01T16:00:00+02:00"
-title: "Gitea Command Line"
 slug: "command-line"
 sidebar_position: 1
-toc: false
-draft: false
 aliases:
   - /en-us/command-line
-menu:
-  sidebar:
-    parent: "administration"
-    name: "Command Line"
-    sidebar_position: 1
-    identifier: "command-line"
 ---
 
 # Command Line

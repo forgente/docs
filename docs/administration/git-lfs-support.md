@@ -1,13 +1,12 @@
 ---
 date: "2019-10-06T08:00:00+05:00"
-title: "Git LFS setup"
 slug: "git-lfs-setup"
 sidebar_position: 12
 aliases:
   - /en-us/git-lfs-setup
 ---
 
-# Git Large File Storage setup
+# Git LFS setup
 
 To use Gitea's built-in LFS support, you must update the `app.ini` file:
 

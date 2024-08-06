@@ -1,16 +1,7 @@
 ---
 date: "2018-05-22T11:00:00+00:00"
-title: "反向代理"
 slug: "reverse-proxies"
 sidebar_position: 16
-toc: false
-draft: false
-menu:
-  sidebar:
-    parent: "administration"
-    name: "反向代理"
-    sidebar_position: 16
-    identifier: "reverse-proxies"
 ---
 
 # 反向代理

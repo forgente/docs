@@ -1,21 +1,14 @@
 ---
 date: "2017-07-21T12:00:00+02:00"
-title: "Run as service in Linux"
+
 slug: "linux-service"
 sidebar_position: 40
-toc: false
-draft: false
+
 aliases:
   - /en-us/linux-service
-menu:
-  sidebar:
-    parent: "installation"
-    name: "Linux service"
-    sidebar_position: 40
-    identifier: "linux-service"
 ---
 
-### Run Gitea as Linux service
+# Run as Linux service
 
 You can run Gitea as service, using either systemd or supervisor. The steps below tested on Ubuntu 16.04, but those should work on any Linux distributions (with little modification).
 

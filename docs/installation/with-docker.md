@@ -1,6 +1,5 @@
 ---
 date: "2020-03-19T19:27:00+02:00"
-title: "Installation with Docker"
 slug: "install-with-docker"
 sidebar_position: 70
 aliases:

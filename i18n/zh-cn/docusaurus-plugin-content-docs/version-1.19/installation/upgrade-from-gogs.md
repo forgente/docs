@@ -1,16 +1,7 @@
 ---
 date: "2016-12-01T16:00:00+02:00"
-title: "从 Gogs 升级"
 slug: "upgrade-from-gogs"
 sidebar_position: 101
-toc: false
-draft: false
-menu:
-  sidebar:
-    parent: "installation"
-    name: "从 Gogs 升级"
-    sidebar_position: 101
-    identifier: "upgrade-from-gogs"
 ---
 
 # 从 Gogs 升级

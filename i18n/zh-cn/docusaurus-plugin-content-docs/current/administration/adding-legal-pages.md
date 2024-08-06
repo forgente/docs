@@ -1,19 +1,14 @@
 ---
 date: "2023-05-23T09:00:00+08:00"
-title: "添加法律页面"
 slug: adding-legal-pages
 sidebar_position: 110
-toc: false
-draft: false
+
 aliases:
   - /zh-cn/adding-legal-pages
-menu:
-  sidebar:
-    parent: "administration"
-    name: "添加法律页面"
-    identifier: "adding-legal-pages"
-    sidebar_position: 110
+
 ---
+
+# 添加法律页面
 
 一些法域（例如欧盟）要求在网站上添加特定的法律页面（例如隐私政策）。按照以下步骤将它们添加到你的 Gitea 实例中。
 

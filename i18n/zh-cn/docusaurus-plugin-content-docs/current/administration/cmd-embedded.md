@@ -1,18 +1,11 @@
 ---
 date: "2023-05-23T09:00:00+08:00"
-title: "嵌入资源提取工具"
 slug: "cmd-embedded"
 sidebar_position: 20
-toc: false
-draft: false
+
 aliases:
   - /zh-cn/cmd-embedded
-menu:
-  sidebar:
-    parent: "administration"
-    name: "嵌入资源提取工具"
-    sidebar_position: 20
-    identifier: "cmd-embedded"
+
 ---
 
 # 嵌入资源提取工具

@@ -1,16 +1,9 @@
 ---
 date: "2022-11-01T00:00:00+00:00"
-title: "存储"
+
 slug: "storage"
 sidebar_position: 5
-draft: false
-toc: false
-menu:
-  sidebar:
-    parent: "packages"
-    name: "Storage"
-    sidebar_position: 2
-    identifier: "storage"
+
 ---
 
 # 存储

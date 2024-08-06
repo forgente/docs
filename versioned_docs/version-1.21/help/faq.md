@@ -1,18 +1,11 @@
 ---
 date: "2019-04-05T16:00:00+02:00"
-title: "FAQ"
+
 slug: "faq"
 sidebar_position: 5
-toc: false
-draft: false
+
 aliases:
   - /en-us/faq
-menu:
-  sidebar:
-    parent: "help"
-    name: "FAQ"
-    sidebar_position: 5
-    identifier: "faq"
 ---
 
 # Frequently Asked Questions

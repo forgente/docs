@@ -1,18 +1,11 @@
 ---
 date: "2023-05-23T09:00:00+08:00"
-title: "邮件接收"
+
 slug: "incoming-email"
 sidebar_position: 13
-draft: false
-toc: false
 aliases:
   - /zh-cn/incoming-email
-menu:
-  sidebar:
-    parent: "usage"
-    name: "邮件接收"
-    sidebar_position: 13
-    identifier: "incoming-email"
+
 ---
 
 # 邮件接收

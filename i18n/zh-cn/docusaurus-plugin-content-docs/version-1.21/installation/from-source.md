@@ -1,18 +1,12 @@
 ---
 date: "2016-12-01T16:00:00+02:00"
-title: "使用源代码安装"
+
 slug: "install-from-source"
 sidebar_position: 30
-toc: false
-draft: false
+
 aliases:
   - /zh-cn/install-from-source
-menu:
-  sidebar:
-    parent: "installation"
-    name: "使用源代码安装"
-    sidebar_position: 30
-    identifier: "install-from-source"
+
 ---
 
 # 使用源代码安装

@@ -1,6 +1,5 @@
 ---
 date: "2018-05-10T16:00:00+02:00"
-title: "Issue and Pull Request templates"
 slug: "issue-pull-request-templates"
 sidebar_position: 15
 aliases:

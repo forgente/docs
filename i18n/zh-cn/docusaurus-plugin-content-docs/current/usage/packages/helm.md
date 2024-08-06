@@ -1,16 +1,7 @@
 ---
 date: "2022-04-14T00:00:00+00:00"
-title: "Helm Chart 注册表"
 slug: "helm"
 sidebar_position: 50
-draft: false
-toc: false
-menu:
-  sidebar:
-    parent: "packages"
-    name: "Helm"
-    sidebar_position: 50
-    identifier: "helm"
 ---
 
 # Helm Chart 注册表

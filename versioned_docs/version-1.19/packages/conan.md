@@ -1,16 +1,7 @@
 ---
 date: "2021-07-20T00:00:00+00:00"
-title: "Conan Packages Repository"
 slug: "usage/packages/conan"
 sidebar_position: 20
-draft: false
-toc: false
-menu:
-  sidebar:
-    parent: "packages"
-    name: "Conan"
-    sidebar_position: 20
-    identifier: "conan"
 ---
 
 # Conan Packages Repository

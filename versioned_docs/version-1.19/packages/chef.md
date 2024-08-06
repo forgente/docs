@@ -1,16 +1,7 @@
 ---
 date: "2023-01-20T00:00:00+00:00"
-title: "Chef Packages Repository"
 slug: "usage/packages/chef"
 sidebar_position: 5
-draft: false
-toc: false
-menu:
-  sidebar:
-    parent: "packages"
-    name: "Chef"
-    sidebar_position: 5
-    identifier: "chef"
 ---
 
 # Chef Packages Repository

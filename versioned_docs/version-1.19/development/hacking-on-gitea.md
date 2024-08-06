@@ -1,16 +1,7 @@
 ---
 date: "2016-12-01T16:00:00+02:00"
-title: "Hacking on Gitea"
 slug: "hacking-on-gitea"
 sidebar_position: 10
-toc: false
-draft: false
-menu:
-  sidebar:
-    parent: "development"
-    name: "Hacking on Gitea"
-    sidebar_position: 10
-    identifier: "hacking-on-gitea"
 ---
 
 # Hacking on Gitea

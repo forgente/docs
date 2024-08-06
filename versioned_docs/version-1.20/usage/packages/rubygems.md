@@ -1,16 +1,9 @@
 ---
 date: "2021-07-20T00:00:00+00:00"
-title: "RubyGems Package Registry"
+
 slug: "rubygems"
 sidebar_position: 110
-draft: false
-toc: false
-menu:
-  sidebar:
-    parent: "packages"
-    name: "RubyGems"
-    sidebar_position: 110
-    identifier: "rubygems"
+
 ---
 
 # RubyGems Package Registry

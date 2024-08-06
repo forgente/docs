@@ -1,16 +1,10 @@
 ---
 date: "2017-04-15T14:56:00+02:00"
-title: "Customizing Gitea"
+
 slug: "customizing-gitea"
 sidebar_position: 100
-toc: false
-draft: false
-menu:
-  sidebar:
-    parent: "administration"
-    name: "Customizing Gitea"
-    identifier: "customizing-gitea"
-    sidebar_position: 100
+
+
 ---
 
 # Customizing Gitea

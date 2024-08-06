@@ -1,13 +1,12 @@
 ---
 date: "2018-05-11T11:00:00+02:00"
-title: "Fail2ban Setup "
 slug: "fail2ban-setup"
 sidebar_position: 16
 aliases:
   - /en-us/fail2ban-setup
 ---
 
-# Fail2ban setup to block users after failed login attempts
+# Fail2ban Setup
 
 **Remember that fail2ban is powerful and can cause lots of issues if you do it incorrectly, so make
 sure to test this before relying on it so you don't lock yourself out.**

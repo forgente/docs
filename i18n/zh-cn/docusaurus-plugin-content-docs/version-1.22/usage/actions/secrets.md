@@ -1,16 +1,8 @@
 ---
 date: "2023-05-23T09:00:00+08:00"
-title: "密钥管理"
 slug: "secrets"
 sidebar_position: 50
-draft: false
-toc: false
-menu:
-  sidebar:
-    parent: "actions"
-    name: "密钥管理"
-    sidebar_position: 50
-    identifier: "usage-secrets"
+
 ---
 
 # 密钥管理
@@ -18,7 +10,7 @@ menu:
 密钥管理允许您在用户、组织或仓库中存储敏感信息。
 密钥管理在 Gitea 1.19+ 版本中可用。
 
-# 设置密钥名称
+## 设置密钥名称
 
 以下规则适用于密钥名称：
 

@@ -1,18 +1,12 @@
 ---
 date: "2021-09-02T16:00:00+08:00"
-title: "Upgrade from an old Gitea"
+
 slug: "upgrade-from-gitea"
 sidebar_position: 100
-toc: false
-draft: false
+
 aliases:
   - /en-us/upgrade-from-gitea
-menu:
-  sidebar:
-    parent: "installation"
-    name: "Upgrade From Old Gitea"
-    sidebar_position: 100
-    identifier: "upgrade-from-gitea"
+
 ---
 
 # Upgrade from an old Gitea

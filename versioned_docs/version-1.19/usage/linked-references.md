@@ -1,19 +1,10 @@
 ---
 date: "2019-11-21T17:00:00-03:00"
-title: "Automatically Linked References"
 slug: "automatically-linked-references"
 sidebar_position: 15
-toc: false
-draft: false
-menu:
-  sidebar:
-    parent: "usage"
-    name: "Automatically Linked References"
-    sidebar_position: 15
-    identifier: "automatically-linked-references"
 ---
 
-# Automatically Linked References in Issues, Pull Requests and Commit Messages
+# Automatically Linked References
 
 When an issue, pull request or comment is posted, the text description is parsed
 in search for references. These references will be shown as links in the Issue View

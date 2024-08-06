@@ -4,12 +4,7 @@ slug: "faq"
 sidebar_position: 5
 aliases:
   - /zh-cn/faq
-menu:
-  sidebar:
-    parent: "help"
-    name: "常见问题"
-    sidebar_position: 5
-    identifier: "faq"
+
 ---
 
 # 常见问题

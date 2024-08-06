@@ -1,16 +1,7 @@
 ---
 date: "2019-10-23T17:00:00-03:00"
-title: "Mail templates"
 slug: "mail-templates"
 sidebar_position: 45
-toc: false
-draft: false
-menu:
-  sidebar:
-    parent: "administration"
-    name: "Mail templates"
-    sidebar_position: 45
-    identifier: "mail-templates"
 ---
 
 # Mail templates

@@ -1,18 +1,12 @@
 ---
 date: "2019-04-02T17:06:00+01:00"
-title: "Logging Configuration"
+
 slug: "logging-config"
 sidebar_position: 40
-toc: false
-draft: false
+
 aliases:
   - /en-us/logging-configuration
-menu:
-  sidebar:
-    parent: "administration"
-    name: "Logging Configuration"
-    sidebar_position: 40
-    identifier: "logging-config"
+
 ---
 
 # Logging Configuration

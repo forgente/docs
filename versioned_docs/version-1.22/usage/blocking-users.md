@@ -1,18 +1,9 @@
 ---
 date: "2024-01-31T00:00:00+00:00"
-title: "Blocking a user"
 slug: "blocking-user"
 sidebar_position: 25
-toc: false
-draft: false
 aliases:
   - /en-us/webhooks
-menu:
-  sidebar:
-    parent: "usage"
-    name: "Blocking a user"
-    sidebar_position: 30
-    identifier: "blocking-user"
 ---
 
 # Blocking a user

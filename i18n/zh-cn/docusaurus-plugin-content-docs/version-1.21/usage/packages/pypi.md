@@ -1,16 +1,9 @@
 ---
 date: "2021-07-20T00:00:00+00:00"
-title: "PyPI 软件包注册表"
+
 slug: "pypi"
 sidebar_position: 100
-draft: false
-toc: false
-menu:
-  sidebar:
-    parent: "packages"
-    name: "PyPI"
-    sidebar_position: 100
-    identifier: "pypi"
+
 ---
 
 # PyPI 软件包注册表

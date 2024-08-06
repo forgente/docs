@@ -1,18 +1,9 @@
 ---
 date: "2017-01-20T15:00:00+08:00"
-title: "需要帮助"
 slug: "support"
 sidebar_position: 20
-toc: false
-draft: false
 aliases:
   - /zh-cn/seek-help
-menu:
-  sidebar:
-    parent: "help"
-    name: "需要帮助"
-    sidebar_position: 20
-    identifier: "support"
 ---
 
 # 支持选项

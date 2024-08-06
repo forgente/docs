@@ -1,13 +1,12 @@
 ---
 date: "2019-12-31T13:55:00+05:00"
-title: "Search Engines Indexation"
 slug: "search-engines-indexation"
 sidebar_position: 60
 aliases:
   - /en-us/search-engines-indexation
 ---
 
-# Search engines indexation of your Gitea installation
+# Search Engines Indexation
 
 By default your Gitea installation will be indexed by search engines.
 If you don't want your repository to be visible for search engines read further.

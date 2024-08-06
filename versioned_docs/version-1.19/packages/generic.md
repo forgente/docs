@@ -1,16 +1,7 @@
 ---
 date: "2021-07-20T00:00:00+00:00"
-title: "Generic Packages Repository"
 slug: "usage/packages/generic"
 sidebar_position: 40
-draft: false
-toc: false
-menu:
-  sidebar:
-    parent: "packages"
-    name: "Generic"
-    sidebar_position: 40
-    identifier: "generic"
 ---
 
 # Generic Packages Repository

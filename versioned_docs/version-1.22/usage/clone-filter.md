@@ -1,18 +1,9 @@
 ---
 date: "2021-02-02"
-title: "Clone filters (partial clone)"
 slug: "clone-filters"
 sidebar_position: 25
-draft: false
-toc: false
 aliases:
   - /en-us/clone-filters
-menu:
-  sidebar:
-    parent: "usage"
-    name: "Clone filters"
-    sidebar_position: 25
-    identifier: "clone-filters"
 ---
 
 # Clone filters (partial clone)

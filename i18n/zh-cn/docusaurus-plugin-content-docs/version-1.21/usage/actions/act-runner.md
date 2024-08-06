@@ -1,16 +1,9 @@
 ---
 date: "2023-05-24T15:00:00+08:00"
-title: "Act Runner"
+
 slug: "act-runner"
 sidebar_position: 20
-draft: false
-toc: false
-menu:
-  sidebar:
-    parent: "actions"
-    name: "Act Runner"
-    sidebar_position: 20
-    identifier: "actions-runner"
+
 ---
 
 # Act Runner

@@ -1,6 +1,5 @@
 ---
 date: "2021-11-01T23:41:00+08:00"
-title: "Guidelines for Backend Development"
 slug: "guidelines-backend"
 sidebar_position: 20
 aliases:

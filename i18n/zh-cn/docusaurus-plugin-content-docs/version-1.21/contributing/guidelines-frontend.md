@@ -1,18 +1,12 @@
 ---
 date: "2023-05-25T16:00:00+02:00"
-title: "前端开发指南"
+
 slug: "guidelines-frontend"
 sidebar_position: 20
-toc: false
-draft: false
+
 aliases:
   - /zh-cn/guidelines-frontend
-menu:
-  sidebar:
-    parent: "contributing"
-    name: "前端开发指南"
-    sidebar_position: 20
-    identifier: "guidelines-frontend"
+
 ---
 
 # 前端开发指南

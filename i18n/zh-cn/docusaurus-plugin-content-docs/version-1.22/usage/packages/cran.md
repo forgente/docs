@@ -1,15 +1,8 @@
 ---
 date: "2023-01-01T00:00:00+00:00"
-title: "CRAN 软件包注册表"
+
 slug: "cran"
-draft: false
-toc: false
-menu:
-  sidebar:
-    parent: "packages"
-    name: "CRAN"
-    sidebar_position: 35
-    identifier: "cran"
+
 ---
 
 # CRAN 软件包注册表

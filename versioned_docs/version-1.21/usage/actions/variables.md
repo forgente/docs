@@ -1,10 +1,7 @@
 ---
 date: "2024-04-10T22:21:00+08:00"
-title: "Variables"
 slug: "actions-variables"
 sidebar_position: 25
-draft: false
-toc: false
 menu:
   sidebar:
     parent: "actions"
@@ -13,13 +10,13 @@ menu:
     identifier: "actions-variables"
 ---
 
-## Variables
+# Variables
 
 You can create configuration variables on the user, organization and repository level.
 The level of the variable depends on where you created it. When creating a variable, the
 key will be converted to uppercase. You need use uppercase on the yaml file.
 
-### Naming conventions
+## Naming conventions
 
 The following rules apply to variable names:
 
@@ -30,12 +27,12 @@ The following rules apply to variable names:
 - Variable names must be unique at the level they are created at.
 - Variable names must not be `CI`.
 
-### Using variable
+## Using variable
 
 After creating configuration variables, they will be automatically filled in the `vars` context.
 They can be accessed through expressions like `${{ vars.VARIABLE_NAME }}` in the workflow.
 
-### Precedence
+## Precedence
 
 If a variable with the same name exists at multiple levels, the variable at the lowest level takes precedence:
 A repository variable will always be chosen over an organization/user variable.

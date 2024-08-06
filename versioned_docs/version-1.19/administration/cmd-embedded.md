@@ -1,16 +1,7 @@
 ---
 date: "2020-01-25T21:00:00-03:00"
-title: "Embedded data extraction tool"
 slug: "cmd-embedded"
 sidebar_position: 20
-toc: false
-draft: false
-menu:
-  sidebar:
-    parent: "administration"
-    name: "Embedded data extraction tool"
-    sidebar_position: 20
-    identifier: "cmd-embedded"
 ---
 
 # Embedded data extraction tool

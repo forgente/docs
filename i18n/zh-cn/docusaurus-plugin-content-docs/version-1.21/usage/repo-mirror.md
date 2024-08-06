@@ -1,18 +1,12 @@
 ---
 date: "2023-05-23T09:00:00+08:00"
-title: "仓库镜像"
+
 slug: "repo-mirror"
 sidebar_position: 45
-toc: false
-draft: false
+
 aliases:
   - /zh-cn/repo-mirror
-menu:
-  sidebar:
-    parent: "usage"
-    name: "仓库镜像"
-    sidebar_position: 45
-    identifier: "repo-mirror"
+
 ---
 
 # 仓库镜像

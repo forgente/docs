@@ -1,16 +1,7 @@
 ---
 date: "2022-07-31T00:00:00+00:00"
-title: "Pub 软件包注册表"
 slug: "pub"
 sidebar_position: 90
-draft: false
-toc: false
-menu:
-  sidebar:
-    parent: "packages"
-    name: "Pub"
-    sidebar_position: 90
-    identifier: "pub"
 ---
 
 # Pub 软件包注册表

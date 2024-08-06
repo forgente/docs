@@ -1,16 +1,8 @@
 ---
 date: "2023-04-27T15:00:00+08:00"
-title: "Compared to GitHub Actions"
 slug: "comparison"
 sidebar_position: 30
-draft: false
-toc: false
-menu:
-  sidebar:
-    parent: "actions"
-    name: "Comparison"
-    sidebar_position: 30
-    identifier: "actions-comparison"
+
 ---
 
 # Compared to GitHub Actions

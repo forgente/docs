@@ -1,15 +1,8 @@
 ---
 date: "2023-03-25T00:00:00+00:00"
-title: "Alpine Package Registry"
+
 slug: "alpine"
-draft: false
-toc: false
-menu:
-  sidebar:
-    parent: "packages"
-    name: "Alpine"
-    sidebar_position: 4
-    identifier: "alpine"
+
 ---
 
 # Alpine Package Registry

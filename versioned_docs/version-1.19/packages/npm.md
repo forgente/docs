@@ -1,16 +1,7 @@
 ---
 date: "2021-07-20T00:00:00+00:00"
-title: "npm Packages Repository"
 slug: "usage/packages/npm"
 sidebar_position: 70
-draft: false
-toc: false
-menu:
-  sidebar:
-    parent: "packages"
-    name: "npm"
-    sidebar_position: 70
-    identifier: "npm"
 ---
 
 # npm Packages Repository

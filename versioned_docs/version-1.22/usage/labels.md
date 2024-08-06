@@ -1,18 +1,12 @@
 ---
 date: "2023-03-04T19:00:00+00:00"
-title: "Labels"
+
 slug: "labels"
 sidebar_position: 13
-toc: false
-draft: false
+
 aliases:
   - /en-us/labels
-menu:
-  sidebar:
-    parent: "usage"
-    name: "Labels"
-    sidebar_position: 13
-    identifier: "labels"
+
 ---
 
 # Labels

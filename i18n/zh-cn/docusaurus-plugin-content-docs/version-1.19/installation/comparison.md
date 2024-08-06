@@ -1,16 +1,7 @@
 ---
 date: "2019-02-14T11:51:04+08:00"
-title: "横向对比 Gitea 与其它 Git 托管工具"
 slug: "comparison"
 sidebar_position: 5
-toc: false
-draft: false
-menu:
-  sidebar:
-    parent: "installation"
-    name: "横向对比"
-    sidebar_position: 5
-    identifier: "comparison"
 ---
 
 # 横向对比 Gitea 与其它 Git 托管工具

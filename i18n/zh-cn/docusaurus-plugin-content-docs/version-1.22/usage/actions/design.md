@@ -1,16 +1,9 @@
 ---
 date: "2023-05-24T15:00:00+08:00"
-title: "Gitea Actions设计"
+
 slug: "design"
 sidebar_position: 40
-draft: false
-toc: false
-menu:
-  sidebar:
-    parent: "actions"
-    name: "设计"
-    sidebar_position: 40
-    identifier: "actions-design"
+
 ---
 
 # Gitea Actions设计

@@ -1,16 +1,9 @@
 ---
 date: "2022-12-01T00:00:00+00:00"
-title: "Incoming Email"
+
 slug: "incoming-email"
 sidebar_position: 13
-draft: false
-toc: false
-menu:
-  sidebar:
-    parent: "usage"
-    name: "Incoming Email"
-    sidebar_position: 13
-    identifier: "incoming-email"
+
 ---
 
 # Incoming Email

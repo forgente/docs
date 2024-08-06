@@ -1,21 +1,15 @@
 ---
 date: "2023-05-25T17:29:00+08:00"
-title: "迁移界面"
+
 slug: "migrations-interfaces"
 sidebar_position: 55
-toc: false
-draft: false
+
 aliases:
   - /zh-cn/migrations-interfaces
-menu:
-  sidebar:
-    parent: "development"
-    name: "迁移界面"
-    sidebar_position: 55
-    identifier: "migrations-interfaces"
+
 ---
 
-# 迁移功能
+# 迁移接口
 
 完整迁移功能在Gitea 1.9.0版本中引入。它定义了两个接口，用于支持从其他Git托管平台迁移存储库数据到Gitea，或者在将来将Gitea数据迁移到其他Git托管平台。
 

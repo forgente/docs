@@ -1,16 +1,7 @@
 ---
 date: "2021-07-20T00:00:00+00:00"
-title: "Conan 软件包注册表"
 slug: "conan"
 sidebar_position: 20
-draft: false
-toc: false
-menu:
-  sidebar:
-    parent: "packages"
-    name: "Conan"
-    sidebar_position: 20
-    identifier: "conan"
 ---
 
 # Conan 软件包注册表

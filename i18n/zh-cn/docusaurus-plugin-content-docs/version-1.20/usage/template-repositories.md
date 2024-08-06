@@ -1,18 +1,12 @@
 ---
 date: "2023-05-23T09:00:00+08:00"
-title: "模板仓库"
+
 slug: "template-repositories"
 sidebar_position: 14
-toc: false
-draft: false
+
 aliases:
   - /zh-cn/template-repositories
-menu:
-  sidebar:
-    parent: "usage"
-    name: "模板仓库"
-    sidebar_position: 14
-    identifier: "template-repositories"
+
 ---
 
 # 模板仓库

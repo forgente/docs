@@ -1,18 +1,11 @@
 ---
 date: "2017-01-01T16:00:00+02:00"
-title: "Backup and Restore"
+
 slug: "backup-and-restore"
 sidebar_position: 11
-toc: false
-draft: false
+
 aliases:
   - /en-us/backup-and-restore
-menu:
-  sidebar:
-    parent: "administration"
-    name: "Backup and Restore"
-    sidebar_position: 11
-    identifier: "backup-and-restore"
 ---
 
 # Backup and Restore

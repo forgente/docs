@@ -1,21 +1,15 @@
 ---
 date: "2023-05-23T09:00:00+08:00"
-title: "自动链接引用"
+
 slug: "automatically-linked-references"
 sidebar_position: 15
-toc: false
-draft: false
+
 aliases:
   - /zh-cn/automatically-linked-references
-menu:
-  sidebar:
-    parent: "usage"
-    name: "自动链接引用s"
-    sidebar_position: 15
-    identifier: "automatically-linked-references"
+
 ---
 
-# 在工单、合并请求和提交消息中的自动链接引用
+# 自动链接引用
 
 当发布工单、合并请求或评论时，文本描述会被解析以查找引用。这些引用将显示为工单视图中的链接，并且在某些情况下会触发特定的“操作”。
 

@@ -1,16 +1,10 @@
 ---
 date: "2017-06-19T12:00:00+02:00"
-title: "Installation from binary"
+
 slug: "install-from-binary"
 sidebar_position: 15
-toc: false
-draft: false
-menu:
-  sidebar:
-    parent: "installation"
-    name: "From binary"
-    sidebar_position: 15
-    identifier: "install-from-binary"
+
+
 ---
 
 # Installation from binary

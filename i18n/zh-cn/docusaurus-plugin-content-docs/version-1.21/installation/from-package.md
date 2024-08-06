@@ -1,18 +1,12 @@
 ---
 date: "2016-12-01T16:00:00+02:00"
-title: "使用包管理器安装"
+
 slug: "install-from-package"
 sidebar_position: 20
-toc: false
-draft: false
+
 aliases:
   - /zh-cn/install-from-package
-menu:
-  sidebar:
-    parent: "installation"
-    name: "使用包管理器安装"
-    sidebar_position: 20
-    identifier: "install-from-package"
+
 ---
 
 # 官方包管理器

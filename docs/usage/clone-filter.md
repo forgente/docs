@@ -1,6 +1,5 @@
 ---
 date: "2021-02-02"
-title: "Clone filters (partial clone)"
 slug: "clone-filters"
 sidebar_position: 25
 aliases:

@@ -1,18 +1,9 @@
 ---
 date: "2023-05-23T09:00:00+08:00"
-title: "标签"
 slug: "labels"
 sidebar_position: 13
-toc: false
-draft: false
 aliases:
   - /zh-cn/labels
-menu:
-  sidebar:
-    parent: "usage"
-    name: "标签"
-    sidebar_position: 13
-    identifier: "labels"
 ---
 
 # 标签

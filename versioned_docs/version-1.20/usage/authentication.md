@@ -1,18 +1,9 @@
 ---
 date: "2016-12-01T16:00:00+02:00"
-title: "Authentication"
 slug: "authentication"
 sidebar_position: 10
-toc: false
-draft: false
 aliases:
   - /en-us/authentication
-menu:
-  sidebar:
-    parent: "usage"
-    name: "Authentication"
-    sidebar_position: 10
-    identifier: "authentication"
 ---
 
 # Authentication

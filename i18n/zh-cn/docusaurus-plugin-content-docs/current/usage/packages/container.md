@@ -1,16 +1,7 @@
 ---
 date: "2021-07-20T00:00:00+00:00"
-title: "容器注册表"
 slug: "container"
 sidebar_position: 30
-draft: false
-toc: false
-menu:
-  sidebar:
-    parent: "packages"
-    name: "容器"
-    sidebar_position: 30
-    identifier: "container"
 ---
 
 # 容器注册表

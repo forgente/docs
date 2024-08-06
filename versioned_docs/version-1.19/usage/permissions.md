@@ -1,16 +1,7 @@
 ---
 date: "2021-12-13:10:10+08:00"
-title: "Permissions"
 slug: "permissions"
 sidebar_position: 14
-toc: false
-draft: false
-menu:
-  sidebar:
-    parent: "usage"
-    name: "Permissions"
-    sidebar_position: 14
-    identifier: "permissions"
 ---
 
 # Permissions

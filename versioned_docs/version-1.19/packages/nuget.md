@@ -1,16 +1,7 @@
 ---
 date: "2021-07-20T00:00:00+00:00"
-title: "NuGet Packages Repository"
 slug: "usage/packages/nuget"
 sidebar_position: 80
-draft: false
-toc: false
-menu:
-  sidebar:
-    parent: "packages"
-    name: "NuGet"
-    sidebar_position: 80
-    identifier: "nuget"
 ---
 
 # NuGet Packages Repository

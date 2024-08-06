@@ -1,16 +1,9 @@
 ---
 date: "2022-08-23T00:00:00+00:00"
-title: "Vagrant Package Registry"
+
 slug: "vagrant"
 sidebar_position: 120
-draft: false
-toc: false
-menu:
-  sidebar:
-    parent: "packages"
-    name: "Vagrant"
-    sidebar_position: 120
-    identifier: "vagrant"
+
 ---
 
 # Vagrant Package Registry

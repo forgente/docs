@@ -1,18 +1,11 @@
 ---
 date: "2019-08-17T10:20:00+01:00"
-title: "GPG Commit Signatures"
+
 slug: "signing"
 sidebar_position: 50
-toc: false
-draft: false
+
 aliases:
   - /en-us/signing
-menu:
-  sidebar:
-    parent: "administration"
-    name: "GPG Commit Signatures"
-    sidebar_position: 50
-    identifier: "signing"
 ---
 
 # GPG Commit Signatures

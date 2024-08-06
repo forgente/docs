@@ -1,19 +1,12 @@
 ---
 date: "2023-01-20T00:00:00+00:00"
-title: "Chef 软件包注册表"
+
 slug: "chef"
 sidebar_position: 5
-draft: false
-toc: false
-menu:
-  sidebar:
-    parent: "packages"
-    name: "Chef"
-    sidebar_position: 5
-    identifier: "chef"
+
 ---
 
-# Chef Package Registry
+# Chef 软件包注册表
 
 为您的用户或组织发布 [Chef](https://chef.io/) cookbooks。
 

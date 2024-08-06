@@ -1,6 +1,5 @@
 ---
 date: "2018-06-24:00:00+02:00"
-title: "API Usage"
 slug: "api-usage"
 sidebar_position: 40
 aliases:
