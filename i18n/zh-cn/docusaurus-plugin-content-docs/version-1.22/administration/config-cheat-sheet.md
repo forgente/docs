@@ -349,7 +349,7 @@ aliases:
 - `LANDING_PAGE`: **home**：未经身份验证用户的登录页面 \[home, explore, organizations, login, **custom**]。其中 custom 可以是任何 URL，例如 "/org/repo" 或甚至是 `https://anotherwebsite.com`。
 - `LFS_START_SERVER`: **false**：启用 Git LFS 支持。
 - `LFS_CONTENT_PATH`: **%(APP_DATA_PATH)s/lfs**：默认的 LFS 内容路径（如果它在本地存储中）。**已弃用**，请使用 `[lfs]` 中的设置。
-- `LFS_JWT_SECRET`: **_empty_**：LFS 身份验证密钥，将其更改为唯一的字符串。
+- `LFS_JWT_SECRET`: **_empty_**：LFS 身份验证密钥，将其更改为唯一的字符串。你可以通过 Gitea 子命令来生成此字符串。转到 [Command Line](administration/command-line.md#generate)。
 - `LFS_JWT_SECRET_URI`: **_empty_**：代替在配置中定义 LFS_JWT_SECRET，可以使用此配置选项为 Gitea 提供包含密钥的文件的路径（示例值：`file:/etc/gitea/lfs_jwt_secret`）。
 - `LFS_HTTP_AUTH_EXPIRY`: **24h**：LFS 身份验证的有效期，以 time.Duration 表示，超过此期限的推送可能会失败。
 - `LFS_MAX_FILE_SIZE`: **0**：允许的最大 LFS 文件大小（以字节为单位，设置为 0 为无限制）。

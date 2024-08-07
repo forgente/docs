@@ -365,7 +365,7 @@ The following configuration set `Content-Type: application/vnd.android.package-a
 - `LANDING_PAGE`: **home**: Landing page for unauthenticated users \[home, explore, organizations, login, **custom**\]. Where custom would instead be any URL such as "/org/repo" or even `https://anotherwebsite.com`
 - `LFS_START_SERVER`: **false**: Enables Git LFS support.
 - `LFS_CONTENT_PATH`: **%(APP_DATA_PATH)s/lfs**: Default LFS content path. (if it is on local storage.) **DEPRECATED** use settings in `[lfs]`.
-- `LFS_JWT_SECRET`: **_empty_**: LFS authentication secret, change this a unique string.
+- `LFS_JWT_SECRET`: **_empty_**: LFS authentication secret, change this a unique string. You can generate one via Gitea sub command. Ref [Command Line](administration/command-line.md#generate)
 - `LFS_JWT_SECRET_URI`: **_empty_**: Instead of defining LFS_JWT_SECRET in the configuration, this configuration option can be used to give Gitea a path to a file that contains the secret (example value: `file:/etc/gitea/lfs_jwt_secret`)
 - `LFS_HTTP_AUTH_EXPIRY`: **24h**: LFS authentication validity period in time.Duration, pushes taking longer than this may fail.
 - `LFS_MAX_FILE_SIZE`: **0**: Maximum allowed LFS file size in bytes (Set to 0 for no limit).
