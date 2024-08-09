@@ -1291,7 +1291,8 @@ is `data/lfs` and the default of `MINIO_BASE_PATH` is `lfs/`.
 
 ## Storage (`storage`)
 
-Default storage configuration for attachments, lfs, avatars, repo-avatars, repo-archive, packages, actions_log, actions_artifact.
+Default storage configuration for attachments, lfs, avatars, repo-avatars, repo-archive, packages, actions_log, actions_artifact. It's recommended to only configure this section and let other section derive from this one if all storages
+are under the same parent directory or minio bucket.
 
 - `STORAGE_TYPE`: **local**: Storage type, `local` for local disk or `minio` for s3 compatible object storage service.
 - `SERVE_DIRECT`: **false**: Allows the storage driver to redirect to authenticated URLs to serve files directly. Currently, only Minio/S3 is supported via signed URLs, local does nothing.

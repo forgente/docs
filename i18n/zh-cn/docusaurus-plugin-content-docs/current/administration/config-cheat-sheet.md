@@ -1200,7 +1200,7 @@ ALLOW_DATA_URI_IMAGES = true
 
 ## 存储 (`storage`)
 
-默认的附件、lfs、头像、仓库头像、仓库归档、软件包、操作日志、操作艺术品的存储配置。
+默认的附件、lfs、头像、仓库头像、仓库归档、软件包、操作日志、artifacts 的存储配置。推荐仅仅配置此 section 并让其它的section 从此配置项继承。
 
 - `STORAGE_TYPE`：**local**：存储类型，`local` 表示本地磁盘，`minio` 表示 S3，`azureblob` 表示 azure 对象存储。
 - `SERVE_DIRECT`：**false**：允许存储驱动程序重定向到经过身份验证的 URL 以直接提供文件。目前，仅支持通过签名的 URL 提供 Minio/S3，本地不执行任何操作。
