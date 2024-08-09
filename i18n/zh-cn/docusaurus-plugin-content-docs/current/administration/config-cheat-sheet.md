@@ -1333,6 +1333,11 @@ PROXY_HOSTS = *.github.com
 - `STORAGE_TYPE`: **local**：用于操作日志的存储类型，`local`表示本地磁盘，`minio`表示与S3兼容的对象存储服务，默认为`local`，或者使用定义为`[storage.xxx]`的其他名称。
 - `MINIO_BASE_PATH`: **actions_log/**：Minio存储桶上的基本路径，仅在`STORAGE_TYPE`为`minio`时可用。
 - `LOG_RETENTION_DAYS`: **365**：日志保留时间（天）。此期限后将删除旧日志。
+- `LOG_COMPRESSION`: **none**：日志压缩方式，`none`表示不压缩，`zstd`表示 zstd 压缩。
+  其它的压缩方式如`gzip`是不支持的，因为查看日志需要可寻址流。
+  如果 CPU 或内存不是瓶颈，建议在使用本地磁盘作为日志存储时总是使用压缩。
+  对于像 S3 这样的会对请求次数计费的对象存储服务，每次查看日志会导致额外的 2 次获取请求。
+  但它将节省存储空间和网络带宽，因此仍然建议使用压缩。
 - `ARTIFACT_RETENTION_DAYS`: **90**：保留 artifacts 的默认天数。可以通过在`actions/upload-artifact`步骤中设置`retention-days`选项来指定 artifacts 的保留期。
 - `ZOMBIE_TASK_TIMEOUT`: **10m**：僵尸任务超时时间，指具有运行状态但长时间未更新的任务。
 - `ENDLESS_TASK_TIMEOUT`: **3h**：无尽任务超时时间，指具有运行状态并持续更新，但长时间未结束的任务。
