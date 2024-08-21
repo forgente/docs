@@ -160,7 +160,7 @@ Stop the Gitea server, then make sure you have a full backup of your original da
 
 Before attempting the conversion, ensure that the original database is clean. Run `gitea doctor check --all --fix` and `gitea doctor recreate-table` to address common issues.
 
-Use the `--database` flag to get a Gitea dump with the SQL file in the target format, in this example PostgreSQL: `gitea dump dump --database postgres`, then extract the file `gitea-db.sql` from the generated ZIP file.
+Use the `--database` flag to get a Gitea dump with the SQL file in the target format, in this example PostgreSQL: `gitea dump --database postgres`, then extract the file `gitea-db.sql` from the generated ZIP file.
 
 Create the PostgreSQL Gitea user and Gitea database. Then, import the SQL file as the Gitea user into the Gitea database, using commands such as:
 
