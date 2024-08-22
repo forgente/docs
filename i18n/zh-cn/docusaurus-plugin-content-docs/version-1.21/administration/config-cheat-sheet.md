@@ -1125,7 +1125,7 @@ ALLOW_DATA_URI_IMAGES = true
 
 - `MAX_ATTEMPTS`：**3**：每次 http/https 请求的最大尝试次数（用于迁移）。
 - `RETRY_BACKOFF`：**3**：每次 http/https 请求重试的退避时间（秒）。
-- `ALLOWED_DOMAINS`：**_empty_**：允许迁移仓库的域名允许列表，默认为空。这意味着允许一切。多个域名可以用逗号分隔。支持通配符：`github.com, *.github.com`。
+- `ALLOWED_DOMAINS`：**_empty_**：允许迁移仓库的域名允许列表，默认为空。这意味着允许外部网址。多个域名可以用逗号分隔。支持通配符：`github.com, *.github.com`。
 - `BLOCKED_DOMAINS`：**_empty_**：阻止迁移仓库的域名阻止列表，默认为空。多个域名可以用逗号分隔。当 `ALLOWED_DOMAINS` 不为空时，此选项优先级较高，用于拒绝域名。支持通配符。
 - `ALLOW_LOCALNETWORKS`：**false**：允许 RFC 1918、RFC 1122、RFC 4632 和 RFC 4291 中定义的私有地址。如果域名被 `ALLOWED_DOMAINS` 允许，此选项将被忽略。
 - `SKIP_TLS_VERIFY`：**false**：允许跳过 TLS 验证。
