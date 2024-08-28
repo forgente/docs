@@ -10,6 +10,10 @@ aliases:
 
 You need a database to use Gitea. Gitea supports PostgreSQL (>= 12), MySQL (>= 8.0), MariaDB (>= 10.4), SQLite (builtin), and MSSQL (>= 2012 SP4). This page will guide into preparing database. Only PostgreSQL and MySQL will be covered here since those database engines are widely-used in production. If you plan to use SQLite, you can ignore this chapter.
 
+:::warning
+Converting one database type to another is not a well-tested process and you may experience issues. It is better to choose the final database type at the type of the first installation. Be aware that SQLite does not scale; if you expect your instance to grow at a later time, you should choose another database type.
+:::
+
 If you use an unsupported database version, please [get in touch](/help/support) with us for information on our Extended Support Contracts. We can provide testing and support for older databases and integrate those fixes into the Gitea codebase.
 
 Database instance can be on same machine as Gitea (local database setup), or on different machine (remote database).
