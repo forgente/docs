@@ -149,3 +149,28 @@ chown -R git:git /etc/gitea/app.ini /var/lib/gitea
 # Regenerate Git Hooks
 /usr/local/bin/gitea -c '/etc/gitea/app.ini' admin regenerate hooks
 ```
+
+### Using `gitea dump` to convert database types
+
+The `gitea dump` command can produce a SQL file that can be read by another database type, which is useful to convert the database to another in case you did not choose the correct one during the first installation.
+
+Note that this conversion process is not well-tested, which is why it is recommended to choose the final database type during the first installation without attempting to change it afterwards.
+
+Stop the Gitea server, then make sure you have a full backup of your original database.
+
+Before attempting the conversion, ensure that the original database is clean. Run `gitea doctor check --all --fix` and `gitea doctor recreate-table` to address common issues.
+
+Use the `--database` flag to get a Gitea dump with the SQL file in the target format, in this example PostgreSQL: `gitea dump --database postgres`, then extract the file `gitea-db.sql` from the generated ZIP file.
+
+Create the PostgreSQL Gitea user and Gitea database. Then, import the SQL file as the Gitea user into the Gitea database, using commands such as:
+
+```sh
+sudo -u postgres psql -d gitea
+gitea=# SET synchronous_commit TO off
+gitea=# SET on_error_stop TO on
+gitea=# \i gitea-db.sql
+```
+
+Disabling `synchronous_commit` makes PostgreSQL less resilient to crashes, but makes the import a lot faster. Since we already have a backup of the original database and we can check that the import completes successfully, it should be a good trade-off.
+
+After the import is completed, set up Gitea to use PostgreSQL and start the Gitea server again. Good luck!
