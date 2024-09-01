@@ -25,7 +25,7 @@ In order to get file rendering through external binaries, their associated packa
 If you're using a Docker image, your `Dockerfile` should contain something along this lines:
 
 ```docker
-FROM gitea/gitea:@version@
+FROM gitea/gitea:@dockerVersion@
 [...]
 
 COPY custom/app.ini /data/gitea/conf/app.ini

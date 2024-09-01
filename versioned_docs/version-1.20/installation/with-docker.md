@@ -36,7 +36,7 @@ networks:
 
 services:
   server:
-    image: gitea/gitea:@version@
+    image: gitea/gitea:@dockerVersion@
     container_name: gitea
     environment:
       - USER_UID=1000
@@ -68,7 +68,7 @@ networks:
 
 services:
   server:
-    image: gitea/gitea:@version@
+    image: gitea/gitea:@dockerVersion@
     container_name: gitea
     environment:
       - USER_UID=1000
@@ -103,7 +103,7 @@ networks:
 
 services:
   server:
-    image: gitea/gitea:@version@
+    image: gitea/gitea:@dockerVersion@
     container_name: gitea
     environment:
       - USER_UID=1000
@@ -154,7 +154,7 @@ networks:
 
 services:
   server:
-    image: gitea/gitea:@version@
+    image: gitea/gitea:@dockerVersion@
     container_name: gitea
     environment:
       - USER_UID=1000
@@ -210,7 +210,7 @@ networks:
 +
 services:
   server:
-    image: gitea/gitea:@version@
+    image: gitea/gitea:@dockerVersion@
     container_name: gitea
     restart: always
     networks:

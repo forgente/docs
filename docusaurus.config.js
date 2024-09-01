@@ -61,6 +61,68 @@ const pageConfig = renderApiSSR ? {
   ],
 }: {}
 
+const globalVariables = {
+  current: {
+    'goVersion': '1.22',
+    'minGoVersion': '1.22',
+    'minNodeVersion': '18',
+    'version': 'main-nightly',
+    'dockerVersion': 'nightly',
+    'displayVersion': '1.23-dev'
+  },
+  '1.22': {
+    'goVersion': '1.22',
+    'minGoVersion': '1.22',
+    'minNodeVersion': '18',
+    'version': '1.22.1',
+    'dockerVersion': '1.22.1',
+    'displayVersion': '1.22.1'
+  },
+  '1.21': {
+    'goVersion': '1.21',
+    'minGoVersion': '1.21',
+    'minNodeVersion': '18',
+    'version': '1.21.11',
+    'dockerVersion': '1.21.11',
+    'displayVersion': '1.21.11'
+  },
+  '1.20': {
+    'goVersion': '1.20',
+    'minGoVersion': '1.20',
+    'minNodeVersion': '16',
+    'version': '1.20.6',
+    'dockerVersion': '1.20.6',
+    'displayVersion': '1.20.6'
+  },
+  '1.19': {
+    'goVersion': '1.20',
+    'minGoVersion': '1.19',
+    'minNodeVersion': '14',
+    'version': '1.19.4',
+    'dockerVersion': '1.19.4',
+    'displayVersion': '1.19.4'
+  }
+}
+
+const versions = {
+  current: {
+    label: globalVariables['current'].displayVersion, // path is kept as next for dev (so users can always find "nightly" docs)
+    banner: 'unreleased',
+  },
+  '1.22': {
+    label: globalVariables['1.22'].displayVersion,
+  },
+  '1.21': {
+    label: globalVariables['1.21'].displayVersion,
+  },
+  '1.20': {
+    label: globalVariables['1.20'].displayVersion,
+  },
+  '1.19': {
+    label: globalVariables['1.19'].displayVersion,
+  }
+}
+
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'Gitea Documentation',
@@ -112,24 +174,7 @@ const config = {
             }
             return `https://gitea.com/gitea/docs/src/branch/main/i18n/${locale}/docusaurus-plugin-content-docs/${version === 'current' ? 'current': `version-${version}`}/${docPath}`;
           },
-          versions: {
-            current: {
-              label: '1.23-dev', // path is kept as next for dev (so users can always find "nightly" docs)
-              banner: 'unreleased',
-            },
-            '1.22': {
-              label: '1.22.1',
-            },
-            '1.21': {
-              label: '1.21.11',
-            },
-            '1.20': {
-              label: '1.20.6'
-            },
-            '1.19': {
-              label: '1.19.4',
-            }
-          },
+          versions: versions,
           lastVersion: '1.22',
           async sidebarItemsGenerator({defaultSidebarItemsGenerator, ...args}) {
             const {item} = args;
@@ -154,6 +199,29 @@ const config = {
     ],
     apiConfig,
   ],
+  markdown: {
+    preprocessor: ({filePath, fileContent}) => {
+      var key = '';
+      var found = false;
+      for (key in globalVariables) {
+        let folderName = (key == 'current' ? 'current' : `version-${key}`);
+        if (filePath.includes(`/${folderName}/`)) {
+          found = true;
+          break;
+        }
+      }
+      if (key == '' || !found) {
+        key = 'current';
+      }
+
+      let content = fileContent;
+      for (const variable in globalVariables[key]) {
+        content = content.replaceAll('@'+variable+'@', globalVariables[key][variable]);
+      }
+
+      return content
+    },
+  },
   themes: [
     [
       "@easyops-cn/docusaurus-search-local",

@@ -25,7 +25,7 @@ Gitea 通过外部二进制文件支持自定义文件渲染（例如 Jupyter no
 如果您正在使用 Docker 镜像，则您的 `Dockerfile` 应该包含以下内容：
 
 ```docker
-FROM gitea/gitea:@version@
+FROM gitea/gitea:@dockerVersion@
 [...]
 
 COPY custom/app.ini /data/gitea/conf/app.ini
