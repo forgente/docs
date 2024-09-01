@@ -36,7 +36,7 @@ version: "2"
 
 services:
   server:
-    image: gitea/gitea:@version@-rootless
+    image: gitea/gitea:@dockerVersion@-rootless
     restart: always
     volumes:
       - ./data:/var/lib/gitea
@@ -56,7 +56,7 @@ sudo chown 1000:1000 config/ data/
 
 > If you don't give the volume correct permissions, the container may not start.
 
-For a stable release you could use `:latest-rootless`, `:1-rootless` or specify a certain release like `:@version@-rootless`, but if you'd like to use the latest development version then `:nightly-rootless` would be an appropriate tag. If you'd like to run the latest commit from a release branch you can use the `:1.x-nightly-rootless` tag, where x is the minor version of Gitea. (e.g. `:1.16-nightly-rootless`)
+For a stable release you could use `:latest-rootless`, `:1-rootless` or specify a certain release like `:@dockerVersion@-rootless`, but if you'd like to use the latest development version then `:nightly-rootless` would be an appropriate tag. If you'd like to run the latest commit from a release branch you can use the `:1.x-nightly-rootless` tag, where x is the minor version of Gitea. (e.g. `:1.16-nightly-rootless`)
 
 ## Custom port
 
@@ -69,7 +69,7 @@ version: "2"
 
 services:
   server:
-    image: gitea/gitea:@version@-rootless
+    image: gitea/gitea:@dockerVersion@-rootless
     restart: always
     volumes:
       - ./data:/var/lib/gitea
@@ -93,7 +93,7 @@ version: "2"
 
 services:
   server:
-    image: gitea/gitea:@version@-rootless
+    image: gitea/gitea:@dockerVersion@-rootless
 +    environment:
 +      - GITEA__database__DB_TYPE=mysql
 +      - GITEA__database__HOST=db:3306
@@ -134,7 +134,7 @@ version: "2"
 
 services:
   server:
-    image: gitea/gitea:@version@-rootless
+    image: gitea/gitea:@dockerVersion@-rootless
     environment:
 +      - GITEA__database__DB_TYPE=postgres
 +      - GITEA__database__HOST=db:5432
@@ -182,7 +182,7 @@ version: "2"
 +
 services:
   server:
-    image: gitea/gitea:@version@-rootless
+    image: gitea/gitea:@dockerVersion@-rootless
     restart: always
     volumes:
 -      - ./data:/var/lib/gitea
@@ -209,7 +209,7 @@ version: "2"
 
 services:
   server:
-    image: gitea/gitea:@version@-rootless
+    image: gitea/gitea:@dockerVersion@-rootless
     restart: always
 +    user: 1001
     volumes:
@@ -281,7 +281,7 @@ docker-compose up -d
 - Rename folder (inside volume) gitea to custom
 - Edit app.ini if needed
   - Set START_SSH_SERVER = true
-- Use image gitea/gitea:@version@-rootless
+- Use image gitea/gitea:@dockerVersion@-rootless
 
 ## Managing Deployments With Environment Variables
 

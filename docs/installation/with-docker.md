@@ -23,7 +23,7 @@ image as a service. Since there is no database available, one can be initialized
 Create a directory like `gitea` and paste the following content into a file named `docker-compose.yml`.
 Note that the volume should be owned by the user/group with the UID/GID specified in the config file.
 If you don't give the volume correct permissions, the container may not start.
-For a stable release you can use `:latest`, `:1` or specify a certain release like `:@version@`, but if you'd like to use the latest development version of Gitea then you could use the `:nightly` tag. If you'd like to run the latest commit from a release branch you can use the `:1.x-nightly` tag, where x is the minor version of Gitea. (e.g. `:1.16-nightly`)
+For a stable release you can use `:latest`, `:1` or specify a certain release like `:@dockerVersion@`, but if you'd like to use the latest development version of Gitea then you could use the `:nightly` tag. If you'd like to run the latest commit from a release branch you can use the `:1.x-nightly` tag, where x is the minor version of Gitea. (e.g. `:1.16-nightly`)
 
 ```yaml
 version: "3"
@@ -34,7 +34,7 @@ networks:
 
 services:
   server:
-    image: gitea/gitea:@version@
+    image: gitea/gitea:@dockerVersion@
     container_name: gitea
     environment:
       - USER_UID=1000
@@ -66,7 +66,7 @@ networks:
 
 services:
   server:
-    image: gitea/gitea:@version@
+    image: gitea/gitea:@dockerVersion@
     container_name: gitea
     environment:
       - USER_UID=1000
@@ -101,7 +101,7 @@ networks:
 
 services:
   server:
-    image: gitea/gitea:@version@
+    image: gitea/gitea:@dockerVersion@
     container_name: gitea
     environment:
       - USER_UID=1000
@@ -152,7 +152,7 @@ networks:
 
 services:
   server:
-    image: gitea/gitea:@version@
+    image: gitea/gitea:@dockerVersion@
     container_name: gitea
     environment:
       - USER_UID=1000
@@ -208,7 +208,7 @@ networks:
 +
 services:
   server:
-    image: gitea/gitea:@version@
+    image: gitea/gitea:@dockerVersion@
     container_name: gitea
     restart: always
     networks:

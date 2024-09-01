@@ -33,7 +33,7 @@ version: "2"
 
 services:
   server:
-    image: gitea/gitea:@version@-rootless
+    image: gitea/gitea:@dockerVersion@-rootless
     restart: always
     volumes:
       - ./data:/var/lib/gitea
@@ -53,7 +53,7 @@ sudo chown 1000:1000 config/ data/
 
 > 如果未为卷设置正确的权限，容器可能无法启动。
 
-对于稳定版本，您可以使用 `:latest-rootless`、`:1-rootless`，或指定特定的版本，如: `@version@-rootless`。如果您想使用最新的开发版本，则可以使用 `:dev-rootless` 标签。如果您想运行发布分支的最新提交，可以使用 `:1.x-dev-rootless` 标签，其中 x是 Gitea 的次要版本号（例如:`1.16-dev-rootless`）。
+对于稳定版本，您可以使用 `:latest-rootless`、`:1-rootless`，或指定特定的版本，如: `@dockerVersion@-rootless`。如果您想使用最新的开发版本，则可以使用 `:dev-rootless` 标签。如果您想运行发布分支的最新提交，可以使用 `:1.x-dev-rootless` 标签，其中 x是 Gitea 的次要版本号（例如:`1.16-dev-rootless`）。
 
 ## 自定义端口
 
@@ -64,7 +64,7 @@ version: "2"
 
 services:
   server:
-    image: gitea/gitea:@version@-rootless
+    image: gitea/gitea:@dockerVersion@-rootless
     restart: always
     volumes:
       - ./data:/var/lib/gitea
@@ -87,7 +87,7 @@ version: "2"
 
 services:
   server:
-    image: gitea/gitea:@version@-rootless
+    image: gitea/gitea:@dockerVersion@-rootless
 +    environment:
 +      - GITEA__database__DB_TYPE=mysql
 +      - GITEA__database__HOST=db:3306
@@ -127,7 +127,7 @@ version: "2"
 
 services:
   server:
-    image: gitea/gitea:@version@-rootless
+    image: gitea/gitea:@dockerVersion@-rootless
     environment:
 +      - GITEA__database__DB_TYPE=postgres
 +      - GITEA__database__HOST=db:5432
@@ -172,7 +172,7 @@ version: "2"
 +
 services:
   server:
-    image: gitea/gitea:@version@-rootless
+    image: gitea/gitea:@dockerVersion@-rootless
     restart: always
     volumes:
 -      - ./data:/var/lib/gitea
@@ -199,7 +199,7 @@ version: "2"
 
 services:
   server:
-    image: gitea/gitea:@version@-rootless
+    image: gitea/gitea:@dockerVersion@-rootless
     restart: always
 +    user: 1001
     volumes:
@@ -252,7 +252,7 @@ docker-compose up -d
 - 将卷中的文件夹（gitea）重命名为 custom
 - 如果需要，编辑 `app.ini`
   - 设置 `START_SSH_SERVER = true`
-- 使用镜像 `gitea/gitea:@version@-rootless`
+- 使用镜像 `gitea/gitea:@dockerVersion@-rootless`
 
 ## 使用环境变量管理部署
 
