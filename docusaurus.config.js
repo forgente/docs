@@ -67,6 +67,8 @@ const globalVariables = {
     'minGoVersion': '1.22',
     'minNodeVersion': '18',
     'version': 'main-nightly',
+    'sourceVersion': 'main',
+    'sourceBranch': 'main',
     'dockerVersion': 'nightly',
     'displayVersion': '1.23-dev'
   },
@@ -75,6 +77,8 @@ const globalVariables = {
     'minGoVersion': '1.22',
     'minNodeVersion': '18',
     'version': '1.22.1',
+    'sourceVersion': 'v1.22.1',
+    'sourceBranch': 'release/v1.22',
     'dockerVersion': '1.22.1',
     'displayVersion': '1.22.1'
   },
@@ -83,6 +87,8 @@ const globalVariables = {
     'minGoVersion': '1.21',
     'minNodeVersion': '18',
     'version': '1.21.11',
+    'sourceVersion': 'v1.21.11',
+    'sourceBranch': 'release/v1.21',
     'dockerVersion': '1.21.11',
     'displayVersion': '1.21.11'
   },
@@ -91,6 +97,8 @@ const globalVariables = {
     'minGoVersion': '1.20',
     'minNodeVersion': '16',
     'version': '1.20.6',
+    'sourceVersion': 'v1.20.6',
+    'sourceBranch': 'release/v1.20',
     'dockerVersion': '1.20.6',
     'displayVersion': '1.20.6'
   },
@@ -99,6 +107,8 @@ const globalVariables = {
     'minGoVersion': '1.19',
     'minNodeVersion': '14',
     'version': '1.19.4',
+    'sourceVersion': 'v1.19.4',
+    'sourceBranch': 'release/v1.19',
     'dockerVersion': '1.19.4',
     'displayVersion': '1.19.4'
   }

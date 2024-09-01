@@ -33,7 +33,7 @@ git clone https://github.com/go-gitea/gitea
 
 ```bash
 git branch -a
-git checkout v@version@
+git checkout @sourceBranch@
 ```
 
 要验证一个拉取请求（Pull Request, PR），要先启用新的分支（其中 `xyz` 是 PR 的 ID；例如，对于 [#2663](https://github.com/go-gitea/gitea/pull/2663)，ID是 `2663 `）：
@@ -42,12 +42,12 @@ git checkout v@version@
 git fetch origin pull/xyz/head:pr-xyz
 ```
 
-要以指定发行版本（如 v@version@ ）的源代码来构建 Gitea，可执行以下命令列出可用的版本并选择某个版本签出。
+要以指定发行版本（如 @sourceVersion@ ）的源代码来构建 Gitea，可执行以下命令列出可用的版本并选择某个版本签出。
 使用以下命令列出可用的版本：
 
 ```bash
 git tag -l
-git checkout v@version@  # or git checkout pr-xyz
+git checkout @sourceVersion@  # or git checkout pr-xyz
 ```
 
 ## 构建
