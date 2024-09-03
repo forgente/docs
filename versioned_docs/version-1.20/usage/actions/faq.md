@@ -1,12 +1,10 @@
 ---
 date: "2023-04-27T15:00:00+08:00"
-
 slug: "faq"
-sidebar_position: 100
-
+sidebar_position: 200
 ---
 
-# Frequently Asked Questions of Gitea Actions
+# Frequently Asked Questions
 
 This page contains some common questions and answers about Gitea Actions.
 

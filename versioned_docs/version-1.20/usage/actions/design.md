@@ -1,9 +1,7 @@
 ---
 date: "2023-04-27T15:00:00+08:00"
-
 slug: "design"
-sidebar_position: 40
-
+sidebar_position: 140
 ---
 
 # Design of Gitea Actions

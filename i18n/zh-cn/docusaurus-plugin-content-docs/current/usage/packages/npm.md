@@ -4,7 +4,7 @@ slug: "npm"
 sidebar_position: 70
 ---
 
-# npm Package Registry
+# NPM Package Registry
 
 为您的用户或组织发布 [npm](https://www.npmjs.com/) 包。
 
