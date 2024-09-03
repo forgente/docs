@@ -1,6 +1,7 @@
 ---
 date: "2021-07-20T00:00:00+00:00"
 slug: "container"
+sidebar_position: 30
 ---
 
 # Container Registry

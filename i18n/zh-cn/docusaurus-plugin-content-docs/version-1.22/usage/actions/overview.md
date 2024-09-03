@@ -1,12 +1,10 @@
 ---
 date: "2023-05-24T15:00:00+08:00"
-
 slug: "overview"
 sidebar_position: 1
-
 ---
 
-# Gitea Actions
+# Overview
 
 从Gitea **1.19**版本开始，Gitea Actions成为了内置的CI/CD解决方案。
 

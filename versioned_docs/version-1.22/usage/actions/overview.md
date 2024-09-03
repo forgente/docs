@@ -4,7 +4,7 @@ slug: "overview"
 sidebar_position: 1
 ---
 
-# Gitea Actions
+# Overview
 
 Starting with Gitea **1.19**, Gitea Actions are available as a built-in CI/CD solution.
 

@@ -1,7 +1,7 @@
 ---
 date: "2023-05-24T15:00:00+08:00"
 slug: "comparison"
-sidebar_position: 30
+sidebar_position: 15
 ---
 
 # 与GitHub Actions的对比

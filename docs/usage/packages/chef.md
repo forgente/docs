@@ -1,7 +1,7 @@
 ---
 date: "2023-01-20T00:00:00+00:00"
 slug: "chef"
-sidebar_position: 5
+sidebar_position: 10
 ---
 
 # Chef Package Registry

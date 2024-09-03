@@ -1,7 +1,7 @@
 ---
 date: "2021-07-20T00:00:00+00:00"
 slug: "composer"
-sidebar_position: 10
+sidebar_position: 15
 ---
 
 # Composer Package Registry

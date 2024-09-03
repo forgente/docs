@@ -1,10 +1,10 @@
 ---
 date: "2021-07-20T00:00:00+00:00"
-slug: "usage/packages/npm"
+slug: "npm"
 sidebar_position: 70
 ---
 
-# npm Packages Repository
+# NPM Packages Repository
 
 Publish [npm](https://www.npmjs.com/) packages for your user or organization.
 

@@ -6,7 +6,7 @@ sidebar_position: 70
 
 ---
 
-# npm Package Registry
+# NPM Package Registry
 
 Publish [npm](https://www.npmjs.com/) packages for your user or organization.
 

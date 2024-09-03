@@ -1,8 +1,7 @@
 ---
 date: "2023-04-27T15:00:00+08:00"
 slug: "comparison"
-sidebar_position: 30
-
+sidebar_position: 120
 ---
 
 # Compared to GitHub Actions

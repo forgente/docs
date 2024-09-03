@@ -1,9 +1,7 @@
 ---
 date: "2019-04-05T16:00:00+02:00"
-
 slug: "faq"
 sidebar_position: 5
-
 aliases:
   - /en-us/faq
 ---
