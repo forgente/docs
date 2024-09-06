@@ -6,13 +6,13 @@ aliases:
   - /zh-cn/agit-setup
 ---
 
-# Agit 设置
+# AGit 设置
 
 在 Gitea `1.13` 版本中，添加了对 [agit](https://git-repo.info/zh/2020/03/agit-flow-and-git-repo/) 的支持。
 
-## 使用 Agit 创建 PR
+## 使用 AGit 创建 PR
 
-Agit 允许在推送代码到远程仓库时创建 PR（合并请求）。
+AGit 允许在推送代码到远程仓库时创建 PR（合并请求）。
 通过在推送时使用特定的 refspec（git 中已知的位置标识符），可以实现这一功能。
 下面的示例说明了这一点：
 

@@ -1,18 +1,22 @@
 ---
 date: "2023-05-23T09:00:00+08:00"
-slug: "agit-setup"
+slug: "agit"
 sidebar_position: 12
 aliases:
   - /zh-cn/agit-setup
 ---
 
-# Agit 设置
+# AGit
 
-在 Gitea `1.13` 版本中，添加了对 [agit](https://git-repo.info/zh/2020/03/agit-flow-and-git-repo/) 的支持。
+在 Gitea `1.13` 版本中，添加了对 [AGit](https://git-repo.info/zh/2020/03/agit-flow-and-git-repo/) 的支持。AGit 允许用户在没有仓库写入权限的情况下直接创建拉取请求，也不需要分叉仓库。这有助于减少重复仓库的数量，降低不必要的磁盘使用量。
 
-## 使用 Agit 创建 PR
+:::note
+服务器端需要 Git 版本 2.29 或更高版本才能正常运行。
+:::
 
-Agit 允许在推送代码到远程仓库时创建 PR（合并请求）。
+## 使用 AGit 创建 PR
+
+AGit 允许在推送代码到远程仓库时创建 PR（合并请求）。
 通过在推送时使用特定的 refspec（git 中已知的位置标识符），可以实现这一功能。
 下面的示例说明了这一点：
 
