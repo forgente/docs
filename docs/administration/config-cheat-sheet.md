@@ -1459,7 +1459,7 @@ PROXY_HOSTS = *.github.com
 - `STORAGE_TYPE`: **local**: Storage type for actions logs, `local` for local disk or `minio` for s3 compatible object storage service, default is `local` or other name defined with `[storage.xxx]`
 - `MINIO_BASE_PATH`: **actions_log/**: Minio base path on the bucket only available when STORAGE_TYPE is `minio`
 - `LOG_RETENTION_DAYS`: **365**: Logs retention time in days. Old logs will be deleted after this period.
-- `LOG_COMPRESSION`: **none**: Log compression type, `none` for no compression, `zstd` for zstd compression.
+- `LOG_COMPRESSION`: **zstd**: Log compression type, `none` for no compression, `zstd` for zstd compression.
   Other compression types like `gzip` are NOT supported, since seekable stream is required for log view.
   It's always recommended to use compression when using local disk as log storage if CPU or memory is not a bottleneck.
   And for object storage services like S3, which is billed for requests, it would cause extra 2 times of get requests for each log view.

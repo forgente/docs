@@ -10,16 +10,15 @@ This page will introduce the [act runner](https://gitea.com/gitea/act_runner) in
 
 ## Requirements
 
-It is recommended to run jobs in a docker container, so you need to install docker first.
-And make sure that the docker daemon is running.
+Currently the runner supports run in two modes. One is running in docker container, another is running in host. It is recommended to run jobs in a [docker](https://docker.com) container, if you chose this mode, you need to [install docker](https://docs.docker.com/engine/install/) first and make sure that the docker daemon is running.
 
 Other OCI container engines which are compatible with Docker's API should also work, but are untested.
 
 However, if you are sure that you want to run jobs directly on the host only, then docker is not required.
 
-## Installation
-
 There are multiple ways to install the act runner.
+
+## Installation with binary
 
 ### Download the binary
 
@@ -27,7 +26,7 @@ You can download the binary from the [release page](https://gitea.com/gitea/act_
 However, if you want to use the latest nightly build, you can download it from the [download page](https://dl.gitea.com/act_runner/).
 
 When you download the binary, please make sure that you have downloaded the correct one for your platform.
-You can check it by running the following command:
+You can check it by running the following command if you are in a Unix-Style OS.
 
 ```bash
 chmod +x act_runner
@@ -36,54 +35,7 @@ chmod +x act_runner
 
 If you see the version information, it means that you have downloaded the correct binary.
 
-### Use the docker image
-
-You can use the docker image from the [docker hub](https://hub.docker.com/r/gitea/act_runner/tags).
-Just like the binary, you can use the latest nightly build by using the `nightly` tag, while the `latest` tag is the latest stable release.
-
-```bash
-docker pull gitea/act_runner:latest # for the latest stable release
-docker pull gitea/act_runner:nightly # for the latest nightly build
-```
-
-## Configuration
-
-Configuration is done via a configuration file. It is optional, and the default configuration will be used when no configuration file is specified.
-
-You can generate a configuration file by running the following command:
-
-```bash
-./act_runner generate-config
-```
-
-The default configuration is safe to use without any modification, so you can just use it directly.
-
-```bash
-./act_runner generate-config > config.yaml
-./act_runner --config config.yaml [command]
-```
-
-You could also generate config file with docker:
-
-```bash
-docker run --entrypoint="" --rm -it gitea/act_runner:latest act_runner generate-config > config.yaml
-```
-
-When you are using the docker image, you can specify the configuration file by using the `CONFIG_FILE` environment variable. Make sure that the file is mounted into the container as a volume:
-
-```bash
-docker run -v $PWD/config.yaml:/config.yaml -e CONFIG_FILE=/config.yaml ...
-```
-
-You may notice the commands above are both incomplete, because it is not the time to run the act runner yet.
-Before running the act runner, we need to register it to your Gitea instance first.
-
-## Registration
-
-Registration is required before running the act runner, because the runner needs to know where to get jobs from.
-And it is also important to Gitea instance to identify the runner.
-
-### Runner levels
+### Obtain a registration token
 
 You can register a runner in different levels, it can be:
 
@@ -93,9 +45,8 @@ You can register a runner in different levels, it can be:
 
 Note that the repository may still use instance-level or organization-level runners even if it has its own repository-level runners. A future release may provide an option to allow more control over this.
 
-### Obtain a registration token
 
-The level of the runner determines where to obtain the registration token.
+Before register the runner and run it, you need a registration token. The level of the runner determines where to obtain the registration token.
 
 - Instance level: The admin settings page, like `<your_gitea.com>/admin/actions/runners`.
 - Organization level: The organization settings page, like `<your_gitea.com>/<org>/settings/actions/runners`.
@@ -113,9 +64,26 @@ gitea --config /etc/gitea/app.ini actions generate-runner-token
 
 Tokens are valid for registering multiple runners, until they are revoked and replaced by a new token using the token reset link in the web interface.
 
+### Configuration
+
+Configuration is done via a configuration file. It is optional, and the default configuration will be used when no configuration file is specified. You can generate a configuration file by running the following command:
+
+```bash
+./act_runner generate-config
+```
+
+The default configuration is safe to use without any modification, so you can just use it directly.
+
+```bash
+./act_runner generate-config > config.yaml
+./act_runner --config config.yaml [command]
+```
+
 ### Register the runner
 
-The act runner can be registered by running the following command:
+Registration is required before running the act runner, because the runner needs to know where to get jobs from. And it is also important to Gitea instance to identify the runner.
+
+If this has been installed using the binary package, the act runner can be registered by running the following command.
 
 ```bash
 ./act_runner register
@@ -150,9 +118,155 @@ If this file is missing or corrupted, you can simply remove it and register agai
 If you want to store the registration information in another place, you can specify it in the configuration file,
 and don't forget to specify the `--config` option.
 
-### Register the runner with docker
+### Start the runner in command line
+
+After you have registered the runner, you can run it by running the following command:
+
+```shell
+./act_runner daemon
+```
+
+or
+
+```bash
+./act_runner daemon --config config.yaml
+```
+
+The runner will fetch jobs from the Gitea instance and run them automatically.
+
+### Start the runner with Systemd
+
+It is also possible to run act-runner as a [systemd](https://en.wikipedia.org/wiki/Systemd) service. Create an unprivileged `act_runner` user on your system, and the following file in `/etc/systemd/system/act_runner.service`. The paths in `ExecStart` and `WorkingDirectory` may need to be adjusted depending on where you installed the `act_runner` binary, its configuration file, and the home directory of the `act_runner` user.
+
+```ini
+[Unit]
+Description=Gitea Actions runner
+Documentation=https://gitea.com/gitea/act_runner
+After=docker.service
+
+[Service]
+ExecStart=/usr/local/bin/act_runner daemon --config /etc/act_runner/config.yaml
+ExecReload=/bin/kill -s HUP $MAINPID
+WorkingDirectory=/var/lib/act_runner
+TimeoutSec=0
+RestartSec=10
+Restart=always
+User=act_runner
+
+[Install]
+WantedBy=multi-user.target
+```
+
+Then:
+
+```bash
+# load the new systemd unit file
+sudo systemctl daemon-reload
+# start the service and enable it at boot
+sudo systemctl enable act_runner --now
+```
+
+If using Docker, the `act_runner` user should also be added to the `docker` group before starting the service. Keep in mind that this effectively gives `act_runner` root access to the system [[1]](https://docs.docker.com/engine/security/#docker-daemon-attack-surface).
+
+### Start the runner with LaunchDaemon(macOS)
+
+Mac uses `launchd` in place of systemd for registering daemon processes. By default daemons run as the root user, so if desired an unprivileged `_act_runner` user can be created via the `dscl` tool. The following file should then be created at the directory `/Library/LaunchDaemon/com.gitea.act_runner.plist`. The paths for `WorkingDirectory`, `ProgramArguments`, `StandardOutPath`, `StandardErrPath`, and the `HOME` environment variable may need to be updated to reflect your installation. Also note that any executables outside of the example `PATH` shown will need to be explicitly included and will not be inherited from existing configurations.
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.gitea.act_runner</string>
+    <key>ProgramArguments</key>
+    <array>
+        <string>/usr/local/bin/act_runner</string>
+        <string>daemon</string>
+        <string>--config</string>
+        <string>/etc/act_runner/config.yaml</string>
+    </array>
+    <key>RunAtLoad</key>
+    <true/>
+    <key>KeepAlive</key>
+    <true/>
+    <key>WorkingDirectory</key>
+    <string>/var/lib/act_runner</string>
+    <key>StandardOutPath</key>
+    <string>/var/lib/act_runner/act_runner.log</string>
+    <key>StandardErrorPath</key>
+    <string>/var/lib/act_runner/act_runner.err</string>
+    <key>EnvironmentVariables</key>
+    <dict>
+        <key>PATH</key>
+        <string>/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin</string>
+        <key>HOME></key>
+        <string>/var/lib/act_runner</string>
+    </dict>
+    <key>UserName</key>
+    <string>_act_runner</string>
+</dict>
+</plist>
+```
+
+Then:
+
+```bash
+sudo launchctl load /Library/LaunchDaemon/com.gitea.act_runner.plist
+```
+
+You can also set up a Linux service or Windows service to let the runner run automatically.
+
+## Install with the docker image
+
+### Pull the image
+
+You can use the docker image from the [docker hub](https://hub.docker.com/r/gitea/act_runner/tags).
+Just like the binary, you can use the latest nightly build by using the `nightly` tag, while the `latest` tag is the latest stable release.
+
+```bash
+docker pull gitea/act_runner:latest # for the latest stable release
+```
+
+If you want to test newly features, you could also use nightly image
+```bash
+docker pull gitea/act_runner:nightly # for the latest nightly build
+```
+
+### Configuration
+
+Configuration is optional, but you could also generate config file with docker:
+
+```bash
+docker run --entrypoint="" --rm -it gitea/act_runner:latest act_runner generate-config > config.yaml
+```
+
+When you are using the docker image, you can specify the configuration file by using the `CONFIG_FILE` environment variable. Make sure that the file is mounted into the container as a volume:
+
+```bash
+docker run -v $PWD/config.yaml:/config.yaml -e CONFIG_FILE=/config.yaml ...
+```
+
+You may notice the commands above are both incomplete, because it is not the time to run the act runner yet.
+Before running the act runner, we need to register it to your Gitea instance first.
+
+### Start the runner with docker
 
 If you are using the docker image, behaviour will be slightly different. Registration and running are combined into one step in this case, so you need to specify the registration information when running the act runner.
+
+A quick start with docker run like below. You need to get `<registration_token>` from the above step, and give
+a special unique name for `<runner_name>`
+
+```bash
+docker run \
+    -e GITEA_INSTANCE_URL=<instance_url> \
+    -e GITEA_RUNNER_REGISTRATION_TOKEN=<registration_token> \
+    -e GITEA_RUNNER_NAME=<runner_name> \
+    --name my_runner \
+    -d gitea/act_runner:nightly
+```
+
+There are more parameters so that you can configure it.
 
 ```bash
 docker run \
@@ -173,7 +287,7 @@ It is because the act runner will run jobs in docker containers, so it needs to 
 As mentioned, you can remove it if you want to run jobs in the host directly.
 To be clear, the "host" actually means the container which is running the act runner now, instead of the host machine.
 
-### Set up the runner using docker compose
+### Start the runner using docker compose
 
 You could also set up the runner using the following `docker-compose.yml`:
 
@@ -193,6 +307,10 @@ services:
       - ./data:/data
       - /var/run/docker.sock:/var/run/docker.sock
 ```
+
+When using docker, there is no requirement to enter the container and manually run `./act_runner daemon` command as shown below. Once the container has been started successfully, it will show up as an active runner in your Gitea instance.
+
+## Advantage Configurations
 
 ### Configuring cache when starting a Runner using docker image
 
@@ -246,51 +364,3 @@ However, we suggest you to use a special name like `linux_amd64:host` or `window
 
 Starting with Gitea 1.21, you can change labels by modifying `container.labels` in the runner configuration file (if you don't have a configuration file, please refer to [configuration tutorials](#configuration)).
 The runner will use these new labels as soon as you restart it, i.e., by calling `./act_runner daemon --config config.yaml`.
-
-## Running
-
-After you have registered the runner, you can run it by running the following command:
-
-```bash
-./act_runner daemon
-# or
-./act_runner daemon --config config.yaml
-```
-
-The runner will fetch jobs from the Gitea instance and run them automatically.
-
-Since act runner is still in development, it is recommended to check the latest version and upgrade it regularly.
-
-## Systemd service
-
-It is also possible to run act-runner as a [systemd](https://en.wikipedia.org/wiki/Systemd) service. Create an unprivileged `act_runner` user on your system, and the following file in `/etc/systemd/system/act_runner.service`. The paths in `ExecStart` and `WorkingDirectory` may need to be adjusted depending on where you installed the `act_runner` binary, its configuration file, and the home directory of the `act_runner` user.
-
-```ini
-[Unit]
-Description=Gitea Actions runner
-Documentation=https://gitea.com/gitea/act_runner
-After=docker.service
-
-[Service]
-ExecStart=/usr/local/bin/act_runner daemon --config /etc/act_runner/config.yaml
-ExecReload=/bin/kill -s HUP $MAINPID
-WorkingDirectory=/var/lib/act_runner
-TimeoutSec=0
-RestartSec=10
-Restart=always
-User=act_runner
-
-[Install]
-WantedBy=multi-user.target
-```
-
-Then:
-
-```bash
-# load the new systemd unit file
-sudo systemctl daemon-reload
-# start the service and enable it at boot
-sudo systemctl enable act_runner --now
-```
-
-If using Docker, the `act_runner` user should also be added to the `docker` group before starting the service. Keep in mind that this effectively gives `act_runner` root access to the system [[1]](https://docs.docker.com/engine/security/#docker-daemon-attack-surface).

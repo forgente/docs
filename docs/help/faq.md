@@ -26,22 +26,6 @@ The nightly builds (1.x) downloads will change as commits are merged to their re
 
 If a bug fix is targeted on 1.20.1 but 1.20.1 is not released yet, you can get the "1.20-nightly" build to get the bug fix.
 
-## How to migrate from Gogs/GitHub/etc. to Gitea
-
-To migrate from Gogs to Gitea:
-
-- [Gogs version 0.11.46.0418](https://github.com/go-gitea/gitea/issues/4286)
-
-To migrate from GitHub to Gitea, you can use Gitea's built-in migration form.
-
-In order to migrate items such as issues, pull requests, etc. you will need to input at least your username.
-
-[Example (requires login)](https://demo.gitea.com/repo/migrate)
-
-To migrate from GitLab to Gitea, you can use this non-affiliated tool:
-
-https://github.com/loganinak/MigrateGitlabToGogs
-
 ## Where does Gitea store what file
 
 - _`AppWorkPath`_
