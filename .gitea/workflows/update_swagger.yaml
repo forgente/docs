@@ -17,7 +17,7 @@ jobs:
           rm v1_json.tmpl
 
           wget https://github.com/go-gitea/gitea/blob/v1.22.2/templates/swagger/v1_json.tmpl
-          sed -i "$@" 's/"version": "{{AppVer | JSEscape | Safe}}"/"version": "1.22.2"/' static/swagger-1.22.json
+          sed -i "$@" 's/"version": "{{AppVer | JSEscape | Safe}}"/"version": "1.22.2"/' static/swagger-22.json
 
       - name: push swagger to repo
         uses: appleboy/git-push-action@v0.0.3
