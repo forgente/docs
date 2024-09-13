@@ -1,5 +1,4 @@
 name: update swagger
-run-name: update swagger
 
 on:
   schedule:
