@@ -1,4 +1,4 @@
-name: update swagger
+name: update swagger files
 
 on:
   schedule:
