@@ -20,7 +20,7 @@ jobs:
 
           git config --global user.name "Gitea Bot"
           git config --global user.email "teabot@gitea.io"
-          git remote set origin https://x-access-token:${{ secrets.DEPLOY_TOKEN }}@gitea.com/gitea/docs.git
+          git remote set-url origin https://x-access-token:${{ secrets.DEPLOY_TOKEN }}@gitea.com/gitea/docs.git
           git add --all
           git commit -m "[skip ci] Updated swagger files"
           git push
