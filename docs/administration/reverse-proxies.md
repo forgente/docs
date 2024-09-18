@@ -64,7 +64,7 @@ server {
 
         # make nginx use unescaped URI, keep "%2F" as-is, remove the "/gitea" sub-path prefix, pass "/v2" as-is.
         rewrite ^ $request_uri;
-        rewrite ^(/gitea)?(/.*) $2 break;
+        rewrite ^/(gitea($|/))?(.*) /$3 break;
         proxy_pass http://127.0.0.1:3000$uri;
 
         # other common HTTP headers, see the "Nginx" config section above
