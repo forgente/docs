@@ -551,7 +551,7 @@ Gitea 创建以下非唯一队列：
 - `ENABLED`: **false**：启用媒体代理，目前仅支持图像。
 - `SERVER_URL`: **_empty_**：Camo服务器的URL，如果启用camo，则**必填**。
 - `HMAC_KEY`: **_empty_**：为URL编码提供HMAC密钥，如果启用camo，则**必填**。
-- `ALLWAYS`: **false**：设置为true以在HTTP和HTTPS内容上使用camo，否则仅代理非HTTPS URL。
+- `ALWAYS`: **false**：设置为true以在HTTP和HTTPS内容上使用camo，否则仅代理非HTTPS URL。`ALLWAYS` 已经过期，并且会在未来版本中删除。
 
 ## OpenID (`openid`)
 

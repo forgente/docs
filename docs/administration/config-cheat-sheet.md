@@ -595,7 +595,7 @@ And the following unique queues:
 - `ENABLED`: **false**: Enable media proxy, we support images only at the moment.
 - `SERVER_URL`: **_empty_**: URL of camo server, it **is required** if camo is enabled.
 - `HMAC_KEY`: **_empty_**: Provide the HMAC key for encoding URLs, it **is required** if camo is enabled.
-- `ALLWAYS`: **false**: Set to true to use camo for both HTTP and HTTPS content, otherwise only non-HTTPS URLs are proxied
+- `ALWAYS`: **false**: Set to true to use camo for both HTTP and HTTPS content, otherwise only non-HTTPS URLs are proxied. `ALLWAYS` is deprecated and will be removed in a future release.
 
 ## OpenID (`openid`)
 
