@@ -77,7 +77,7 @@ const globalVariables = {
     'minGoVersion': '1.22',
     'minNodeVersion': '18',
     'version': '1.22.3',
-    'sourceVersion': 'v1.22.2',
+    'sourceVersion': 'v1.22.3',
     'sourceBranch': 'release/v1.22',
     'dockerVersion': '1.22.3',
     'displayVersion': '1.22.3'
