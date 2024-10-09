@@ -16,7 +16,7 @@ jobs:
           rm v1_json.tmpl
 
           wget https://github.com/go-gitea/gitea/blob/v1.22.2/templates/swagger/v1_json.tmpl
-          sed -i "$@" 's/"version": "{{AppVer | JSEscape | Safe}}"/"version": "1.22.2"/' static/swagger-22.json
+          sed -i "$@" 's/"version": "{{AppVer | JSEscape | Safe}}"/"version": "1.22.3"/' static/swagger-22.json
           rm v1_json.tmpl
 
           git config --global user.name "Gitea Bot"
