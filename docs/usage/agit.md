@@ -39,7 +39,7 @@ The command has the following structure:
   - `title`: The PR title (optional but recommended), only used for topics not already having an associated PR.
   - `description`: The PR description (optional but recommended), only used for topics not already having an associated PR.
   - `force-push=true`: Specifies whether to force-update the target branch.
-    - Note: omitting the value and using just `-o force-push` will not work.
+    - Note: omitting the value and using just `-o force-push` will also work.
 
 Here's another advanced example for creating a new PR targeting `main` with `topic`, `title`, and `description`:
 
