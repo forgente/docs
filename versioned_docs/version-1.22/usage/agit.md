@@ -37,7 +37,8 @@ The command has the following structure:
   - `topic`: The topic of this change. It will become the name of the branch holding the changes waiting for review.  This is REQUIRED to trigger a pull request.
   - `title`: The PR title (optional but recommended), only used for topics not already having an associated PR.
   - `description`: The PR description (optional but recommended), only used for topics not already having an associated PR.
-  - `force-push`: confirm force update the target branch
+  - `force-push=true`: Specifies whether to force-update the target branch.
+    - Note: omitting the value and using just `-o force-push` will not work.
 
 Here's another advanced example for creating a new PR targeting `main` with `topic`, `title`, and `description`:
 

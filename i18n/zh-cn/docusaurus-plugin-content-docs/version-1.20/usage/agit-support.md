@@ -34,7 +34,8 @@ git push origin HEAD:refs/for/master
   - `title`：PR 的标题
   - `topic`：PR 应该打开的分支名称
   - `description`：PR 的描述
-  - `force-push`：确认强制更新目标分支
+  - `force-push=true`: 是否强制更新目标分支
+    - 注意: 如果不传值，只用 `-o force-push` 是无法正常工作的。
 
 下面是另一个高级示例，用于创建一个以 `topic`、`title` 和 `description` 为参数的新 PR，目标分支是 `master`：
 
