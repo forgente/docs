@@ -706,6 +706,8 @@ And the following unique queues:
 
 - `REQUIRE_SIGNIN_VIEW`: **false**: Only allow signed in users to view the explore pages.
 - `DISABLE_USERS_PAGE`: **false**: Disable the users explore page.
+- `DISABLE_ORGANIZATIONS_PAGE`: **false**: Disable the organizations explore page.
+- `DISABLE_CODE_PAGE`: **false**: Disable the code explore page.
 
 ## SSH Minimum Key Sizes (`ssh.minimum_key_sizes`)
 
