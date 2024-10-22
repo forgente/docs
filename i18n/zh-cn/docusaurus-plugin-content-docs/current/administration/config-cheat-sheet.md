@@ -635,6 +635,8 @@ Gitea 创建以下非唯一队列：
 
 - `REQUIRE_SIGNIN_VIEW`: **false**：仅允许已登录的用户查看探索页面。
 - `DISABLE_USERS_PAGE`: **false**：禁用用户探索页面。
+- `DISABLE_ORGANIZATIONS_PAGE`: **false**: 禁用组织探索页面。
+- `DISABLE_CODE_PAGE`: **false**: 禁用代码探索页面。
 
 ## SSH Minimum Key Sizes (`ssh.minimum_key_sizes`)
 
