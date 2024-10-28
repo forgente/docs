@@ -29,11 +29,6 @@ As mentioned, Gitea Actions is designed to be compatible with GitHub Actions.
 However, we recommend using `gitea.xyz` in case Gitea adds something that GitHub does not have to avoid different kinds of secrets in your workflow file (and because you are using this workflow on Gitea, not GitHub).
 Still, this is completely optional since both options have the same effect at the moment.
 
-## Is it possible to register runners for a specific user (not organization)?
-
-Not yet.
-It is technically possible to implement, but we need to discuss whether it is necessary.
-
 ## Where will the runner download scripts when using actions such as `actions/checkout@v3`?
 
 You may be aware that there are tens of thousands of [marketplace actions](https://github.com/marketplace?type=actions) in GitHub.

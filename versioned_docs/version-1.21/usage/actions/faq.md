@@ -8,17 +8,13 @@ sidebar_position: 200
 
 This page contains some common questions and answers about Gitea Actions.
 
-## Why is Actions not enabled by default?
-
-We know it's annoying to enable Actions for the whole instance and each repository one by one, but not everyone likes or needs this feature.
-We believe that more work needs to be done to improve Gitea Actions before it deserves any further special treatment.
-
-## Is it possible to enable Actions for new repositories by default for my own instance?
+## Is it possible to disable Actions for new repositories by default for my own instance?
 
 Yes, when you enable Actions for the instance, you can choose to enable the `actions` unit for all new repositories by default.
 
 ```ini
 [repository]
+; remove repo.actions will not enable actions for newly created repositories.
 DEFAULT_REPO_UNITS = ...,repo.actions
 ```
 

@@ -29,11 +29,6 @@ DEFAULT_REPO_UNITS = ...,repo.actions
 然而，我们建议在工作流文件中使用`gitea.xyz`，以防止在工作流文件中出现不同类型的密钥（因为您在Gitea上使用此工作流，而不是GitHub）。
 不过，这完全是可选的，因为目前这两个选项的效果是相同的。
 
-## 是否可以为特定用户（而不是组织）注册Runner？
-
-目前还不可以。
-从技术上讲是可以实现的，但我们需要讨论是否有必要。
-
 ## 使用`actions/checkout@v3`等Actions时，Job容器会从何处下载脚本？
 
 您可能知道GitHub上有成千上万个[Actions市场](https://github.com/marketplace?type=actions)。

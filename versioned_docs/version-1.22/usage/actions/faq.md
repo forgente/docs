@@ -8,17 +8,13 @@ sidebar_position: 200
 
 This page contains some common questions and answers about Gitea Actions.
 
-## Why is Actions not enabled by default?
-
-We know it's annoying to enable Actions for the whole instance and each repository one by one, but not everyone likes or needs this feature.
-We believe that more work needs to be done to improve Gitea Actions before it deserves any further special treatment.
-
-## Is it possible to enable Actions for new repositories by default for my own instance?
+## Is it possible to disable Actions for new repositories by default for my own instance?
 
 Yes, when you enable Actions for the instance, you can choose to enable the `actions` unit for all new repositories by default.
 
 ```ini
 [repository]
+; remove repo.actions will not enable actions for newly created repositories.
 DEFAULT_REPO_UNITS = ...,repo.actions
 ```
 
@@ -28,11 +24,6 @@ You can use `github.xyz` and Gitea will work fine.
 As mentioned, Gitea Actions is designed to be compatible with GitHub Actions.
 However, we recommend using `gitea.xyz` in case Gitea adds something that GitHub does not have to avoid different kinds of secrets in your workflow file (and because you are using this workflow on Gitea, not GitHub).
 Still, this is completely optional since both options have the same effect at the moment.
-
-## Is it possible to register runners for a specific user (not organization)?
-
-Not yet.
-It is technically possible to implement, but we need to discuss whether it is necessary.
 
 ## Where will the runner download scripts when using actions such as `actions/checkout@v4`?
 

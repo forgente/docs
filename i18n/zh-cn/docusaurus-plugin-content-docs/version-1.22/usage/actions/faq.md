@@ -1,26 +1,20 @@
 ---
 date: "2023-05-24T15:00:00+08:00"
-
 slug: "faq"
 sidebar_position: 100
-
 ---
 
 # Gitea Actions常见问题解答
 
 本页面包含一些关于Gitea Actions的常见问题和答案。
 
-## 为什么默认情况下不启用Actions？
-
-我们知道为整个实例和每个仓库启用Actions可能很麻烦，但并不是每个人都喜欢或需要此功能。
-在我们认为Gitea Actions值得被特别对待之前，我们认为还需要做更多的工作来改进它。
-
-## 是否可以在我的实例中默认启用新仓库的Actions？
+## 是否可以在我的实例中默认禁用新仓库的Actions？
 
 是的，当您为实例启用Actions时，您可以选择默认启用actions单元以适用于所有新仓库。
 
 ```ini
 [repository]
+; 去掉 repo.actions 将不会为新仓库自动启用actions
 DEFAULT_REPO_UNITS = ...,repo.actions
 ```
 
@@ -30,11 +24,6 @@ DEFAULT_REPO_UNITS = ...,repo.actions
 如前所述，Gitea Actions的设计是与GitHub Actions兼容的。
 然而，我们建议在工作流文件中使用`gitea.xyz`，以防止在工作流文件中出现不同类型的密钥（因为您在Gitea上使用此工作流，而不是GitHub）。
 不过，这完全是可选的，因为目前这两个选项的效果是相同的。
-
-## 是否可以为特定用户（而不是组织）注册Runner？
-
-目前还不可以。
-从技术上讲是可以实现的，但我们需要讨论是否有必要。
 
 ## 使用`actions/checkout@v4`等Actions时，Job容器会从何处下载脚本？
 
