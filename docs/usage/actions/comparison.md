@@ -80,6 +80,12 @@ As a workaround, you can use [go-hashfiles](https://gitea.com/actions/go-hashfil
 
 ## Missing features
 
+### Package repository authorization
+
+The `GITEA_TOKEN` for a job running within a repository should be able to publish to the associated package repository (i.e. to upload OCI images). See the "packages" scope for the "default access" in [Automatic token authentication](https://docs.github.com/en/actions/security-for-github-actions/security-guides/automatic-token-authentication#permissions-for-the-github_token).
+
+This is not implemented in Gitea Actions now. A workaround for Gitea Actions is to use a Personal Access Token (PAT). See this [github issue and comment](https://github.com/go-gitea/gitea/issues/23642#issuecomment-2119876692) for tracking this feature.
+
 ### Problem Matchers
 
 Problem Matchers are a way to scan the output of actions for a specified regex pattern and surface that information prominently in the UI.
