@@ -1325,6 +1325,7 @@ is `data/lfs` and the default of `MINIO_BASE_PATH` is `lfs/`.
 ## LFS Client (`lfs_client`)
 
 - `BATCH_SIZE`: **20**: The number of LFS pointers to request per batch API request of an upstream mirror.
+- `BATCH_OPERATION_CONCURRENCY`: **3**: The number of concurrent upload/download operations within a batch.
 
 ## Storage (`storage`)
 
