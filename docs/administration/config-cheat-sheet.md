@@ -1028,6 +1028,13 @@ Default templates for project board view:
 
 ### Extended cron tasks
 
+#### Cron - Delete all repo archives (`cron.delete_repo_archives`)
+
+- `ENABLED`: **false**: Enable service.
+- `RUN_AT_START`: **false**: Run tasks at start up time (if ENABLED).
+- `NOTICE_ON_SUCCESS`: **false**: Set to true to switch on success notices.
+- `SCHEDULE`: **@annually**: Cron schedule for deleting all repository archives, e.g. `@annually`.
+
 #### Cron - Garbage collect all repositories (`cron.git_gc_repos`)
 
 - `ENABLED`: **false**: Enable service.
