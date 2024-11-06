@@ -26,6 +26,20 @@ The nightly builds (1.x) downloads will change as commits are merged to their re
 
 If a bug fix is targeted on 1.20.1 but 1.20.1 is not released yet, you can get the "1.20-nightly" build to get the bug fix.
 
+## How to find the config file "app.ini"
+
+It depends on how you installed Gitea. If you didn't set a path for custom path or config file manually,
+then the config file (app.ini) should exists in the "custom/conf" directory of your Gitea's working path.
+Some package vendors might use "/etc/gitea" to store the config file, while some others don't.
+
+You could manually find the config file (app.ini) by checking Gitea's startup logs
+or reading the Gitea Web's Site Administrator -> Confugiraton Summary.
+
+If you are using some isolated enviroments like container (docker),
+the path you see usually is not what it is in the host's filesystem.
+In this case you need to check the container's filesystem volume mapping
+and figure out the real path of the config file on the host.
+
 ## Where does Gitea store what file
 
 - _`AppWorkPath`_
@@ -100,9 +114,6 @@ In Gitea, an "active" user refers to a user that has activated their account via
 
 A "login prohibited" user is a user that is not allowed to log in to Gitea anymore
 
-## Setting up logging
-
-- [Official Docs](../administration/logging-config.md)
 
 ## What is Swagger?
 
@@ -160,26 +171,6 @@ Use [Fail2Ban](../administration/fail2ban-setup.md) to monitor and stop automate
 SSHD is the built-in SSH server on most Unix systems.
 
 Gitea also provides its own SSH server, for usage when SSHD is not available.
-
-## Gitea is running slow
-
-The most common culprit for this is loading federated avatars.
-
-This can be turned off by setting `ENABLE_FEDERATED_AVATAR` to `false` in your `app.ini`
-
-Another option that may need to be changed is setting `DISABLE_GRAVATAR` to `true` in your `app.ini`
-
-## Can't create repositories/files
-
-Make sure that Gitea has sufficient permissions to write to its home directory and data directory.
-
-See [AppDataPath and RepoRootPath](#where-does-gitea-store-what-file)
-
-**Note for Arch users:** At the time of writing this, there is an issue with the Arch package's systemd file including this line:
-
-`ReadWritePaths=/etc/gitea/app.ini`
-
-Which makes all other paths non-writeable to Gitea.
 
 ## Translation is incorrect/how to add more translations
 
@@ -279,22 +270,6 @@ To migrate an repository _with_ all tags, you need to do two things:
 gitea admin repo-sync-releases
 ```
 
-## LFS Issues
-
-For issues concerning LFS data upload
-
-```
-batch response: Authentication required: Authorization error: <GITEA_LFS_URL>/info/lfs/objects/batch
-Check that you have proper access to the repository
-error: failed to push some refs to '<GIT_REPO_URL>'
-```
-
-Check the value of `LFS_HTTP_AUTH_EXPIRY` in your `app.ini` file.
-
-By default, your LFS token will expire after 20 minutes. If you have a slow connection or a large file (or both), it may not finish uploading within the time limit.
-
-You may want to set this value to `60m` or `120m`.
-
 ## How can I create users before starting Gitea
 
 Gitea provides a sub-command `gitea migrate` to initialize the database, after which you can use the [admin CLI commands](../administration/command-line.md#admin) to add users like normal.
@@ -315,43 +290,6 @@ There is no setting for password resets. It is enabled when a [mail service](../
   - By using the `Forgot Password` link.
 
     If the `Forgot Password/Account Recovery` page is disabled, please contact your administrator to configure a [mail service](../administration/email-setup.md).
-
-## Why is my markdown broken
-
-In Gitea version `1.11` we moved to [goldmark](https://github.com/yuin/goldmark) for markdown rendering, which is [CommonMark](https://commonmark.org/) compliant.
-
-If you have markdown that worked as you expected prior to version `1.11` and after upgrading it's not working anymore, please look through the CommonMark spec to see whether the problem is due to a bug or non-compliant syntax.
-
-If it is the latter, _usually_ there is a compliant alternative listed in the spec.
-
-## Upgrade errors with MySQL
-
-If you are receiving errors on upgrade of Gitea using MySQL that read:
-
-> `ORM engine initialization failed: migrate: do migrate: Error: 1118: Row size too large...`
-
-Please run `gitea doctor convert` or run `ALTER TABLE table_name ROW_FORMAT=dynamic;` for each table in the database.
-
-The underlying problem is that the space allocated for indices by the default row format
-is too small. Gitea requires that the `ROWFORMAT` for its tables is `DYNAMIC`.
-
-If you are receiving an error line containing `Error 1071: Specified key was too long; max key length is 1000 bytes...`
-then you are attempting to run Gitea on tables which use the ISAM engine. While this may have worked by chance in previous versions of Gitea, it has never been officially supported and
-you must use InnoDB. You should run `ALTER TABLE table_name ENGINE=InnoDB;` for each table in the database.
-
-## Why are Emoji displaying only as placeholders or in monochrome
-
-Gitea requires the system or browser to have one of the supported Emoji fonts installed, which are Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji and Twemoji Mozilla. Generally, the operating system should already provide one of these fonts, but especially on Linux, it may be necessary to install them manually.
-
-## Initial logging
-
-Before Gitea has read the configuration file and set-up its logging it will log a number of things to stdout in order to help debug things if logging does not work.
-
-You can stop this logging by setting the `--quiet` or `-q` option. Please note this will only stop logging until Gitea has set-up its own logging.
-
-If you report a bug or issue you MUST give us logs with this information restored.
-
-You should only set this option once you have completely configured everything.
 
 ## Warnings about struct defaults during database startup
 

@@ -26,6 +26,20 @@ The nightly builds (1.x) downloads will change as commits are merged to their re
 
 If a bug fix is targeted on 1.20.1 but 1.20.1 is not released yet, you can get the "1.20-nightly" build to get the bug fix.
 
+## How to find the config file "app.ini"
+
+It depends on how you installed Gitea. If you didn't set a path for custom path or config file manually,
+then the config file (app.ini) should exists in the "custom/conf" directory of your Gitea's working path.
+Some package vendors might use "/etc/gitea" to store the config file, while some others don't.
+
+You could manually find the config file (app.ini) by checking Gitea's startup logs
+or reading the Gitea Web's Site Administrator -> Confugiraton Summary.
+
+If you are using some isolated enviroments like container (docker),
+the path you see usually is not what it is in the host's filesystem.
+In this case you need to check the container's filesystem volume mapping
+and figure out the real path of the config file on the host.
+
 ## How to migrate from Gogs/GitHub/etc. to Gitea
 
 To migrate from Gogs to Gitea:
