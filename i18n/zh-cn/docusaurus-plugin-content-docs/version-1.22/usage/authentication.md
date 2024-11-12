@@ -284,4 +284,13 @@ ENABLE_REVERSE_PROXY_AUTHENTICATION = true
 
 你也可以通过修改 `REVERSE_PROXY_TRUSTED_PROXIES` 来设置反向代理的IP地址范围，加强安全性，默认值是 `127.0.0.0/8,::1/128`。 通过 `REVERSE_PROXY_LIMIT`， 可以设置最多信任几级反向代理。
 
-注意:反向代理认证不支持认证 API，API 仍旧需要用 access token 来进行认证。
+你可以通过以下配置为 API 启用此认证方法：
+
+```ini
+[service]
+ENABLE_REVERSE_PROXY_AUTHENTICATION_API = true
+```
+
+:::note
+当此方法用于 API 时，反向代理负责处理 CSRF 保护。
+:::
