@@ -81,3 +81,36 @@ PROTOCOL       = smtps
 
 Note that you'll need to create and use an [App password](https://support.google.com/accounts/answer/185833?hl=en) by enabling 2FA on your Google
 account. You won't be able to use your Google account password directly.
+
+### ProtonMail
+
+This feature is currently only available for select Proton for Business customers and those with Visionary and Family plans with custom domain addresses. See [ProtonMail's SMTP documentation](https://proton.me/support/smtp-submission) for more information. This limitation can be circumvented by using the ProtonMail Bridge application.
+
+Note that emails sent using SMTP are not [end-to-end encrypted](https://proton.me/support/proton-mail-encryption-explained). However, they’re still stored with zero-access encryption like any other emails in your Proton Mail inbox.
+
+The following configuration should work with ProtonMail's SMTP server:
+
+1. In your browser (or desktop application), sign in to your Proton Mail account and select **Settings → All settings → Proton Mail → IMAP/SMTP → SMTP tokens**.
+2. Click **Generate token**.
+3. Enter the following details to create a new SMTP token:
+    - **Token name**: Select a name for your token. This is for your reference only and does not affect the token's functionality.
+    - **Email address**: Select one of your active custom domain addresses to pair with your token. Copy this email address and use it for the `FROM` and `USER` configuration in `app.ini`.
+4. Click **Generate**.
+5. Enter your Proton Mail Account password.
+
+Your SMTP username and SMTP token (password) will be generated. You can now enter them as the `USER` and `PASSWD` in your `app.ini` configuration.
+
+```ini title="app.ini"
+[mailer]
+ENABLED        = true
+FROM           = example.user@customdomain.tld
+PROTOCOL       = smtp+starttls
+SMTP_ADDR      = smtp.protonmail.ch
+SMTP_PORT      = 587
+USER           = example.user@customdomain.tld
+PASSWD         = `TOKEN`
+```
+
+After closing the popup, you will not be able to see this SMTP token (password) again for security reasons. You can always generate more tokens if you need to rotate passwords.
+
+Note: Your Proton Mail login or mailbox passwords will not work with SMTP
