@@ -8,7 +8,70 @@ aliases:
 
 # OAuth2 Provider
 
-Gitea supports acting as an OAuth2 provider to allow third party applications to access its resources with the user's consent. This feature is available since release 1.8.0.
+Gitea supports acting as an OAuth2 Provider, allowing third-party applications to access its resources with user consent.
+
+When acting as the OAuth2 Provider, Gitea verifies every authorization request against the related OAuth2 Application. This application can be set up by an individual user, an organization admin, or a Gitea instance admin.
+
+Regardless of who configured the application, the first authorization attempt opens a new page in the user's web browser, prompting them to authorize the application.
+
+## Configuration
+
+An OAuth2 Application in Gitea requires the following configuration made in two steps:
+
+### Gitea Step 1
+- Name (`/admin/applications/`)
+- Redirect URL (`/admin/applications/`)
+
+![](/development/gitea_oauth2_step1.png)
+
+### Gitea Step 2
+- Client ID (`/admin/applications/oauth2/_id_`)
+- Client Secret (`/admin/applications/oauth2/_id_`)
+- Confidential client status (`/admin/applications/oauth2/_id_`)
+
+![](/development/gitea_oauth2_step2.png)
+
+### Third Party Step 3
+
+The third-party (Relaying Parties) application's request must include:
+
+- Credentials (Client ID and Client Secret)
+- Desired scope and claims (expected to be provided by Gitea)
+
+An example of MinIO:
+
+![](/development/minio_oauth2.png)
+
+
+### Gitea's User Approval Step 3
+
+For example, logging in with a Gitea account on MinIO...
+![](/development/minio_login.png)
+
+...will display the approval popup after a successful login:
+![](/development/gitea_approval.png)
+
+By default, if the third party sets the scopes to `openid`, `email`, `profile`, and `groups`, and the user approves, the application gains full access to all of the user's public and private resources (repositories, issues, user information, etc.).
+
+> **NOTE:** At present, an admin who sets up the OAuth2 Application in Gitea must rely on the scopes sent by the third party and an approval decision by the informed user if restrictive access is expected. There is no way for the admin to set restrictive access via scopes during the application setup process.
+
+
+## Granular Scopes
+
+As of version v1.23, Gitea supports granular scopes, allowing third parties to request more limited access. These scopes, previously available only for [Personal Access Tokens](#scopes), enable users to restrict access to specific URL routes.
+
+Scopes are grouped by high-level API routes and further refined as follows:
+
+- `read`: `GET` routes
+- `write`: `POST`, `PUT`, `PATCH`, and `DELETE` routes (in addition to `GET`)
+
+For example, a third party can request minimal access, allowing Gitea to act as a simple OpenID Connect (OIDC) Provider. If the third party adds only `public-only` to 'openid', no other or any combination of the scopes `email`, `userinfo`, or `groups`, Gitea will act as a basic Single Sign-On provider. This configuration provides only verification that the user can log in with the correct credentials, supplying only basic information such as username, email, and a list of public memberships in organizations and teams.
+
+When any of the granular scopes known from Personal Access Tokens is introduced, Gitea will not allow full access (as it does by default). Instead, it will build granular access following read or write permissions to resources such as Repositories, Issues, ActivityPub, Admin functions, Organizations, Users, Packages, or miscellaneous features.
+
+> **NOTE:** If third party adds any scope other than the OIDC ones: `openid`, `email`, `profile`, and `groups` or the ones found already in Personal Access Token the scope will fallback to full access as it was the case before v1.23
+
+The approval page displayed to the user shows the list of scopes requested by the third party. Once approved, this decision is remembered. If the third party changes its requested scopes in future requests, the entire flow will fail, requiring re-authorization.
 
 ## Endpoints
 
