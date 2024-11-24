@@ -1,12 +1,9 @@
 ---
 date: "2023-05-25T17:29:00+08:00"
-
 slug: "integrations"
 sidebar_position: 65
-
 aliases:
   - /zh-cn/integrations
-
 ---
 
 # 集成

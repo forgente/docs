@@ -1,12 +1,9 @@
 ---
 date: "2023-05-25T17:29:00+08:00"
-
 slug: "migrations-interfaces"
 sidebar_position: 55
-
 aliases:
   - /zh-cn/migrations-interfaces
-
 ---
 
 # 迁移接口

@@ -1,12 +1,9 @@
 ---
 date: "2016-12-01T16:00:00+02:00"
-
 slug: "hacking-on-gitea"
 sidebar_position: 10
-
 aliases:
   - /zh-cn/hacking-on-gitea
-
 ---
 
 # Hacking on Gitea

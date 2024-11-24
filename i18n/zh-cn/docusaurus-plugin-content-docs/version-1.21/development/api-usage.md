@@ -1,12 +1,9 @@
 ---
 date: "2018-06-24:00:00+02:00"
-
 slug: "api-usage"
 sidebar_position: 40
-
 aliases:
   - /zh-cn/api-usage
-
 ---
 
 # API 使用指南
