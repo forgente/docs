@@ -121,7 +121,7 @@ _Symbols used in table:_
 | Pull/Merge requests templates                   | ✓                                                  | ✓    | ✓         | ✓         | ✓         | ✘         | ✘            | ✘            |
 | Cherry-picking changes                          | ✓                                                  | ✘    | ✘         | ✓         | ✓         | ✘         | ✘            | ✓            |
 | Download Patch                                  | ✓                                                  | ✘    | ✓         | ✓         | ✓         | /         | ✓            | ✓            |
-| Merge queues                                    | ✘                                                  | ✘    | ✓         | ✘         | ✓         | ✘         | ✘            | ✘            |
+| Merge queues                                    | ✓                                                  | ✘    | ✓         | ✘         | ✓         | ✘         | ✘            | ✘            |
 
 ## 3rd-party integrations
 
