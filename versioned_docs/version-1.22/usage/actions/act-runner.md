@@ -310,7 +310,7 @@ services:
 
 When using docker, there is no requirement to enter the container and manually run `./act_runner daemon` command as shown below. Once the container has been started successfully, it will show up as an active runner in your Gitea instance.
 
-## Advantage Configurations
+## Advanced Configurations
 
 ### Configuring cache when starting a Runner using docker image
 
