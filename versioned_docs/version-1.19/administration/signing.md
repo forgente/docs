@@ -79,17 +79,22 @@ The `default` option will interrogate `git config` for
 `commit.gpgsign` option - if this is set, then it will use the results
 of the `user.signingkey`, `user.name` and `user.email` as appropriate.
 
-Please note: by adjusting Git's `config` file within Gitea's
+By adjusting Git's `config` file within Gitea's
 repositories, `SIGNING_KEY=default` could be used to provide different
 signing keys on a per-repository basis. However, this is clearly not an
 ideal UI and therefore subject to change.
 
+:::warning
 **Since 1.17**, Gitea runs git in its own home directory `[git].HOME_PATH` (default to `%(APP_DATA_PATH)/home`)
 and uses its own config `{[git].HOME_PATH}/.gitconfig`.
+
 If you have your own customized git config for Gitea, you should set these configs in system git config (aka `/etc/gitconfig`)
 or the Gitea internal git config `{[git].HOME_PATH}/.gitconfig`.
+
 Related home files for git command (like `.gnupg`) should also be put in Gitea's git home directory `[git].HOME_PATH`.
-If you like to keep the `.gnupg` directory outside of `{[git].HOME_PATH}/`, consider setting the `$GNUPGHOME` environment variable to your preferred location.
+
+If you like to keep the `.gnupg` directory outside of `{[git].HOME_PATH}/`, consider setting the `$GNUPGHOME` environment variable to your preferred location, otherwise Gitea will use the gpg keys only under `{[git].HOME_PATH}/.gnupg`.
+:::
 
 ### `INITIAL_COMMIT`
 

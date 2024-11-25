@@ -61,12 +61,16 @@ MERGES = pubkey, twofa, basesigned, commitssigned
 
 `default` 选项将读取 `git config` 中的 `commit.gpgsign` 选项 - 如果设置了该选项，它将使用 `user.signingkey`、`user.name` 和 `user.email` 的结果。
 
-请注意：通过在 Gitea 的仓库中调整 Git 的 `config` 文件，可以使用 `SIGNING_KEY=default` 为每个仓库提供不同的签名密钥。然而，这显然不是一个理想的用户界面，因此可能会发生更改。
+通过在 Gitea 的仓库中调整 Git 的 `config` 文件，可以使用 `SIGNING_KEY=default` 为每个仓库提供不同的签名密钥。然而，这显然不是一个理想的用户界面，因此可能会发生更改。
 
+:::warning
 **自 1.17 起**，Gitea 在自己的主目录 `[git].HOME_PATH`（默认为 `%(APP_DATA_PATH)/home`）中运行 git，并使用自己的配置文件 `{[git].HOME_PATH}/.gitconfig`。
+
 如果您有自己定制的 Gitea git 配置，您应该将这些配置设置在系统 git 配置文件中（例如 `/etc/gitconfig`）或者 Gitea 的内部 git 配置文件 `{[git].HOME_PATH}/.gitconfig` 中。
+
 与 git 命令相关的主目录文件（如 `.gnupg`）也应该放在 Gitea 的 git 主目录 `[git].HOME_PATH` 中。
-如果您希望将 `.gnupg` 目录放在 `{[git].HOME_PATH}/` 之外的位置，请考虑设置 `$GNUPGHOME` 环境变量为您首选的位置。
+如果您希望将 `.gnupg` 目录放在 `{[git].HOME_PATH}/` 之外的位置，请考虑设置 `$GNUPGHOME` 环境变量为您首选的位置。，否则Gitea将会从 `{[git].HOME_PATH}/.gnupg` 查找私钥。
+:::
 
 ### `INITIAL_COMMIT`
 
