@@ -884,6 +884,7 @@ Default templates for project board view:
 - `MINIO_ENDPOINT`: **localhost:9000**: Minio endpoint to connect only available when STORAGE_TYPE is `minio`
 - `MINIO_ACCESS_KEY_ID`: Minio accessKeyID to connect only available when STORAGE_TYPE is `minio`. If not provided and STORAGE_TYPE is `minio`, will search for credentials in known environment variables (MINIO_ACCESS_KEY_ID, AWS_ACCESS_KEY_ID), credentials files (~/.mc/config.json, ~/.aws/credentials), and EC2 instance metadata.
 - `MINIO_SECRET_ACCESS_KEY`: Minio secretAccessKey to connect only available when STORAGE_TYPE is `minio`
+- `MINIO_IAM_ENDPOINT`: Preferred IAM Endpoint to override Minio's default IAM Endpoint resolution only available when STORAGE_TYPE is `minio`. If not provided and STORAGE_TYPE is `minio`, will search for and derive endpoint from known environment variables (AWS_CONTAINER_AUTHORIZATION_TOKEN, AWS_CONTAINER_AUTHORIZATION_TOKEN_FILE, AWS_CONTAINER_CREDENTIALS_RELATIVE_URI, AWS_CONTAINER_CREDENTIALS_FULL_URI, AWS_WEB_IDENTITY_TOKEN_FILE, AWS_ROLE_ARN, AWS_ROLE_SESSION_NAME, AWS_REGION), or the DefaultIAMRoleEndpoint if not provided otherwise.
 - `MINIO_BUCKET`: **gitea**: Minio bucket to store the attachments only available when STORAGE_TYPE is `minio`
 - `MINIO_LOCATION`: **us-east-1**: Minio location to create bucket only available when STORAGE_TYPE is `minio`
 - `MINIO_BASE_PATH`: **attachments/**: Minio base path on the bucket only available when STORAGE_TYPE is `minio`
@@ -1324,6 +1325,7 @@ is `data/lfs` and the default of `MINIO_BASE_PATH` is `lfs/`.
 - `MINIO_ENDPOINT`: **localhost:9000**: Minio endpoint to connect only available when `STORAGE_TYPE` is `minio`
 - `MINIO_ACCESS_KEY_ID`: Minio accessKeyID to connect only available when STORAGE_TYPE is `minio`. If not provided and STORAGE_TYPE is `minio`, will search for credentials in known environment variables (MINIO_ACCESS_KEY_ID, AWS_ACCESS_KEY_ID), credentials files (~/.mc/config.json, ~/.aws/credentials), and EC2 instance metadata.
 - `MINIO_SECRET_ACCESS_KEY`: Minio secretAccessKey to connect only available when `STORAGE_TYPE is` `minio`
+- `MINIO_IAM_ENDPOINT`: Preferred IAM Endpoint to override Minio's default IAM Endpoint resolution only available when STORAGE_TYPE is `minio`. If not provided and STORAGE_TYPE is `minio`, will search for and derive endpoint from known environment variables (AWS_CONTAINER_AUTHORIZATION_TOKEN, AWS_CONTAINER_AUTHORIZATION_TOKEN_FILE, AWS_CONTAINER_CREDENTIALS_RELATIVE_URI, AWS_CONTAINER_CREDENTIALS_FULL_URI, AWS_WEB_IDENTITY_TOKEN_FILE, AWS_ROLE_ARN, AWS_ROLE_SESSION_NAME, AWS_REGION), or the DefaultIAMRoleEndpoint if not provided otherwise.
 - `MINIO_BUCKET`: **gitea**: Minio bucket to store the lfs only available when `STORAGE_TYPE` is `minio`
 - `MINIO_LOCATION`: **us-east-1**: Minio location to create bucket only available when `STORAGE_TYPE` is `minio`
 - `MINIO_BASE_PATH`: **lfs/**: Minio base path on the bucket only available when `STORAGE_TYPE` is `minio`
@@ -1346,6 +1348,7 @@ are under the same parent directory or minio bucket.
 - `MINIO_ENDPOINT`: **localhost:9000**: Minio endpoint to connect only available when `STORAGE_TYPE` is `minio`
 - `MINIO_ACCESS_KEY_ID`: Minio accessKeyID to connect only available when STORAGE_TYPE is `minio`. If not provided and STORAGE_TYPE is `minio`, will search for credentials in known environment variables (MINIO_ACCESS_KEY_ID, AWS_ACCESS_KEY_ID), credentials files (~/.mc/config.json, ~/.aws/credentials), and EC2 instance metadata.
 - `MINIO_SECRET_ACCESS_KEY`: Minio secretAccessKey to connect only available when `STORAGE_TYPE is` `minio`
+- `MINIO_IAM_ENDPOINT`: Preferred IAM Endpoint to override Minio's default IAM Endpoint resolution only available when STORAGE_TYPE is `minio`. If not provided and STORAGE_TYPE is `minio`, will search for and derive endpoint from known environment variables (AWS_CONTAINER_AUTHORIZATION_TOKEN, AWS_CONTAINER_AUTHORIZATION_TOKEN_FILE, AWS_CONTAINER_CREDENTIALS_RELATIVE_URI, AWS_CONTAINER_CREDENTIALS_FULL_URI, AWS_WEB_IDENTITY_TOKEN_FILE, AWS_ROLE_ARN, AWS_ROLE_SESSION_NAME, AWS_REGION), or the DefaultIAMRoleEndpoint if not provided otherwise.
 - `MINIO_BUCKET`: **gitea**: Minio bucket to store the data only available when `STORAGE_TYPE` is `minio`
 - `MINIO_LOCATION`: **us-east-1**: Minio location to create bucket only available when `STORAGE_TYPE` is `minio`
 - `MINIO_USE_SSL`: **false**: Minio enabled ssl only available when `STORAGE_TYPE` is `minio`
@@ -1372,6 +1375,12 @@ MINIO_ENDPOINT = localhost:9000
 MINIO_ACCESS_KEY_ID =
 ; Minio secretAccessKey to connect only available when STORAGE_TYPE is `minio`
 MINIO_SECRET_ACCESS_KEY =
+; Preferred IAM Endpoint to override Minio's default IAM Endpoint resolution only available when STORAGE_TYPE is `minio`. 
+; If not provided and STORAGE_TYPE is `minio`, will search for and derive endpoint from known environment variables 
+; (AWS_CONTAINER_AUTHORIZATION_TOKEN, AWS_CONTAINER_AUTHORIZATION_TOKEN_FILE, AWS_CONTAINER_CREDENTIALS_RELATIVE_URI, 
+; AWS_CONTAINER_CREDENTIALS_FULL_URI, AWS_WEB_IDENTITY_TOKEN_FILE, AWS_ROLE_ARN, AWS_ROLE_SESSION_NAME, AWS_REGION), or 
+; the DefaultIAMRoleEndpoint if not provided otherwise.
+MINIO_IAM_ENDPOINT =
 ; Minio bucket to store the attachments only available when STORAGE_TYPE is `minio`
 MINIO_BUCKET = gitea
 ; Minio location to create bucket only available when STORAGE_TYPE is `minio`
@@ -1424,6 +1433,12 @@ MINIO_ENDPOINT = localhost:9000
 MINIO_ACCESS_KEY_ID =
 ; Minio secretAccessKey to connect only available when STORAGE_TYPE is `minio`
 MINIO_SECRET_ACCESS_KEY =
+; Preferred IAM Endpoint to override Minio's default IAM Endpoint resolution only available when STORAGE_TYPE is `minio`. 
+; If not provided and STORAGE_TYPE is `minio`, will search for and derive endpoint from known environment variables 
+; (AWS_CONTAINER_AUTHORIZATION_TOKEN, AWS_CONTAINER_AUTHORIZATION_TOKEN_FILE, AWS_CONTAINER_CREDENTIALS_RELATIVE_URI, 
+; AWS_CONTAINER_CREDENTIALS_FULL_URI, AWS_WEB_IDENTITY_TOKEN_FILE, AWS_ROLE_ARN, AWS_ROLE_SESSION_NAME, AWS_REGION), or 
+; the DefaultIAMRoleEndpoint if not provided otherwise.
+MINIO_IAM_ENDPOINT =
 ; Minio bucket to store the attachments only available when STORAGE_TYPE is `minio`
 MINIO_BUCKET = gitea
 ; Minio location to create bucket only available when STORAGE_TYPE is `minio`
@@ -1448,6 +1463,7 @@ is `data/repo-archive` and the default of `MINIO_BASE_PATH` is `repo-archive/`.
 - `MINIO_ENDPOINT`: **localhost:9000**: Minio endpoint to connect only available when `STORAGE_TYPE` is `minio`
 - `MINIO_ACCESS_KEY_ID`: Minio accessKeyID to connect only available when STORAGE_TYPE is `minio`. If not provided and STORAGE_TYPE is `minio`, will search for credentials in known environment variables (MINIO_ACCESS_KEY_ID, AWS_ACCESS_KEY_ID), credentials files (~/.mc/config.json, ~/.aws/credentials), and EC2 instance metadata.
 - `MINIO_SECRET_ACCESS_KEY`: Minio secretAccessKey to connect only available when `STORAGE_TYPE is` `minio`
+- `MINIO_IAM_ENDPOINT`: Preferred IAM Endpoint to override Minio's default IAM Endpoint resolution only available when STORAGE_TYPE is `minio`. If not provided and STORAGE_TYPE is `minio`, will search for and derive endpoint from known environment variables (AWS_CONTAINER_AUTHORIZATION_TOKEN, AWS_CONTAINER_AUTHORIZATION_TOKEN_FILE, AWS_CONTAINER_CREDENTIALS_RELATIVE_URI, AWS_CONTAINER_CREDENTIALS_FULL_URI, AWS_WEB_IDENTITY_TOKEN_FILE, AWS_ROLE_ARN, AWS_ROLE_SESSION_NAME, AWS_REGION), or the DefaultIAMRoleEndpoint if not provided otherwise.
 - `MINIO_BUCKET`: **gitea**: Minio bucket to store the lfs only available when `STORAGE_TYPE` is `minio`
 - `MINIO_LOCATION`: **us-east-1**: Minio location to create bucket only available when `STORAGE_TYPE` is `minio`
 - `MINIO_BASE_PATH`: **repo-archive/**: Minio base path on the bucket only available when `STORAGE_TYPE` is `minio`
