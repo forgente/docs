@@ -101,7 +101,7 @@ Example request using HTTP Basic authentication:
 
 ```shell
 curl --user your_username:your_token_or_password -X DELETE \
-     https://gitea.example.com/api/packages/testuser/debian/pools/bionic/main/test-package/1.0.0/amd64
+     https://gitea.example.com/api/packages/testuser/debian/pool/bionic/main/test-package/1.0.0/amd64
 ```
 
 The server responds with the following HTTP Status codes.
