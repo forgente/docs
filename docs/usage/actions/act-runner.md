@@ -362,5 +362,5 @@ You can find more useful images on [act images](https://github.com/nektos/act/bl
 If you want to run jobs in the host directly, you can change it to `ubuntu-22.04:host` or just `ubuntu-22.04`, the `:host` is optional.
 However, we suggest you to use a special name like `linux_amd64:host` or `windows:host` to avoid misusing it.
 
-Starting with Gitea 1.21, you can change labels by modifying `container.labels` in the runner configuration file (if you don't have a configuration file, please refer to [configuration tutorials](#configuration)).
+Starting with Gitea 1.21, you can change labels by modifying `runners.labels` in the runner configuration file (if you don't have a configuration file, please refer to [configuration tutorials](#configuration)).
 The runner will use these new labels as soon as you restart it, i.e., by calling `./act_runner daemon --config config.yaml`.
