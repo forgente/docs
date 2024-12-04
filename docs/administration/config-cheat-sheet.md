@@ -303,6 +303,11 @@ The following configuration set `Content-Type: application/vnd.android.package-a
    assets, or copy the manually built Gitea assets from `$GITEA_BUILD/public` to
    the assets location, eg: `/var/www/assets`, make sure `$STATIC_URL_PREFIX/assets/css/index.css`
    points to `/var/www/assets/css/index.css`.
+   :::note
+   You must disable `ui.notification.EVENT_SOURCE_UPDATE_TIME` by setting it to **-1**.
+   If you do not, some _UI_ elements will not work. You will get the following error in the
+   browser console `Uncaught SecurityError: Failed to construct 'SharedWorker'`.
+   :::
 
 - `HTTP_ADDR`: **0.0.0.0**: HTTP listen address.
   - If `PROTOCOL` is set to `fcgi`, Gitea will listen for FastCGI requests on TCP socket
