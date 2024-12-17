@@ -114,7 +114,7 @@ git.example.com {
 
 ```yaml
 gitea:
-  image: gitea/gitea
+  image: docker.io/gitea/gitea
   ...
   labels:
     - "traefik.enable=true"

@@ -42,8 +42,8 @@ chmod +x act_runner
 与二进制文件类似，您可以使用`nightly`标签使用最新的夜间构建版本，而`latest`标签是最新的稳定版本。
 
 ```bash
-docker pull gitea/act_runner:latest # for the latest stable release
-docker pull gitea/act_runner:nightly # for the latest nightly build
+docker pull docker.io/gitea/act_runner:latest # for the latest stable release
+docker pull docker.io/gitea/act_runner:nightly # for the latest nightly build
 ```
 
 ## 配置
@@ -66,7 +66,7 @@ docker pull gitea/act_runner:nightly # for the latest nightly build
 您亦可以如下使用 docker 创建配置文件：
 
 ```bash
-docker run --entrypoint="" --rm -it gitea/act_runner:latest act_runner generate-config > config.yaml
+docker run --entrypoint="" --rm -it docker.io/gitea/act_runner:latest act_runner generate-config > config.yaml
 ```
 
 当使用Docker镜像时，可以使用`CONFIG_FILE`环境变量指定配置文件。确保将文件作为卷挂载到容器中：

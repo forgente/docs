@@ -33,7 +33,7 @@ version: "2"
 
 services:
   server:
-    image: gitea/gitea:@dockerVersion@-rootless
+    image: docker.io/gitea/gitea:@dockerVersion@-rootless
     restart: always
     volumes:
       - ./data:/var/lib/gitea
@@ -64,7 +64,7 @@ version: "2"
 
 services:
   server:
-    image: gitea/gitea:@dockerVersion@-rootless
+    image: docker.io/gitea/gitea:@dockerVersion@-rootless
     restart: always
     volumes:
       - ./data:/var/lib/gitea
@@ -87,7 +87,7 @@ version: "2"
 
 services:
   server:
-    image: gitea/gitea:@dockerVersion@-rootless
+    image: docker.io/gitea/gitea:@dockerVersion@-rootless
 +    environment:
 +      - GITEA__database__DB_TYPE=mysql
 +      - GITEA__database__HOST=db:3306
@@ -107,7 +107,7 @@ services:
 +      - db
 +
 +  db:
-+    image: mysql:8
++    image: docker.io/library/mysql:8
 +    restart: always
 +    environment:
 +      - MYSQL_ROOT_PASSWORD=gitea
@@ -127,7 +127,7 @@ version: "2"
 
 services:
   server:
-    image: gitea/gitea:@dockerVersion@-rootless
+    image: docker.io/gitea/gitea:@dockerVersion@-rootless
     environment:
 +      - GITEA__database__DB_TYPE=postgres
 +      - GITEA__database__HOST=db:5432
@@ -147,7 +147,7 @@ services:
 +      - db
 +
 +  db:
-+    image: postgres:14
++    image: docker.io/library/postgres:14
 +    restart: always
 +    environment:
 +      - POSTGRES_USER=gitea
@@ -172,7 +172,7 @@ version: "2"
 +
 services:
   server:
-    image: gitea/gitea:@dockerVersion@-rootless
+    image: docker.io/gitea/gitea:@dockerVersion@-rootless
     restart: always
     volumes:
 -      - ./data:/var/lib/gitea
@@ -199,7 +199,7 @@ version: "2"
 
 services:
   server:
-    image: gitea/gitea:@dockerVersion@-rootless
+    image: docker.io/gitea/gitea:@dockerVersion@-rootless
     restart: always
 +    user: 1001
     volumes:
@@ -252,7 +252,7 @@ docker-compose up -d
 - 将卷中的文件夹（gitea）重命名为 custom
 - 如果需要，编辑 `app.ini`
   - 设置 `START_SSH_SERVER = true`
-- 使用镜像 `gitea/gitea:@dockerVersion@-rootless`
+- 使用镜像 ` docker.io/gitea/gitea:@dockerVersion@-rootless`
 
 ## 使用环境变量管理部署
 

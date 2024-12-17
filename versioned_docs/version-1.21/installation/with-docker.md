@@ -36,7 +36,7 @@ networks:
 
 services:
   server:
-    image: gitea/gitea:@dockerVersion@
+    image: docker.io/gitea/gitea:@dockerVersion@
     container_name: gitea
     environment:
       - USER_UID=1000
@@ -68,7 +68,7 @@ networks:
 
 services:
   server:
-    image: gitea/gitea:@dockerVersion@
+    image: docker.io/gitea/gitea:@dockerVersion@
     container_name: gitea
     environment:
       - USER_UID=1000
@@ -103,7 +103,7 @@ networks:
 
 services:
   server:
-    image: gitea/gitea:@dockerVersion@
+    image: docker.io/gitea/gitea:@dockerVersion@
     container_name: gitea
     environment:
       - USER_UID=1000
@@ -127,7 +127,7 @@ services:
 +      - db
 +
 +  db:
-+    image: mysql:8
++    image: docker.io/library/mysql:8
 +    restart: always
 +    environment:
 +      - MYSQL_ROOT_PASSWORD=gitea
@@ -154,7 +154,7 @@ networks:
 
 services:
   server:
-    image: gitea/gitea:@dockerVersion@
+    image: docker.io/gitea/gitea:@dockerVersion@
     container_name: gitea
     environment:
       - USER_UID=1000
@@ -178,7 +178,7 @@ services:
 +      - db
 +
 +  db:
-+    image: postgres:14
++    image: docker.io/library/postgres:14
 +    restart: always
 +    environment:
 +      - POSTGRES_USER=gitea
@@ -210,7 +210,7 @@ networks:
 +
 services:
   server:
-    image: gitea/gitea:@dockerVersion@
+    image: docker.io/gitea/gitea:@dockerVersion@
     container_name: gitea
     restart: always
     networks:
@@ -317,8 +317,8 @@ Gitea will generate new secrets/tokens for every new installation automatically 
 The following commands will output a new `SECRET_KEY` and `INTERNAL_TOKEN` to `stdout`, which you can then place in your environment variables.
 
 ```bash
-docker run -it --rm gitea/gitea:1 gitea generate secret SECRET_KEY
-docker run -it --rm  gitea/gitea:1 gitea generate secret INTERNAL_TOKEN
+docker run -it --rm docker.io/gitea/gitea:1 gitea generate secret SECRET_KEY
+docker run -it --rm docker.io/gitea/gitea:1 gitea generate secret INTERNAL_TOKEN
 ```
 
 ```yaml

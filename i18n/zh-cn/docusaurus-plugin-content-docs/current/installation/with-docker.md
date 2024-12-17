@@ -25,7 +25,7 @@ networks:
 
 services:
   server:
-    image: gitea/gitea:@dockerVersion@
+    image: docker.io/gitea/gitea:@dockerVersion@
     container_name: gitea
     environment:
       - USER_UID=1000
@@ -55,7 +55,7 @@ networks:
 
 services:
   server:
-    image: gitea/gitea:@dockerVersion@
+    image: docker.io/gitea/gitea:@dockerVersion@
     container_name: gitea
     environment:
       - USER_UID=1000
@@ -89,7 +89,7 @@ networks:
 
 services:
   server:
-    image: gitea/gitea:@dockerVersion@
+    image: docker.io/gitea/gitea:@dockerVersion@
     container_name: gitea
     environment:
       - USER_UID=1000
@@ -113,7 +113,7 @@ services:
 +      - db
 +
 +  db:
-+    image: mysql:8
++    image: docker.io/library/mysql:8
 +    restart: always
 +    environment:
 +      - MYSQL_ROOT_PASSWORD=gitea
@@ -139,7 +139,7 @@ networks:
 
 services:
   server:
-    image: gitea/gitea:@dockerVersion@
+    image: docker.io/gitea/gitea:@dockerVersion@
     container_name: gitea
     environment:
       - USER_UID=1000
@@ -163,7 +163,7 @@ services:
 +      - db
 +
 +  db:
-+    image: postgres:14
++    image: docker.io/library/postgres:14
 +    restart: always
 +    environment:
 +      - POSTGRES_USER=gitea
@@ -192,7 +192,7 @@ networks:
 +
 services:
   server:
-    image: gitea/gitea:@dockerVersion@
+    image: docker.io/gitea/gitea:@dockerVersion@
     container_name: gitea
     restart: always
     networks:
@@ -291,8 +291,8 @@ Gitea 将为每次新安装自动生成新的 `SECRET_KEY` 并将它们写入 `a
 以下命令将向 `stdout` 输出一个新的 `SECRET_KEY` 和 `INTERNAL_TOKEN`，然后您可以将其放入环境变量中。
 
 ```bash
-docker run -it --rm gitea/gitea:1 gitea generate secret SECRET_KEY
-docker run -it --rm  gitea/gitea:1 gitea generate secret INTERNAL_TOKEN
+docker run -it --rm docker.io/gitea/gitea:1 gitea generate secret SECRET_KEY
+docker run -it --rm docker.io/gitea/gitea:1 gitea generate secret INTERNAL_TOKEN
 ```
 
 ```yaml

@@ -225,12 +225,12 @@ You can use the docker image from the [docker hub](https://hub.docker.com/r/gite
 Just like the binary, you can use the latest nightly build by using the `nightly` tag, while the `latest` tag is the latest stable release.
 
 ```bash
-docker pull gitea/act_runner:latest # for the latest stable release
+docker pull docker.io/gitea/act_runner:latest # for the latest stable release
 ```
 
 If you want to test newly features, you could also use nightly image
 ```bash
-docker pull gitea/act_runner:nightly # for the latest nightly build
+docker pull docker.io/gitea/act_runner:nightly # for the latest nightly build
 ```
 
 ### Configuration
@@ -238,7 +238,7 @@ docker pull gitea/act_runner:nightly # for the latest nightly build
 Configuration is optional, but you could also generate config file with docker:
 
 ```bash
-docker run --entrypoint="" --rm -it gitea/act_runner:latest act_runner generate-config > config.yaml
+docker run --entrypoint="" --rm -it docker.io/gitea/act_runner:latest act_runner generate-config > config.yaml
 ```
 
 When you are using the docker image, you can specify the configuration file by using the `CONFIG_FILE` environment variable. Make sure that the file is mounted into the container as a volume:
@@ -263,7 +263,7 @@ docker run \
     -e GITEA_RUNNER_REGISTRATION_TOKEN=<registration_token> \
     -e GITEA_RUNNER_NAME=<runner_name> \
     --name my_runner \
-    -d gitea/act_runner:nightly
+    -d docker.io/gitea/act_runner:nightly
 ```
 
 There are more parameters so that you can configure it.
@@ -279,7 +279,7 @@ docker run \
     -e GITEA_RUNNER_NAME=<runner_name> \
     -e GITEA_RUNNER_LABELS=<runner_labels> \
     --name my_runner \
-    -d gitea/act_runner:nightly
+    -d docker.io/gitea/act_runner:nightly
 ```
 
 You may notice that we have mounted the `/var/run/docker.sock` into the container.
@@ -295,7 +295,7 @@ You could also set up the runner using the following `docker-compose.yml`:
 version: "3.8"
 services:
   runner:
-    image: gitea/act_runner:nightly
+    image: docker.io/gitea/act_runner:nightly
     environment:
       CONFIG_FILE: /config.yaml
       GITEA_INSTANCE_URL: "${INSTANCE_URL}"
@@ -343,7 +343,7 @@ cache:
 docker run \
   --name gitea-docker-runner \
   -p 8088:8088 \
-  -d gitea/act_runner:nightly
+  -d docker.io/gitea/act_runner:nightly
 ```
 
 ### Labels

@@ -38,7 +38,7 @@ version: "2"
 
 services:
   server:
-    image: gitea/gitea:@dockerVersion@-rootless
+    image: docker.io/gitea/gitea:@dockerVersion@-rootless
     restart: always
     volumes:
       - ./data:/var/lib/gitea
@@ -71,7 +71,7 @@ version: "2"
 
 services:
   server:
-    image: gitea/gitea:@dockerVersion@-rootless
+    image: docker.io/gitea/gitea:@dockerVersion@-rootless
     restart: always
     volumes:
       - ./data:/var/lib/gitea
@@ -95,7 +95,7 @@ version: "2"
 
 services:
   server:
-    image: gitea/gitea:@dockerVersion@-rootless
+    image: docker.io/gitea/gitea:@dockerVersion@-rootless
 +    environment:
 +      - GITEA__database__DB_TYPE=mysql
 +      - GITEA__database__HOST=db:3306
@@ -115,7 +115,7 @@ services:
 +      - db
 +
 +  db:
-+    image: mysql:8
++    image: docker.io/library/mysql:8
 +    restart: always
 +    environment:
 +      - MYSQL_ROOT_PASSWORD=gitea
@@ -136,7 +136,7 @@ version: "2"
 
 services:
   server:
-    image: gitea/gitea:@dockerVersion@-rootless
+    image: docker.io/gitea/gitea:@dockerVersion@-rootless
     environment:
 +      - GITEA__database__DB_TYPE=postgres
 +      - GITEA__database__HOST=db:5432
@@ -156,7 +156,7 @@ services:
 +      - db
 +
 +  db:
-+    image: postgres:14
++    image: docker.io/library/postgres:14
 +    restart: always
 +    environment:
 +      - POSTGRES_USER=gitea
@@ -184,7 +184,7 @@ version: "2"
 +
 services:
   server:
-    image: gitea/gitea:@dockerVersion@-rootless
+    image: docker.io/gitea/gitea:@dockerVersion@-rootless
     restart: always
     volumes:
 -      - ./data:/var/lib/gitea
@@ -211,7 +211,7 @@ version: "2"
 
 services:
   server:
-    image: gitea/gitea:@dockerVersion@-rootless
+    image: docker.io/gitea/gitea:@dockerVersion@-rootless
     restart: always
 +    user: 1001
     volumes:
@@ -283,7 +283,7 @@ docker-compose up -d
 - Rename folder (inside volume) gitea to custom
 - Edit app.ini if needed
   - Set START_SSH_SERVER = true
-- Use image gitea/gitea:@dockerVersion@-rootless
+- Use image docker.io/gitea/gitea:@dockerVersion@-rootless
 
 ## Managing Deployments With Environment Variables
 

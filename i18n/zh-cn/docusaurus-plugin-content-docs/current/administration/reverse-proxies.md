@@ -360,7 +360,7 @@ backend gitea
 
 ```yaml
 gitea:
-  image: gitea/gitea
+  image: docker.io/gitea/gitea
   ...
   labels:
     - "traefik.enable=true"
@@ -376,7 +376,7 @@ gitea:
 
 ```yaml
 gitea:
-  image: gitea/gitea
+  image: docker.io/gitea/gitea
   ...
   labels:
     - "traefik.enable=true"

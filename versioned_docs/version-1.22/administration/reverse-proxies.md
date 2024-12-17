@@ -356,7 +356,7 @@ If you want traefik to serve your Gitea instance, you can add the following labe
 
 ```yaml
 gitea:
-  image: gitea/gitea
+  image: docker.io/gitea/gitea
   ...
   labels:
     - "traefik.enable=true"
@@ -372,7 +372,7 @@ In case you already have a site, and you want Gitea to share the domain name, yo
 
 ```yaml
 gitea:
-  image: gitea/gitea
+  image: docker.io/gitea/gitea
   ...
   labels:
     - "traefik.enable=true"

@@ -225,12 +225,12 @@ You can use the docker image from the [docker hub](https://hub.docker.com/r/gite
 Just like the binary, you can use the latest nightly build by using the `nightly` tag, while the `latest` tag is the latest stable release.
 
 ```bash
-docker pull gitea/act_runner:latest # for the latest stable release
+docker pull docker.io/gitea/act_runner:latest # for the latest stable release
 ```
 
 If you want to test newly features, you could also use nightly image
 ```bash
-docker pull gitea/act_runner:nightly # for the latest nightly build
+docker pull docker.io/gitea/act_runner:nightly # for the latest nightly build
 ```
 
 ### Configuration
@@ -238,7 +238,7 @@ docker pull gitea/act_runner:nightly # for the latest nightly build
 Configuration is optional, but you could also generate config file with docker:
 
 ```bash
-docker run --entrypoint="" --rm -it gitea/act_runner:latest act_runner generate-config > config.yaml
+docker run --entrypoint="" --rm -it docker.io/gitea/act_runner:latest act_runner generate-config > config.yaml
 ```
 
 When you are using the docker image, you can specify the configuration file by using the `CONFIG_FILE` environment variable. Make sure that the file is mounted into the container as a volume:
