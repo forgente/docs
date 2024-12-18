@@ -113,6 +113,12 @@ jobs:
       - run: echo "🍏 This job's status is ${{ job.status }}."
 ```
 
+:::warning
+
+Certain actions may not function correctly within SHA256 repositories. This includes [actions/checkout](https://github.com/actions/checkout/issues/1843).
+
+:::
+
 You can upload it as a file with the extension `.yaml` in the directory `.gitea/workflows/` of the repository, for example `.gitea/workflows/demo.yaml`.
 You might notice that this is fairly similar from the [Quickstart for GitHub Actions](https://docs.github.com/en/actions/quickstart).
 That is because  Gitea Actions is designed to be compatible with GitHub Actions wherever possible.
