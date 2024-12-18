@@ -70,14 +70,24 @@ const globalVariables = {
     'sourceVersion': 'main',
     'sourceBranch': 'main',
     'dockerVersion': 'nightly',
-    'displayVersion': '1.23-dev'
+    'displayVersion': '1.24-dev'
+  },
+  '1.23': {
+    'goVersion': '1.23',
+    'minGoVersion': '1.22',
+    'minNodeVersion': '18',
+    'version': '1.23.0-rc0',
+    'sourceVersion': 'v1.23.0-rc0',
+    'sourceBranch': 'release/v1.23',
+    'dockerVersion': '1.23.0-rc0',
+    'displayVersion': '1.23.0-rc0'
   },
   '1.22': {
     'goVersion': '1.22',
     'minGoVersion': '1.22',
     'minNodeVersion': '18',
     'version': '1.22.6',
-    'sourceVersion': 'v1.22.4',
+    'sourceVersion': 'v1.22.6',
     'sourceBranch': 'release/v1.22',
     'dockerVersion': '1.22.6',
     'displayVersion': '1.22.6'
@@ -118,6 +128,9 @@ const versions = {
   current: {
     label: globalVariables['current'].displayVersion, // path is kept as next for dev (so users can always find "nightly" docs)
     banner: 'unreleased',
+  },
+  '1.23': {
+    label: globalVariables['1.23'].displayVersion,
   },
   '1.22': {
     label: globalVariables['1.22'].displayVersion,
@@ -280,7 +293,7 @@ const config = {
             to: '/api/1.22/',
             label: 'API',
             position: 'left',
-            activeBaseRegex: 'api/(1.19|1.20|1.21|1.22|next)/',
+            activeBaseRegex: 'api/(1.19|1.20|1.21|1.22|1.23|next)/',
           },
           {
             position: 'left',
@@ -295,6 +308,7 @@ const config = {
             position: 'right',
             items: [
               {to: '/api/next/', label: '1.23-dev' },
+              {to: '/api/1.23/', label: '1.23.0-rc0' },
               {to: '/api/1.22/', label: '1.22.6' },
               {to: '/api/1.21/', label: '1.21.11' },
               {to: '/api/1.20/', label: '1.20.6' },
