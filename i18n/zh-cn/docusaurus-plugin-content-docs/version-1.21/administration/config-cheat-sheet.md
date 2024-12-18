@@ -76,8 +76,7 @@ aliases:
 - `DETECTED_CHARSETS_ORDER`: **UTF-8, UTF-16BE, UTF-16LE, UTF-32BE, UTF-32LE, ISO-8859, windows-1252, ISO-8859, windows-1250, ISO-8859, ISO-8859, ISO-8859, windows-1253, ISO-8859, windows-1255, ISO-8859, windows-1251, windows-1256, KOI8-R, ISO-8859, windows-1254, Shift_JIS, GB18030, EUC-JP, EUC-KR, Big5, ISO-2022, ISO-2022, ISO-2022, IBM424_rtl, IBM424_ltr, IBM420_rtl, IBM420_ltr**: 检测到的字符集的决定性顺序 - 如果检测到的字符集具有相等的置信度，则优先选择列表中较早出现的字符集，而不是较晚出现的字符集。添加“defaults”将会将未命名的字符集放置在该点。
 - `ANSI_CHARSET`: **_empty_**: 默认的ANSI字符集，用于覆盖非UTF-8字符集。
 - `FORCE_PRIVATE`: **false**: 强制使每个新仓库变为私有。
-- `DEFAULT_PRIVATE`: **last**: 创建新仓库时默认为私有。
-   \[last, private, public\]
+- `DEFAULT_PRIVATE`: **last**: 创建新仓库时默认为私有：`last`, `private`, `public`。
 - `DEFAULT_PUSH_CREATE_PRIVATE`: **true**: 使用推送创建新仓库时默认为私有。
 - `MAX_CREATION_LIMIT`: **-1**: 每个用户的全局仓库创建上限,
    `-1` 代表无限制.
