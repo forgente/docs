@@ -184,8 +184,11 @@ If you can push but can't see push activities on the home dashboard, or the push
 
 There are a few possibilities:
 
-1. The git hooks are out of sync: run "Resynchronize pre-receive, update and post-receive hooks of all repositories" on the site admin panel
-2. The git repositories (and hooks) are stored on some filesystems (ex: mounted by NAS) which don't support script execution, make sure the filesystem supports `chmod a+x any-script`
+1. The git hooks are out of sync. Run the following actions on the site admin panel:
+- "Sync missed branches from git data to databases"
+- "Sync tags from git data to database"
+- "Resynchronize pre-receive, update and post-receive hooks of all repositories"
+2. The git repositories (and hooks) are stored on some filesystems (ex: mounted by NAS) which don't support script execution, make sure the filesystem supports `chmod a+x any-script`. Also make sure that the filesystem of the repositories is not mounted with the `noexec` option.
 3. If you are using docker, make sure Docker Server (not the client) >= 20.10.6
 
 ## SSH issues
