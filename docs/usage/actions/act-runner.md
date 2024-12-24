@@ -62,6 +62,16 @@ A registration token can also be obtained from the gitea [command-line interface
 gitea --config /etc/gitea/app.ini actions generate-runner-token
 ```
 
+You can also use `GITEA_RUNNER_REGISTRATION_TOKEN`/`GITEA_RUNNER_REGISTRATION_TOKEN_FILE` environment variable to set a global runner registration token when Gitea starts, for example:
+
+```
+openssl rand -hex 24 > /some-dir/runner-token
+export GITEA_RUNNER_REGISTRATION_TOKEN_FILE=/some-dir/runner-token
+./gitea --config ...
+```
+
+The token from environment is valid until you reset the token (re-create a new one) via web UI or API.
+
 Tokens are valid for registering multiple runners, until they are revoked and replaced by a new token using the token reset link in the web interface.
 
 ### Configuration

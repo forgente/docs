@@ -106,6 +106,22 @@ Runner级别决定了从哪里获取注册令牌。
 
 注册令牌也可以通过 Gitea 的 [命令行](../../administration/command-line.md#actions-generate-runner-token) 获得:
 
+```
+gitea --config /etc/gitea/app.ini actions generate-runner-token
+```
+
+用户也可以使用 `GITEA_RUNNER_REGISTRATION_TOKEN` 或 `GITEA_RUNNER_REGISTRATION_TOKEN_FILE` 环境变量以在 Gitea 启动时设置全局的注册令牌，例如：
+
+```
+openssl rand -hex 24 > /some-dir/runner-token
+export GITEA_RUNNER_REGISTRATION_TOKEN_FILE=/some-dir/runner-token
+./gitea --config ...
+```
+
+来自环境变量的令牌在通过 Web 界面或 API 重置(重新创建新令牌)前将一直有效。
+
+令牌可用于注册多个 Runner，直到使用 Web 界面中的令牌重置链接将其撤销并替换为新令牌。
+
 ### 注册Runner
 
 可以通过运行以下命令来注册Act Runner：
