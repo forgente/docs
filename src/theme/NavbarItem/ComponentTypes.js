@@ -7,7 +7,7 @@ import DocNavbarItem from '@theme/NavbarItem/DocNavbarItem';
 import DocSidebarNavbarItem from '@theme/NavbarItem/DocSidebarNavbarItem';
 import DocsVersionNavbarItem from '@theme/NavbarItem/DocsVersionNavbarItem';
 import DocsVersionDropdownNavbarItem from '@theme/NavbarItem/DocsVersionDropdownNavbarItem';
-import APIDropDown from '@site/src/components/APIDropDown';
+import DropDown from '@site/src/components/DropDown';
 
 const ComponentTypes = {
   default: DefaultNavbarItem,
@@ -19,6 +19,6 @@ const ComponentTypes = {
   docSidebar: DocSidebarNavbarItem,
   docsVersion: DocsVersionNavbarItem,
   docsVersionDropdown: DocsVersionDropdownNavbarItem,
-  'custom-apiDropdown': APIDropDown,
+  'custom-Dropdown': DropDown,
 };
 export default ComponentTypes;

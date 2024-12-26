@@ -131,12 +131,28 @@
     body:has(.redocusaurus) .navbar__item.dropdown:not(:has(.api-dropdown)) {
       display: none;
     }
+    /* hide other dropdowns except for runner dropdown on runner pages */
+    body:has(.runner-dropdown.gt-visible) .navbar__item.dropdown:not(:has(.runner-dropdown)) {
+      display: none;
+    }
+    /* hide dropdown menus that have sub-elements containing 'gt-hidden' */
+    body .navbar__item.dropdown:has(.custom-dropdown.gt-hidden) {
+      display: none;
+    }
   }
 
   @media (max-width: 996px) {
     /* on mobile, dropdown becomes menu list */
     /* Hide collapsible menus except for API menu on API pages */
     body:has(.redocusaurus) .menu__list-item.menu__list-item--collapsed:not(:has(.api-dropdown)) {
+      display: none;
+    }
+    /* Hide collapsible menus except for Runner menu on Runner pages */
+    body:has(.runner-dropdown.gt-visible) .menu__list-item.menu__list-item--collapsed:not(:has(.runner-dropdown)) {
+      display: none;
+    }
+    /* Hide dropdown menus that have sub-elements containing 'gt-hidden' */
+    body .menu__list-item.menu__list-item--collapsed:has(.custom-dropdown.gt-hidden) {
       display: none;
     }
   }

@@ -162,7 +162,42 @@ const config = {
       {
         domain: 'docs.gitea.com',
       },
-    ]
+    ],
+
+    // for runner documentations
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'runner',
+        path: 'runner',
+        routeBasePath: 'runner',
+        //sidebarPath: './runner/sidebars.js',
+        versions: {
+          current: {
+            label: 'main',
+            banner: 'unreleased',
+          },
+          "0.2.11": {
+            path: '0.2.11',
+            label: '0.2.11',
+          }
+        },
+        lastVersion: '0.2.11',
+        editUrl: ({versionDocsDirPath, docPath, locale, version, permalink}) => {
+          return `https://gitea.com/gitea/docs/src/branch/main/${version === 'current' ? 'runner': `runner_versioned_docs/version-${version}`}/${docPath}`;
+        },
+        async sidebarItemsGenerator({defaultSidebarItemsGenerator, ...args}) {
+          const {item} = args;
+          // Use the provided data to generate a custom sidebar slice
+          const sidebarItems = await defaultSidebarItemsGenerator(args);
+          if (item.dirName !== 'usage') {
+            return sidebarItems;
+          } else {
+            return sortItemsByCategory(sidebarItems);
+          }
+        },
+      },
+    ],
   ],
 
   i18n: {
@@ -296,29 +331,10 @@ const config = {
             activeBaseRegex: 'api/(1.19|1.20|1.21|1.22|1.23|next)/',
           },
           {
+            to: '/runner/0.2.11/',
+            label: 'Runner',
             position: 'left',
-            label: 'Blog',
-            href: 'https://blog.gitea.com',
-            className: 'internal-href',
-            target: '_self',
-          },
-          {
-            type: 'custom-apiDropdown',
-            label: 'API Version',
-            position: 'right',
-            items: [
-              {to: '/api/next/', label: '1.23-dev' },
-              {to: '/api/1.23/', label: '1.23.0-rc0' },
-              {to: '/api/1.22/', label: '1.22.6' },
-              {to: '/api/1.21/', label: '1.21.11' },
-              {to: '/api/1.20/', label: '1.20.6' },
-              {to: '/api/1.19/', label: '1.19.4' },
-            ],
-          },
-          {
-            href: 'https://github.com/go-gitea/gitea',
-            label: 'Code',
-            position: 'left',
+            activeBaseRegex: 'runner/(0.2.11|next)/',
           },
           {
             position: 'left',
@@ -339,6 +355,32 @@ const config = {
             type: 'docsVersionDropdown',
             position: 'right',
             dropdownActiveClassDisabled: true,
+          },
+          {
+            type: 'custom-Dropdown',
+            label: 'API Version',
+            position: 'right',
+            items: [
+              {to: '/api/next/', label: '1.24-dev' },
+              {to: '/api/1.23/', label: '1.23.0-rc0' },
+              {to: '/api/1.22/', label: '1.22.6' },
+              {to: '/api/1.21/', label: '1.21.11' },
+              {to: '/api/1.20/', label: '1.20.6' },
+              {to: '/api/1.19/', label: '1.19.4' },
+            ],
+            routerRgx: '\/api\/',
+            classNames: 'api-dropdown',
+          },
+          {
+            type: 'custom-Dropdown',
+            label: 'Runner Version',
+            position: 'right',
+            items: [
+              {to: '/runner/next/', label: 'development' },
+              {to: '/runner/0.2.11/', label: '0.2.11' },
+            ],
+            routerRgx: '\/runner\/',
+            classNames: 'runner-dropdown',
           },
           {
             to: 'help/support',
