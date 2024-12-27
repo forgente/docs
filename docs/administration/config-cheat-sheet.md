@@ -886,20 +886,22 @@ Default templates for project board view:
 - `ALLOWED_TYPES`: **.avif,.cpuprofile,.csv,.dmp,.docx,.fodg,.fodp,.fods,.fodt,.gif,.gz,.jpeg,.jpg,.json,.jsonc,.log,.md,.mov,.mp4,.odf,.odg,.odp,.ods,.odt,.patch,.pdf,.png,.pptx,.svg,.tgz,.txt,.webm,.webp,.xls,.xlsx,.zip**: Comma-separated list of allowed file extensions (`.zip`), mime types (`text/plain`) or wildcard type (`image/*`, `audio/*`, `video/*`). Empty value or `*/*` allows all types.
 - `MAX_SIZE`: **2048**: Maximum size (MB).
 - `MAX_FILES`: **5**: Maximum number of attachments that can be uploaded at once.
-- `STORAGE_TYPE`: **local**: Storage type for attachments, `local` for local disk or `minio` for s3 compatible object storage service, default is `local` or other name defined with `[storage.xxx]`
-- `SERVE_DIRECT`: **false**: Allows the storage driver to redirect to authenticated URLs to serve files directly. Currently, only Minio/S3 is supported via signed URLs, local does nothing.
-- `PATH`: **attachments**: Path to store attachments only available when STORAGE_TYPE is `local`, relative paths will be resolved to `${AppDataPath}/${attachment.PATH}`.
-- `MINIO_ENDPOINT`: **localhost:9000**: Minio endpoint to connect only available when STORAGE_TYPE is `minio`
-- `MINIO_ACCESS_KEY_ID`: Minio accessKeyID to connect only available when STORAGE_TYPE is `minio`. If not provided and STORAGE_TYPE is `minio`, will search for credentials in known environment variables (MINIO_ACCESS_KEY_ID, AWS_ACCESS_KEY_ID), credentials files (~/.mc/config.json, ~/.aws/credentials), and EC2 instance metadata.
-- `MINIO_SECRET_ACCESS_KEY`: Minio secretAccessKey to connect only available when STORAGE_TYPE is `minio`
-- `MINIO_IAM_ENDPOINT`: Preferred IAM Endpoint to override Minio's default IAM Endpoint resolution only available when STORAGE_TYPE is `minio`. If not provided and STORAGE_TYPE is `minio`, will search for and derive endpoint from known environment variables (AWS_CONTAINER_AUTHORIZATION_TOKEN, AWS_CONTAINER_AUTHORIZATION_TOKEN_FILE, AWS_CONTAINER_CREDENTIALS_RELATIVE_URI, AWS_CONTAINER_CREDENTIALS_FULL_URI, AWS_WEB_IDENTITY_TOKEN_FILE, AWS_ROLE_ARN, AWS_ROLE_SESSION_NAME, AWS_REGION), or the DefaultIAMRoleEndpoint if not provided otherwise.
-- `MINIO_BUCKET`: **gitea**: Minio bucket to store the attachments only available when STORAGE_TYPE is `minio`
-- `MINIO_LOCATION`: **us-east-1**: Minio location to create bucket only available when STORAGE_TYPE is `minio`
-- `MINIO_BASE_PATH`: **attachments/**: Minio base path on the bucket only available when STORAGE_TYPE is `minio`
-- `MINIO_USE_SSL`: **false**: Minio enabled ssl only available when STORAGE_TYPE is `minio`
-- `MINIO_INSECURE_SKIP_VERIFY`: **false**: Minio skip SSL verification available when STORAGE_TYPE is `minio`
-- `MINIO_CHECKSUM_ALGORITHM`: **default**: Minio checksum algorithm: `default` (for MinIO or AWS S3) or `md5` (for Cloudflare or Backblaze)
-- `MINIO_BUCKET_LOOKUP_TYPE`: **auto**: Minio bucket lookup method defaults to auto mode; set it to `dns` for virtual host style or `path` for path style, only available when STORAGE_TYPE is `minio`
+- `STORAGE_TYPE`: **local**: Storage type for attachments, it could be `<blank>`, `local`, `minio`, `azureblob` or `xxx` which defined in another section with `[storage.xxx]`.
+
+  For `STORAGE_TYPE = ` or there is no this configuration item, all storages will be derived from `[storage]` if configured or defult values.
+
+  For `STORAGE_TYPE = local`, below are possible configurations
+
+  - `PATH`: **attachments**: Path to store attachments only available when STORAGE_TYPE is `local`, relative paths will be resolved to `${AppDataPath}/${attachment.PATH}`.
+
+  For `STORAGE_TYPE = minio`, the configurations can be found at [Storage Minio](#storage_minio), you can override some configurations like below.
+
+  - `MINIO_BASE_PATH`: **attachments/**: Minio base path on the bucket only available when STORAGE_TYPE is `minio`
+
+  For `STORAGE_TYPE = xxx`, the configuration will be derived from `[storage.xxx]` and some configurations can be overrided list below.
+
+  - `PATH`: the same as above
+  - `MINIO_BASE_PATH`: the same as above
 
 ## Log (`log`)
 
@@ -1327,19 +1329,22 @@ Storage configuration for lfs data. It will be derived from default `[storage]` 
 `[storage.xxx]` when set `STORAGE_TYPE` to `xxx`. When derived, the default of `PATH`
 is `data/lfs` and the default of `MINIO_BASE_PATH` is `lfs/`.
 
-- `STORAGE_TYPE`: **local**: Storage type for lfs, `local` for local disk or `minio` for s3 compatible object storage service or other name defined with `[storage.xxx]`
-- `SERVE_DIRECT`: **false**: Allows the storage driver to redirect to authenticated URLs to serve files directly. Currently, only Minio/S3 is supported via signed URLs, local does nothing.
+- `STORAGE_TYPE`: **local**: Storage type for lfs, it could be `<blank>`, `local`, `minio`, `azureblob` or `xxx` which defined in another section with `[storage.xxx]`.
+
+  For `STORAGE_TYPE = ` or there is no this configuration item, all storages will be derived from `[storage]` if configured or defult values.
+
+  For `STORAGE_TYPE = local`, below are possible configurations
+
 - `PATH`: **./data/lfs**: Where to store LFS files, only available when `STORAGE_TYPE` is `local`. If not set it fall back to deprecated LFS_CONTENT_PATH value in [server] section.
-- `MINIO_ENDPOINT`: **localhost:9000**: Minio endpoint to connect only available when `STORAGE_TYPE` is `minio`
-- `MINIO_ACCESS_KEY_ID`: Minio accessKeyID to connect only available when STORAGE_TYPE is `minio`. If not provided and STORAGE_TYPE is `minio`, will search for credentials in known environment variables (MINIO_ACCESS_KEY_ID, AWS_ACCESS_KEY_ID), credentials files (~/.mc/config.json, ~/.aws/credentials), and EC2 instance metadata.
-- `MINIO_SECRET_ACCESS_KEY`: Minio secretAccessKey to connect only available when `STORAGE_TYPE is` `minio`
-- `MINIO_IAM_ENDPOINT`: Preferred IAM Endpoint to override Minio's default IAM Endpoint resolution only available when STORAGE_TYPE is `minio`. If not provided and STORAGE_TYPE is `minio`, will search for and derive endpoint from known environment variables (AWS_CONTAINER_AUTHORIZATION_TOKEN, AWS_CONTAINER_AUTHORIZATION_TOKEN_FILE, AWS_CONTAINER_CREDENTIALS_RELATIVE_URI, AWS_CONTAINER_CREDENTIALS_FULL_URI, AWS_WEB_IDENTITY_TOKEN_FILE, AWS_ROLE_ARN, AWS_ROLE_SESSION_NAME, AWS_REGION), or the DefaultIAMRoleEndpoint if not provided otherwise.
-- `MINIO_BUCKET`: **gitea**: Minio bucket to store the lfs only available when `STORAGE_TYPE` is `minio`
-- `MINIO_LOCATION`: **us-east-1**: Minio location to create bucket only available when `STORAGE_TYPE` is `minio`
-- `MINIO_BASE_PATH`: **lfs/**: Minio base path on the bucket only available when `STORAGE_TYPE` is `minio`
-- `MINIO_USE_SSL`: **false**: Minio enabled ssl only available when `STORAGE_TYPE` is `minio`
-- `MINIO_INSECURE_SKIP_VERIFY`: **false**: Minio skip SSL verification available when STORAGE_TYPE is `minio`
-- `MINIO_BUCKET_LOOKUP_TYPE`: **auto**: Minio bucket lookup method defaults to auto mode; set it to `dns` for virtual host style or `path` for path style, only available when STORAGE_TYPE is `minio`
+
+  For `STORAGE_TYPE = minio`, the configurations can be found at [Storage Minio](#storage_minio), you can also define configurations like below to override derived or default values.
+
+  - `MINIO_BASE_PATH`: **attachments/**: Minio base path on the bucket only available when STORAGE_TYPE is `minio`
+
+  For `STORAGE_TYPE = xxx`, the configuration will be derived from `[storage.xxx]` and some configurations can be overrided list below.
+
+- `PATH`: the same as above
+- `MINIO_BASE_PATH`: the same as above
 
 ## LFS Client (`lfs_client`)
 
@@ -1348,10 +1353,13 @@ is `data/lfs` and the default of `MINIO_BASE_PATH` is `lfs/`.
 
 ## Storage (`storage`)
 
-Default storage configuration for attachments, lfs, avatars, repo-avatars, repo-archive, packages, actions_log, actions_artifact. It's recommended to only configure this section and let other section derive from this one if all storages
+Default storage configuration for `attachments`, `lfs`, `avatars`, `repo-avatars`, `repo-archive`, `packages`, `actions_log`, `actions_artifact`. It's recommended to only configure this section and let other section derive from this one if all storages
 are under the same parent directory or minio bucket.
 
 - `STORAGE_TYPE`: **local**: Storage type, `local` for local disk, `minio` for s3 compatible object storage service, `azureblob` for azure blob storage service.
+
+### Minio Storage Configuration (`storage_minio`)
+
 - `SERVE_DIRECT`: **false**: Allows the storage driver to redirect to authenticated URLs to serve files directly. Currently, only Minio/S3 is supported via signed URLs, local does nothing.
 - `MINIO_ENDPOINT`: **localhost:9000**: Minio endpoint to connect only available when `STORAGE_TYPE` is `minio`
 - `MINIO_ACCESS_KEY_ID`: Minio accessKeyID to connect only available when STORAGE_TYPE is `minio`. If not provided and STORAGE_TYPE is `minio`, will search for credentials in known environment variables (MINIO_ACCESS_KEY_ID, AWS_ACCESS_KEY_ID), credentials files (~/.mc/config.json, ~/.aws/credentials), and EC2 instance metadata.
@@ -1362,12 +1370,6 @@ are under the same parent directory or minio bucket.
 - `MINIO_USE_SSL`: **false**: Minio enabled ssl only available when `STORAGE_TYPE` is `minio`
 - `MINIO_INSECURE_SKIP_VERIFY`: **false**: Minio skip SSL verification available when STORAGE_TYPE is `minio`
 - `MINIO_BUCKET_LOOKUP_TYPE`: **auto**: Minio bucket lookup method defaults to auto mode; set it to `dns` for virtual host style or `path` for path style, only available when STORAGE_TYPE is `minio`
-
-- `AZURE_BLOB_ENDPOINT`: **_empty_**: Azure Blob endpoint to connect only available when STORAGE_TYPE is `azureblob`,
- e.g. https://accountname.blob.core.windows.net or http://127.0.0.1:10000/devstoreaccount1
-- `AZURE_BLOB_ACCOUNT_NAME`: **_empty_**: Azure Blob account name to connect only available when STORAGE_TYPE is `azureblob`
-- `AZURE_BLOB_ACCOUNT_KEY`: **_empty_**: Azure Blob account key to connect only available when STORAGE_TYPE is `azureblob`
-- `AZURE_BLOB_CONTAINER`: **gitea**: Azure Blob container to store the data only available when STORAGE_TYPE is `azureblob`
 
 The recommended storage configuration for minio like below:
 
@@ -1383,10 +1385,10 @@ MINIO_ENDPOINT = localhost:9000
 MINIO_ACCESS_KEY_ID =
 ; Minio secretAccessKey to connect only available when STORAGE_TYPE is `minio`
 MINIO_SECRET_ACCESS_KEY =
-; Preferred IAM Endpoint to override Minio's default IAM Endpoint resolution only available when STORAGE_TYPE is `minio`. 
-; If not provided and STORAGE_TYPE is `minio`, will search for and derive endpoint from known environment variables 
-; (AWS_CONTAINER_AUTHORIZATION_TOKEN, AWS_CONTAINER_AUTHORIZATION_TOKEN_FILE, AWS_CONTAINER_CREDENTIALS_RELATIVE_URI, 
-; AWS_CONTAINER_CREDENTIALS_FULL_URI, AWS_WEB_IDENTITY_TOKEN_FILE, AWS_ROLE_ARN, AWS_ROLE_SESSION_NAME, AWS_REGION), or 
+; Preferred IAM Endpoint to override Minio's default IAM Endpoint resolution only available when STORAGE_TYPE is `minio`.
+; If not provided and STORAGE_TYPE is `minio`, will search for and derive endpoint from known environment variables
+; (AWS_CONTAINER_AUTHORIZATION_TOKEN, AWS_CONTAINER_AUTHORIZATION_TOKEN_FILE, AWS_CONTAINER_CREDENTIALS_RELATIVE_URI,
+; AWS_CONTAINER_CREDENTIALS_FULL_URI, AWS_WEB_IDENTITY_TOKEN_FILE, AWS_ROLE_ARN, AWS_ROLE_SESSION_NAME, AWS_REGION), or
 ; the DefaultIAMRoleEndpoint if not provided otherwise.
 MINIO_IAM_ENDPOINT =
 ; Minio bucket to store the attachments only available when STORAGE_TYPE is `minio`
@@ -1401,6 +1403,19 @@ SERVE_DIRECT = true
 ; Minio bucket lookup method defaults to auto mode; set it to `dns` for virtual host style or `path` for path style, only available when STORAGE_TYPE is `minio`
 MINIO_BUCKET_LOOKUP_TYPE = auto
 ```
+
+### Azure Blob Storage Configuration (`storage_azureblob`)
+
+- `SERVE_DIRECT`: **false**: Allows the storage driver to redirect to authenticated URLs to serve files directly. Currently, only Minio/S3 is supported via signed URLs, local does nothing.
+- `AZURE_BLOB_ENDPOINT`: **_empty_**: Azure Blob endpoint to connect only available when STORAGE_TYPE is `azureblob`,
+ e.g. https://accountname.blob.core.windows.net or http://127.0.0.1:10000/devstoreaccount1
+- `AZURE_BLOB_ACCOUNT_NAME`: **_empty_**: Azure Blob account name to connect only available when STORAGE_TYPE is `azureblob`
+- `AZURE_BLOB_ACCOUNT_KEY`: **_empty_**: Azure Blob account key to connect only available when STORAGE_TYPE is `azureblob`
+- `AZURE_BLOB_CONTAINER`: **gitea**: Azure Blob container to store the data only available when STORAGE_TYPE is `azureblob`
+
+### Overrided Configurations (`storage_override`)
+
+The override could have 3 levels. `[LFS]/[attachment]...` >> `[storage.xxx]` >> `[storage]` >> Default Values.
 
 Defaultly every storage has their default base path like below
 
@@ -1441,10 +1456,10 @@ MINIO_ENDPOINT = localhost:9000
 MINIO_ACCESS_KEY_ID =
 ; Minio secretAccessKey to connect only available when STORAGE_TYPE is `minio`
 MINIO_SECRET_ACCESS_KEY =
-; Preferred IAM Endpoint to override Minio's default IAM Endpoint resolution only available when STORAGE_TYPE is `minio`. 
-; If not provided and STORAGE_TYPE is `minio`, will search for and derive endpoint from known environment variables 
-; (AWS_CONTAINER_AUTHORIZATION_TOKEN, AWS_CONTAINER_AUTHORIZATION_TOKEN_FILE, AWS_CONTAINER_CREDENTIALS_RELATIVE_URI, 
-; AWS_CONTAINER_CREDENTIALS_FULL_URI, AWS_WEB_IDENTITY_TOKEN_FILE, AWS_ROLE_ARN, AWS_ROLE_SESSION_NAME, AWS_REGION), or 
+; Preferred IAM Endpoint to override Minio's default IAM Endpoint resolution only available when STORAGE_TYPE is `minio`.
+; If not provided and STORAGE_TYPE is `minio`, will search for and derive endpoint from known environment variables
+; (AWS_CONTAINER_AUTHORIZATION_TOKEN, AWS_CONTAINER_AUTHORIZATION_TOKEN_FILE, AWS_CONTAINER_CREDENTIALS_RELATIVE_URI,
+; AWS_CONTAINER_CREDENTIALS_FULL_URI, AWS_WEB_IDENTITY_TOKEN_FILE, AWS_ROLE_ARN, AWS_ROLE_SESSION_NAME, AWS_REGION), or
 ; the DefaultIAMRoleEndpoint if not provided otherwise.
 MINIO_IAM_ENDPOINT =
 ; Minio bucket to store the attachments only available when STORAGE_TYPE is `minio`
@@ -1465,19 +1480,22 @@ Configuration for repository archive storage. It will inherit from default `[sto
 `[storage.xxx]` when set `STORAGE_TYPE` to `xxx`. The default of `PATH`
 is `data/repo-archive` and the default of `MINIO_BASE_PATH` is `repo-archive/`.
 
-- `STORAGE_TYPE`: **local**: Storage type for repo archive, `local` for local disk or `minio` for s3 compatible object storage service or other name defined with `[storage.xxx]`
-- `SERVE_DIRECT`: **false**: Allows the storage driver to redirect to authenticated URLs to serve files directly. Currently, only Minio/S3 is supported via signed URLs, local does nothing.
-- `PATH`: **./data/repo-archive**: Where to store archive files, only available when `STORAGE_TYPE` is `local`.
-- `MINIO_ENDPOINT`: **localhost:9000**: Minio endpoint to connect only available when `STORAGE_TYPE` is `minio`
-- `MINIO_ACCESS_KEY_ID`: Minio accessKeyID to connect only available when STORAGE_TYPE is `minio`. If not provided and STORAGE_TYPE is `minio`, will search for credentials in known environment variables (MINIO_ACCESS_KEY_ID, AWS_ACCESS_KEY_ID), credentials files (~/.mc/config.json, ~/.aws/credentials), and EC2 instance metadata.
-- `MINIO_SECRET_ACCESS_KEY`: Minio secretAccessKey to connect only available when `STORAGE_TYPE is` `minio`
-- `MINIO_IAM_ENDPOINT`: Preferred IAM Endpoint to override Minio's default IAM Endpoint resolution only available when STORAGE_TYPE is `minio`. If not provided and STORAGE_TYPE is `minio`, will search for and derive endpoint from known environment variables (AWS_CONTAINER_AUTHORIZATION_TOKEN, AWS_CONTAINER_AUTHORIZATION_TOKEN_FILE, AWS_CONTAINER_CREDENTIALS_RELATIVE_URI, AWS_CONTAINER_CREDENTIALS_FULL_URI, AWS_WEB_IDENTITY_TOKEN_FILE, AWS_ROLE_ARN, AWS_ROLE_SESSION_NAME, AWS_REGION), or the DefaultIAMRoleEndpoint if not provided otherwise.
-- `MINIO_BUCKET`: **gitea**: Minio bucket to store the lfs only available when `STORAGE_TYPE` is `minio`
-- `MINIO_LOCATION`: **us-east-1**: Minio location to create bucket only available when `STORAGE_TYPE` is `minio`
-- `MINIO_BASE_PATH`: **repo-archive/**: Minio base path on the bucket only available when `STORAGE_TYPE` is `minio`
-- `MINIO_USE_SSL`: **false**: Minio enabled ssl only available when `STORAGE_TYPE` is `minio`
-- `MINIO_INSECURE_SKIP_VERIFY`: **false**: Minio skip SSL verification available when STORAGE_TYPE is `minio`
-- `MINIO_BUCKET_LOOKUP_TYPE`: **auto**: Minio bucket lookup method defaults to auto mode; set it to `dns` for virtual host style or `path` for path style, only available when STORAGE_TYPE is `minio`
+- `STORAGE_TYPE`: **local**: Storage type for repo archive, it could be `<blank>`, `local`, `minio`, `azureblob` or `xxx` which defined in another section with `[storage.xxx]`.
+
+  For `STORAGE_TYPE = ` or there is no this configuration item, all storages will be derived from `[storage]` if configured or defult values.
+
+  For `STORAGE_TYPE = local`, below are possible configurations
+
+  - `PATH`: **./data/repo-archive**: Where to store archive files, only available when `STORAGE_TYPE` is `local`.
+
+  For `STORAGE_TYPE = minio`, the configurations can be found at [Storage Minio](#storage_minio), you can override some configurations like below.
+
+  - `MINIO_BASE_PATH`: **repo-archive/**: Minio base path on the bucket only available when `STORAGE_TYPE` is `minio`
+
+  For `STORAGE_TYPE = xxx`, the configuration will be derived from `[storage.xxx]` and some configurations can be overrided list below.
+
+  - `PATH`: the same as above
+  - `MINIO_BASE_PATH`: the same as above
 
 ## Repository Archives (`repo-archive`)
 
