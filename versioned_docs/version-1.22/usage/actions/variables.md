@@ -19,7 +19,7 @@ The following rules apply to variable names:
 - Variable names must not start with a number.
 - Variable names are case-insensitive.
 - Variable names must be unique at the level they are created at.
-- Variable names must not be `CI`.
+- Variable names must not start with `CI`.
 
 ## Using variable
 
