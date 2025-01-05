@@ -22,18 +22,6 @@ Gitea软件包的维护地址在[这里](https://git.cloudron.io/cloudron/gitea-
 
 这里有一个[demo 实例](https://my.demo.cloudron.io) (用户名: cloudron 密码: cloudron) 您可以在其中尝试运行Gitea。
 
-## Vultr
-
-Gitea 可以在 [Vultr](https://www.vultr.com) 的市场中被找到。
-
-要将 Gitea 部署到 Vultr，请参考 [Vultr Marketplace](https://www.vultr.com/marketplace/apps/gitea).
-
-## DigitalOcean
-
-[DigitalOcean](https://www.digitalocean.com) 将 Gitea 作为其市场中的一个 droplet。
-
-要将 Gitea 部署到 DigitalOcean, 请参考 [DigitalOcean Marketplace](https://marketplace.digitalocean.com/apps/gitea).
-
 ## Linode
 
 [Linode](https://www.linode.com/) 将 Gitea 作为其市场中的一个应用程序.

@@ -20,18 +20,6 @@ The Gitea package is maintained [here](https://git.cloudron.io/cloudron/gitea-ap
 There is a [demo instance](https://my.demo.cloudron.io) (username: cloudron password: cloudron) where
 you can experiment with running Gitea.
 
-## Vultr
-
-Gitea can be found in [Vultr](https://www.vultr.com)'s marketplace.
-
-To deploy Gitea to Vultr, have a look at the [Vultr Marketplace](https://www.vultr.com/marketplace/apps/gitea).
-
-## DigitalOcean
-
-[DigitalOcean](https://www.digitalocean.com) has Gitea as droplet in their marketplace.
-
-To deploy Gitea to DigitalOcean, have a look at the [DigitalOcean Marketplace](https://marketplace.digitalocean.com/apps/gitea).
-
 ## Linode
 
 [Linode](https://www.linode.com/) has Gitea as an app in their marketplace.
