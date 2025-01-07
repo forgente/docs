@@ -18,15 +18,25 @@ aliases:
 配置文件的路径为`/etc/gitea/conf/app.ini`。
 
 所有默认值可以通过 [app.example.ini](https://github.com/go-gitea/gitea/blob/main/custom/conf/app.example.ini) 查看到。
-如果你发现 `%(X)s` 这样的内容，请查看
-[ini](https://github.com/go-ini/ini/#recursive-values) 这里的说明。
 标注了 :exclamation: 的配置项表明除非你真的理解这个配置项的意义，否则最好使用默认值。
 
-在下面的默认值中,`$XYZ`代表环境变量`XYZ`的值(详见:`environment-to-ini`)。 _`XxYyZz`_是指默认配置的一部分列出的值。这些在 app.ini 文件中不起作用，仅在此处列出作为文档说明。
+包含`#`或者`;`的变量必须使用引号( `` ` `` 或者 `"` )包裹，否则会被解析为注释。
 
-包含`#`或者`;`的变量必须使用引号(`` ` ``或者`""""`)包裹，否则会被解析为注释。
+
+本文档使用以下约定：
+
+* `[section].FOO_BAR` 或 `[section]FOO_BAR`: 一个位于 INI 文件 `[section]` 段中的配置项。
+* `FooBar`: 这是一个 Gitea 内部变量，不是一个配置项，仅用于描述相关逻辑。
+* `$FOO_BAR`: 这是一个环境变量，Gitea 可能会使用它的值，但是它不能直接用于配置文件中。
+* `{FOO_BAR}/something` 或 `{FooBar}/something`: 这个值会默认使用配置项 `FOO_BAR` 或者内部变量 `FooBar`。
+
 
 **注意:** 修改完配置文件后，需要重启 Gitea 服务才能生效。
+
+## 使用环境变量配置 Gitea
+
+我们提供了 [environment-to-ini](https://github.com/go-gitea/gitea/tree/main/contrib/environment-to-ini) 工具
+来帮助通过环境变量生成 Gitea 的 `app.ini` 配置文件。
 
 ## 默认配置 (非`app.ini`配置文件)
 
@@ -68,8 +78,8 @@ aliases:
 
 ## 仓库 (`repository`)
 
-- `ROOT`: **%(APP_DATA_PATH)s/gitea-repositories**: 存放git工程的根目录，建议填绝对路径。
-  相对路径将被解析为**_`AppWorkPath`_/%(ROOT)s**.
+- `ROOT`: **`{APP_DATA_PATH}/gitea-repositories`**: 存放git工程的根目录，建议填绝对路径。
+  相对路径将被解析为**`{AppWorkPath}/{ROOT}`**.
 - `SCRIPT_TYPE`: **bash**: 服务器支持的Shell类型，通常是`bash`，
   但有些服务器也有可能是`sh`。
 - `DETECTED_CHARSETS_ORDER`: **UTF-8, UTF-16BE, UTF-16LE, UTF-32BE, UTF-32LE, ISO-8859, windows-1252, ISO-8859, windows-1250, ISO-8859, ISO-8859, ISO-8859, windows-1253, ISO-8859, windows-1255, ISO-8859, windows-1251, windows-1256, KOI8-R, ISO-8859, windows-1254, Shift_JIS, GB18030, EUC-JP, EUC-KR, Big5, ISO-2022, ISO-2022, ISO-2022, IBM424_rtl, IBM424_ltr, IBM420_rtl, IBM420_ltr**: 检测到的字符集的决定性顺序 - 如果检测到的字符集具有相等的置信度，则优先选择列表中较早出现的字符集，而不是较晚出现的字符集。添加“defaults”将会将未命名的字符集放置在该点。
@@ -277,7 +287,7 @@ aliases:
 - `PROXY_PROTOCOL_HEADER_TIMEOUT`: **5s**: 等待`PROXY`协议头的超时时间（设置为`0`表示没有超时）。
 - `PROXY_PROTOCOL_ACCEPT_UNKNOWN`: **false**:接受带有未知类型的`PROXY`协议头。
 - `DOMAIN`: **localhost**: 此服务器的域名。
-- `ROOT_URL`: **%(PROTOCOL)s://%(DOMAIN)s:%(HTTP\_PORT)s/**:
+- `ROOT_URL`: **`{PROTOCOL}://{DOMAIN}:{HTTP_PORT}/`**:
    覆盖自动生成的公共URL。
    如果内部URL和外部URL不匹配（例如在Docker中），这很有用。
 - `STATIC_URL_PREFIX`: **_empty_**:
@@ -285,7 +295,7 @@ aliases:
     这包括CSS文件、图片、JS文件和Web字体。
     头像图片是动态资源，仍由Gitea提供。
    选项可以是不同的路径，例如`/static`, 也可以是另一个域，例如`https://cdn.example.com`.
-   请求会变成 `%(ROOT_URL)s/static/assets/css/index.css` 或 `https://cdn.example.com/assets/css/index.css`
+   请求会变成 `{ROOT_URL}/static/assets/css/index.css` 或 `https://cdn.example.com/assets/css/index.css`
    静态文件位于Gitea源代码仓库的`public/`目录中。
    您可以将`STATIC_URL_PREFIX`请求代理到 Gitea 服务器以提供静态资源，或者将手动构建的 Gitea 资源从 `$GITEA_BUILD/public`复制到静态位置，例如`/var/www/assets`。确保`$STATIC_URL_PREFIX/assets/css/index.css`指向`/var/www/assets/css/index.css`。
 
@@ -297,15 +307,15 @@ aliases:
   - 如果 `PROTOCOL` 设置为 `fcgi`，Gitea 将在由 `HTTP_ADDR` 和 `HTTP_PORT`
   配置设置定义的 TCP 套接字上监听 FastCGI 请求。
 - `UNIX_SOCKET_PERMISSION`: **666**: Unix 套接字的权限。
-- `LOCAL_ROOT_URL`: **%(PROTOCOL)s://%(HTTP_ADDR)s:%(HTTP_PORT)s/**: 
+- `LOCAL_ROOT_URL`: **`{PROTOCOL}://{HTTP_ADDR}:{HTTP_PORT}/`**: 
   用于访问网络服务的 Gitea 工作器（例如 SSH 更新）的本地（DMZ）URL。
   在大多数情况下，您不需要更改默认值。
   仅在您的 SSH 服务器节点与 HTTP 节点不同的情况下才修改它。对于不同的协议，默认值不同。如果 `PROTOCOL`
   是 `http+unix`，则默认值为 `http://unix/`。如果 `PROTOCOL` 是 `fcgi` 或 `fcgi+unix`，则默认值为
-  `%(PROTOCOL)s://%(HTTP_ADDR)s:%(HTTP_PORT)s/`。如果监听在 `0.0.0.0`，则默认值为
-  `%(PROTOCOL)s://localhost:%(HTTP_PORT)s/`，
-  否则默认值为 `%(PROTOCOL)s://%(HTTP_ADDR)s:%(HTTP_PORT)s/`。
-- `LOCAL_USE_PROXY_PROTOCOL`: **%(USE_PROXY_PROTOCOL)s**: 在进行本地连接时传递 PROXY 协议头。
+  `{PROTOCOL}://{HTTP_ADDR}:{HTTP_PORT}/`。如果监听在 `0.0.0.0`，则默认值为
+  `{PROTOCOL}://localhost:{HTTP_PORT}/`，
+  否则默认值为 `{PROTOCOL}://{HTTP_ADDR}:{HTTP_PORT}/`。
+- `LOCAL_USE_PROXY_PROTOCOL`: **`{USE_PROXY_PROTOCOL}`**: 在进行本地连接时传递 PROXY 协议头。
    如果本地连接将经过代理，请将其设置为 false。
 - `PER_WRITE_TIMEOUT`: **30s**: 连接的任何写操作的超时时间。（将其设置为 -1
   以禁用所有超时。）
@@ -313,12 +323,15 @@ aliases:
 - `DISABLE_SSH`: **false**: 当SSH不可用时禁用SSH功能。
 - `START_SSH_SERVER`: **false**: 启用时，使用内置的SSH服务器。
 - `SSH_SERVER_USE_PROXY_PROTOCOL`: **false**: 在与内置SSH服务器建立连接时，期望PROXY协议头。
-- `BUILTIN_SSH_SERVER_USER`: **%(RUN_USER)s**: 用于内置SSH服务器的用户名。
-- `SSH_USER`: **%(BUILTIN_SSH_SERVER_USER)s**: 在克隆URL中显示的SSH用户名。这仅适用于自行配置SSH服务器的人；在大多数情况下，您希望将其留空并修改`BUILTIN_SSH_SERVER_USER`。
-- `SSH_DOMAIN`: **%(DOMAIN)s**: 此服务器的域名，用于显示的克隆 URL。
+- `BUILTIN_SSH_SERVER_USER`: **`{RUN_USER}`**: 用于内置SSH服务器的用户名。
+- `SSH_USER`: **BUILTIN_SSH_SERVER_USER**: 在克隆URL中显示的SSH用户名。
+  如果设置为 `(DOER_USERNAME)`，将使用当前登录用户名作为克隆用的 SSH 用户名。
+  此配置项仅为自己配置 SSH 反向代理的高级用户准备，
+  大多数用户应当把它留空，或者按需修改 `BUILTIN_SSH_SERVER_USER`。
+- `SSH_DOMAIN`: **`{DOMAIN}`**: 此服务器的域名，用于显示的克隆 URL。
 - `SSH_PORT`: **22**: 显示在克隆 URL 中的 SSH 端口。
 - `SSH_LISTEN_HOST`: **0.0.0.0**: 内置 SSH 服务器的监听地址。
-- `SSH_LISTEN_PORT`: **%(SSH_PORT)s**: 内置 SSH 服务器的端口。
+- `SSH_LISTEN_PORT`: **`{SSH_PORT}`**: 内置 SSH 服务器的端口。
 - `SSH_ROOT_PATH`: **~/.ssh**: SSH 目录的根路径。
 - `SSH_CREATE_AUTHORIZED_KEYS_FILE`: **true**: 当 Gitea 不使用内置 SSH 服务器时，默认情况下 Gitea 会创建一个 authorized_keys 文件。如果您打算使用 AuthorizedKeysCommand 功能，您应该关闭此选项。
 - `SSH_AUTHORIZED_KEYS_BACKUP`: **false**: 在重写所有密钥时启用 SSH 授权密钥备份，默认值为 false。
@@ -349,14 +362,14 @@ aliases:
 - `PPROF_DATA_PATH`: **_`AppWorkPath`_/data/tmp/pprof**: `PPROF_DATA_PATH`，当您将 Gitea 作为服务启动时，请使用绝对路径。
 - `LANDING_PAGE`: **home**: 未经身份验证用户的登录页面 \[home, explore, organizations, login, **custom**]。其中 custom 可以是任何 URL，例如 "/org/repo" 或甚至是 `https://anotherwebsite.com`。
 - `LFS_START_SERVER`: **false**: 启用 Git LFS 支持。
-- `LFS_CONTENT_PATH`: **%(APP_DATA_PATH)s/lfs**: 默认的 LFS 内容路径（如果它在本地存储中）。**已弃用**，请使用 `[lfs]` 中的设置。
+- `LFS_CONTENT_PATH`: **`{APP_DATA_PATH}/lfs`**: 默认的 LFS 内容路径（如果它在本地存储中）。**已弃用**，请使用 `[lfs]` 中的设置。
 - `LFS_JWT_SECRET`: **_empty_**: LFS 身份验证密钥，将其更改为唯一的字符串。你可以通过 Gitea 子命令来生成此字符串。转到 [Command Line](administration/command-line.md#generate)。
 - `LFS_JWT_SECRET_URI`: **_empty_**: 代替在配置中定义 LFS_JWT_SECRET，可以使用此配置选项为 Gitea 提供包含密钥的文件的路径（示例值：`file:/etc/gitea/lfs_jwt_secret`）。
 - `LFS_HTTP_AUTH_EXPIRY`: **24h**: LFS 身份验证的有效期，以 time.Duration 表示，超过此期限的推送可能会失败。
 - `LFS_MAX_FILE_SIZE`: **0**: 允许的最大 LFS 文件大小（以字节为单位，设置为 0 为无限制）。
 - `LFS_LOCKS_PAGING_NUM`: **50**: 每页返回的最大 LFS 锁定数。
 - `REDIRECT_OTHER_PORT`: **false**: 如果为 true 并且 `PROTOCOL` 为 https，则允许将 http 请求重定向到 Gitea 监听的 https 端口的 `PORT_TO_REDIRECT`。
-- `REDIRECTOR_USE_PROXY_PROTOCOL`: **%(USE_PROXY_PROTOCOL)s**: 在连接到 https 重定向器时，需要 PROXY 协议头。
+- `REDIRECTOR_USE_PROXY_PROTOCOL`: **`{USE_PROXY_PROTOCOL}`**: 在连接到 https 重定向器时，需要 PROXY 协议头。
 - `PORT_TO_REDIRECT`: **80**: http 重定向服务监听的端口。当 `REDIRECT_OTHER_PORT` 为 true 时使用。
 - `SSL_MIN_VERSION`: **TLSv1.2**: 设置最低支持的 SSL 版本。
 - `SSL_MAX_VERSION`: **_empty_**: 设置最大支持的 SSL 版本。
@@ -463,7 +476,7 @@ aliases:
 [queue] 配置在 `[queue.*]` 下为各个队列设置默认值，并允许为各个队列设置单独的配置覆盖。（不过请参见下文。）
 
 - `TYPE`：**level**: 通用队列类型，当前支持：`level`（在内部使用 LevelDB）、`channel`、`redis`、`dummy`。无效的类型将视为 `level`。
-- `DATADIR`：**queues/common**: 用于存储 level 队列的基本 DataDir。单独的队列的 `DATADIR` 可以在 `queue.name` 部分进行设置。相对路径将根据 `%(APP_DATA_PATH)s` 变为绝对路径。
+- `DATADIR`：**queues/common**: 用于存储 level 队列的基本 DataDir。单独的队列的 `DATADIR` 可以在 `queue.name` 部分进行设置。相对路径将根据 `{APP_DATA_PATH}` 变为绝对路径。
 - `LENGTH`：**100000**: 通道队列阻塞之前的最大队列大小
 - `BATCH_LENGTH`：**20**: 在传递给处理程序之前批处理数据
 - `CONN_STR`：**redis://127.0.0.1:6379/0**: redis 队列类型的连接字符串。对于 `redis-cluster`，使用 `redis+cluster://127.0.0.1:6379/0`。可以使用查询参数来设置选项。类似地，LevelDB 选项也可以使用：**leveldb://relative/path?option=value** 或 **leveldb:///absolute/path?option=value** 进行设置，并将覆盖 `DATADIR`。
@@ -783,7 +796,7 @@ Gitea 创建以下非唯一队列：
 - `MAX_FILES`: **5**: 一次最多上传的附件数量。
 - `STORAGE_TYPE`: **local**: 附件的存储类型，`local` 表示本地磁盘，`minio` 表示兼容 S3 的对象存储服务，如果未设置将使用默认值 `local` 或其他在 `[storage.xxx]` 中定义的名称。
 - `SERVE_DIRECT`: **false**: 允许存储驱动器重定向到经过身份验证的 URL 以直接提供文件。目前，只支持 Minio/S3 通过签名 URL 提供支持，local 不会执行任何操作。
-- `PATH`: **attachments**: 存储附件的路径，仅当 STORAGE_TYPE 为 `local` 时可用。如果是相对路径，将会被解析为 `${AppDataPath}/${attachment.PATH}`.
+- `PATH`: **attachments**: 存储附件的路径，仅当 STORAGE_TYPE 为 `local` 时可用。如果是相对路径，将会被解析为 `{AppDataPath}/{attachment.PATH}`.
 - `MINIO_ENDPOINT`: **localhost:9000**: Minio 端点以连接，仅当 STORAGE_TYPE 为 `minio` 时可用。
 - `MINIO_ACCESS_KEY_ID`: Minio accessKeyID 以连接，仅当 STORAGE_TYPE 为 `minio` 时可用。
 - `MINIO_SECRET_ACCESS_KEY`: Minio secretAccessKey 以连接，仅当 STORAGE_TYPE 为 `minio` 时可用。
@@ -991,7 +1004,7 @@ Gitea 创建以下非唯一队列：
 ## Git (`git`)
 
 - `PATH`: **""**: Git可执行文件的路径。如果为空，Gitea将在PATH环境中搜索。
-- `HOME_PATH`: **%(APP_DATA_PATH)s/home**: Git的HOME目录。
+- `HOME_PATH`: **`{APP_DATA_PATH}/home`**: Git的HOME目录。
    此目录将用于包含Gitea的git调用将使用的`.gitconfig`和可能的`.gnupg`目录。如果您可以确认Gitea是在此环境中唯一运行的应用程序，您可以将其设置为Gitea用户的正常主目录。
 - `DISABLE_DIFF_HIGHLIGHT`: **false**: 禁用已添加和已删除更改的高亮显示。
 - `MAX_GIT_DIFF_LINES`: **1000**: 在diff视图中允许单个文件的最大行数。

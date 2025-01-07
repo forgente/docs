@@ -17,21 +17,31 @@ typically be found at `/etc/gitea/conf/app.ini`.
 
 The defaults provided here are best-effort (not built automatically). They are
 accurately recorded in [app.example.ini](https://github.com/go-gitea/gitea/blob/main/custom/conf/app.example.ini)
-(s/main/\<tag|release\>). Any string in the format `%(X)s` is a feature powered
-by [ini](https://github.com/go-ini/ini/#recursive-values), for reading values recursively.
+The example file on `main` branch is for the latest development version, you could choose the version you are using.
 
-In the default values below, a value in the form `$XYZ` refers to an environment variable. (However, see `environment-to-ini`.) Values in the form  _`XxYyZz`_ refer to values listed as part of the default configuration. These notation forms will not work in your own `app.ini` file and are only listed here as documentation.
+Values in `app.ini` containing `#` or `;` must be quoted using `` ` `` or `"`.
 
-Values containing `#` or `;` must be quoted using `` ` `` or `"""`.
+This document uses the following convention:
+
+* `[section].FOO_BAR` or `[section]FOO_BAR`: a configration option in INI section `[section]`.
+* `FooBar`: it is a Gitea's internal variable, not a configuration option, just used to describe some related logic.
+* `$FOO_BAR`: it is an environment variable, Gitea may use its value but it can't be used in configuration file directly.
+* `{FOO_BAR}/something` or `{FooBar}/something`: the value defaults to use configuration option `FOO_BAR` or internal variable `FooBar`.
 
 :::info
 A full restart is required for Gitea configuration changes to take effect.
 :::
 
-## Default Configuration (non-`app.ini` configuration)
+## Use environment variables to setup Gitea
+
+There is [environment-to-ini](https://github.com/go-gitea/gitea/tree/main/contrib/environment-to-ini) to help to
+generate Gitea's `app.ini` from environment variables.
+
+## Default Internal Variables (non-`app.ini` configuration)
 
 These values are environment-dependent but form the basis of a lot of values. They will be
-reported as part of the default configuration when running `gitea help` or on start-up. The order they are emitted there is slightly different but we will list them here in the order they are set-up.
+reported as part of the default configuration when running `gitea help` or on start-up. 
+The order they are emitted there is slightly different but we will list them here in the order they are set-up.
 
 - _`AppPath`_: This is the absolute path of the running gitea binary.
 - _`AppWorkPath`_: This refers to "working path" of the `gitea` binary. It is determined by using the first set thing in the following hierarchy:
@@ -41,14 +51,12 @@ reported as part of the default configuration when running `gitea help` or on st
   - A built-in value set at build time (see building from source)
   - Otherwise, it defaults to the directory of the _`AppPath`_
   - If any of the above are relative paths then they are made absolute against the directory of the _`AppPath`_
-- _`CustomPath`_: This is the base directory for custom templates and other options.
-It is determined by using the first set thing in the following hierarchy:
+- _`CustomPath`_: This is the base directory for custom templates and other options. It is determined by using the first set thing in the following hierarchy:
   - The `--custom-path` flag passed to the binary
   - The environment variable `$GITEA_CUSTOM`
   - A built-in value set at build time (see building from source)
   - Otherwise, it defaults to _`AppWorkPath`_`/custom`
-  - If any of the above are relative paths then they are made absolute against the
-the directory of the _`AppWorkPath`_
+  - If any of the above are relative paths then they are made absolute against the the directory of the _`AppWorkPath`_
 - _`CustomConf`_: This is the path to the `app.ini` file.
   - The `--config` flag passed to the binary
   - A built-in value set at build time (see building from source)
@@ -68,8 +76,8 @@ In addition, there is _`StaticRootPath`_ which can be set as a built-in at build
 
 ## Repository (`repository`)
 
-- `ROOT`: **%(APP_DATA_PATH)s/gitea-repositories**: Root path for storing all repository data.
-   A relative path is interpreted as **_`AppWorkPath`_/%(ROOT)s**.
+- `ROOT`: **`{APP_DATA_PATH}/gitea-repositories`**: Root path for storing all repository data.
+   A relative path is interpreted as **`{AppWorkPath}/{ROOT}`**.
 - `SCRIPT_TYPE`: **bash**: The script type this server supports. Usually this is `bash`,
    but some users report that only `sh` is available.
 - `DETECTED_CHARSETS_ORDER`: **UTF-8, UTF-16BE, UTF-16LE, UTF-32BE, UTF-32LE, ISO-8859, windows-1252, ISO-8859, windows-1250, ISO-8859, ISO-8859, ISO-8859, windows-1253, ISO-8859, windows-1255, ISO-8859, windows-1251, windows-1256, KOI8-R, ISO-8859, windows-1254, Shift_JIS, GB18030, EUC-JP, EUC-KR, Big5, ISO-2022, ISO-2022, ISO-2022, IBM424_rtl, IBM424_ltr, IBM420_rtl, IBM420_ltr**: Tie-break order of detected charsets - if the detected charsets have equal confidence, charsets earlier in the list will be chosen in preference to those later. Adding `defaults` will place the unnamed charsets at that point.
@@ -277,7 +285,7 @@ The following configuration set `Content-Type: application/vnd.android.package-a
   URL hyperlinks to be rendered in Markdown. URLs beginning in http and https are
   always displayed. If this entry is empty, all URL schemes are allowed
 - `FILE_EXTENSIONS`: **.md,.markdown,.mdown,.mkd,.livemd**: List of file extensions that should be rendered/edited as Markdown. Separate the extensions with a comma. To render files without any extension as markdown, just put a comma.
-- `ENABLE_MATH`: **true**: Enables detection of `\(...\)`, `\[...\]`, `$...$` and `$$...$$` blocks as math blocks.
+- `ENABLE_MATH`: **true**: Enables detection of `$...$`, `$$...$$`, ``` $`...`$$ ``` blocks as math blocks.
 
 ## Server (`server`)
 
@@ -289,7 +297,7 @@ The following configuration set `Content-Type: application/vnd.android.package-a
 - `PROXY_PROTOCOL_HEADER_TIMEOUT`: **5s**: Timeout to wait for PROXY protocol header (set to 0 to have no timeout)
 - `PROXY_PROTOCOL_ACCEPT_UNKNOWN`: **false**: Accept PROXY protocol headers with Unknown type.
 - `DOMAIN`: **localhost**: Domain name of this server.
-- `ROOT_URL`: **%(PROTOCOL)s://%(DOMAIN)s:%(HTTP\_PORT)s/**:
+- `ROOT_URL`: **`{PROTOCOL}://{DOMAIN}:{HTTP_PORT}/`**:
    Overwrite the automatically generated public URL.
    This is useful if the internal and the external URL don't match (e.g. in Docker).
 - `STATIC_URL_PREFIX`: **_empty_**:
@@ -297,7 +305,7 @@ The following configuration set `Content-Type: application/vnd.android.package-a
    This includes CSS files, images, JS files and web fonts.
    Avatar images are dynamic resources and still served by Gitea.
    The option can be just a different path, as in `/static`, or another domain, as in `https://cdn.example.com`.
-   Requests are then made as `%(ROOT_URL)s/static/assets/css/index.css` or `https://cdn.example.com/assets/css/index.css` respectively.
+   Requests are then made as `{ROOT_URL}/static/assets/css/index.css` or `https://cdn.example.com/assets/css/index.css` respectively.
    The static files are located in the `public/` directory of the Gitea source repository.
    You can proxy the STATIC_URL_PREFIX requests to Gitea server to serve the static
    assets, or copy the manually built Gitea assets from `$GITEA_BUILD/public` to
@@ -317,15 +325,15 @@ The following configuration set `Content-Type: application/vnd.android.package-a
   - If `PROTOCOL` is set to `fcgi`, Gitea will listen for FastCGI requests on TCP socket
      defined by `HTTP_ADDR` and `HTTP_PORT` configuration settings.
 - `UNIX_SOCKET_PERMISSION`: **666**: Permissions for the Unix socket.
-- `LOCAL_ROOT_URL`: **%(PROTOCOL)s://%(HTTP_ADDR)s:%(HTTP_PORT)s/**: Local
+- `LOCAL_ROOT_URL`: **`{PROTOCOL}://{HTTP_ADDR}:{HTTP_PORT}/`**: Local
    (DMZ) URL for Gitea workers (such as SSH update) accessing web service. In
    most cases you do not need to change the default value. Alter it only if
    your SSH server node is not the same as HTTP node. For different protocol, the default
    values are different. If `PROTOCOL` is `http+unix`, the default value is `http://unix/`.
-   If `PROTOCOL` is `fcgi` or `fcgi+unix`, the default value is `%(PROTOCOL)s://%(HTTP_ADDR)s:%(HTTP_PORT)s/`.
-   If listen on `0.0.0.0`, the default value is `%(PROTOCOL)s://localhost:%(HTTP_PORT)s/`, Otherwise the default
-   value is `%(PROTOCOL)s://%(HTTP_ADDR)s:%(HTTP_PORT)s/`.
-- `LOCAL_USE_PROXY_PROTOCOL`: **%(USE_PROXY_PROTOCOL)s**: When making local connections pass the PROXY protocol header.
+   If `PROTOCOL` is `fcgi` or `fcgi+unix`, the default value is `{PROTOCOL}://{HTTP_ADDR}:{HTTP_PORT}/`.
+   If listen on `0.0.0.0`, the default value is `{PROTOCOL}://localhost:{HTTP_PORT}/`, Otherwise the default
+   value is `{PROTOCOL}://{HTTP_ADDR}:{HTTP_PORT}/`.
+- `LOCAL_USE_PROXY_PROTOCOL`: **`{USE_PROXY_PROTOCOL}`**: When making local connections pass the PROXY protocol header.
    This should be set to false if the local connection will go through the proxy.
 - `PER_WRITE_TIMEOUT`: **30s**: Timeout for any write to the connection. (Set to -1 to
    disable all timeouts.)
@@ -334,12 +342,15 @@ The following configuration set `Content-Type: application/vnd.android.package-a
 - `DISABLE_SSH`: **false**: Disable SSH feature when it's not available.
 - `START_SSH_SERVER`: **false**: When enabled, use the built-in SSH server.
 - `SSH_SERVER_USE_PROXY_PROTOCOL`: **false**: Expect PROXY protocol header on connections to the built-in SSH Server.
-- `BUILTIN_SSH_SERVER_USER`: **%(RUN_USER)s**: Username to use for the built-in SSH Server.
-- `SSH_USER`: **%(BUILTIN_SSH_SERVER_USER)s**: SSH username displayed in clone URLs. This is only for people who configure the SSH server themselves; in most cases, you want to leave this blank and modify the `BUILTIN_SSH_SERVER_USER`.
-- `SSH_DOMAIN`: **%(DOMAIN)s**: Domain name of this server, used for displayed clone URL.
+- `BUILTIN_SSH_SERVER_USER`: **`{RUN_USER}`**: Username to use for the built-in SSH Server.
+- `SSH_USER`: **`{BUILTIN_SSH_SERVER_USER}`**: SSH username displayed in clone URLs.
+  If it is set to `(DOER_USERNAME)`, it will use current signed-in user's username.
+  This option is only for some advanced users who have configured their SSH reverse-proxy and need to use different usernames for git SSH clone.
+  Most users should just leave it blank and/or modify the `BUILTIN_SSH_SERVER_USER`.
+- `SSH_DOMAIN`: **`{DOMAIN}`**: Domain name of this server, used for displayed clone URL.
 - `SSH_PORT`: **22**: SSH port displayed in clone URL.
 - `SSH_LISTEN_HOST`: **0.0.0.0**: Listen address for the built-in SSH server.
-- `SSH_LISTEN_PORT`: **%(SSH\_PORT)s**: Port for the built-in SSH server.
+- `SSH_LISTEN_PORT`: **`{SSH_PORT}`**: Port for the built-in SSH server.
 - `SSH_ROOT_PATH`: **~/.ssh**: Root path of SSH directory.
 - `SSH_CREATE_AUTHORIZED_KEYS_FILE`: **true**: Gitea will create a authorized_keys file by default when it is not using the internal ssh server. If you intend to use the AuthorizedKeysCommand functionality then you should turn this off.
 - `SSH_AUTHORIZED_KEYS_BACKUP`: **false**: Enable SSH Authorized Key Backup when rewriting all keys, default is false.
@@ -373,7 +384,7 @@ The following configuration set `Content-Type: application/vnd.android.package-a
 - `LANDING_PAGE`: **home**: Landing page for unauthenticated users \[home, explore, organizations, login, **custom**\]. Where custom would instead be any URL such as "/org/repo" or even `https://anotherwebsite.com`
 - `LFS_START_SERVER`: **false**: Enables Git LFS support.
 - `LFS_ALLOW_PURE_SSH`: **false**: Enables Git LFS Pure SSH protocol support. Currently disabled by default, see [Git LFS Support](administration/git-lfs-support.md).
-- `LFS_CONTENT_PATH`: **%(APP_DATA_PATH)s/lfs**: Default LFS content path. (if it is on local storage.) **DEPRECATED** use settings in `[lfs]`.
+- `LFS_CONTENT_PATH`: **`{APP_DATA_PATH}/lfs`**: Default LFS content path. (if it is on local storage.) **DEPRECATED** use settings in `[lfs]`.
 - `LFS_JWT_SECRET`: **_empty_**: LFS authentication secret, change this a unique string. You can generate one via Gitea sub command. Ref [Command Line](administration/command-line.md#generate)
 - `LFS_JWT_SECRET_URI`: **_empty_**: Instead of defining LFS_JWT_SECRET in the configuration, this configuration option can be used to give Gitea a path to a file that contains the secret (example value: `file:/etc/gitea/lfs_jwt_secret`)
 - `LFS_HTTP_AUTH_EXPIRY`: **24h**: LFS authentication validity period in time.Duration, pushes taking longer than this may fail.
@@ -382,7 +393,7 @@ The following configuration set `Content-Type: application/vnd.android.package-a
 - `LFS_MAX_BATCH_SIZE`: **0**: The maximum number of LFS pointers that a client may request of the LFS batch api. Zero is the default behavior and allows any size batch.
 
 - `REDIRECT_OTHER_PORT`: **false**: If true and `PROTOCOL` is https, allows redirecting http requests on `PORT_TO_REDIRECT` to the https port Gitea listens on.
-- `REDIRECTOR_USE_PROXY_PROTOCOL`: **%(USE_PROXY_PROTOCOL)s**: expect PROXY protocol header on connections to https redirector.
+- `REDIRECTOR_USE_PROXY_PROTOCOL`: **`{USE_PROXY_PROTOCOL}`**: expect PROXY protocol header on connections to https redirector.
 - `PORT_TO_REDIRECT`: **80**: Port for the http redirection service to listen on. Used when `REDIRECT_OTHER_PORT` is true.
 - `SSL_MIN_VERSION`: **TLSv1.2**: Set the minimum version of ssl support.
 - `SSL_MAX_VERSION`: **_empty_**: Set the maximum version of ssl support.
@@ -496,7 +507,7 @@ relation to port exhaustion.
 Configuration at `[queue]` will set defaults for queues with overrides for individual queues at `[queue.*]`. (However see below.)
 
 - `TYPE`: **level**: General queue type, currently support: `level` (uses a LevelDB internally), `channel`, `redis`, `dummy`. Invalid types are treated as `level`.
-- `DATADIR`: **queues/common**: Base DataDir for storing level queues. `DATADIR` for individual queues can be set in `queue.name` sections. Relative paths will be made absolute against `%(APP_DATA_PATH)s`.
+- `DATADIR`: **queues/common**: Base DataDir for storing level queues. `DATADIR` for individual queues can be set in `queue.name` sections. Relative paths will be made absolute against `{APP_DATA_PATH}`.
 - `LENGTH`: **100000**: Maximal queue size before channel queues block
 - `BATCH_LENGTH`: **20**: Batch data before passing to the handler
 - `CONN_STR`: **redis://127.0.0.1:6379/0**: Connection string for the redis queue type. Several redis connections schemes are supported. To see all available `uri.Scheme` types, see [here](https://github.com/go-gitea/gitea/blob/main/modules/nosql/manager_redis.go#L98-L123). For example, if you're running a Redis cluster, use `redis+cluster://127.0.0.1:6379/0`. Options can be set using query params. Similarly, LevelDB options can also be set using: **leveldb://relative/path?option=value** or **leveldb:///absolute/path?option=value**, and will override `DATADIR`
@@ -892,7 +903,7 @@ Default templates for project board view:
 
   For `STORAGE_TYPE = local`, below are possible configurations
 
-  - `PATH`: **attachments**: Path to store attachments only available when STORAGE_TYPE is `local`, relative paths will be resolved to `${AppDataPath}/${attachment.PATH}`.
+  - `PATH`: **attachments**: Path to store attachments only available when STORAGE_TYPE is `local`, relative paths will be resolved to `{AppDataPath}/{attachment.PATH}`.
 
   For `STORAGE_TYPE = minio`, the configurations can be found at [Storage Minio](#storage_minio), you can override some configurations like below.
 
@@ -1129,7 +1140,7 @@ Default templates for project board view:
 ## Git (`git`)
 
 - `PATH`: **""**: The path of Git executable. If empty, Gitea searches through the PATH environment.
-- `HOME_PATH`: **%(APP_DATA_PATH)s/home**: The HOME directory for Git.
+- `HOME_PATH`: **`{APP_DATA_PATH}/home`**: The HOME directory for Git.
    This directory will be used to contain the `.gitconfig` and possible `.gnupg` directories that Gitea's git calls will use. If you can confirm Gitea is the only application running in this environment, you can set it to the normal home directory for Gitea user.
 - `DISABLE_DIFF_HIGHLIGHT`: **false**: Disables highlight of added and removed changes.
 - `MAX_GIT_DIFF_LINES`: **1000**: Max number of lines allowed of a single file in diff view.
