@@ -250,6 +250,7 @@ The following configuration set `Content-Type: application/vnd.android.package-a
 ### UI - User (`ui.user`)
 
 - `REPO_PAGING_NUM`: **15**: Number of repos that are shown in one page.
+- `ORG_PAGING_NUM`: **15**: Number of orgs that are displayed on profile page
 
 ### UI - Metadata (`ui.meta`)
 

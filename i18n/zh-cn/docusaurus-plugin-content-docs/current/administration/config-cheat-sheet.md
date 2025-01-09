@@ -241,6 +241,7 @@ aliases:
 ### 界面 - 用户 (`ui.user`)
 
 - `REPO_PAGING_NUM`: **15**: 单页显示的仓库数量。
+- `ORG_PAGING_NUM`: **15**: 个人信息页展示的组织数量。
 
 ### 界面 - 元信息 (`ui.meta`)
 
