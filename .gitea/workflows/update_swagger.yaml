@@ -19,6 +19,7 @@ jobs:
           sed -i "$@" 's/"version": "{{AppVer | JSEscape | Safe}}"/"version": "1.22.6"/' static/swagger-22.json
           rm v1_json.tmpl
 
+          if ! [[ $(git diff --shortstat) ]]; then exit 0; fi
           git config --global user.name "Gitea Bot"
           git config --global user.email "teabot@gitea.io"
           git remote set-url origin https://x-access-token:${{ secrets.DEPLOY_TOKEN }}@gitea.com/gitea/docs.git
