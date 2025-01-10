@@ -16,7 +16,7 @@
   border-color: var(--ifm-color-white);
 }
 
-.input:placeholder {
+.input::placeholder {
   color: var(--palette-pale-blue);
   font-size: var(--font-size-normal);
   font-weight: var(--ifm-font-weight-bold);

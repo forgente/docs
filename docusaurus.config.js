@@ -155,7 +155,9 @@ const config = {
   onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.png',
-
+  future:{
+    experimental_faster: true
+  },
   plugins: [
     [
       'docusaurus-plugin-plausible',
