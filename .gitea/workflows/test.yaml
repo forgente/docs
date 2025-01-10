@@ -14,7 +14,7 @@ jobs:
           cache: npm
       - name: prepare awesome list
         run: |
-          make prepare-awesome-latest prepare-awesome\#22 prepare-awesome\#21 prepare-awesome\#20 prepare-awesome\#19
+          make prepare-awesome-latest prepare-awesome\#23 prepare-awesome\#22 prepare-awesome\#21 prepare-awesome\#20 prepare-awesome\#19
       - name: Cache ~/.npm for npm ci
         uses: actions/cache@v4
         with:
