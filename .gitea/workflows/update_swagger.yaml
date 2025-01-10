@@ -16,7 +16,7 @@ jobs:
           rm v1_json.tmpl
 
           wget https://github.com/go-gitea/gitea/blob/v1.23.0/templates/swagger/v1_json.tmpl
-          sed -i "$@" 's/"version": "{{AppVer | JSEscape}}"/"version": "1.23.0"/' static/swagger-23.json
+          sed -i "$@" 's/"version": "{{AppVer | JSEscape}}"/"version": "1.23.1"/' static/swagger-23.json
           rm v1_json.tmpl
 
           if ! [[ $(git diff --shortstat) ]]; then exit 0; fi

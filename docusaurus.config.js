@@ -76,11 +76,11 @@ const globalVariables = {
     'goVersion': '1.23',
     'minGoVersion': '1.22',
     'minNodeVersion': '18',
-    'version': '1.23.0',
+    'version': '1.23.1',
     'sourceVersion': 'v1.23.0',
     'sourceBranch': 'release/v1.23',
-    'dockerVersion': '1.23.0',
-    'displayVersion': '1.23.0'
+    'dockerVersion': '1.23.1',
+    'displayVersion': '1.23.1'
   },
   '1.22': {
     'goVersion': '1.22',
@@ -233,7 +233,7 @@ const config = {
             return `https://gitea.com/gitea/docs/src/branch/main/i18n/${locale}/docusaurus-plugin-content-docs/${version === 'current' ? 'current': `version-${version}`}/${docPath}`;
           },
           versions: versions,
-          lastVersion: '1.22',
+          lastVersion: '1.23',
           async sidebarItemsGenerator({defaultSidebarItemsGenerator, ...args}) {
             const {item} = args;
             // Use the provided data to generate a custom sidebar slice
@@ -362,7 +362,7 @@ const config = {
             position: 'right',
             items: [
               {to: '/api/next/', label: '1.24-dev' },
-              {to: '/api/1.23/', label: '1.23.0' },
+              {to: '/api/1.23/', label: '1.23.1' },
               {to: '/api/1.22/', label: '1.22.6' },
               {to: '/api/1.21/', label: '1.21.11' },
               {to: '/api/1.20/', label: '1.20.6' },
