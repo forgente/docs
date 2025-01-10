@@ -3,7 +3,7 @@ import {MDXProvider} from '@mdx-js/react';
 import MDXComponents from '@theme/MDXComponents';
 // useDoc reference:
 // https://fossies.org/linux/docusaurus/packages/docusaurus-theme-classic/src/theme/DocItem/Content/index.tsx
-import {useDoc} from '@docusaurus/theme-common/internal';
+import {useDoc} from '@docusaurus/plugin-content-docs/client';
 import Outdated from '@site/src/components/Outdated';
 
 export default function MDXContent({children}) {
