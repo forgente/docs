@@ -23,8 +23,16 @@ const apiConfig = [
     // Plugin Options for loading OpenAPI files
     specs: renderApiSSR ? [
       {
-        spec: 'static/swagger-latest.json',
         route: '/api/next/',
+        spec: 'static/swagger-latest.json',
+      },
+      {
+        route: '/api/',
+        spec: 'static/swagger-23.json',
+      },
+      {
+        route: '/api/1.23/',
+        spec: 'static/swagger-23.json',
       },
       {
         route: '/api/1.22/',
@@ -41,10 +49,6 @@ const apiConfig = [
       {
         route: '/api/1.19/',
         spec: 'static/swagger-19.json',
-      },
-      {
-        route: '/api/',
-        spec: 'static/swagger-22.json',
       }
     ]: [],
     // Theme Options for modifying how redoc renders them
