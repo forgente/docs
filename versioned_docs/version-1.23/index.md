@@ -13,7 +13,7 @@ Gitea was originally forked from [Gogs](https://gogs.io) and almost all the code
 
 :::warning
 
-Gitea does not sent or cherry-picked commits from upstream, so there is no guarantee it will work if you upgrade from Gogs to Gitea. The recommended method is to migrate repositories from Gogs to Gitea.
+Gitea does not send or cherry-pick commits from upstream, so there is no guarantee it will work if you upgrade from Gogs to Gitea. The recommended method is to migrate repositories from Gogs to Gitea.
 
 :::
 
