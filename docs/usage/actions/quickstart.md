@@ -55,7 +55,7 @@ If you are unsure which address to use, the LAN address is usually the right cho
 Each token can be used to create multiple runners, until it is replaced with a new token using the reset link.
 You can obtain different levels of 'tokens' from the following places to create the corresponding level of 'runners':
 
-- Instance level: The admin settings page, like `<your_gitea.com>/admin/actions/runners`.
+- Instance level: The admin settings page, like `<your_gitea.com>/-/admin/actions/runners`.
 - Organization level: The organization settings page, like `<your_gitea.com>/<org>/settings/actions/runners`.
 - Repository level: The repository settings page, like `<your_gitea.com>/<owner>/<repo>/settings/actions/runners`.
 

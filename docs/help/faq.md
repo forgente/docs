@@ -330,9 +330,9 @@ It is highly recommended to back-up your database before running these commands.
 
 - Add your (bare) repositories to the correct spot for your configuration (`repository.ROOT`), ensuring they are in the correct layout `<REPO_ROOT>/[user]/[repo].git`.
   - **Note:** the directory names must be lowercase.
-  - You can also check `<ROOT_URL>/admin/config` for the repository root path.
+  - You can also check `<ROOT_URL>/-/admin/config` for the repository root path.
 - Ensure that the user/org exists that you want to adopt repositories for.
-- As an admin, go to `<ROOT_URL>/admin/repos/unadopted` and search.
+- As an admin, go to `<ROOT_URL>/-/admin/repos/unadopted` and search.
   - Users can also be given similar permissions via config [`ALLOW_ADOPTION_OF_UNADOPTED_REPOSITORIES`](../administration/config-cheat-sheet.md#repository-repository).
 - If the above steps are done correctly, you should be able to select repositories to adopt.
   - If no repositories are found, enable [debug logging](../administration/config-cheat-sheet.md#repository-repository) to check for any specific errors.
