@@ -55,6 +55,23 @@ If you want to give more permissions to the runner, allowing it to access more p
 Refined permission control to Actions is a complicated job.
 In the future, we will add more options to Gitea to make it more configurable, such as allowing more write access to repositories or read access to all repositories in the same organization.
 
+## Which operating systems are supported by act runner?
+
+We released official binaries for Linux, macOS, and Windows.
+While other operating systems are theoretically supported if it is supported by golang and docker(docker mode enabled).
+
+One thing to note is that if you choose to run jobs directly on the host instead of in job containers, the environmental differences between operating systems may cause unexpected failures.
+
+For example, bash is not available on Windows in most cases, while act tries to use bash to run scripts by default.
+Therefore, you need to specify `powershell` as the default shell in your workflow file, see [defaults.run](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#defaultsrun).
+
+
+```yaml
+defaults:
+  run:
+    shell: powershell
+```
+
 ## How to avoid being hacked?
 
 There are two types of possible attacks: unknown runner stealing the code or secrets from your repository, or malicious scripts controlling your runner.
@@ -72,22 +89,6 @@ Here's how we do it on [gitea.com](http://gitea.com/):
 - To run actions for fork pull requests, approval is required. See [#22803](https://github.com/go-gitea/gitea/pull/22803).
 - If someone registers their own runner for their repository or organization on [gitea.com](http://gitea.com/), we have no objections and will just not use it in our org. However, they should take care to ensure that the runner is not used by other users they do not know.
 
-## Which operating systems are supported by act runner?
-
-It works well on Linux, macOS, and Windows.
-While other operating systems are theoretically supported, they require further testing.
-
-One thing to note is that if you choose to run jobs directly on the host instead of in job containers, the environmental differences between operating systems may cause unexpected failures.
-
-For example, bash is not available on Windows in most cases, while act tries to use bash to run scripts by default.
-Therefore, you need to specify `powershell` as the default shell in your workflow file, see [defaults.run](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#defaultsrun).
-
-```yaml
-defaults:
-  run:
-    shell: powershell
-```
-
 ## Why choose GitHub Actions? Why not something compatible with GitLab CI/CD?
 
 [@lunny](https://gitea.com/lunny) has explained this in the [issue to implement actions](https://github.com/go-gitea/gitea/issues/13539).
@@ -100,7 +101,7 @@ It is exciting to be able to reuse them.
 
 This is valid syntax.
 It means that it should run on runners that have both the `label_a` **and** `label_b` labels, see [Workflow syntax for GitHub Actions](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idruns-on).
-Unfortunately, act runner does not work this way.
+Unfortunately, act runner does not work this way until v0.2.11.
 As mentioned, we map labels to environments:
 
 - `ubuntu` → `ubuntu:22.04`
@@ -137,9 +138,10 @@ In the meantime, we suggest that you re-register your runner if you want to chan
 
 ## Will there be more implementations for Gitea Actions runner?
 
-Although we would like to provide more options, our limited manpower means that act runner will be the only officially supported runner.
-However, both Gitea and act runner are completely open source, so anyone can create a new/better implementation.
-We support your choice, no matter how you decide.
+Although we would like to provide more options, our limited manpower means that act runner will be the only officially supported runner at the moment.
+
+However, both Gitea and act runner are completely open source under MIT License, so anyone can modify the code to satisfy their requirements.
+
 In case you fork act runner to create your own version: Please contribute the changes back if you can and if you think your changes will help others as well.
 
 ## What workflow trigger events does Gitea support?

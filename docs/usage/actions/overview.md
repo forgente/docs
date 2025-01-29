@@ -10,7 +10,7 @@ Starting with Gitea **1.19**, Gitea Actions are available as a built-in CI/CD so
 
 ## Name
 
-It is similar and compatible to [GitHub Actions](https://github.com/features/actions), and its name is inspired by it too.
+It is similar and mostly compatible to [GitHub Actions](https://github.com/features/actions), and its name is inspired by it too.
 To avoid confusion, we have clarified the spelling here:
 
 - "Gitea Actions" (with an "s", both words capitalized) is the name of the Gitea feature.
@@ -22,7 +22,7 @@ To avoid confusion, we have clarified the spelling here:
 
 Just like other CI/CD solutions, Gitea doesn't run the jobs itself, but delegates the jobs to runners.
 The runner of Gitea Actions is called [act runner](https://gitea.com/gitea/act_runner), it is a standalone program and also written in Go.
-It is based on a [fork](https://gitea.com/gitea/act) of [nektos/act](http://github.com/nektos/act).
+An important part of the application comes from a [fork](https://gitea.com/gitea/act) of [nektos/act](http://github.com/nektos/act).
 
 Because the runner is deployed independently, there could be potential security issues.
 To avoid them, please follow two simple rules:
@@ -35,8 +35,4 @@ However, for public Gitea instances, such as [gitea.com](https://gitea.com), the
 
 ## Status
 
-Gitea Actions is still under development, so there may be some bugs and missing features.
-And breaking changes may be made before it's stable (v1.20 or later).
-
-If the situation changes, we will update it here.
-So please refer to the content here when you find outdated articles elsewhere.
+Gitea Actions is stable enough for production usage and we use Gitea Actions in all the repositories in https://gitea.com/gitea.
