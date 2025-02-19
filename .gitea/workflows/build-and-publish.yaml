@@ -17,7 +17,7 @@ jobs:
           cache: npm
       - name: install necessary tools
         run: |
-          apt update -y && apt install -y rsync python3 python3-pip python-is-python3 python3-awscli
+          apt update -y && apt install -y rsync python3 python3-pip python-is-python3 awscli
       - name: prepare awesome list
         run: |
           make prepare-awesome-latest prepare-awesome\#23 prepare-awesome\#22 prepare-awesome\#21 prepare-awesome\#20 prepare-awesome\#19
