@@ -36,10 +36,6 @@ jobs:
       - name: build site
         run: |
           make build
-      - name: install aws cli
-        uses: unfor19/install-aws-cli-action@v1
-        with:
-          version: 1
       - name: aws credential configure
         uses: aws-actions/configure-aws-credentials@v4
         with:
