@@ -8,7 +8,7 @@ on:
 
 jobs:
   build-docs:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -18,6 +18,7 @@ jobs:
       - name: install necessary tools
         run: |
           apt update -y && apt install -y rsync python3 python3-pip python-is-python3
+          pip install awscli
       - name: prepare awesome list
         run: |
           make prepare-awesome-latest prepare-awesome\#23 prepare-awesome\#22 prepare-awesome\#21 prepare-awesome\#20 prepare-awesome\#19
