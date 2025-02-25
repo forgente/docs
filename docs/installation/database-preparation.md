@@ -24,9 +24,10 @@ All steps below requires that the database engine of your choice is installed on
 
 ## MySQL/MariaDB
 
-1. For remote database setup, you will need to make MySQL listen to your IP address. Edit `bind-address` option on `/etc/mysql/my.cnf` on database instance to:
+1. For remote database setup, you will need to make MySQL listen to your IP address. Configure the `bind-address` option in `/etc/mysql/my.cnf` on database instance by adding the following lines:
 
     ```ini
+    [mysqld]
     bind-address = 203.0.113.3
     ```
 
