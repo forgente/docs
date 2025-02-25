@@ -933,25 +933,34 @@ Default templates for project boards:
 
 - `ENABLED`: **true**: Enable service.
 - `RUN_AT_START`: **true**: Run tasks at start up time (if ENABLED).
+- `NOTICE_ON_SUCCESS`: **false**: Whether to emit notice on successful execution too
 - `SCHEDULE`: **@midnight**: Cron syntax for scheduling repository archive cleanup, e.g. `@every 1h`.
 - `OLDER_THAN`: **24h**: Archives created more than `OLDER_THAN` ago are subject to deletion, e.g. `12h`.
 
 #### Cron - Update Mirrors (`cron.update_mirrors`)
 
+- `ENABLED`: **true**: Enable running Update mirrors task periodically.
 - `SCHEDULE`: **@every 10m**: Cron syntax for scheduling update mirrors, e.g. `@every 3h`.
+- `RUN_AT_START`: **false**: Run Update mirrors task when Gitea starts.
+- `NOTICE_ON_SUCCESS`: **false**: Notice if not success
 - `PULL_LIMIT`: **50**: Limit the number of mirrors added to the queue to this number (negative values mean no limit, 0 will result in no mirrors being queued effectively disabling pull mirror updating).
 - `PUSH_LIMIT`: **50**: Limit the number of mirrors added to the queue to this number (negative values mean no limit, 0 will result in no mirrors being queued effectively disabling push mirror updating).
 
 #### Cron - Repository Health Check (`cron.repo_health_check`)
 
+- `ENABLED`: **true**: Enable running Update mirrors task periodically.
 - `SCHEDULE`: **@midnight**: Cron syntax for scheduling repository health check.
+- `RUN_AT_START`: **false**: Run Update mirrors task when Gitea starts.
+- `NOTICE_ON_SUCCESS`: **false**: Notice if not success
 - `TIMEOUT`: **60s**: Time duration syntax for health check execution timeout.
 - `ARGS`: **_empty_**: Arguments for command `git fsck`, e.g. `--unreachable --tags`. See more on http://git-scm.com/docs/git-fsck
 
 #### Cron - Repository Statistics Check (`cron.check_repo_stats`)
 
-- `RUN_AT_START`: **true**: Run repository statistics check at start time.
 - `SCHEDULE`: **@midnight**: Cron syntax for scheduling repository statistics check.
+- `ENABLED`: **true**: Enable running Update mirrors task periodically.
+- `RUN_AT_START`: **true**: Run Update mirrors task when Gitea starts.
+- `NOTICE_ON_SUCCESS`: **false**: Notice if not success
 
 #### Cron - Cleanup hook_task Table (`cron.cleanup_hook_task_table`)
 
@@ -972,10 +981,20 @@ Default templates for project boards:
 
 #### Cron - Update Migration Poster ID (`cron.update_migration_poster_id`)
 
+Update migrated repositories' issues and comments' posterid, it will always attempt synchronization when the instance starts.
+
+- `ENABLED`: **true**: Enable update migration poster id job.
+- `RUN_AT_START`: **true**: Update migrated repositories' issues and comments' posterid when starting server
+- `NOTICE_ON_SUCCESS`: **false**: Notice if not success
 - `SCHEDULE`: **@midnight** : Interval as a duration between each synchronization, it will always attempt synchronization when the instance starts.
 
 #### Cron - Sync External Users (`cron.sync_external_users`)
 
+Synchronize external user data (only LDAP user synchronization is supported)
+
+- `ENABLED`: **true**: Enable synchronize external user data job
+- `RUN_AT_START`: **false**: Synchronize external user data when starting server
+- `NOTICE_ON_SUCCESS`: **false**: Notice if not success
 - `SCHEDULE`: **@midnight** : Interval as a duration between each synchronization, it will always attempt synchronization when the instance starts.
 - `UPDATE_EXISTING`: **true**: Create new users, update existing user data and disable users that are not in external source anymore (default) or only create new users if UPDATE_EXISTING is set to false.
 
