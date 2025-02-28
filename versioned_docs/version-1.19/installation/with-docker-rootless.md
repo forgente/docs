@@ -18,7 +18,7 @@ the official [install instructions](https://docs.docker.com/compose/install/).
 
 ## Basics
 
-The most simple setup just creates a volume and a network and starts the `gitea/gitea:latest-rootless`
+The most simple setup just creates a volume and a network and starts the `docker.gitea.com/gitea:latest-rootless`
 image as a service. Since there is no database available, one can be initialized using SQLite3.
 
 Create a directory for `data` and `config`:
@@ -36,7 +36,7 @@ version: "2"
 
 services:
   server:
-    image: docker.io/gitea/gitea:@dockerVersion@-rootless
+    image: docker.gitea.com/gitea:@dockerVersion@-rootless
     restart: always
     volumes:
       - ./data:/var/lib/gitea
@@ -69,7 +69,7 @@ version: "2"
 
 services:
   server:
-    image: docker.io/gitea/gitea:@dockerVersion@-rootless
+    image: docker.gitea.com/gitea:@dockerVersion@-rootless
     restart: always
     volumes:
       - ./data:/var/lib/gitea
@@ -93,7 +93,7 @@ version: "2"
 
 services:
   server:
-    image: docker.io/gitea/gitea:@dockerVersion@-rootless
+    image: docker.gitea.com/gitea:@dockerVersion@-rootless
 +    environment:
 +      - GITEA__database__DB_TYPE=mysql
 +      - GITEA__database__HOST=db:3306
@@ -134,7 +134,7 @@ version: "2"
 
 services:
   server:
-    image: docker.io/gitea/gitea:@dockerVersion@-rootless
+    image: docker.gitea.com/gitea:@dockerVersion@-rootless
     environment:
 +      - GITEA__database__DB_TYPE=postgres
 +      - GITEA__database__HOST=db:5432
@@ -182,7 +182,7 @@ version: "2"
 +
 services:
   server:
-    image: docker.io/gitea/gitea:@dockerVersion@-rootless
+    image: docker.gitea.com/gitea:@dockerVersion@-rootless
     restart: always
     volumes:
 -      - ./data:/var/lib/gitea
@@ -209,7 +209,7 @@ version: "2"
 
 services:
   server:
-    image: docker.io/gitea/gitea:@dockerVersion@-rootless
+    image: docker.gitea.com/gitea:@dockerVersion@-rootless
     restart: always
 +    user: 1001
     volumes:
@@ -281,7 +281,7 @@ docker-compose up -d
 - Rename folder (inside volume) gitea to custom
 - Edit app.ini if needed
   - Set START_SSH_SERVER = true
-- Use image docker.io/gitea/gitea:@dockerVersion@-rootless
+- Use image docker.gitea.com/gitea:@dockerVersion@-rootless
 
 ## Managing Deployments With Environment Variables
 

@@ -12,7 +12,7 @@ Gitea 在其 Docker Hub 组织内提供自动更新的 Docker 镜像。可以始
 
 ## 基本
 
-最简单的设置只是创建一个卷和一个网络，然后将 `gitea/gitea:latest` 镜像作为服务启动。由于没有可用的数据库，因此可以使用 SQLite3 初始化数据库。创建一个类似 `gitea` 的目录，并将以下内容粘贴到名为 `docker-compose.yml` 的文件中。请注意，该卷应由配置文件中指定的 UID/GID 的用户/组拥有。如果您不授予卷正确的权限，则容器可能无法启动。另请注意，标签 `:latest` 将安装当前的开发版本。对于稳定的发行版，您可以使用 `:1` 或指定某个发行版，例如 `@dockerVersion@`。
+最简单的设置只是创建一个卷和一个网络，然后将 `docker.gitea.com/gitea:latest` 镜像作为服务启动。由于没有可用的数据库，因此可以使用 SQLite3 初始化数据库。创建一个类似 `gitea` 的目录，并将以下内容粘贴到名为 `docker-compose.yml` 的文件中。请注意，该卷应由配置文件中指定的 UID/GID 的用户/组拥有。如果您不授予卷正确的权限，则容器可能无法启动。另请注意，标签 `:latest` 将安装当前的开发版本。对于稳定的发行版，您可以使用 `:1` 或指定某个发行版，例如 `@dockerVersion@`。
 
 ```yaml
 version: "3"
@@ -23,7 +23,7 @@ networks:
 
 services:
   server:
-    image: docker.io/gitea/gitea:@dockerVersion@
+    image: docker.gitea.com/gitea:@dockerVersion@
     container_name: gitea
     environment:
       - USER_UID=1000
@@ -53,7 +53,7 @@ networks:
 
 services:
   server:
-    image: docker.io/gitea/gitea:@dockerVersion@
+    image: docker.gitea.com/gitea:@dockerVersion@
     container_name: gitea
     environment:
       - USER_UID=1000
@@ -87,7 +87,7 @@ networks:
 
 services:
   server:
-    image: docker.io/gitea/gitea:@dockerVersion@
+    image: docker.gitea.com/gitea:@dockerVersion@
     container_name: gitea
     environment:
       - USER_UID=1000
@@ -137,7 +137,7 @@ networks:
 
 services:
   server:
-    image: docker.io/gitea/gitea:@dockerVersion@
+    image: docker.gitea.com/gitea:@dockerVersion@
     container_name: gitea
     environment:
       - USER_UID=1000
@@ -190,7 +190,7 @@ networks:
 +
 services:
   server:
-    image: docker.io/gitea/gitea:@dockerVersion@
+    image: docker.gitea.com/gitea:@dockerVersion@
     container_name: gitea
     restart: always
     networks:
@@ -290,8 +290,8 @@ Gitea 将为每次新安装自动生成新的 `SECRET_KEY` 并将它们写入 `a
 以下命令将向 `stdout` 输出一个新的 `SECRET_KEY` 和 `INTERNAL_TOKEN`，然后您可以将其放入环境变量中。
 
 ```bash
-docker run -it --rm docker.io/gitea/gitea:1 gitea generate secret SECRET_KEY
-docker run -it --rm docker.io/gitea/gitea:1 gitea generate secret INTERNAL_TOKEN
+docker run -it --rm docker.gitea.com/gitea:1 gitea generate secret SECRET_KEY
+docker run -it --rm docker.gitea.com/gitea:1 gitea generate secret INTERNAL_TOKEN
 ```
 
 ```yaml

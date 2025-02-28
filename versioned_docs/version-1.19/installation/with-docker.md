@@ -16,7 +16,7 @@ the official [install instructions](https://docs.docker.com/compose/install/).
 
 ## Basics
 
-The most simple setup just creates a volume and a network and starts the `gitea/gitea:latest`
+The most simple setup just creates a volume and a network and starts the `docker.gitea.com/gitea:latest`
 image as a service. Since there is no database available, one can be initialized using SQLite3.
 Create a directory like `gitea` and paste the following content into a file named `docker-compose.yml`.
 Note that the volume should be owned by the user/group with the UID/GID specified in the config file.
@@ -32,7 +32,7 @@ networks:
 
 services:
   server:
-    image: docker.io/gitea/gitea:@dockerVersion@
+    image: docker.gitea.com/gitea:@dockerVersion@
     container_name: gitea
     environment:
       - USER_UID=1000
@@ -64,7 +64,7 @@ networks:
 
 services:
   server:
-    image: docker.io/gitea/gitea:@dockerVersion@
+    image: docker.gitea.com/gitea:@dockerVersion@
     container_name: gitea
     environment:
       - USER_UID=1000
@@ -99,7 +99,7 @@ networks:
 
 services:
   server:
-    image: docker.io/gitea/gitea:@dockerVersion@
+    image: docker.gitea.com/gitea:@dockerVersion@
     container_name: gitea
     environment:
       - USER_UID=1000
@@ -150,7 +150,7 @@ networks:
 
 services:
   server:
-    image: docker.io/gitea/gitea:@dockerVersion@
+    image: docker.gitea.com/gitea:@dockerVersion@
     container_name: gitea
     environment:
       - USER_UID=1000
@@ -206,7 +206,7 @@ networks:
 +
 services:
   server:
-    image: docker.io/gitea/gitea:@dockerVersion@
+    image: docker.gitea.com/gitea:@dockerVersion@
     container_name: gitea
     restart: always
     networks:
@@ -305,8 +305,8 @@ Gitea will generate new secrets/tokens for every new installation automatically 
 The following commands will output a new `SECRET_KEY` and `INTERNAL_TOKEN` to `stdout`, which you can then place in your environment variables.
 
 ```bash
-docker run -it --rm docker.io/gitea/gitea:1 gitea generate secret SECRET_KEY
-docker run -it --rm docker.io/gitea/gitea:1 gitea generate secret INTERNAL_TOKEN
+docker run -it --rm docker.gitea.com/gitea:1 gitea generate secret SECRET_KEY
+docker run -it --rm docker.gitea.com/gitea:1 gitea generate secret INTERNAL_TOKEN
 ```
 
 ```yaml
