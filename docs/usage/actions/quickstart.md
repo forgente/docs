@@ -115,7 +115,7 @@ jobs:
 
 :::warning
 
-Certain actions may not function correctly within SHA256 repositories. This includes [actions/checkout](https://github.com/actions/checkout/issues/1843).
+Certain actions may not function correctly within SHA256 repositories or when Gitea runs on subpath. This includes [actions/checkout](https://github.com/actions/checkout/issues/1843).
 
 :::
 
