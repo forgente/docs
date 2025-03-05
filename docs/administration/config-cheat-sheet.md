@@ -803,6 +803,7 @@ and
 - `SENDMAIL_CONVERT_CRLF`: **true**: Most versions of sendmail prefer LF line endings rather than CRLF line endings. Set this to false if your version of sendmail requires CRLF line endings.
 - `SEND_BUFFER_LEN`: **100**: Buffer length of mailing queue. **DEPRECATED** use `LENGTH` in `[queue.mailer]`
 - `SEND_AS_PLAIN_TEXT`: **false**: Send mails only in plain text, without HTML alternative.
+- `EMBED_ATTACHMENT_IMAGES`: **false**: Embed attached images in base64 format in HTML emails. (for clients that do not load external images or disconnected vpn users still receiving emails; ATTENTION: online webclients like gmail will not show base64 embedded images)
 
 ## Override Email Headers (`mailer.override_header`)
 
