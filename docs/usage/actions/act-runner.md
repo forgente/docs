@@ -210,7 +210,7 @@ Mac uses `launchd` in place of systemd for registering daemon processes. By defa
     <dict>
         <key>PATH</key>
         <string>/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin</string>
-        <key>HOME></key>
+        <key>HOME</key>
         <string>/var/lib/act_runner</string>
     </dict>
     <key>UserName</key>
