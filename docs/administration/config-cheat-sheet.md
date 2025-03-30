@@ -671,6 +671,9 @@ And the following unique queues:
    :::
 
 - `REQUIRE_SIGNIN_VIEW`: **false**: Enable this to force users to log in to view any page or to use API.
+   It could be set to "expensive" to block anonymous users accessing some pages which consume a lot of resources,
+   for example: block anonymous AI crawlers from accessing repo code pages.
+   The "expensive" mode is experimental and subject to change.
 - `ENABLE_NOTIFY_MAIL`: **false**: Enable this to send e-mail to watchers of a repository when
    something happens, like creating issues. Requires `Mailer` to be enabled.
 - `ENABLE_BASIC_AUTHENTICATION`: **true**: Disable this to disallow authentication using HTTP
