@@ -331,7 +331,7 @@ services:
 
 ## SSH Container Passthrough
 
-Since SSH is running inside the container, SSH needs to be passed through from the host to the container if SSH support is desired. One option would be to run the container SSH on a non-standard port (or moving the host port to a non-standard port). Another option which might be more straightforward is for Gitea users to ssh to a Gitea user on the host which will then relay those connections to the docker.
+Since SSH is running inside the container, SSH needs to be passed through from the host to the container if SSH support is desired. One option would be to run the container SSH on a non-standard port (or moving the host port to a non-standard port). Another option which might be more straightforward is for Gitea users to ssh to a Gitea user on the host which will then relay those connections to the docker. Alternatively, if the host machine has more than one IP address, the host can listen on one and Gitea on another.
 
 ### Understanding SSH access to Gitea (without passthrough)
 
@@ -642,3 +642,7 @@ If you try to login as the `git` user on the host in future you will `ssh` direc
 Never add the `Gitea Host Key` as a SSH key to a user on the Gitea interface.
 
 SSHing shims could be created similarly to above.
+
+### SSH with multiple IP addresses
+This assumes that the host machine has more than one reachable IP address: `192.168.1.1` (host) `192.168.1.2` (gitea)
+On the host machine, configure SSHD in `/etc/ssh/sshd_config` to listen on one IP address `ListenAddress 192.168.1.1`. In the compose file the SSH port forwarding then needs to be changed to `"192.168.1.2:22:22"`. The port forwarding needs to be adjusted similarily for all other forwarded ports to avoid problems with DNS.
