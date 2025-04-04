@@ -45,7 +45,7 @@ services:
       - "2222:2222"
 ```
 
-请注意，卷应由在配置文件中指定的UID/GID的用户/组所有。默认情况下，Docker中的Gitea将使用uid:1000 gid:1000。如果需要，您可以使用以下命令设置这些文件夹的所有权：
+请注意，卷应由在配置文件中指定的 UID/GID 的用户/组所有。默认情况下，Docker 中的 Gitea 将使用 uid:1000 gid:1000。如果需要，您可以使用以下命令设置这些文件夹的所有权：
 
 ```sh
 sudo chown 1000:1000 config/ data/
@@ -53,11 +53,11 @@ sudo chown 1000:1000 config/ data/
 
 > 如果未为卷设置正确的权限，容器可能无法启动。
 
-对于稳定版本，您可以使用 `:latest-rootless`、`:1-rootless`，或指定特定的版本，如: `@dockerVersion@-rootless`。如果您想使用最新的开发版本，则可以使用 `:dev-rootless` 标签。如果您想运行发布分支的最新提交，可以使用 `:1.x-dev-rootless` 标签，其中 x是 Gitea 的次要版本号（例如:`1.16-dev-rootless`）。
+对于稳定版本，您可以使用 `:latest-rootless`、`:1-rootless`，或指定特定的版本，如: `@dockerVersion@-rootless`。如果您想使用最新的开发版本，则可以使用 `:dev-rootless` 标签。如果您想运行发布分支的最新提交，可以使用 `:1.x-dev-rootless` 标签，其中 x 是 Gitea 的次要版本号（例如:`1.16-dev-rootless`）。
 
 ## 自定义端口
 
-要将集成的SSH和Web服务器绑定到不同的端口，请调整端口部分。通常只需更改主机端口并保持容器内的端口不变。
+要将集成的 SSH 和 Web 服务器绑定到不同的端口，请调整端口部分。通常只需更改主机端口并保持容器内的端口不变。
 
 ```diff
 version: "2"
@@ -258,7 +258,7 @@ docker-compose up -d
 
 除了上述的环境变量外，`app.ini` 中的任何设置都可以通过形式为 `GITEA__SECTION_NAME__KEY_NAME` 的环境变量进行设置或覆盖。这些设置在每次 Docker 容器启动时都会生效。完整信息请参考[这里](https://github.com/go-gitea/gitea/tree/main/contrib/environment-to-ini).
 
-这些环境变量可以在 `docker-compose.yml` 中传递给 Docker 容器。以下示例将启用 SMTP 邮件服务器，如果主机上设置了所需的环境变量 GITEA__mailer__FROM、GITEA__mailer__HOST、GITEA__mailer__PASSWD，或者在与 `docker-compose.yml` 相同目录中的 `.env` 文件中设置了这些环境变量：
+这些环境变量可以在 `docker-compose.yml` 中传递给 Docker 容器。以下示例将启用 SMTP 邮件服务器，如果主机上设置了所需的环境变量 GITEA**mailer**FROM、GITEA**mailer**HOST、GITEA**mailer**PASSWD，或者在与 `docker-compose.yml` 相同目录中的 `.env` 文件中设置了这些环境变量：
 
 ```bash
 ...

@@ -6,7 +6,6 @@ sidebar_position: 15
 
 aliases:
   - /zh-cn/install-from-binary
-
 ---
 
 # 使用二进制文件安装
@@ -38,7 +37,7 @@ chmod +x gitea
 
 ## 验证 GPG 签名
 
-Gitea 对打包的二进制文件使用 [GPG密钥](https://keys.openpgp.org/search?q=teabot%40gitea.io) 签名以防止篡改。
+Gitea 对打包的二进制文件使用 [GPG 密钥](https://keys.openpgp.org/search?q=teabot%40gitea.io) 签名以防止篡改。
 请根据对应文件名 `.asc` 中包含的校验码检验文件的一致性。
 
 ```sh
@@ -169,7 +168,7 @@ GITEA_WORK_DIR=/var/lib/gitea/ /usr/local/bin/gitea web -c /etc/gitea/app.ini
 
 **提示：** 我们不建议使用 SIGKILL 信号（`-9`），这会强制停止 Gitea 程序，但不会正确关闭队列、索引器等任务。
 
-请参阅下面的疑难解答说明，以在Gitea版本更新后修复损坏的仓库。
+请参阅下面的疑难解答说明，以在 Gitea 版本更新后修复损坏的仓库。
 
 ## 排查故障
 

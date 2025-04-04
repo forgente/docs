@@ -8,7 +8,7 @@ aliases:
 
 # 集成
 
-Gitea拥有一个出色的第三方集成社区，以及在其他各种项目中的一流支持。
+Gitea 拥有一个出色的第三方集成社区，以及在其他各种项目中的一流支持。
 
 我们正在[awesome-gitea](https://gitea.com/gitea/awesome-gitea)上整理一个列表来跟踪这些集成！
 

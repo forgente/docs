@@ -6,7 +6,6 @@ sidebar_position: 60
 
 aliases:
   - /zh-cn/external-renderers
-
 ---
 
 # 外部渲染器
@@ -172,7 +171,8 @@ ALLOW_DATA_URI_IMAGES = true
 
 .markup.XXXXX body {
   color: #444;
-  font-family: Georgia, Palatino, 'Palatino Linotype', Times, 'Times New Roman', serif;
+  font-family: Georgia, Palatino, "Palatino Linotype", Times, "Times New Roman",
+    serif;
   font-size: 12px;
   line-height: 1.7;
   padding: 1em;

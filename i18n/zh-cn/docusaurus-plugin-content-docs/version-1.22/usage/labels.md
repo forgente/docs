@@ -6,7 +6,6 @@ sidebar_position: 13
 
 aliases:
   - /zh-cn/labels
-
 ---
 
 # 标签

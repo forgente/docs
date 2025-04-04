@@ -8,11 +8,11 @@ aliases:
 
 # 备份与恢复
 
-Gitea 已经实现了 `dump` 命令可以用来备份所有需要的文件到一个zip压缩文件。该压缩文件可以被用来进行数据恢复。
+Gitea 已经实现了 `dump` 命令可以用来备份所有需要的文件到一个 zip 压缩文件。该压缩文件可以被用来进行数据恢复。
 
 ## 备份命令 (`dump`)
 
-先转到git用户的权限: `su git`. 再Gitea目录运行 `./gitea dump`。一般会显示类似如下的输出：
+先转到 git 用户的权限: `su git`. 再 Gitea 目录运行 `./gitea dump`。一般会显示类似如下的输出：
 
 ```
 2016/12/27 22:32:09 Creating tmp work dir: /tmp/gitea-dump-417443001
@@ -25,11 +25,11 @@ Gitea 已经实现了 `dump` 命令可以用来备份所有需要的文件到一
 
 最后生成的 `gitea-dump-1482906742.zip` 文件将会包含如下内容：
 
-* `custom` - 所有保存在 `custom/` 目录下的配置和自定义的文件。
-* `data` - 数据目录下的所有内容不包含使用文件session的文件。该目录包含 `attachments`, `avatars`, `lfs`, `indexers`, 如果使用sqlite 还会包含 sqlite 数据库文件。
-* `gitea-db.sql` - 数据库dump出来的 SQL。
-* `gitea-repo.zip` - Git仓库压缩文件。
-* `log/` - Logs文件，如果用作迁移不是必须的。
+- `custom` - 所有保存在 `custom/` 目录下的配置和自定义的文件。
+- `data` - 数据目录下的所有内容不包含使用文件 session 的文件。该目录包含 `attachments`, `avatars`, `lfs`, `indexers`, 如果使用 sqlite 还会包含 sqlite 数据库文件。
+- `gitea-db.sql` - 数据库 dump 出来的 SQL。
+- `gitea-repo.zip` - Git 仓库压缩文件。
+- `log/` - Logs 文件，如果用作迁移不是必须的。
 
 中间备份文件将会在临时目录进行创建，如果您要重新指定临时目录，可以用 `--tempdir` 参数，或者用 `TMPDIR` 环境变量。
 

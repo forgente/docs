@@ -5,13 +5,12 @@ sidebar_position: 30
 
 aliases:
   - /zh-cn/config-cheat-sheet
-
 ---
 
 # 配置说明
 
-这是针对Gitea配置文件的说明，
-你可以了解Gitea的强大配置。
+这是针对 Gitea 配置文件的说明，
+你可以了解 Gitea 的强大配置。
 
 需要说明的是，你的所有改变请修改 `custom/conf/app.ini` 文件而不是源文件。
 如果是从发行版本完成的安装，
@@ -22,14 +21,12 @@ aliases:
 
 包含`#`或者`;`的变量必须使用引号( `` ` `` 或者 `"` )包裹，否则会被解析为注释。
 
-
 本文档使用以下约定：
 
-* `[section].FOO_BAR` 或 `[section]FOO_BAR`: 一个位于 INI 文件 `[section]` 段中的配置项。
-* `FooBar`: 这是一个 Gitea 内部变量，不是一个配置项，仅用于描述相关逻辑。
-* `$FOO_BAR`: 这是一个环境变量，Gitea 可能会使用它的值，但是它不能直接用于配置文件中。
-* `{FOO_BAR}/something` 或 `{FooBar}/something`: 这个值会默认使用配置项 `FOO_BAR` 或者内部变量 `FooBar`。
-
+- `[section].FOO_BAR` 或 `[section]FOO_BAR`: 一个位于 INI 文件 `[section]` 段中的配置项。
+- `FooBar`: 这是一个 Gitea 内部变量，不是一个配置项，仅用于描述相关逻辑。
+- `$FOO_BAR`: 这是一个环境变量，Gitea 可能会使用它的值，但是它不能直接用于配置文件中。
+- `{FOO_BAR}/something` 或 `{FooBar}/something`: 这个值会默认使用配置项 `FOO_BAR` 或者内部变量 `FooBar`。
 
 **注意:** 修改完配置文件后，需要重启 Gitea 服务才能生效。
 
@@ -43,68 +40,68 @@ aliases:
 这些值取决于环境，但构成了许多值的基础。当运行 `gitea help`或启动时，它们将
 作为默认配置的一部分进行报告。它们在那里发出的顺序略有不同，但我们将按照设置的顺序在这里列出。
 
-- _`AppPath`_: Gitea二进制可执行文件的绝对路径
-- _`AppWorkPath`_: Gitea可执行文件的工作目录。 该配置可以通过以下几种方式设置，优先级依次递减:
+- _`AppPath`_: Gitea 二进制可执行文件的绝对路径
+- _`AppWorkPath`_: Gitea 可执行文件的工作目录。 该配置可以通过以下几种方式设置，优先级依次递减:
   - `app.ini`中的`WORK_PATH`配置项
-  - 启动Gitea时的`--work-path`命令行参数
+  - 启动 Gitea 时的`--work-path`命令行参数
   - `$GITEA_WORK_DIR`环境变量
   - 在编译时设置的内置值（参见从源代码编译）
   - 默认为 _`AppPath`_ 的目录
   - 如果上述任何路径为相对路径，将自动解析为相对于 _`AppPath`_ 目录的绝对路径
 - _`CustomPath`_: 这是用于自定义模板和其他选项的基础目录。
-它是通过使用以下层次结构中的第一个设置的内容来确定的：
+  它是通过使用以下层次结构中的第一个设置的内容来确定的：
   - 通过传递给二进制文件的`--custom-path`标志
   - 环境变量 `$GITEA_CUSTOM`
   - 在构建时设置的内置值（参见从源代码构建）
   - 否则，默认为 _`AppWorkPath`_`/custom`
   - 如果上述任何路径是相对路径，则会相对于 _`AppWorkPath`_ 目录进行处理，
-  使其变为绝对路径。
+    使其变为绝对路径。
 - _`CustomConf`_: 这是指向`app.ini`文件的路径。
   - 这是指向`app.ini`文件的路径。
   - 在构建时设置的内置值（参见从源代码构建）
   - 否则，默认为 _`CustomPath`_`/conf/app.ini`
-  - 如果上述任何路径是相对路径，则会相对于_`CustomPath`_目录进行处理。
+  - 如果上述任何路径是相对路径，则会相对于*`CustomPath`*目录进行处理。
 
-此外，还有_`StaticRootPath`_，可以在构建时设置为内置值，否则将默认为 _`AppWorkPath`_。
+此外，还有*`StaticRootPath`*，可以在构建时设置为内置值，否则将默认为 _`AppWorkPath`_。
 
 ## Overall (`DEFAULT`)
 
 - `APP_NAME`: **Gitea: Git with a cup of tea** 应用名称，在网页的标题中显示。
-- `RUN_USER`: **_current OS username_/`$USER`/`$USERNAME` e.g. git**: 运行Gitea的用户，
+- `RUN_USER`: **_current OS username_/`$USER`/`$USERNAME` e.g. git**: 运行 Gitea 的用户，
   应当是一个专用的系统账户(非用户使用，推荐创建一个专用的`git`用户). 如果在你自己的个人电脑使用改成你自己的用户名。
-  该配置如果设置不正确，Gitea可能崩溃。
+  该配置如果设置不正确，Gitea 可能崩溃。
 - `RUN_MODE`: **prod**: 应用的运行模式，对运行性能和问题排除有影响: `dev` 或者 `prod`,默认为 `prod`。 `dev`模式有助于开发和问题排查, 除设置为`dev` 外，均被视为 `prod`.
 - `WORK_PATH`: **_the-work-path_**: 工作目录, 前文有提及.
 
 ## 仓库 (`repository`)
 
-- `ROOT`: **`{APP_DATA_PATH}/gitea-repositories`**: 存放git工程的根目录，建议填绝对路径。
+- `ROOT`: **`{APP_DATA_PATH}/gitea-repositories`**: 存放 git 工程的根目录，建议填绝对路径。
   相对路径将被解析为**`{AppWorkPath}/{ROOT}`**.
-- `SCRIPT_TYPE`: **bash**: 服务器支持的Shell类型，通常是`bash`，
+- `SCRIPT_TYPE`: **bash**: 服务器支持的 Shell 类型，通常是`bash`，
   但有些服务器也有可能是`sh`。
 - `DETECTED_CHARSETS_ORDER`: **UTF-8, UTF-16BE, UTF-16LE, UTF-32BE, UTF-32LE, ISO-8859, windows-1252, ISO-8859, windows-1250, ISO-8859, ISO-8859, ISO-8859, windows-1253, ISO-8859, windows-1255, ISO-8859, windows-1251, windows-1256, KOI8-R, ISO-8859, windows-1254, Shift_JIS, GB18030, EUC-JP, EUC-KR, Big5, ISO-2022, ISO-2022, ISO-2022, IBM424_rtl, IBM424_ltr, IBM420_rtl, IBM420_ltr**: 检测到的字符集的决定性顺序 - 如果检测到的字符集具有相等的置信度，则优先选择列表中较早出现的字符集，而不是较晚出现的字符集。添加“defaults”将会将未命名的字符集放置在该点。
-- `ANSI_CHARSET`: **_empty_**: 默认的ANSI字符集，用于覆盖非UTF-8字符集。
+- `ANSI_CHARSET`: **_empty_**: 默认的 ANSI 字符集，用于覆盖非 UTF-8 字符集。
 - `FORCE_PRIVATE`: **false**: 强制使每个新仓库变为私有。
 - `DEFAULT_PRIVATE`: **last**: 创建新仓库时默认为私有：`last`, `private`, `public`。
 - `DEFAULT_PUSH_CREATE_PRIVATE`: **true**: 使用推送创建新仓库时默认为私有。
 - `MAX_CREATION_LIMIT`: **-1**: 每个用户的全局仓库创建上限,
-   `-1` 代表无限制.
+  `-1` 代表无限制.
 - `PREFERRED_LICENSES`: **Apache License 2.0,MIT License**: 要放置在列表顶部的指定许可证。
-   名称必须与 options/license 或 custom/options/license 中的文件名匹配。
-- `DISABLE_HTTP_GIT`: **false**: 禁用HTTP协议与仓库进行
-      交互的能力。
-- `USE_COMPAT_SSH_URI`: **false**: 当使用默认的SSH端口时，强制使用ssh://克隆URL，
-  而不是scp-style uri。
-- `GO_GET_CLONE_URL_PROTOCOL`: **https**: 用于 "go get" 请求的值，返回仓库的URL作为https或ssh，
-    默认为https。
+  名称必须与 options/license 或 custom/options/license 中的文件名匹配。
+- `DISABLE_HTTP_GIT`: **false**: 禁用 HTTP 协议与仓库进行
+  交互的能力。
+- `USE_COMPAT_SSH_URI`: **false**: 当使用默认的 SSH 端口时，强制使用 ssh://克隆 URL，
+  而不是 scp-style uri。
+- `GO_GET_CLONE_URL_PROTOCOL`: **https**: 用于 "go get" 请求的值，返回仓库的 URL 作为 https 或 ssh，
+  默认为 https。
 - `ACCESS_CONTROL_ALLOW_ORIGIN`: **_empty_**:用于 Access-Control-Allow-Origin 标头的值，
-默认不提供。
-警告：如果您不提供正确的值，这可能对您的网站造成危害。
-- `DEFAULT_CLOSE_ISSUES_VIA_COMMITS_IN_ANY_BRANCH`:  **false**: 如果非默认分支上的提交将问题标记为已关闭，则关闭该问题。
-- `ENABLE_PUSH_CREATE_USER`:  **false**: 允许用户将本地存储库推送到Gitea，并为用户自动创建它们。
-- `ENABLE_PUSH_CREATE_ORG`:  **false**:  允许用户将本地存储库推送到Gitea，并为组织自动创建它们。
+  默认不提供。
+  警告：如果您不提供正确的值，这可能对您的网站造成危害。
+- `DEFAULT_CLOSE_ISSUES_VIA_COMMITS_IN_ANY_BRANCH`: **false**: 如果非默认分支上的提交将问题标记为已关闭，则关闭该问题。
+- `ENABLE_PUSH_CREATE_USER`: **false**: 允许用户将本地存储库推送到 Gitea，并为用户自动创建它们。
+- `ENABLE_PUSH_CREATE_ORG`: **false**: 允许用户将本地存储库推送到 Gitea，并为组织自动创建它们。
 - `DISABLED_REPO_UNITS`: **_empty_**: 逗号分隔的全局禁用的仓库单元列表。允许的值是：: \[repo.issues, repo.ext_issues, repo.pulls, repo.wiki, repo.ext_wiki, repo.projects, repo.packages, repo.actions\]
-- `DEFAULT_REPO_UNITS`: **repo.code,repo.releases,repo.issues,repo.pulls,repo.wiki,repo.projects,repo.packages,repo.actions**: 逗号分隔的默认新仓库单元列表。允许的值是：: \[repo.code, repo.releases, repo.issues, repo.pulls, repo.wiki, repo.projects, repo.packages, repo.actions\]. 注意：目前无法停用代码和发布。如果您指定了默认的仓库单元，您仍应将它们列出以保持未来的兼容性。外部wiki和问题跟踪器不能默认启用，因为它需要额外的设置。禁用的仓库单元将不会添加到新的仓库中，无论它是否在默认列表中。
+- `DEFAULT_REPO_UNITS`: **repo.code,repo.releases,repo.issues,repo.pulls,repo.wiki,repo.projects,repo.packages,repo.actions**: 逗号分隔的默认新仓库单元列表。允许的值是：: \[repo.code, repo.releases, repo.issues, repo.pulls, repo.wiki, repo.projects, repo.packages, repo.actions\]. 注意：目前无法停用代码和发布。如果您指定了默认的仓库单元，您仍应将它们列出以保持未来的兼容性。外部 wiki 和问题跟踪器不能默认启用，因为它需要额外的设置。禁用的仓库单元将不会添加到新的仓库中，无论它是否在默认列表中。
 - `DEFAULT_FORK_REPO_UNITS`: **repo.code,repo.pulls**: 逗号分隔的默认分叉仓库单元列表。允许的值和规则与`DEFAULT_REPO_UNITS`相同。
 - `DEFAULT_MIRROR_REPO_UNITS`: **repo.code,repo.releases,repo.issues,repo.wiki,repo.projects,repo.packages**: 逗号分隔的默认镜像仓库单元列表。允许的值和规则与`DEFAULT_REPO_UNITS`相同。
 - `DEFAULT_TEMPLATE_REPO_UNITS`: **repo.code,repo.releases,repo.issues,repo.pulls,repo.wiki,repo.projects,repo.packages**: 逗号分隔的默认模板仓库单元列表。允许的值和规则与`DEFAULT_REPO_UNITS`相同。
@@ -120,15 +117,15 @@ aliases:
 ### 仓库 - 编辑器 (`repository.editor`)
 
 - `LINE_WRAP_EXTENSIONS`: **.txt,.md,.markdown,.mdown,.mkd,.livemd,**: 在 Monaco 编辑器中应该换行的文件扩展名列表。用逗号分隔扩展名。要对没有扩展名的文件进行换行，只需放置一个逗号。
-- `PREVIEWABLE_FILE_MODES`: **markdown**: 具有预览API的有效文件模式，例如 `api/v1/markdown`。用逗号分隔各个值。如果文件扩展名不匹配，编辑模式下的预览选项卡将不会显示。
+- `PREVIEWABLE_FILE_MODES`: **markdown**: 具有预览 API 的有效文件模式，例如 `api/v1/markdown`。用逗号分隔各个值。如果文件扩展名不匹配，编辑模式下的预览选项卡将不会显示。
 
 ### 仓库 - 合并请求 (`repository.pull-request`)
 
 - `WORK_IN_PROGRESS_PREFIXES`: **WIP:,\[WIP\]**: 在拉取请求标题中用于标记工作正在进行中的前缀列表。
-这些前缀在不区分大小写的情况下进行匹配。
+  这些前缀在不区分大小写的情况下进行匹配。
 - `CLOSE_KEYWORDS`: **close**, **closes**, **closed**, **fix**, **fixes**, **fixed**, **resolve**, **resolves**, **resolved**: 在拉取请求评论中用于自动关闭相关问题的关键词列表。
 - `REOPEN_KEYWORDS`: **reopen**, **reopens**, **reopened**: 在拉取请求评论中用于自动重新打开相关问题的
-关键词列表。
+  关键词列表。
 - `DEFAULT_MERGE_STYLE`: **merge**: 设置创建仓库的默认合并方式，可选: `merge`, `rebase`, `rebase-merge`, `squash`, `fast-forward-only`
 - `DEFAULT_MERGE_MESSAGE_COMMITS_LIMIT`: **50**: 在默认合并消息中，对于`squash`提交，最多包括此数量的提交。设置为 -1 以包括所有提交。
 - `DEFAULT_MERGE_MESSAGE_SIZE`: **5120**: 在默认的合并消息中，对于`squash`提交，限制提交消息的大小。设置为 `-1`以取消限制。仅在`POPULATE_SQUASH_COMMENT_WITH_COMMIT_MESSAGES`为`true`时使用。
@@ -137,18 +134,18 @@ aliases:
 - `DEFAULT_MERGE_MESSAGE_OFFICIAL_APPROVERS_ONLY`: **true**: 在默认合并消息中，仅包括官方允许审查的审批者。
 - `POPULATE_SQUASH_COMMENT_WITH_COMMIT_MESSAGES`: **false**: 在默认的 squash 合并消息中，包括构成拉取请求的所有提交的提交消息。
 - `ADD_CO_COMMITTER_TRAILERS`: **true**: 如果提交者与作者不匹配，在合并提交消息中添加`co-authored-by`和`co-committed-by`标记。
-- `TEST_CONFLICTING_PATCHES_WITH_GIT_APPLY`:使用三方合并方法测试`PR Patch`以发现是否存在冲突。如果此设置`true`，将使用`git apply`重新测试冲突的`PR Pathch` - 这是1.18（和之前版本）中的先前行为，但效率相对较低。如果发现需要此设置，请报告。
+- `TEST_CONFLICTING_PATCHES_WITH_GIT_APPLY`:使用三方合并方法测试`PR Patch`以发现是否存在冲突。如果此设置`true`，将使用`git apply`重新测试冲突的`PR Pathch` - 这是 1.18（和之前版本）中的先前行为，但效率相对较低。如果发现需要此设置，请报告。
 
 ### 仓库 - 工单 (`repository.issue`)
 
 - `LOCK_REASONS`: **Too heated,Off-topic,Resolved,Spam**: 合并请求或工单被锁定的原因列表。
-- `MAX_PINNED`: **3**: 每个仓库的最大可固定工单数量。设置为0禁用固定工单。
+- `MAX_PINNED`: **3**: 每个仓库的最大可固定工单数量。设置为 0 禁用固定工单。
 
 ### 仓库 - 文件上传 (`repository.upload`)
 
 - `ENABLED`: **true**: 是否启用仓库文件上传。
-- `TEMP_PATH`: **data/tmp/uploads**: 文件上传的临时保存路径(在Gitea重启的时候该目录会被清空)。
-- `ALLOWED_TYPES`: **_empty_**: 以逗号分割的列表，代表支持上传的文件类型。(`.zip`), mime类型 (`text/plain`) or 通配符类型 (`image/*`, `audio/*`, `video/*`). 为空或者 `*/*`代表允许所有类型文件。
+- `TEMP_PATH`: **data/tmp/uploads**: 文件上传的临时保存路径(在 Gitea 重启的时候该目录会被清空)。
+- `ALLOWED_TYPES`: **_empty_**: 以逗号分割的列表，代表支持上传的文件类型。(`.zip`), mime 类型 (`text/plain`) or 通配符类型 (`image/*`, `audio/*`, `video/*`). 为空或者 `*/*`代表允许所有类型文件。
 - `FILE_MAX_SIZE`: **50**: 每个文件的最大大小(MB)。
 - `MAX_FILES`: **5**: 每次上传的最大文件数。
 
@@ -170,10 +167,10 @@ aliases:
   - 除了 never 和 always 之外的选项可以组合为逗号分隔的列表。
 - `DEFAULT_TRUST_MODEL`: **collaborator**: \[collaborator, committer, collaboratorcommitter\]: 用于验证提交的默认信任模型。
   - `collaborator`: 信任协作者密钥签名的签名。
-  - `committer`: 信任与提交者匹配的签名（这与GitHub匹配，并会强制Gitea签名的提交具有Gitea作为提交者）。
+  - `committer`: 信任与提交者匹配的签名（这与 GitHub 匹配，并会强制 Gitea 签名的提交具有 Gitea 作为提交者）。
   - `collaboratorcommitter`: 信任与提交者匹配的协作者密钥签名的签名。
-- `WIKI`: **never**: \[never, pubkey, twofa, always, parentsigned\]: 对wiki提交进行签名。
-- `CRUD_ACTIONS`: **pubkey, twofa, parentsigned**: \[never, pubkey, twofa, parentsigned, always\]: 对CRUD操作进行签名。
+- `WIKI`: **never**: \[never, pubkey, twofa, always, parentsigned\]: 对 wiki 提交进行签名。
+- `CRUD_ACTIONS`: **pubkey, twofa, parentsigned**: \[never, pubkey, twofa, parentsigned, always\]: 对 CRUD 操作进行签名。
   - 与上面相同的选项，增加了：
   - `parentsigned`: 仅在父提交进行了签名时才进行签名。
 - `MERGES`: **pubkey, twofa, basesigned, commitssigned**: \[never, pubkey, twofa, approved, basesigned, commitssigned, always\]: 对合并操作进行签名。
@@ -186,7 +183,7 @@ aliases:
 
 - `LOCAL_COPY_PATH`: **tmp/local-repo**:临时本地仓库副本的路径。默认为 tmp/local-repo（内容在 Gitea 重新启动时被删除）
 
-### 仓库 -  MIME type mapping (`repository.mimetype_mapping`)
+### 仓库 - MIME type mapping (`repository.mimetype_mapping`)
 
 配置用于根据可下载文件的文件扩展名设置预期的 MIME 类型。配置以键值对的形式呈现，文件扩展名以`.`开头。
 
@@ -204,7 +201,7 @@ aliases:
 - `MAX_AGE`: **10m**: 缓存响应的最大时间
 - `ALLOW_CREDENTIALS`: **false**: 允许带有凭据的请求
 - `HEADERS`: **Content-Type,User-Agent**: 允许请求携带的头部
-- `X_FRAME_OPTIONS`: **SAMEORIGIN**: 详见 `X-Frame-Options`HTTP头部.
+- `X_FRAME_OPTIONS`: **SAMEORIGIN**: 详见 `X-Frame-Options`HTTP 头部.
 
 ## 界面 (`ui`)
 
@@ -213,23 +210,23 @@ aliases:
 - `MEMBERS_PAGING_NUM`: **20**: 组织成员页面每页显示的成员数量。
 - `FEED_MAX_COMMIT_NUM`: **5**: 活动流页面显示的最大提交数量。
 - `FEED_PAGING_NUM`: **20**: 活动流页面显示的最大活动数量。
-- `SITEMAP_PAGING_NUM`: **20**: 在单个子SiteMap中显示的项数。
-- `GRAPH_MAX_COMMIT_NUM`: **100**: 提交图中显示的最大commit数量。
+- `SITEMAP_PAGING_NUM`: **20**: 在单个子 SiteMap 中显示的项数。
+- `GRAPH_MAX_COMMIT_NUM`: **100**: 提交图中显示的最大 commit 数量。
 - `CODE_COMMENT_LINES`: **4**: 在代码评论中能够显示的最大代码行数。
-- `DEFAULT_THEME`: **gitea-auto**: 在Gitea安装时候设置的默认主题，自定义的主题可以通过 `{CustomPath}/public/assets/css/theme-*.css` 提供。
+- `DEFAULT_THEME`: **gitea-auto**: 在 Gitea 安装时候设置的默认主题，自定义的主题可以通过 `{CustomPath}/public/assets/css/theme-*.css` 提供。
 - `SHOW_USER_EMAIL`: **true**: 用户的电子邮件是否应该显示在`Explore Users`页面中。
-- `THEMES`:  **_empty_**: 所有可用的主题（由 `{CustomPath}/public/assets/css/theme-*.css` 提供）。允许用户选择个性化的主题，
-- `MAX_DISPLAY_FILE_SIZE`: **8388608**: 能够显示文件的最大大小（默认为8MiB）。
+- `THEMES`: **_empty_**: 所有可用的主题（由 `{CustomPath}/public/assets/css/theme-*.css` 提供）。允许用户选择个性化的主题，
+- `MAX_DISPLAY_FILE_SIZE`: **8388608**: 能够显示文件的最大大小（默认为 8MiB）。
 - `REACTIONS`: 用户可以在问题（Issue）、Pull Request（PR）以及评论中选择的所有可选的反应。
-    这些值可以是表情符号别名（例如：:smile:）或Unicode表情符号。
-    对于自定义的反应，在 public/assets/img/emoji/ 目录下添加一个紧密裁剪的正方形图像，文件名为 reaction_name.png。
-- `CUSTOM_EMOJIS`: **gitea, codeberg, gitlab, git, github, gogs**: 不在utf8标准中定义的额外表情符号。
-    默认情况下，我们支持 Gitea 表情符号（:gitea:）。要添加更多表情符号，请将它们复制到 public/assets/img/emoji/ 目录下，
-    并将其添加到此配置中。
+  这些值可以是表情符号别名（例如：:smile:）或 Unicode 表情符号。
+  对于自定义的反应，在 public/assets/img/emoji/ 目录下添加一个紧密裁剪的正方形图像，文件名为 reaction_name.png。
+- `CUSTOM_EMOJIS`: **gitea, codeberg, gitlab, git, github, gogs**: 不在 utf8 标准中定义的额外表情符号。
+  默认情况下，我们支持 Gitea 表情符号（:gitea:）。要添加更多表情符号，请将它们复制到 public/assets/img/emoji/ 目录下，
+  并将其添加到此配置中。
 - `DEFAULT_SHOW_FULL_NAME`: **false**: 是否在可能的情况下显示用户的全名。如果没有设置全名，则将使用用户名。
 - `SEARCH_REPO_DESCRIPTION`: **true**: 是否在探索页面上的仓库搜索中搜索描述。
 - `ONLY_SHOW_RELEVANT_REPOS`: **false** 在没有指定关键字并使用默认排序时，是否仅在探索页面上显示相关的仓库。
-    如果一个仓库是分叉或者没有元数据（没有描述、图标、主题），则被视为不相关的仓库。
+  如果一个仓库是分叉或者没有元数据（没有描述、图标、主题），则被视为不相关的仓库。
 
 ### 界面 - 管理员 (`ui.admin`)
 
@@ -258,11 +255,11 @@ aliases:
 
 ### 界面 - SVG Images (`ui.svg`)
 
-- `ENABLE_RENDER`: **true**: 是否将SVG文件呈现为图像。如果禁用了SVG渲染，SVG文件将显示为文本，无法作为图像嵌入到Markdown文件中。
+- `ENABLE_RENDER`: **true**: 是否将 SVG 文件呈现为图像。如果禁用了 SVG 渲染，SVG 文件将显示为文本，无法作为图像嵌入到 Markdown 文件中。
 
 ### 界面 - CSV Files (`ui.csv`)
 
-- `MAX_FILE_SIZE`: **524288** (512kb): 以字节为单位允许将CSV文件呈现为表格的最大文件大小（将其设置为0表示没有限制）。
+- `MAX_FILE_SIZE`: **524288** (512kb): 以字节为单位允许将 CSV 文件呈现为表格的最大文件大小（将其设置为 0 表示没有限制）。
 - `MAX_ROWS`: **2500** : 最大允许的 CSV 文件行数。 (设置为 0 不限制)
 
 ## Markdown (`markdown`)
@@ -273,10 +270,10 @@ aliases:
 - `ENABLE_HARD_LINE_BREAK_IN_DOCUMENTS`: **false**: 在文档中将软换行符呈现为硬换行符，
   这意味着段落之间的单个换行符将导致换行，
   并且不需要在段落后添加尾随空格来强制换行。
-- `CUSTOM_URL_SCHEMES`: 使用逗号分隔的列表（ftp、git、svn）来指示要在Markdown中呈现的附加URL超链接。
-  以http和https开头的URL始终显示。
-  如果此条目为空，则允许所有URL方案。
-- `FILE_EXTENSIONS`: **.md,.markdown,.mdown,.mkd,.livemd**: 应呈现/编辑为Markdown的文件扩展名列表。使用逗号分隔扩展名。要将没有任何扩展名的文件呈现为Markdown，请只需放置一个逗号。
+- `CUSTOM_URL_SCHEMES`: 使用逗号分隔的列表（ftp、git、svn）来指示要在 Markdown 中呈现的附加 URL 超链接。
+  以 http 和 https 开头的 URL 始终显示。
+  如果此条目为空，则允许所有 URL 方案。
+- `FILE_EXTENSIONS`: **.md,.markdown,.mdown,.mkd,.livemd**: 应呈现/编辑为 Markdown 的文件扩展名列表。使用逗号分隔扩展名。要将没有任何扩展名的文件呈现为 Markdown，请只需放置一个逗号。
 - `ENABLE_MATH`: **true**: 启用对`\(...\)`, `\[...\]`, `$...$`和`$$...$$` 作为数学块的检测。
 
 ## 服务器 (`server`)
@@ -289,26 +286,26 @@ aliases:
 - `PROXY_PROTOCOL_ACCEPT_UNKNOWN`: **false**:接受带有未知类型的`PROXY`协议头。
 - `DOMAIN`: **localhost**: 此服务器的域名。
 - `ROOT_URL`: **`{PROTOCOL}://{DOMAIN}:{HTTP_PORT}/`**:
-   覆盖自动生成的公共URL。
-   如果内部URL和外部URL不匹配（例如在Docker中），这很有用。
+  覆盖自动生成的公共 URL。
+  如果内部 URL 和外部 URL 不匹配（例如在 Docker 中），这很有用。
 - `STATIC_URL_PREFIX`: **_empty_**:
-    覆盖此选项以从不同的URL请求静态资源。
-    这包括CSS文件、图片、JS文件和Web字体。
-    头像图片是动态资源，仍由Gitea提供。
-   选项可以是不同的路径，例如`/static`, 也可以是另一个域，例如`https://cdn.example.com`.
-   请求会变成 `{ROOT_URL}/static/assets/css/index.css` 或 `https://cdn.example.com/assets/css/index.css`
-   静态文件位于Gitea源代码仓库的`public/`目录中。
-   您可以将`STATIC_URL_PREFIX`请求代理到 Gitea 服务器以提供静态资源，或者将手动构建的 Gitea 资源从 `$GITEA_BUILD/public`复制到静态位置，例如`/var/www/assets`。确保`$STATIC_URL_PREFIX/assets/css/index.css`指向`/var/www/assets/css/index.css`。
+  覆盖此选项以从不同的 URL 请求静态资源。
+  这包括 CSS 文件、图片、JS 文件和 Web 字体。
+  头像图片是动态资源，仍由 Gitea 提供。
+  选项可以是不同的路径，例如`/static`, 也可以是另一个域，例如`https://cdn.example.com`.
+  请求会变成 `{ROOT_URL}/static/assets/css/index.css` 或 `https://cdn.example.com/assets/css/index.css`
+  静态文件位于 Gitea 源代码仓库的`public/`目录中。
+  您可以将`STATIC_URL_PREFIX`请求代理到 Gitea 服务器以提供静态资源，或者将手动构建的 Gitea 资源从 `$GITEA_BUILD/public`复制到静态位置，例如`/var/www/assets`。确保`$STATIC_URL_PREFIX/assets/css/index.css`指向`/var/www/assets/css/index.css`。
 
 - `HTTP_ADDR`: **0.0.0.0**: HTTP 监听地址。
   - 如果 `PROTOCOL` 设置为 `fcgi`，Gitea 将在由
-  `HTTP_ADDR` 和 `HTTP_PORT` 配置设置定义的 TCP 套接字上监听 FastCGI 请求。
+    `HTTP_ADDR` 和 `HTTP_PORT` 配置设置定义的 TCP 套接字上监听 FastCGI 请求。
   - 如果 `PROTOCOL` 设置为 `http+unix` 或 `fcgi+unix`，则应该是要使用的 Unix 套接字文件的名称。相对路径将相对于 _`AppWorkPath`_ 被转换为绝对路径。
 - `HTTP_PORT`: **3000**: HTTP 监听端口。
   - 如果 `PROTOCOL` 设置为 `fcgi`，Gitea 将在由 `HTTP_ADDR` 和 `HTTP_PORT`
-  配置设置定义的 TCP 套接字上监听 FastCGI 请求。
+    配置设置定义的 TCP 套接字上监听 FastCGI 请求。
 - `UNIX_SOCKET_PERMISSION`: **666**: Unix 套接字的权限。
-- `LOCAL_ROOT_URL`: **`{PROTOCOL}://{HTTP_ADDR}:{HTTP_PORT}/`**: 
+- `LOCAL_ROOT_URL`: **`{PROTOCOL}://{HTTP_ADDR}:{HTTP_PORT}/`**:
   用于访问网络服务的 Gitea 工作器（例如 SSH 更新）的本地（DMZ）URL。
   在大多数情况下，您不需要更改默认值。
   仅在您的 SSH 服务器节点与 HTTP 节点不同的情况下才修改它。对于不同的协议，默认值不同。如果 `PROTOCOL`
@@ -317,15 +314,15 @@ aliases:
   `{PROTOCOL}://localhost:{HTTP_PORT}/`，
   否则默认值为 `{PROTOCOL}://{HTTP_ADDR}:{HTTP_PORT}/`。
 - `LOCAL_USE_PROXY_PROTOCOL`: **`{USE_PROXY_PROTOCOL}`**: 在进行本地连接时传递 PROXY 协议头。
-   如果本地连接将经过代理，请将其设置为 false。
+  如果本地连接将经过代理，请将其设置为 false。
 - `PER_WRITE_TIMEOUT`: **30s**: 连接的任何写操作的超时时间。（将其设置为 -1
   以禁用所有超时。）
 - `PER_WRITE_PER_KB_TIMEOUT`: **10s**: 连接每写入 1 KB 的超时时间。
-- `DISABLE_SSH`: **false**: 当SSH不可用时禁用SSH功能。
-- `START_SSH_SERVER`: **false**: 启用时，使用内置的SSH服务器。
-- `SSH_SERVER_USE_PROXY_PROTOCOL`: **false**: 在与内置SSH服务器建立连接时，期望PROXY协议头。
-- `BUILTIN_SSH_SERVER_USER`: **`{RUN_USER}`**: 用于内置SSH服务器的用户名。
-- `SSH_USER`: **BUILTIN_SSH_SERVER_USER**: 在克隆URL中显示的SSH用户名。
+- `DISABLE_SSH`: **false**: 当 SSH 不可用时禁用 SSH 功能。
+- `START_SSH_SERVER`: **false**: 启用时，使用内置的 SSH 服务器。
+- `SSH_SERVER_USE_PROXY_PROTOCOL`: **false**: 在与内置 SSH 服务器建立连接时，期望 PROXY 协议头。
+- `BUILTIN_SSH_SERVER_USER`: **`{RUN_USER}`**: 用于内置 SSH 服务器的用户名。
+- `SSH_USER`: **BUILTIN_SSH_SERVER_USER**: 在克隆 URL 中显示的 SSH 用户名。
   如果设置为 `(DOER_USERNAME)`，将使用当前登录用户名作为克隆用的 SSH 用户名。
   此配置项仅为自己配置 SSH 反向代理的高级用户准备，
   大多数用户应当把它留空，或者按需修改 `BUILTIN_SSH_SERVER_USER`。
@@ -421,7 +418,7 @@ aliases:
 ## 数据库 (`database`)
 
 - `DB_TYPE`: **mysql**: 数据库类型 \[mysql, postgres, mssql, sqlite3\]。
-- `HOST`: **127.0.0.1:3306**: 数据库主机地址和端口或unix套接字的绝对路径 \[mysql, postgres\]（例如：/var/run/mysqld/mysqld.sock）。
+- `HOST`: **127.0.0.1:3306**: 数据库主机地址和端口或 unix 套接字的绝对路径 \[mysql, postgres\]（例如：/var/run/mysqld/mysqld.sock）。
 - `NAME`: **gitea**: 数据库名称。
 - `USER`: **root**: 数据库用户名。
 - `PASSWD`: **_empty_**: 数据库密码。如果密码包含特殊字符，请使用 \`your password\` 或 """your password"""。
@@ -455,15 +452,15 @@ aliases:
 ## 索引 (`indexer`)
 
 - `ISSUE_INDEXER_TYPE`: **bleve**: 工单索引类型，当前支持：`bleve`、`db`、`elasticsearch` 或 `meilisearch`。
-- `ISSUE_INDEXER_CONN_STR`：**** : 工单索引连接字符串，仅适用于 elasticsearch 和 meilisearch（例如：`http://elastic:password@localhost:9200`）或者（例如：`http://:apikey@localhost:7700`）。
+- `ISSUE_INDEXER_CONN_STR`：\*\*\*\* : 工单索引连接字符串，仅适用于 elasticsearch 和 meilisearch（例如：`http://elastic:password@localhost:9200`）或者（例如：`http://:apikey@localhost:7700`）。
 - `ISSUE_INDEXER_NAME`：**gitea_issues**: 工单索引器名称，在 ISSUE_INDEXER_TYPE 为 elasticsearch 或 meilisearch 时可用。
-- `ISSUE_INDEXER_PATH`：**indexers/issues.bleve**: 用于工单搜索的索引文件；在 ISSUE_INDEXER_TYPE 为 bleve 和 elasticsearch 时可用。相对路径将相对于 _`AppWorkPath`_ 进行绝对路径化。
+- `ISSUE_INDEXER_PATH`：**indexers/issues.bleve**: 用于工单搜索的索引文件；在 ISSUE*INDEXER_TYPE 为 bleve 和 elasticsearch 时可用。相对路径将相对于 *`AppWorkPath`\_ 进行绝对路径化。
 
 - `REPO_INDEXER_ENABLED`：**false**: 启用代码搜索（占用大量磁盘空间，约为存储库大小的 6 倍）。
 - `REPO_INDEXER_REPO_TYPES`：**sources,forks,mirrors,templates**: 存储库索引器单元。要索引的项目可以是 `sources`、`forks`、`mirrors`、`templates` 或它们的任何组合，用逗号分隔。如果为空，则默认为仅 `sources`，如果要完全禁用，请参见 `REPO_INDEXER_ENABLED`。
 - `REPO_INDEXER_TYPE`：**bleve**: 代码搜索引擎类型，可以为 `bleve` 或者 `elasticsearch`。
 - `REPO_INDEXER_PATH`：**indexers/repos.bleve**: 用于代码搜索的索引文件。
-- `REPO_INDEXER_CONN_STR`：****: 代码索引器连接字符串，在 `REPO_INDEXER_TYPE` 为 elasticsearch 时可用。例如：`http://elastic:password@localhost:9200`
+- `REPO_INDEXER_CONN_STR`：\*\*\*\*: 代码索引器连接字符串，在 `REPO_INDEXER_TYPE` 为 elasticsearch 时可用。例如：`http://elastic:password@localhost:9200`
 - `REPO_INDEXER_NAME`：**gitea_codes**: 代码索引器名称，在 `REPO_INDEXER_TYPE` 为 elasticsearch 时可用。
 
 - `REPO_INDEXER_INCLUDE`：**empty**: 逗号分隔的 glob 模式列表（参见 [https://github.com/gobwas/glob](https://github.com/gobwas/glob)）以用于**包括**在索引中。使用 `**.txt` 匹配任何具有 .txt 扩展名的文件。空列表表示包括所有文件。
@@ -481,8 +478,8 @@ aliases:
 - `LENGTH`：**100000**: 通道队列阻塞之前的最大队列大小
 - `BATCH_LENGTH`：**20**: 在传递给处理程序之前批处理数据
 - `CONN_STR`：**redis://127.0.0.1:6379/0**: redis 队列类型的连接字符串。对于 `redis-cluster`，使用 `redis+cluster://127.0.0.1:6379/0`。可以使用查询参数来设置选项。类似地，LevelDB 选项也可以使用：**leveldb://relative/path?option=value** 或 **leveldb:///absolute/path?option=value** 进行设置，并将覆盖 `DATADIR`。
-- `QUEUE_NAME`：**_queue**: 默认的 redis 和磁盘队列名称的后缀。单独的队列将默认为 **`name`**`QUEUE_NAME`，但可以在特定的 `queue.name` 部分中进行覆盖。
-- `SET_NAME`：**_unique**: 将添加到默认的 redis 和磁盘队列 `set` 名称中以用于唯一队列的后缀。单独的队列将默认为 **`name`**`QUEUE_NAME`_`SET_NAME`_，但可以在特定的 `queue.name` 部分中进行覆盖。
+- `QUEUE_NAME`：**\_queue**: 默认的 redis 和磁盘队列名称的后缀。单独的队列将默认为 **`name`**`QUEUE_NAME`，但可以在特定的 `queue.name` 部分中进行覆盖。
+- `SET_NAME`：**\_unique**: 将添加到默认的 redis 和磁盘队列 `set` 名称中以用于唯一队列的后缀。单独的队列将默认为 **`name`**`QUEUE_NAME`_`SET_NAME`_，但可以在特定的 `queue.name` 部分中进行覆盖。
 - `MAX_WORKERS`：**(dynamic)**: 队列的最大工作协程数。默认值为 "CpuNum/2"，限制在 1 到 10 之间。
 
 Gitea 创建以下非唯一队列：
@@ -506,8 +503,8 @@ Gitea 创建以下非唯一队列：
 - `DEFAULT_EMAIL_NOTIFICATIONS`: **enabled**: 用户电子邮件通知的默认配置（用户可配置）。选项：enabled、onmention、disabled
 - `DISABLE_REGULAR_ORG_CREATION`: **false**: 禁止普通（非管理员）用户创建组织。
 - `USER_DISABLED_FEATURES`:**_empty_** 禁用的用户特性，当前允许为空或者 `deletion`，`manage_ssh_keys`， `manage_gpg_keys` 未来可以增加更多设置。
-  - `deletion`: 用户不能通过界面或者API删除他自己。
-  - `manage_ssh_keys`: 用户不能通过界面或者API配置SSH Keys。
+  - `deletion`: 用户不能通过界面或者 API 删除他自己。
+  - `manage_ssh_keys`: 用户不能通过界面或者 API 配置 SSH Keys。
   - `manage_gpg_keys`: 用户不能配置 GPG 密钥。
 
 ## 安全性 (`security`)
@@ -516,19 +513,19 @@ Gitea 创建以下非唯一队列：
 - `SECRET_KEY`: **\<每次安装时随机生成\>**: 全局服务器安全密钥。这个密钥非常重要，如果丢失将无法解密加密的数据（例如 2FA）。
 - `SECRET_KEY_URI`: **_empty_**: 与定义 `SECRET_KEY` 不同，此选项可用于使用存储在文件中的密钥（示例值：`file:/etc/gitea/secret_key`）。它不应该像 `SECRET_KEY` 一样容易丢失。
 - `LOGIN_REMEMBER_DAYS`: **31**: 在要求重新登录之前，记住用户的登录状态多长时间（以天为单位）。
-- `COOKIE_REMEMBER_NAME`: **gitea\_incredible**: 保存自动登录信息的 Cookie 名称。
+- `COOKIE_REMEMBER_NAME`: **gitea_incredible**: 保存自动登录信息的 Cookie 名称。
 - `REVERSE_PROXY_AUTHENTICATION_USER`: **X-WEBAUTH-USER**: 反向代理认证的 HTTP 头部名称，用于提供用户信息。
 - `REVERSE_PROXY_AUTHENTICATION_EMAIL`: **X-WEBAUTH-EMAIL**: 反向代理认证的 HTTP 头部名称，用于提供邮箱信息。
 - `REVERSE_PROXY_AUTHENTICATION_FULL_NAME`: **X-WEBAUTH-FULLNAME**: 反向代理认证的 HTTP 头部名称，用于提供全名信息。
 - `REVERSE_PROXY_LIMIT`: **1**: 解释 X-Forwarded-For 标头或 X-Real-IP 标头，并将其设置为请求的远程 IP。
-   可信代理计数。设置为零以不使用这些标头。
+  可信代理计数。设置为零以不使用这些标头。
 - `REVERSE_PROXY_TRUSTED_PROXIES`: **127.0.0.0/8,::1/128**: 逗号分隔的受信任代理服务器的 IP 地址和网络列表。使用 `*` 来信任全部。
 - `DISABLE_GIT_HOOKS`: **true**: 设置为 `false` 以允许具有 Git 钩子权限的用户创建自定义 Git 钩子。
-   警告：自定义 Git 钩子可用于在主机操作系统上执行任意代码。这允许用户访问和修改此配置文件和 Gitea 数据库，并中断 Gitea 服务。
-   通过修改 Gitea 数据库，用户可以获得 Gitea 管理员权限。
-   它还使他们可以访问正在运行 Gitea 实例的操作系统上用户可用的其他资源，并以 Gitea 操作系统用户的名义执行任意操作。
-   这可能对您的网站或操作系统造成危害。
-   在必要之前，请在更改现有 git 存储库中的钩子之前进行调整。
+  警告：自定义 Git 钩子可用于在主机操作系统上执行任意代码。这允许用户访问和修改此配置文件和 Gitea 数据库，并中断 Gitea 服务。
+  通过修改 Gitea 数据库，用户可以获得 Gitea 管理员权限。
+  它还使他们可以访问正在运行 Gitea 实例的操作系统上用户可用的其他资源，并以 Gitea 操作系统用户的名义执行任意操作。
+  这可能对您的网站或操作系统造成危害。
+  在必要之前，请在更改现有 git 存储库中的钩子之前进行调整。
 - `DISABLE_WEBHOOKS`: **false**: 设置为 `true` 以禁用 Webhooks 功能。
 - `ONLY_ALLOW_PUSH_IF_GITEA_ENVIRONMENT_SET`: **true**: 设置为 `false` 以允许本地用户在未设置 Gitea 环境的情况下推送到 Gitea 存储库。不建议这样做，如果您希望本地用户推送到 Gitea 存储库，应该适当地设置环境。
 - `IMPORT_LOCAL_PATHS`: **false**: 设置为 `false` 以防止所有用户（包括管理员）从服务器上导入本地路径。
@@ -556,7 +553,7 @@ Gitea 创建以下非唯一队列：
   - lower - 使用一个或多个小写拉丁字符
   - upper - 使用一个或多个大写拉丁字符
   - digit - 使用一个或多个数字
-  - spec - 使用一个或多个特殊字符，如 ``!"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~``
+  - spec - 使用一个或多个特殊字符，如 `` !"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~ ``
   - off - 不检查密码复杂性
 - `PASSWORD_CHECK_PWN`: **false**: 检查密码是否在 [HaveIBeenPwned](https://haveibeenpwned.com/Passwords) 中曝光。
 - `SUCCESSFUL_TOKENS_CACHE_SIZE`: **20**: 缓存成功的令牌哈希。API 令牌在数据库中存储为 pbkdf2 哈希，但这意味着在存在多个 API 操作时可能会有显着的哈希负载。此缓存将在 LRU 缓存中存储成功的哈希令牌，以在性能和安全性之间保持平衡。
@@ -564,27 +561,27 @@ Gitea 创建以下非唯一队列：
 ## Camo (`camo`)
 
 - `ENABLED`: **false**: 启用媒体代理，目前仅支持图像。
-- `SERVER_URL`: **_empty_**: Camo服务器的URL，如果启用camo，则**必填**。
-- `HMAC_KEY`: **_empty_**: 为URL编码提供HMAC密钥，如果启用camo，则**必填**。
-- `ALWAYS`: **false**: 设置为true以在HTTP和HTTPS内容上使用camo，否则仅代理非HTTPS URL。`ALLWAYS` 已经过期，并且会在未来版本中删除。
+- `SERVER_URL`: **_empty_**: Camo 服务器的 URL，如果启用 camo，则**必填**。
+- `HMAC_KEY`: **_empty_**: 为 URL 编码提供 HMAC 密钥，如果启用 camo，则**必填**。
+- `ALWAYS`: **false**: 设置为 true 以在 HTTP 和 HTTPS 内容上使用 camo，否则仅代理非 HTTPS URL。`ALLWAYS` 已经过期，并且会在未来版本中删除。
 
 ## OpenID (`openid`)
 
-- `ENABLE_OPENID_SIGNIN`: **true**: 允许通过OpenID进行身份验证。
-- `ENABLE_OPENID_SIGNUP`: **! DISABLE\_REGISTRATION**: 允许通过OpenID进行注册。
-- `WHITELISTED_URIS`: **_empty_**: 如果非空，是一组匹配OpenID URI的POSIX正则表达式模式，用于允许访问。
-- `BLACKLISTED_URIS`: **_empty_**: 如果非空，是一组匹配OpenID URI的POSIX正则表达式模式，用于阻止访问。
+- `ENABLE_OPENID_SIGNIN`: **true**: 允许通过 OpenID 进行身份验证。
+- `ENABLE_OPENID_SIGNUP`: **! DISABLE_REGISTRATION**: 允许通过 OpenID 进行注册。
+- `WHITELISTED_URIS`: **_empty_**: 如果非空，是一组匹配 OpenID URI 的 POSIX 正则表达式模式，用于允许访问。
+- `BLACKLISTED_URIS`: **_empty_**: 如果非空，是一组匹配 OpenID URI 的 POSIX 正则表达式模式，用于阻止访问。
 
 ## OAuth2 Client (`oauth2_client`)
 
-- `REGISTER_EMAIL_CONFIRM`: _[service]_ **REGISTER\_EMAIL\_CONFIRM**: 设置此项以启用或禁用OAuth2自动注册的电子邮件确认。（覆盖`[service]`部分的`REGISTER\_EMAIL\_CONFIRM`设置）
-- `OPENID_CONNECT_SCOPES`: **_empty_**: 附加的OpenID连接范围的列表。（`openid`已隐式添加）
-- `ENABLE_AUTO_REGISTRATION`: **false**: 为新的OAuth2用户自动创建用户帐户。
-- `USERNAME`: **nickname**: 新OAuth2帐户的用户名来源：
-  - userid - 使用userid / sub属性
-  - nickname - 使用nickname属性
-  - email - 使用email属性的用户名部分
-- `UPDATE_AVATAR`: **false**: 如果OAuth2提供程序中有可用的头像，则进行头像更新。更新将在每次登录时执行。
+- `REGISTER_EMAIL_CONFIRM`: _[service]_ **REGISTER_EMAIL_CONFIRM**: 设置此项以启用或禁用 OAuth2 自动注册的电子邮件确认。（覆盖`[service]`部分的`REGISTER\_EMAIL\_CONFIRM`设置）
+- `OPENID_CONNECT_SCOPES`: **_empty_**: 附加的 OpenID 连接范围的列表。（`openid`已隐式添加）
+- `ENABLE_AUTO_REGISTRATION`: **false**: 为新的 OAuth2 用户自动创建用户帐户。
+- `USERNAME`: **nickname**: 新 OAuth2 帐户的用户名来源：
+  - userid - 使用 userid / sub 属性
+  - nickname - 使用 nickname 属性
+  - email - 使用 email 属性的用户名部分
+- `UPDATE_AVATAR`: **false**: 如果 OAuth2 提供程序中有可用的头像，则进行头像更新。更新将在每次登录时执行。
 - `ACCOUNT_LINKING`: **login**: 如果帐户/电子邮件已存在，如何处理：
   - disabled - 显示错误
   - login - 显示帐户链接登录
@@ -597,54 +594,54 @@ Gitea 创建以下非唯一队列：
 - `REGISTER_EMAIL_CONFIRM`: **false**: 启用此项以要求通过邮件确认注册。需要启用`Mailer`。
 - `REGISTER_MANUAL_CONFIRM`: **false**: 启用此项以手动确认新的注册。需要禁用`REGISTER_EMAIL_CONFIRM`。
 - `DISABLE_REGISTRATION`: **false**: 禁用注册，之后只有管理员可以为用户创建帐户。
-- `REQUIRE_EXTERNAL_REGISTRATION_PASSWORD`: **false**: 启用此项以强制通过外部方式创建的帐户（通过GitHub、OpenID Connect等）创建密码。警告：启用此项将降低安全性，因此只有在您知道自己在做什么时才应启用它。
-- `REQUIRE_SIGNIN_VIEW`: **false**: 启用此项以强制用户登录以查看任何页面或使用API。
+- `REQUIRE_EXTERNAL_REGISTRATION_PASSWORD`: **false**: 启用此项以强制通过外部方式创建的帐户（通过 GitHub、OpenID Connect 等）创建密码。警告：启用此项将降低安全性，因此只有在您知道自己在做什么时才应启用它。
+- `REQUIRE_SIGNIN_VIEW`: **false**: 启用此项以强制用户登录以查看任何页面或使用 API。
 - `ENABLE_NOTIFY_MAIL`: **false**: 启用此项以在发生某些情况（如创建问题）时向存储库的观察者发送电子邮件。需要启用`Mailer`。
-- `ENABLE_BASIC_AUTHENTICATION`: **true**: 禁用此项以禁止使用HTTP BASIC和用户的密码进行身份验证。请注意，如果禁用此项，您将无法使用密码访问令牌API端点。此外，这仅会禁用使用密码的BASIC身份验证，而不会禁用令牌或OAuth Basic。
+- `ENABLE_BASIC_AUTHENTICATION`: **true**: 禁用此项以禁止使用 HTTP BASIC 和用户的密码进行身份验证。请注意，如果禁用此项，您将无法使用密码访问令牌 API 端点。此外，这仅会禁用使用密码的 BASIC 身份验证，而不会禁用令牌或 OAuth Basic。
 - `ENABLE_REVERSE_PROXY_AUTHENTICATION`: **false**: 启用此项以允许反向代理身份验证。
 - `ENABLE_REVERSE_PROXY_AUTO_REGISTRATION`: **false**: 启用此项以允许反向身份验证的自动注册。
 - `ENABLE_REVERSE_PROXY_EMAIL`: **false**: 启用此项以允许使用提供的电子邮件而不是生成的电子邮件进行自动注册。
 - `ENABLE_REVERSE_PROXY_FULL_NAME`: **false**: 启用此项以允许使用提供的全名进行自动注册。
 - `ENABLE_CAPTCHA`: **false**: 启用此项以对注册使用验证码验证。
 - `REQUIRE_CAPTCHA_FOR_LOGIN`: **false**: 启用此项以要求登录使用验证码验证。您还必须启用`ENABLE_CAPTCHA`。
-- `REQUIRE_EXTERNAL_REGISTRATION_CAPTCHA`: **false**: 启用此项以强制对外部帐户（即GitHub、OpenID Connect等）使用验证码验证。您还必须启用`ENABLE_CAPTCHA`。
+- `REQUIRE_EXTERNAL_REGISTRATION_CAPTCHA`: **false**: 启用此项以强制对外部帐户（即 GitHub、OpenID Connect 等）使用验证码验证。您还必须启用`ENABLE_CAPTCHA`。
 - `CAPTCHA_TYPE`: **image**: \[image、recaptcha、hcaptcha、mcaptcha、cfturnstile\]
-- `RECAPTCHA_SECRET`: **""**: 访问 https://www.google.com/recaptcha/admin 以获取recaptcha的密钥。
-- `RECAPTCHA_SITEKEY`: **""**: 访问 https://www.google.com/recaptcha/admin 以获取recaptcha的站点密钥。
-- `RECAPTCHA_URL`: **https://www.google.com/recaptcha/** ：设置recaptcha网址，允许使用recaptcha net。
-- `HCAPTCHA_SECRET`: **""**: 注册 https://www.hcaptcha.com/ 以获取hcaptcha的密钥。
-- `HCAPTCHA_SITEKEY`: **""**: 注册 https://www.hcaptcha.com/ 以获取hcaptcha的站点密钥。
-- `MCAPTCHA_SECRET`: **""**: 访问您的mCaptcha实例以获取mCaptcha的密钥。
-- `MCAPTCHA_SITEKEY`: **""**: 访问您的mCaptcha实例以获取mCaptcha的站点密钥。
-- `MCAPTCHA_URL` **https://demo.mcaptcha.org/** ：设置mCaptcha的URL。
-- `CF_TURNSTILE_SECRET` **""**: 访问 https://dash.cloudflare.com/?to=/:account/turnstile 以获取cloudflare turnstile的密钥。
-- `CF_TURNSTILE_SITEKEY` **""**: 访问 https://dash.cloudflare.com/?to=/:account/turnstile 以获取cloudflare turnstile的站点密钥。
+- `RECAPTCHA_SECRET`: **""**: 访问 https://www.google.com/recaptcha/admin 以获取 recaptcha 的密钥。
+- `RECAPTCHA_SITEKEY`: **""**: 访问 https://www.google.com/recaptcha/admin 以获取 recaptcha 的站点密钥。
+- `RECAPTCHA_URL`: **https://www.google.com/recaptcha/** ：设置 recaptcha 网址，允许使用 recaptcha net。
+- `HCAPTCHA_SECRET`: **""**: 注册 https://www.hcaptcha.com/ 以获取 hcaptcha 的密钥。
+- `HCAPTCHA_SITEKEY`: **""**: 注册 https://www.hcaptcha.com/ 以获取 hcaptcha 的站点密钥。
+- `MCAPTCHA_SECRET`: **""**: 访问您的 mCaptcha 实例以获取 mCaptcha 的密钥。
+- `MCAPTCHA_SITEKEY`: **""**: 访问您的 mCaptcha 实例以获取 mCaptcha 的站点密钥。
+- `MCAPTCHA_URL` **https://demo.mcaptcha.org/** ：设置 mCaptcha 的 URL。
+- `CF_TURNSTILE_SECRET` **""**: 访问 https://dash.cloudflare.com/?to=/:account/turnstile 以获取 cloudflare turnstile 的密钥。
+- `CF_TURNSTILE_SITEKEY` **""**: 访问 https://dash.cloudflare.com/?to=/:account/turnstile 以获取 cloudflare turnstile 的站点密钥。
 - `DEFAULT_KEEP_EMAIL_PRIVATE`: **false**: 默认情况下，将用户设置为保持其电子邮件地址私有。
 - `DEFAULT_ALLOW_CREATE_ORGANIZATION`: **true**: 默认情况下，允许新用户创建组织。
 - `DEFAULT_USER_IS_RESTRICTED`: **false**: 默认情况下，为新用户分配受限权限。
 - `DEFAULT_ENABLE_DEPENDENCIES`: **true**: 启用此项以默认启用依赖项。
 - `ALLOW_CROSS_REPOSITORY_DEPENDENCIES` : **true** 启用此项以允许从用户被授予访问权限的任何存储库上进行依赖项操作。
-- `USER_LOCATION_MAP_URL`: **""**: 一个显示用户在地图上位置的地图服务URL。位置将作为转义的查询参数附加到URL中。
+- `USER_LOCATION_MAP_URL`: **""**: 一个显示用户在地图上位置的地图服务 URL。位置将作为转义的查询参数附加到 URL 中。
 - `ENABLE_USER_HEATMAP`: **true**: 启用此项以在用户个人资料上显示热图。
 - `ENABLE_TIMETRACKING`: **true**: 启用时间跟踪功能。
 - `DEFAULT_ENABLE_TIMETRACKING`: **true**: 默认情况下，允许存储库默认使用时间跟踪。
 - `DEFAULT_ALLOW_ONLY_CONTRIBUTORS_TO_TRACK_TIME`: **true**: 仅允许具有写权限的用户跟踪时间。
 - `EMAIL_DOMAIN_ALLOWLIST`: **_empty_**: 如果非空，逗号分隔的域名列表，只能用于在此实例上注册，支持通配符。
 - `EMAIL_DOMAIN_BLOCKLIST`: **_empty_**: 如果非空，逗号分隔的域名列表，不能用于在此实例上注册，支持通配符。
-- `SHOW_REGISTRATION_BUTTON`: **! DISABLE\_REGISTRATION**: 显示注册按钮
+- `SHOW_REGISTRATION_BUTTON`: **! DISABLE_REGISTRATION**: 显示注册按钮
 - `SHOW_MILESTONES_DASHBOARD_PAGE`: **true** 启用此项以显示里程碑仪表板页面 - 查看所有用户的里程碑
 - `AUTO_WATCH_NEW_REPOS`: **true** 启用此项以在创建新存储库时让所有组织用户观看新存储库
 - `AUTO_WATCH_ON_CHANGES`: **false** 启用此项以在首次提交后使用户观看存储库
 - `DEFAULT_USER_VISIBILITY`: **public**: 为用户设置默认的可见性模式，可以是"public"、"limited"或"private"。
 - `ALLOWED_USER_VISIBILITY_MODES`: **public,limited,private**: 设置用户可以具有的可见性模式
 - `DEFAULT_ORG_VISIBILITY`: **public**: 为组织设置默认的可见性模式，可以是"public"、"limited"或"private"。
-- `DEFAULT_ORG_MEMBER_VISIBLE`: **false**: 如果添加到组织时将用户的成员身份可见，设置为True。
-- `ALLOW_ONLY_INTERNAL_REGISTRATION`: **false**: 设置为True以强制仅通过Gitea进行注册。
-- `ALLOW_ONLY_EXTERNAL_REGISTRATION`: **false**: 设置为True以强制仅使用第三方服务进行注册。
-- `NO_REPLY_ADDRESS`: **noreply.DOMAIN**: 如果用户将KeepEmailPrivate设置为True，则在Git日志中的用户电子邮件地址的域部分的值。DOMAIN解析为server.DOMAIN中的值。
-  用户的电子邮件将被替换为小写的用户名、"@"和NO_REPLY_ADDRESS的连接。
+- `DEFAULT_ORG_MEMBER_VISIBLE`: **false**: 如果添加到组织时将用户的成员身份可见，设置为 True。
+- `ALLOW_ONLY_INTERNAL_REGISTRATION`: **false**: 设置为 True 以强制仅通过 Gitea 进行注册。
+- `ALLOW_ONLY_EXTERNAL_REGISTRATION`: **false**: 设置为 True 以强制仅使用第三方服务进行注册。
+- `NO_REPLY_ADDRESS`: **noreply.DOMAIN**: 如果用户将 KeepEmailPrivate 设置为 True，则在 Git 日志中的用户电子邮件地址的域部分的值。DOMAIN 解析为 server.DOMAIN 中的值。
+  用户的电子邮件将被替换为小写的用户名、"@"和 NO_REPLY_ADDRESS 的连接。
 - `USER_DELETE_WITH_COMMENTS_MAX_TIME`: **0**: 用户删除后，评论将保留的最短时间。
-- `VALID_SITE_URL_SCHEMES`: **http, https**: 用户个人资料的有效站点URL方案
+- `VALID_SITE_URL_SCHEMES`: **http, https**: 用户个人资料的有效站点 URL 方案
 
 ### Service - Explore (`service.explore`)
 
@@ -655,12 +652,12 @@ Gitea 创建以下非唯一队列：
 
 ## SSH Minimum Key Sizes (`ssh.minimum_key_sizes`)
 
-定义允许的算法及其最小密钥长度（使用-1来禁用某个类型）：
+定义允许的算法及其最小密钥长度（使用-1 来禁用某个类型）：
 
 - `ED25519`：**256**
 - `ECDSA`：**256**
-- `RSA`：**3071**: 我们在这里设置为2047，因为一个其他方面有效的3072 RSA密钥可能被报告为3071长度。
-- `DSA`：**-1**: 默认情况下禁用DSA。设置为**1024**以重新启用，但请注意可能需要重新配置您的SSHD提供者
+- `RSA`：**3071**: 我们在这里设置为 2047，因为一个其他方面有效的 3072 RSA 密钥可能被报告为 3071 长度。
+- `DSA`：**-1**: 默认情况下禁用 DSA。设置为**1024**以重新启用，但请注意可能需要重新配置您的 SSHD 提供者
 
 ## Webhook (`webhook`)
 
@@ -677,7 +674,7 @@ Gitea 创建以下非唯一队列：
 - `SKIP_TLS_VERIFY`: **false**: 允许不安全的证书。
 - `PAGING_NUM`: **10**: 一页中显示的 Webhook 历史事件数量。
 - `PROXY_URL`: **_empty_**: 代理服务器 URL，支持 http://、https://、socks://，留空将遵循环境的 http_proxy/https_proxy 设置。如果未提供，将使用全局代理设置。
-- `PROXY_HOSTS`: **_empty_**: 需要代理的主机名的逗号分隔列表。支持通配符模式 (*)；使用 ** 来匹配所有主机。如果未提供，将使用全局代理设置。
+- `PROXY_HOSTS`: **_empty_**: 需要代理的主机名的逗号分隔列表。支持通配符模式 (\*)；使用 \*\* 来匹配所有主机。如果未提供，将使用全局代理设置。
 
 ## 邮件 (`mailer`)
 
@@ -733,7 +730,7 @@ Gitea 创建以下非唯一队列：
 
 ## 缓存 (`cache`)
 
-- `ADAPTER`: **memory**: 缓存引擎，可以为 `memory`, `redis`, `redis-cluster`, `twoqueue` 和 `memcache`. (`twoqueue` 代表缓冲区固定的LRU缓存)
+- `ADAPTER`: **memory**: 缓存引擎，可以为 `memory`, `redis`, `redis-cluster`, `twoqueue` 和 `memcache`. (`twoqueue` 代表缓冲区固定的 LRU 缓存)
 - `INTERVAL`: **60**: 垃圾回收间隔(秒)，只对`memory`和`towqueue`有效。
 - `HOST`: **_empty_**: 缓存配置。`redis`, `redis-cluster`，`memcache`配置连接字符串;`twoqueue` 设置队列参数
   - Redis: `redis://:macaron@127.0.0.1:6379/0?pool_size=100&idle_timeout=180s`
@@ -752,7 +749,7 @@ Gitea 创建以下非唯一队列：
 - `PROVIDER`: **memory**: 会话存储引擎 \[memory, file, redis, redis-cluster, db, mysql, couchbase, memcache, postgres\]。设置为 `db` 将会重用 `[database]` 的配置信息。
 - `PROVIDER_CONFIG`: **data/sessions**: 对于文件，为根路径；对于 db，为空（将使用数据库配置）；对于其他引擎，为连接字符串。相对路径将根据 _`AppWorkPath`_ 绝对化。
 - `COOKIE_SECURE`: **_empty_**: `true` 或 `false`。启用此选项以强制在所有会话访问中使用 HTTPS。如果没有设置，当 ROOT_URL 是 https 链接的时候默认设置为 true。
-- `COOKIE_NAME`: **i\_like\_gitea**: 用于会话 ID 的 cookie 名称。
+- `COOKIE_NAME`: **i_like_gitea**: 用于会话 ID 的 cookie 名称。
 - `GC_INTERVAL_TIME`: **86400**: GC 间隔时间，以秒为单位。
 - `SESSION_LIFE_TIME`: **86400**: 会话生命周期，以秒为单位，默认为 86400（1 天）。
 - `DOMAIN`: **_empty_**: 设置 cookie 的域。
@@ -761,10 +758,10 @@ Gitea 创建以下非唯一队列：
 ## 图像 (`picture`)
 
 - `GRAVATAR_SOURCE`: **gravatar**: 头像来源，可以是 gravatar、duoshuo 或类似 http://cn.gravatar.com/avatar/ 的来源。
-   `http://cn.gravatar.com/avatar/`。
+  `http://cn.gravatar.com/avatar/`。
 - `DISABLE_GRAVATAR`: **false**: 启用后，只使用内部头像。**已弃用 [v1.18+]** 该配置已迁移到数据库中保存，通过管理员面板进行配置。
 - `ENABLE_FEDERATED_AVATAR`: **false**: 启用头像联盟支持（参见
-   [http://www.libravatar.org](http://www.libravatar.org)）。**已弃用 [v1.18+]** 该配置已迁移到数据库中保存，通过管理员面板进行配置。
+  [http://www.libravatar.org](http://www.libravatar.org)）。**已弃用 [v1.18+]** 该配置已迁移到数据库中保存，通过管理员面板进行配置。
 
 - `AVATAR_STORAGE_TYPE`: **default**: 在 `[storage.xxx]` 中定义的存储类型。默认为 `default`，如果没有 `[storage]` 部分，则将读取 `[storage]`，如果没有则将是 `local` 类型。
 - `AVATAR_UPLOAD_PATH`: **data/avatars**: 存储用户头像图像文件的路径。
@@ -807,7 +804,7 @@ Gitea 创建以下非唯一队列：
 - `MINIO_USE_SSL`: **false**: Minio 启用 SSL，仅当 STORAGE_TYPE 为 `minio` 时可用。
 - `MINIO_INSECURE_SKIP_VERIFY`: **false**: Minio 跳过 SSL 验证，仅当 STORAGE_TYPE 为 `minio` 时可用。
 - `MINIO_CHECKSUM_ALGORITHM`: **default**: Minio 校验算法：`default`（适用于 MinIO 或 AWS S3）或 `md5`（适用于 Cloudflare 或 Backblaze）
-- `MINIO_BUCKET_LOOKUP_TYPE`: **auto**: Minio的bucket查找方式默认为`auto`模式，可将其设置为`dns`（虚拟托管样式）或`path`（路径样式），仅当`STORAGE_TYPE`为`minio`时可用。
+- `MINIO_BUCKET_LOOKUP_TYPE`: **auto**: Minio 的 bucket 查找方式默认为`auto`模式，可将其设置为`dns`（虚拟托管样式）或`path`（路径样式），仅当`STORAGE_TYPE`为`minio`时可用。
 
 ## 日志 (`log`)
 
@@ -834,7 +831,7 @@ Gitea 创建以下非唯一队列：
   - 例如：
   - 在请求头中：X-Request-ID: **test-id-123**
   - 在 app.ini 中的配置：REQUEST_ID_HEADERS = X-Request-ID
-  - 在日志中打印：127.0.0.1:58384 - - [14/Feb/2023:16:33:51 +0800]  "**test-id-123**" ...
+  - 在日志中打印：127.0.0.1:58384 - - [14/Feb/2023:16:33:51 +0800] "**test-id-123**" ...
 
 ### 日志子部分 (`log.<writer-mode-name>`)
 
@@ -870,13 +867,13 @@ Gitea 创建以下非唯一队列：
 
 ## 定时任务 (`cron`)
 
-- `ENABLED`: **false**:  是否在后台运行定期任务。
+- `ENABLED`: **false**: 是否在后台运行定期任务。
 - `RUN_AT_START`: **false**: 在应用程序启动时运行定时任务。
-- `NOTICE_ON_SUCCESS`: **false**: 设置为 true时，任务成功完成时将进行通知。
+- `NOTICE_ON_SUCCESS`: **false**: 设置为 true 时，任务成功完成时将进行通知。
 
 - `SCHEDULE` 接受的格式:
-  - 完整的crontab语法规范, e.g. `* * * * * ?`
-  - 描述符e.g. `@midnight`, `@every 1h30m` ...
+  - 完整的 crontab 语法规范, e.g. `* * * * * ?`
+  - 描述符 e.g. `@midnight`, `@every 1h30m` ...
   - 更多详见: [cron documentation](https://pkg.go.dev/github.com/gogs/cron@v0.0.0-20171120032916-9f6c956d3e14)
 
 ### 基本定时任务 - 默认开启
@@ -885,31 +882,31 @@ Gitea 创建以下非唯一队列：
 
 - `ENABLED`: **true**: 是否启用该定时任务。
 - `RUN_AT_START`: **true**: 设置在服务启动时运行。
-- `SCHEDULE`: **@midnight**: 使用Cron语法的定时任务触发配置，例如 `@every 1h`。
+- `SCHEDULE`: **@midnight**: 使用 Cron 语法的定时任务触发配置，例如 `@every 1h`。
 - `OLDER_THAN`: **24h**: 超过`OLDER_THAN`时间的存档将被删除，例如 `12h`。
 
 #### 定时任务 - 更新镜像仓库 (`cron.update_mirrors`)
 
-- `SCHEDULE`: **@every 10m**: 使用Cron语法的定时任务触发配置，例如 `@every 3h`。
-- `PULL_LIMIT`: **50**: 将要添加到队列的镜像数量限制为此数字（负值表示无限制，0将导致不会将镜像加入队列，从而有效地禁用镜像更新）。
-- `PUSH_LIMIT`: **50**: 将要添加到队列的镜像数量限制为此数字（负值表示无限制，0将导致不会将镜像加入队列，从而有效地禁用镜像更新）。
+- `SCHEDULE`: **@every 10m**: 使用 Cron 语法的定时任务触发配置，例如 `@every 3h`。
+- `PULL_LIMIT`: **50**: 将要添加到队列的镜像数量限制为此数字（负值表示无限制，0 将导致不会将镜像加入队列，从而有效地禁用镜像更新）。
+- `PUSH_LIMIT`: **50**: 将要添加到队列的镜像数量限制为此数字（负值表示无限制，0 将导致不会将镜像加入队列，从而有效地禁用镜像更新）。
 
 #### 定时任务 - 健康检查所有仓库 (`cron.repo_health_check`)
 
-- `SCHEDULE`: **@midnight**: Cron语法，用于安排仓库健康检查。
+- `SCHEDULE`: **@midnight**: Cron 语法，用于安排仓库健康检查。
 - `TIMEOUT`: **60s**: 用于健康检查执行超时的时间持续语法。
 - `ARGS`: **_empty_**: `git fsck` 命令的参数，例如 `--unreachable --tags`。在 http://git-scm.com/docs/git-fsck 上了解更多。
 
 #### 定时任务 - 检查所有仓库统计 (`cron.check_repo_stats`)
 
 - `RUN_AT_START`: **true**: 在启动时运行仓库统计检查。
-- `SCHEDULE`: **@midnight**: Cron语法，用于安排仓库统计检查。
+- `SCHEDULE`: **@midnight**: Cron 语法，用于安排仓库统计检查。
 
 #### 定时任务 - 清理 hook_task 表 (`cron.cleanup_hook_task_table`)
 
 - `ENABLED`: **true**: 启用清理 hook_task 任务。
 - `RUN_AT_START`: **false**: 在启动时运行清理 hook_task（如果启用）。
-- `SCHEDULE`: **@midnight**: Cron语法，用于清理 hook_task 表。
+- `SCHEDULE`: **@midnight**: Cron 语法，用于清理 hook_task 表。
 - `CLEANUP_TYPE` **OlderThan** OlderThan 或 PerWebhook 方法来清理 hook_task，可以按年龄（即 hook_task 记录传递多久）或按每个 Webhook 保留的数量（即每个 Webhook 保留最新的 x 个传递）来清理。
 - `OLDER_THAN`: **168h**: 如果 CLEANUP_TYPE 设置为 OlderThan，则早于此表达式的任何传递的 hook_task 记录将被删除。
 - `NUMBER_TO_KEEP`: **10**: 如果 CLEANUP_TYPE 设置为 PerWebhook，则 Webhook 的此数量 hook_task 记录将被保留（即保留最新的 x 个传递）。
@@ -919,7 +916,7 @@ Gitea 创建以下非唯一队列：
 - `ENABLED`: **true**: 启用清理过期包任务。
 - `RUN_AT_START`: **true**: 在启动时运行任务（如果启用）。
 - `NOTICE_ON_SUCCESS`: **false**: 每次运行此任务时都会通知。
-- `SCHEDULE`: **@midnight**: Cron语法，用于任务。
+- `SCHEDULE`: **@midnight**: Cron 语法，用于任务。
 - `OLDER_THAN`: **24h**: 未引用的包数据创建超过 OLDER_THAN 时间的包将被删除。
 
 #### Cron - 更新迁移海报 ID (`cron.update_migration_poster_id`)
@@ -937,7 +934,7 @@ Gitea 创建以下非唯一队列：
 
 - `ENABLED`: **false**: 启用服务。
 - `RUN_AT_START`: **false**: 在启动时运行任务（如果启用）。
-- `SCHEDULE`: **@every 72h**: Cron语法，用于安排仓库存档清理，例如 `@every 1h`。
+- `SCHEDULE`: **@every 72h**: Cron 语法，用于安排仓库存档清理，例如 `@every 1h`。
 - `TIMEOUT`: **60s**: 用于垃圾收集执行超时的时间持续语法。
 - `NOTICE_ON_SUCCESS`: **false**: 设置为 true 以打开成功通知。
 - `ARGS`: **_empty_**: `git gc` 命令的参数，例如 `--aggressive --auto`。默认值与 [git] -> GC_ARGS 相同。
@@ -947,95 +944,95 @@ Gitea 创建以下非唯一队列：
 - `ENABLED`: **false**: 启用服务。
 - `RUN_AT_START`: **false**: 在启动时运行任务（如果启用）。
 - `NOTICE_ON_SUCCESS`: **false**: 设置为 true 以打开成功通知。
-- `SCHEDULE`: **@every 72h**: Cron语法，用于安排仓库存档清理，例如 `@every 1h`。
+- `SCHEDULE`: **@every 72h**: Cron 语法，用于安排仓库存档清理，例如 `@every 1h`。
 
 #### Cron - 重新同步所有仓库的 pre-receive、update 和 post-receive 钩子 (`cron.resync_all_hooks`)
 
 - `ENABLED`: **false**: 启用服务。
 - `RUN_AT_START`: **false**: 在启动时运行任务（如果启用）。
 - `NOTICE_ON_SUCCESS`: **false**: 设置为 true 以打开成功通知。
-- `SCHEDULE`: **@every 72h**: Cron语法，用于安排仓库存档清理，例如 `@every 1h`。
+- `SCHEDULE`: **@every 72h**: Cron 语法，用于安排仓库存档清理，例如 `@every 1h`。
 
 #### Cron - 重新初始化所有缺失的 Git 仓库，但记录已存在 (`cron.reinit_missing_repos`)
 
 - `ENABLED`: **false**: 启用服务。
 - `RUN_AT_START`: **false**: 在启动时运行任务（如果启用）。
 - `NOTICE_ON_SUCCESS`: **false**: 设置为 true 以打开成功通知。
-- `SCHEDULE`: **@every 72h**: Cron语法，用于安排仓库存档清理，例如 `@every 1h`。
+- `SCHEDULE`: **@every 72h**: Cron 语法，用于安排仓库存档清理，例如 `@every 1h`。
 
 #### Cron - 删除所有缺少 Git 文件的仓库 (`cron.delete_missing_repos`)
 
 - `ENABLED`: **false**: 启用服务。
 - `RUN_AT_START`: **false**: 在启动时运行任务（如果启用）。
 - `NOTICE_ON_SUCCESS`: **false**: 设置为 true 以打开成功通知。
-- `SCHEDULE`: **@every 72h**: Cron语法，用于安排仓库存档清理，例如 `@every 1h`。
+- `SCHEDULE`: **@every 72h**: Cron 语法，用于安排仓库存档清理，例如 `@every 1h`。
 
 #### Cron - 删除生成的仓库头像 (`cron.delete_generated_repository_avatars`)
 
 - `ENABLED`: **false**: 启用服务。
 - `RUN_AT_START`: **false**: 在启动时运行任务（如果启用）。
 - `NOTICE_ON_SUCCESS`: **false**: 设置为 true 以打开成功通知。
-- `SCHEDULE`: **@every 72h**: Cron语法，用于安排仓库存档清理，例如 `@every 1h`。
+- `SCHEDULE`: **@every 72h**: Cron 语法，用于安排仓库存档清理，例如 `@every 1h`。
 
 #### Cron - 从数据库中删除所有旧的操作 (`cron.delete_old_actions`)
 
 - `ENABLED`: **false**: 启用服务。
 - `RUN_AT_START`: **false**: 在启动时运行任务（如果启用）。
 - `NOTICE_ON_SUCCESS`: **false**: 设置为 true 以打开成功通知。
-- `SCHEDULE`: **@every 168h**: Cron语法，用于设置多长时间进行检查。
-- `OLDER_THAN`: **8760h**: 早于此表达式的任何操作都将从数据库中删除，建议使用 `8760h`（1年），因为这是热力图的最大长度。
+- `SCHEDULE`: **@every 168h**: Cron 语法，用于设置多长时间进行检查。
+- `OLDER_THAN`: **8760h**: 早于此表达式的任何操作都将从数据库中删除，建议使用 `8760h`（1 年），因为这是热力图的最大长度。
 
 #### Cron - 从数据库中删除所有旧的系统通知 (`cron.delete_old_system_notices`)
 
 - `ENABLED`: **false**: 启用服务。
 - `RUN_AT_START`: **false**: 在启动时运行任务（如果启用）。
 - `NO_SUCCESS_NOTICE`: **false**: 设置为 true 以关闭成功通知。
-- `SCHEDULE`: **@every 168h**: Cron语法，用于设置多长时间进行检查。
+- `SCHEDULE`: **@every 168h**: Cron 语法，用于设置多长时间进行检查。
 - `OLDER_THAN`: **8760h**: 早于此表达式的任何系统通知都将从数据库中删除。
 
 #### Cron - 在仓库中回收 LFS 指针 (`cron.gc_lfs`)
 
 - `ENABLED`: **false**: 启用服务。
 - `RUN_AT_START`: **false**: 在启动时运行任务（如果启用）。
-- `SCHEDULE`: **@every 24h**: Cron语法，用于设置多长时间进行检查。
-- `OLDER_THAN`: **168h**: 只会尝试回收早于此时间（默认7天）的 LFSMetaObject。
-- `LAST_UPDATED_MORE_THAN_AGO`: **72h**: 只会尝试回收超过此时间（默认3天）没有尝试过回收的 LFSMetaObject。
+- `SCHEDULE`: **@every 24h**: Cron 语法，用于设置多长时间进行检查。
+- `OLDER_THAN`: **168h**: 只会尝试回收早于此时间（默认 7 天）的 LFSMetaObject。
+- `LAST_UPDATED_MORE_THAN_AGO`: **72h**: 只会尝试回收超过此时间（默认 3 天）没有尝试过回收的 LFSMetaObject。
 - `NUMBER_TO_CHECK_PER_REPO`: **100**: 每个仓库要检查的过期 LFSMetaObject 的最小数量。设置为 `0` 以始终检查所有。
 
 ## Git (`git`)
 
-- `PATH`: **""**: Git可执行文件的路径。如果为空，Gitea将在PATH环境中搜索。
-- `HOME_PATH`: **`{APP_DATA_PATH}/home`**: Git的HOME目录。
-   此目录将用于包含Gitea的git调用将使用的`.gitconfig`和可能的`.gnupg`目录。如果您可以确认Gitea是在此环境中唯一运行的应用程序，您可以将其设置为Gitea用户的正常主目录。
+- `PATH`: **""**: Git 可执行文件的路径。如果为空，Gitea 将在 PATH 环境中搜索。
+- `HOME_PATH`: **`{APP_DATA_PATH}/home`**: Git 的 HOME 目录。
+  此目录将用于包含 Gitea 的 git 调用将使用的`.gitconfig`和可能的`.gnupg`目录。如果您可以确认 Gitea 是在此环境中唯一运行的应用程序，您可以将其设置为 Gitea 用户的正常主目录。
 - `DISABLE_DIFF_HIGHLIGHT`: **false**: 禁用已添加和已删除更改的高亮显示。
-- `MAX_GIT_DIFF_LINES`: **1000**: 在diff视图中允许单个文件的最大行数。
-- `MAX_GIT_DIFF_LINE_CHARACTERS`: **5000**: 在diff视图中每行的最大字符数。
-- `MAX_GIT_DIFF_FILES`: **100**: 在diff视图中显示的最大文件数。
+- `MAX_GIT_DIFF_LINES`: **1000**: 在 diff 视图中允许单个文件的最大行数。
+- `MAX_GIT_DIFF_LINE_CHARACTERS`: **5000**: 在 diff 视图中每行的最大字符数。
+- `MAX_GIT_DIFF_FILES`: **100**: 在 diff 视图中显示的最大文件数。
 - `COMMITS_RANGE_SIZE`: **50**: 设置默认的提交范围大小
 - `BRANCHES_RANGE_SIZE`: **20**: 设置默认的分支范围大小
 - `GC_ARGS`: **_empty_**: 命令`git gc`的参数，例如`--aggressive --auto`。更多信息请参见http://git-scm.com/docs/git-gc/
-- `ENABLE_AUTO_GIT_WIRE_PROTOCOL`: **true**: 如果使用Git版本 >= 2.18时使用Git wire协议版本2，默认为true，当您始终希望使用Git wire协议版本1时设置为false。
-  要在使用OpenSSH服务器的情况下为通过SSH的Git启用此功能，请将`AcceptEnv GIT_PROTOCOL`添加到您的sshd_config文件中。
-- `PULL_REQUEST_PUSH_MESSAGE`: **true**: 对于推送到非默认分支的响应，使用URL创建拉取请求（如果启用了该存储库的拉取请求）
+- `ENABLE_AUTO_GIT_WIRE_PROTOCOL`: **true**: 如果使用 Git 版本 >= 2.18 时使用 Git wire 协议版本 2，默认为 true，当您始终希望使用 Git wire 协议版本 1 时设置为 false。
+  要在使用 OpenSSH 服务器的情况下为通过 SSH 的 Git 启用此功能，请将`AcceptEnv GIT_PROTOCOL`添加到您的 sshd_config 文件中。
+- `PULL_REQUEST_PUSH_MESSAGE`: **true**: 对于推送到非默认分支的响应，使用 URL 创建拉取请求（如果启用了该存储库的拉取请求）
 - `VERBOSE_PUSH`: **true**: 在处理推送时打印有关推送状态的信息。
 - `VERBOSE_PUSH_DELAY`: **5s**: 仅在推送时间超过此延迟时才打印详细信息。
-- `LARGE_OBJECT_THRESHOLD`: **1048576**: （仅限于Go-Git），不要在内存中缓存大于此大小的对象。（设置为0以禁用。）
-- `DISABLE_CORE_PROTECT_NTFS`: **false** 将`core.protectNTFS`强制设置为false。
-- `DISABLE_PARTIAL_CLONE`: **false** 禁用使用部分克隆进行git。
+- `LARGE_OBJECT_THRESHOLD`: **1048576**: （仅限于 Go-Git），不要在内存中缓存大于此大小的对象。（设置为 0 以禁用。）
+- `DISABLE_CORE_PROTECT_NTFS`: **false** 将`core.protectNTFS`强制设置为 false。
+- `DISABLE_PARTIAL_CLONE`: **false** 禁用使用部分克隆进行 git。
 
 ### Git - 超时设置 (`git.timeout`)
 
-- `DEFAULT`: **360**: Git操作的默认超时时间，单位秒
+- `DEFAULT`: **360**: Git 操作的默认超时时间，单位秒
 - `MIGRATE`: **600**: 在迁移外部存储库时的超时时间，单位秒
 - `MIRROR`: **300**: 在镜像外部存储库时的超时时间，单位秒
 - `CLONE`: **300**: 在存储库之间进行内部克隆的超时时间，单位秒
 - `PULL`: **300**: 在存储库之间进行内部拉取的超时时间，单位秒
-- `GC`: **60**: git存储库GC的超时时间，单位秒
+- `GC`: **60**: git 存储库 GC 的超时时间，单位秒
 
 ### Git - 配置选项 (`git.config`)
 
-此部分中的键/值对将用作git配置。
-此部分仅执行“设置”配置，从此部分中删除的配置键不会自动从git配置中删除。格式为`some.configKey = value`。
+此部分中的键/值对将用作 git 配置。
+此部分仅执行“设置”配置，从此部分中删除的配置键不会自动从 git 配置中删除。格式为`some.configKey = value`。
 
 - `diff.algorithm`: **histogram**
 - `core.logAllRefUpdates`: **true**
@@ -1043,45 +1040,45 @@ Gitea 创建以下非唯一队列：
 
 ## 指标 (`metrics`)
 
-- `ENABLED`: **false**: 启用/prometheus的metrics端点。
+- `ENABLED`: **false**: 启用/prometheus 的 metrics 端点。
 - `ENABLED_ISSUE_BY_LABEL`: **false**: 启用按标签统计问题，格式为`gitea_issues_by_label{label="bug"} 2`。
 - `ENABLED_ISSUE_BY_REPOSITORY`: **false**: 启用按存储库统计问题，格式为`gitea_issues_by_repository{repository="org/repo"} 5`。
-- `TOKEN`: **_empty_**: 如果要在授权中包含指标，则需要指定令牌。相同的令牌需要在prometheus参数`bearer_token`或`bearer_token_file`中使用。
+- `TOKEN`: **_empty_**: 如果要在授权中包含指标，则需要指定令牌。相同的令牌需要在 prometheus 参数`bearer_token`或`bearer_token_file`中使用。
 
 ## API (`api`)
 
-- `ENABLE_SWAGGER`: **true**: 启用API文档接口 (`/api/swagger`, `/api/v1/swagger`, …). True or false。
-- `MAX_RESPONSE_ITEMS`: **50**: API分页的最大单页项目数。
-- `DEFAULT_PAGING_NUM`: **30**: API分页的默认分页数。
-- `DEFAULT_GIT_TREES_PER_PAGE`: **1000**: Git trees API的默认单页项目数。
-- `DEFAULT_MAX_BLOB_SIZE`: **10485760** (10MiB): blobs API的默认最大文件大小。
+- `ENABLE_SWAGGER`: **true**: 启用 API 文档接口 (`/api/swagger`, `/api/v1/swagger`, …). True or false。
+- `MAX_RESPONSE_ITEMS`: **50**: API 分页的最大单页项目数。
+- `DEFAULT_PAGING_NUM`: **30**: API 分页的默认分页数。
+- `DEFAULT_GIT_TREES_PER_PAGE`: **1000**: Git trees API 的默认单页项目数。
+- `DEFAULT_MAX_BLOB_SIZE`: **10485760** (10MiB): blobs API 的默认最大文件大小。
 
 ## OAuth2 (`oauth2`)
 
-- `ENABLED`: **true**: 启用OAuth2提供者。
-- `ACCESS_TOKEN_EXPIRATION_TIME`：**3600**: OAuth2访问令牌的生命周期，以秒为单位。
-- `REFRESH_TOKEN_EXPIRATION_TIME`：**730**: OAuth2刷新令牌的生命周期，以小时为单位。
+- `ENABLED`: **true**: 启用 OAuth2 提供者。
+- `ACCESS_TOKEN_EXPIRATION_TIME`：**3600**: OAuth2 访问令牌的生命周期，以秒为单位。
+- `REFRESH_TOKEN_EXPIRATION_TIME`：**730**: OAuth2 刷新令牌的生命周期，以小时为单位。
 - `INVALIDATE_REFRESH_TOKENS`：**false**: 检查刷新令牌是否已被使用。
-- `JWT_SIGNING_ALGORITHM`：**RS256**: 用于签署OAuth2令牌的算法。有效值：[`HS256`，`HS384`，`HS512`，`RS256`，`RS384`，`RS512`，`ES256`，`ES384`，`ES512`]。
-- `JWT_SECRET`：**_empty_**: OAuth2访问和刷新令牌的身份验证密钥，请将其更改为唯一的字符串。仅当`JWT_SIGNING_ALGORITHM`设置为`HS256`，`HS384`或`HS512`时才需要此设置。
-- `JWT_SECRET_URI`：**_empty_**: 可以使用此配置选项，而不是在配置中定义`JWT_SECRET`，以向Gitea提供包含密钥的文件的路径（示例值：`file:/etc/gitea/oauth2_jwt_secret`）。
-- `JWT_SIGNING_PRIVATE_KEY_FILE`：**jwt/private.pem**: 用于签署OAuth2令牌的私钥文件路径。路径相对于`APP_DATA_PATH`。仅当`JWT_SIGNING_ALGORITHM`设置为`RS256`，`RS384`，`RS512`，`ES256`，`ES384`或`ES512`时才需要此设置。文件必须包含PKCS8格式的RSA或ECDSA私钥。如果不存在密钥，则将为您创建一个4096位密钥。
-- `MAX_TOKEN_LENGTH`：**32767**: 从OAuth2提供者接受的令牌/cookie的最大长度。
-- `DEFAULT_APPLICATIONS`：**git-credential-oauth，git-credential-manager, tea**: 在启动时预注册用于某些服务的OAuth应用程序。有关可用选项列表，请参阅[OAuth2文档](/development/oauth2-provider.md)。
+- `JWT_SIGNING_ALGORITHM`：**RS256**: 用于签署 OAuth2 令牌的算法。有效值：[`HS256`，`HS384`，`HS512`，`RS256`，`RS384`，`RS512`，`ES256`，`ES384`，`ES512`]。
+- `JWT_SECRET`：**_empty_**: OAuth2 访问和刷新令牌的身份验证密钥，请将其更改为唯一的字符串。仅当`JWT_SIGNING_ALGORITHM`设置为`HS256`，`HS384`或`HS512`时才需要此设置。
+- `JWT_SECRET_URI`：**_empty_**: 可以使用此配置选项，而不是在配置中定义`JWT_SECRET`，以向 Gitea 提供包含密钥的文件的路径（示例值：`file:/etc/gitea/oauth2_jwt_secret`）。
+- `JWT_SIGNING_PRIVATE_KEY_FILE`：**jwt/private.pem**: 用于签署 OAuth2 令牌的私钥文件路径。路径相对于`APP_DATA_PATH`。仅当`JWT_SIGNING_ALGORITHM`设置为`RS256`，`RS384`，`RS512`，`ES256`，`ES384`或`ES512`时才需要此设置。文件必须包含 PKCS8 格式的 RSA 或 ECDSA 私钥。如果不存在密钥，则将为您创建一个 4096 位密钥。
+- `MAX_TOKEN_LENGTH`：**32767**: 从 OAuth2 提供者接受的令牌/cookie 的最大长度。
+- `DEFAULT_APPLICATIONS`：**git-credential-oauth，git-credential-manager, tea**: 在启动时预注册用于某些服务的 OAuth 应用程序。有关可用选项列表，请参阅[OAuth2 文档](/development/oauth2-provider.md)。
 
 ## i18n (`i18n`)
 
-- `LANGS`: **en-US,zh-CN,zh-HK,zh-TW,de-DE,fr-FR,nl-NL,lv-LV,ru-RU,uk-UA,ja-JP,es-ES,pt-BR,pt-PT,pl-PL,bg-BG,it-IT,fi-FI,tr-TR,cs-CZ,sv-SE,ko-KR,el-GR,fa-IR,hu-HU,id-ID,ml-IN**: 
-    在语言选择器中显示的区域设置列表。如果用户浏览器的语言与列表中的任何区域设置不匹配，则将使用第一个区域设置作为默认值。
+- `LANGS`: **en-US,zh-CN,zh-HK,zh-TW,de-DE,fr-FR,nl-NL,lv-LV,ru-RU,uk-UA,ja-JP,es-ES,pt-BR,pt-PT,pl-PL,bg-BG,it-IT,fi-FI,tr-TR,cs-CZ,sv-SE,ko-KR,el-GR,fa-IR,hu-HU,id-ID,ml-IN**:
+  在语言选择器中显示的区域设置列表。如果用户浏览器的语言与列表中的任何区域设置不匹配，则将使用第一个区域设置作为默认值。
 
-- `NAMES`：**English,简体中文,繁體中文（香港）,繁體中文（台灣）,Deutsch,Français,Nederlands,Latviešu,Русский,Українська,日本語,Español,Português do Brasil,Português de Portugal,Polski,Български,Italiano,Suomi,Türkçe,Čeština,Српски,Svenska,한국어,Ελληνικά,فارسی,Magyar nyelv,Bahasa Indonesia,മലയാളം**: 
-    对应于各区域设置的可见名称。
+- `NAMES`：**English,简体中文,繁體中文（香港）,繁體中文（台灣）,Deutsch,Français,Nederlands,Latviešu,Русский,Українська,日本語,Español,Português do Brasil,Português de Portugal,Polski,Български,Italiano,Suomi,Türkçe,Čeština,Српски,Svenska,한국어,Ελληνικά,فارسی,Magyar nyelv,Bahasa Indonesia,മലയാളം**:
+  对应于各区域设置的可见名称。
 
 ## Markup (`markup`)
 
-- `MERMAID_MAX_SOURCE_CHARACTERS`: **5000**: 设置Mermaid源的最大大小。(设为-1代表禁止)
+- `MERMAID_MAX_SOURCE_CHARACTERS`: **5000**: 设置 Mermaid 源的最大大小。(设为-1 代表禁止)
 
-gitea支持外部渲染工具，你可以配置你熟悉的文档渲染工具. 比如一下将新增一个名字为 asciidoc 的渲染工具。
+gitea 支持外部渲染工具，你可以配置你熟悉的文档渲染工具. 比如一下将新增一个名字为 asciidoc 的渲染工具。
 
 ```ini
 [markup.asciidoc]
@@ -1093,21 +1090,21 @@ IS_INPUT_FILE = false
 ```
 
 - ENABLED：**false** 设置是否启动渲染器
-- NEED_POSTPROCESS：**true** 设置为**true**以替换链接/SHA1等。
-- FILE_EXTENSIONS：**_empty_** 要由外部命令渲染的文件扩展名列表。多个扩展名需要用逗号分隔。
+- NEED_POSTPROCESS：**true** 设置为**true**以替换链接/SHA1 等。
+- FILE*EXTENSIONS：\*\*\_empty*\*\* 要由外部命令渲染的文件扩展名列表。多个扩展名需要用逗号分隔。
 - RENDER_COMMAND：用于渲染所有匹配的扩展名的外部命令。
 - IS_INPUT_FILE：**false** 输入不是标准输入，而是一个在`RENDER_COMMAND`之后带有文件参数的文件。
 - RENDER_CONTENT_MODE：**sanitized** 内容将如何呈现。
-  - sanitized：对内容进行清理，并在当前页面内呈现，默认仅允许一些HTML标签和属性。可以在`[markup.sanitizer.*]`中定义自定义的清理规则。
-  - no-sanitizer：禁用清理程序，在当前页面内呈现内容。这是**不安全**的，如果内容包含恶意代码，可能会导致XSS攻击。
-  - iframe：在单独的独立页面中呈现内容，并通过iframe嵌入到当前页面中。iframe处于禁用同源策略的沙箱模式，并且JS代码与父页面安全隔离。
+  - sanitized：对内容进行清理，并在当前页面内呈现，默认仅允许一些 HTML 标签和属性。可以在`[markup.sanitizer.*]`中定义自定义的清理规则。
+  - no-sanitizer：禁用清理程序，在当前页面内呈现内容。这是**不安全**的，如果内容包含恶意代码，可能会导致 XSS 攻击。
+  - iframe：在单独的独立页面中呈现内容，并通过 iframe 嵌入到当前页面中。iframe 处于禁用同源策略的沙箱模式，并且 JS 代码与父页面安全隔离。
 
 两个特殊的环境变量会传递给渲染命令：
 
-- `GITEA_PREFIX_SRC`，其中包含`src`路径树中的当前URL前缀。用作链接的前缀。
-- `GITEA_PREFIX_RAW`，其中包含`raw`路径树中的当前URL前缀。用作图像路径的前缀。
+- `GITEA_PREFIX_SRC`，其中包含`src`路径树中的当前 URL 前缀。用作链接的前缀。
+- `GITEA_PREFIX_RAW`，其中包含`raw`路径树中的当前 URL 前缀。用作图像路径的前缀。
 
-如果`RENDER_CONTENT_MODE`为`sanitized`，Gitea支持自定义用于呈现的HTML的清理策略。下面的示例将支持来自pandoc的KaTeX输出。
+如果`RENDER_CONTENT_MODE`为`sanitized`，Gitea 支持自定义用于呈现的 HTML 的清理策略。下面的示例将支持来自 pandoc 的 KaTeX 输出。
 
 ```ini
 [markup.sanitizer.TeX]
@@ -1122,18 +1119,18 @@ ALLOW_DATA_URI_IMAGES = true
 - `ELEMENT`：此策略适用于的元素。必须非空。
 - `ALLOW_ATTR`：此策略允许的属性。必须非空。
 - `REGEXP`：用于匹配属性内容的正则表达式。必须存在，但可以为空，以无条件允许此属性的白名单。
-- `ALLOW_DATA_URI_IMAGES`：**false** 允许数据URI图像（`<img src="data:image/png;base64,..."/>`）。
+- `ALLOW_DATA_URI_IMAGES`：**false** 允许数据 URI 图像（`<img src="data:image/png;base64,..."/>`）。
 
 可以通过添加唯一的子节来定义多个清理规则，例如`[markup.sanitizer.TeX-2]`。
 要仅为指定的外部渲染器应用清理规则，它们必须使用渲染器名称，例如`[markup.sanitizer.asciidoc.rule-1]`。
-如果规则在渲染器ini节之上定义，或者名称与渲染器不匹配，则应用于每个渲染器。
+如果规则在渲染器 ini 节之上定义，或者名称与渲染器不匹配，则应用于每个渲染器。
 
 ## 代码高亮映射 (`highlight.mapping`)
 
 - `file_extension 比如 .toml`: **language 比如 ini**。文件扩展名到语言的映射覆盖。
 
 - Gitea 将使用 `.gitattributes` 文件中的 `linguist-language` 或 `gitlab-language` 属性来对文件进行高亮显示，如果可用。
-如果未设置此属性或语言不可用，则将查找文件扩展名在此映射中或使用启发式方法来确定文件类型。
+  如果未设置此属性或语言不可用，则将查找文件扩展名在此映射中或使用启发式方法来确定文件类型。
 
 ## 时间 (`time`)
 
@@ -1213,11 +1210,11 @@ ALLOW_DATA_URI_IMAGES = true
 - `MINIO_BASE_PATH`：**lfs/**: 桶上的 Minio 基本路径，仅在 `STORAGE_TYPE` 为 `minio` 时可用。
 - `MINIO_USE_SSL`：**false**: Minio 启用 ssl，仅在 `STORAGE_TYPE` 为 `minio` 时可用。
 - `MINIO_INSECURE_SKIP_VERIFY`：**false**: Minio 跳过 SSL 验证，仅在 `STORAGE_TYPE` 为 `minio` 时可用。
-- `MINIO_BUCKET_LOOKUP_TYPE`: **auto**: Minio的bucket查找方式默认为`auto`模式，可将其设置为`dns`（虚拟托管样式）或`path`（路径样式），仅当`STORAGE_TYPE`为`minio`时可用。
+- `MINIO_BUCKET_LOOKUP_TYPE`: **auto**: Minio 的 bucket 查找方式默认为`auto`模式，可将其设置为`dns`（虚拟托管样式）或`path`（路径样式），仅当`STORAGE_TYPE`为`minio`时可用。
 
 ## 存储 (`storage`)
 
-默认的附件、lfs、头像、仓库头像、仓库归档、软件包、操作日志、artifacts 的存储配置。推荐仅仅配置此 section 并让其它的section 从此配置项继承。
+默认的附件、lfs、头像、仓库头像、仓库归档、软件包、操作日志、artifacts 的存储配置。推荐仅仅配置此 section 并让其它的 section 从此配置项继承。
 
 - `STORAGE_TYPE`：**local**: 存储类型，`local` 表示本地磁盘，`minio` 表示 S3，`azureblob` 表示 azure 对象存储。
 - `SERVE_DIRECT`：**false**: 允许存储驱动程序重定向到经过身份验证的 URL 以直接提供文件。目前，仅支持通过签名的 URL 提供 Minio/S3，本地不执行任何操作。
@@ -1228,7 +1225,7 @@ ALLOW_DATA_URI_IMAGES = true
 - `MINIO_LOCATION`：**us-east-1**: 创建桶的 Minio 位置，仅在 `STORAGE_TYPE` 为 `minio` 时可用。
 - `MINIO_USE_SSL`：**false**: Minio 启用 ssl，仅在 `STORAGE_TYPE` 为 `minio` 时可用。
 - `MINIO_INSECURE_SKIP_VERIFY`：**false**: Minio 跳过 SSL 验证，仅在 `STORAGE_TYPE` 为 `minio` 时可用。
-- `MINIO_BUCKET_LOOKUP_TYPE`: **auto**: Minio的bucket查找方式默认为`auto`模式，可将其设置为`dns`（虚拟托管样式）或`path`（路径样式），仅当`STORAGE_TYPE`为`minio`时可用。
+- `MINIO_BUCKET_LOOKUP_TYPE`: **auto**: Minio 的 bucket 查找方式默认为`auto`模式，可将其设置为`dns`（虚拟托管样式）或`path`（路径样式），仅当`STORAGE_TYPE`为`minio`时可用。
 
 - `AZURE_BLOB_ENDPOINT`: **_empty_**: Azure Blob 终端点，仅在 `STORAGE_TYPE` 为 `azureblob` 时可用。例如：https://accountname.blob.core.windows.net 或 http://127.0.0.1:10000/devstoreaccount1
 - `AZURE_BLOB_ACCOUNT_NAME`: **_empty_**: Azure Blob 账号名，仅在 `STORAGE_TYPE` 为 `azureblob` 时可用。
@@ -1311,29 +1308,29 @@ MINIO_BUCKET_LOOKUP_TYPE = auto
 
 存储库归档存储的配置。当将`STORAGE_TYPE`设置为`xxx`时，它将继承默认的 `[storage]` 或 `[storage.xxx]` 配置。`PATH`的默认值是`data/repo-archive`，`MINIO_BASE_PATH`的默认值是`repo-archive/`。
 
-- `STORAGE_TYPE`: **local**: 存储类型，`local`表示本地磁盘，`minio`表示与S3兼容的对象存储服务，或者使用定义为`[storage.xxx]`的其他名称。
-- `SERVE_DIRECT`: **false**: 允许存储驱动程序重定向到经过身份验证的URL以直接提供文件。目前，只有Minio/S3支持通过签名URL，本地不执行任何操作。
+- `STORAGE_TYPE`: **local**: 存储类型，`local`表示本地磁盘，`minio`表示与 S3 兼容的对象存储服务，或者使用定义为`[storage.xxx]`的其他名称。
+- `SERVE_DIRECT`: **false**: 允许存储驱动程序重定向到经过身份验证的 URL 以直接提供文件。目前，只有 Minio/S3 支持通过签名 URL，本地不执行任何操作。
 - `PATH`: **./data/repo-archive**: 用于存储归档文件的位置，仅在`STORAGE_TYPE`为`local`时可用。
-- `MINIO_ENDPOINT`: **localhost:9000**: Minio端点，仅在`STORAGE_TYPE`为`minio`时可用。
-- `MINIO_ACCESS_KEY_ID`: Minio的accessKeyID，仅在`STORAGE_TYPE`为`minio`时可用。
-- `MINIO_SECRET_ACCESS_KEY`: Minio的secretAccessKey，仅在`STORAGE_TYPE`为`minio`时可用。
-- `MINIO_BUCKET`: **gitea**: 用于存储归档的Minio存储桶，仅在`STORAGE_TYPE`为`minio`时可用。
-- `MINIO_LOCATION`: **us-east-1**: 用于创建存储桶的Minio位置，仅在`STORAGE_TYPE`为`minio`时可用。
-- `MINIO_BASE_PATH`: **repo-archive/**: 存储桶上的Minio基本路径，仅在`STORAGE_TYPE`为`minio`时可用。
-- `MINIO_USE_SSL`: **false**: 启用Minio的SSL，仅在`STORAGE_TYPE`为`minio`时可用。
-- `MINIO_INSECURE_SKIP_VERIFY`: **false**: 跳过Minio的SSL验证，仅在`STORAGE_TYPE`为`minio`时可用。
-- `MINIO_BUCKET_LOOKUP_TYPE`: **auto**: Minio的bucket查找方式默认为`auto`模式，可将其设置为`dns`（虚拟托管样式）或`path`（路径样式），仅当`STORAGE_TYPE`为`minio`时可用。
+- `MINIO_ENDPOINT`: **localhost:9000**: Minio 端点，仅在`STORAGE_TYPE`为`minio`时可用。
+- `MINIO_ACCESS_KEY_ID`: Minio 的 accessKeyID，仅在`STORAGE_TYPE`为`minio`时可用。
+- `MINIO_SECRET_ACCESS_KEY`: Minio 的 secretAccessKey，仅在`STORAGE_TYPE`为`minio`时可用。
+- `MINIO_BUCKET`: **gitea**: 用于存储归档的 Minio 存储桶，仅在`STORAGE_TYPE`为`minio`时可用。
+- `MINIO_LOCATION`: **us-east-1**: 用于创建存储桶的 Minio 位置，仅在`STORAGE_TYPE`为`minio`时可用。
+- `MINIO_BASE_PATH`: **repo-archive/**: 存储桶上的 Minio 基本路径，仅在`STORAGE_TYPE`为`minio`时可用。
+- `MINIO_USE_SSL`: **false**: 启用 Minio 的 SSL，仅在`STORAGE_TYPE`为`minio`时可用。
+- `MINIO_INSECURE_SKIP_VERIFY`: **false**: 跳过 Minio 的 SSL 验证，仅在`STORAGE_TYPE`为`minio`时可用。
+- `MINIO_BUCKET_LOOKUP_TYPE`: **auto**: Minio 的 bucket 查找方式默认为`auto`模式，可将其设置为`dns`（虚拟托管样式）或`path`（路径样式），仅当`STORAGE_TYPE`为`minio`时可用。
 
 ### 存储库归档 (`repo-archive`)
 
-- `STORAGE_TYPE`: **local**: 存储类型，用于操作日志，`local`表示本地磁盘，`minio`表示与S3兼容的对象存储服务，默认为`local`，或者使用定义为`[storage.xxx]`的其他名称。
-- `MINIO_BASE_PATH`: **repo-archive/**: Minio存储桶上的基本路径，仅在`STORAGE_TYPE`为`minio`时可用。
+- `STORAGE_TYPE`: **local**: 存储类型，用于操作日志，`local`表示本地磁盘，`minio`表示与 S3 兼容的对象存储服务，默认为`local`，或者使用定义为`[storage.xxx]`的其他名称。
+- `MINIO_BASE_PATH`: **repo-archive/**: Minio 存储桶上的基本路径，仅在`STORAGE_TYPE`为`minio`时可用。
 
 ## 代理 (`proxy`)
 
-- `PROXY_ENABLED`: **false**: 启用代理，如果为true，所有通过HTTP向外部的请求都将受到影响，如果为false，即使环境设置了http_proxy/https_proxy也不会使用
+- `PROXY_ENABLED`: **false**: 启用代理，如果为 true，所有通过 HTTP 向外部的请求都将受到影响，如果为 false，即使环境设置了 http_proxy/https_proxy 也不会使用
 - `PROXY_URL`: **_empty_**: 代理服务器地址，支持 http://, https//, socks://，为空则不启用代理而使用环境变量中的 http_proxy/https_proxy
-- `PROXY_HOSTS`: **_empty_**: 逗号分隔的多个需要代理的网址，支持 * 号匹配符号， ** 表示匹配所有网站
+- `PROXY_HOSTS`: **_empty_**: 逗号分隔的多个需要代理的网址，支持 \* 号匹配符号， \*\* 表示匹配所有网站
 
 i.e.
 
@@ -1347,8 +1344,8 @@ PROXY_HOSTS = *.github.com
 
 - `ENABLED`: **true**: 启用/禁用操作功能
 - `DEFAULT_ACTIONS_URL`: **github**: 获取操作插件的默认平台，`github`表示`https://github.com`，`self`表示当前的 Gitea 实例。
-- `STORAGE_TYPE`: **local**: 用于操作日志的存储类型，`local`表示本地磁盘，`minio`表示与S3兼容的对象存储服务，默认为`local`，或者使用定义为`[storage.xxx]`的其他名称。
-- `MINIO_BASE_PATH`: **actions_log/**: Minio存储桶上的基本路径，仅在`STORAGE_TYPE`为`minio`时可用。
+- `STORAGE_TYPE`: **local**: 用于操作日志的存储类型，`local`表示本地磁盘，`minio`表示与 S3 兼容的对象存储服务，默认为`local`，或者使用定义为`[storage.xxx]`的其他名称。
+- `MINIO_BASE_PATH`: **actions_log/**: Minio 存储桶上的基本路径，仅在`STORAGE_TYPE`为`minio`时可用。
 - `LOG_RETENTION_DAYS`: **365**: 日志保留时间（天）。此期限后将删除旧日志。
 - `LOG_COMPRESSION`: **zstd**: 日志压缩方式，`none`表示不压缩，`zstd`表示 zstd 压缩。
   其它的压缩方式如`gzip`是不支持的，因为查看日志需要可寻址流。
@@ -1376,8 +1373,8 @@ PROXY_HOSTS = *.github.com
 
 ## 其他 (`other`)
 
-- `SHOW_FOOTER_VERSION`: **true**: 在页面底部显示Gitea的版本。
+- `SHOW_FOOTER_VERSION`: **true**: 在页面底部显示 Gitea 的版本。
 - `SHOW_FOOTER_TEMPLATE_LOAD_TIME`: **true**: 在页脚显示模板执行的时间。
 - `SHOW_FOOTER_POWERED_BY`: **true**: 在页脚显示“由...提供动力”的文本。
-- `ENABLE_SITEMAP`: **true**: 生成sitemap.
-- `ENABLE_FEED`: **true**: 是否启用RSS/Atom
+- `ENABLE_SITEMAP`: **true**: 生成 sitemap.
+- `ENABLE_FEED`: **true**: 是否启用 RSS/Atom

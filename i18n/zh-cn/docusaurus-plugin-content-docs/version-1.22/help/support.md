@@ -67,5 +67,5 @@ ENABLE_PPROF = true
 
 2. 重新启动 Gitea
 
-3. 尝试触发bug，当请求卡住一段时间，使用或浏览器访问：获取堆栈跟踪。
-`curl http://127.0.0.1:6060/debug/pprof/goroutine?debug=1`
+3. 尝试触发 bug，当请求卡住一段时间，使用或浏览器访问：获取堆栈跟踪。
+   `curl http://127.0.0.1:6060/debug/pprof/goroutine?debug=1`

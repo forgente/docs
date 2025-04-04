@@ -6,13 +6,13 @@ sidebar_position: 30
 
 # 使用源代码安装
 
-首先你需要安装Golang，关于Golang的安装，参见[官方文档](https://golang.google.cn/doc/install)。
+首先你需要安装 Golang，关于 Golang 的安装，参见[官方文档](https://golang.google.cn/doc/install)。
 
-其次你需要[安装Node.js](https://nodejs.org/zh-cn/download/)，Node.js 和 npm 将用于构建 Gitea 前端。
+其次你需要[安装 Node.js](https://nodejs.org/zh-cn/download/)，Node.js 和 npm 将用于构建 Gitea 前端。
 
 ## 下载
 
-你需要获取Gitea的源码，最方便的方式是使用 `git` 命令。执行以下命令：
+你需要获取 Gitea 的源码，最方便的方式是使用 `git` 命令。执行以下命令：
 
 ```
 git clone https://github.com/go-gitea/gitea
@@ -48,8 +48,8 @@ git checkout @sourceVersion@
 
 按照您的编译需求，以下 tags 可以使用：
 
-- `bindata`: 这个编译选项将会把运行Gitea所需的所有外部资源都打包到可执行文件中，这样部署将非常简单因为除了可执行程序将不再需要任何其他文件。
-- `sqlite sqlite_unlock_notify`: 这个编译选项将启用SQLite3数据库的支持，建议只在少数人使用时使用这个模式。
+- `bindata`: 这个编译选项将会把运行 Gitea 所需的所有外部资源都打包到可执行文件中，这样部署将非常简单因为除了可执行程序将不再需要任何其他文件。
+- `sqlite sqlite_unlock_notify`: 这个编译选项将启用 SQLite3 数据库的支持，建议只在少数人使用时使用这个模式。
 - `pam`: 这个编译选项将会启用 PAM (Linux Pluggable Authentication Modules) 认证，如果你使用这一认证模式的话需要开启这个选项。
 
 使用 bindata 可以打包资源文件到二进制可以使开发和测试更容易，你可以根据自己的需求决定是否打包资源文件。

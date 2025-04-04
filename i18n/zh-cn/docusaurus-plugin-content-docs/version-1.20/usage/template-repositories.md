@@ -6,7 +6,6 @@ sidebar_position: 14
 
 aliases:
   - /zh-cn/template-repositories
-
 ---
 
 # 模板仓库
@@ -43,20 +42,20 @@ a/b/c/d.json
 
 所有变量都必须采用`$VAR`或`${VAR}`的形式。要转义扩展，使用双重`$$`，例如`$$VAR`或`$${VAR}`。
 
-| 变量                  | 扩展为                                               | 可转换       |
-| -------------------- | --------------------------------------------------- | ------------- |
-| REPO_NAME            | 生成的仓库名称                                       | ✓             |
-| TEMPLATE_NAME        | 模板仓库名称                                         | ✓             |
-| REPO_DESCRIPTION     | 生成的仓库描述                                       | ✘             |
-| TEMPLATE_DESCRIPTION | 模板仓库描述                                         | ✘             |
-| REPO_OWNER           | 生成的仓库所有者                                     | ✓             |
-| TEMPLATE_OWNER       | 模板仓库所有者                                       | ✓             |
-| REPO_LINK            | 生成的仓库链接                                       | ✘             |
-| TEMPLATE_LINK        | 模板仓库链接                                         | ✘             |
-| REPO_HTTPS_URL       | 生成的仓库的 HTTP(S) 克隆链接                         | ✘             |
-| TEMPLATE_HTTPS_URL   | 模板仓库的 HTTP(S) 克隆链接                           | ✘             |
-| REPO_SSH_URL         | 生成的仓库的 SSH 克隆链接                             | ✘             |
-| TEMPLATE_SSH_URL     | 模板仓库的 SSH 克隆链接                               | ✘             |
+| 变量                 | 扩展为                        | 可转换 |
+| -------------------- | ----------------------------- | ------ |
+| REPO_NAME            | 生成的仓库名称                | ✓      |
+| TEMPLATE_NAME        | 模板仓库名称                  | ✓      |
+| REPO_DESCRIPTION     | 生成的仓库描述                | ✘      |
+| TEMPLATE_DESCRIPTION | 模板仓库描述                  | ✘      |
+| REPO_OWNER           | 生成的仓库所有者              | ✓      |
+| TEMPLATE_OWNER       | 模板仓库所有者                | ✓      |
+| REPO_LINK            | 生成的仓库链接                | ✘      |
+| TEMPLATE_LINK        | 模板仓库链接                  | ✘      |
+| REPO_HTTPS_URL       | 生成的仓库的 HTTP(S) 克隆链接 | ✘      |
+| TEMPLATE_HTTPS_URL   | 模板仓库的 HTTP(S) 克隆链接   | ✘      |
+| REPO_SSH_URL         | 生成的仓库的 SSH 克隆链接     | ✘      |
+| TEMPLATE_SSH_URL     | 模板仓库的 SSH 克隆链接       | ✘      |
 
 ## 转换器 :robot:
 
@@ -66,12 +65,12 @@ Gitea `1.12.0` 添加了一些转换器以应用于上述适用的变量。
 
 将 `go-sdk` 传递给可用的转换器的效果如下...
 
-| 转换器      | 效果         |
-| ----------- | ------------ |
-| SNAKE       | go_sdk       |
-| KEBAB       | go-sdk       |
-| CAMEL       | goSdk        |
-| PASCAL      | GoSdk        |
-| LOWER       | go-sdk       |
-| UPPER       | GO-SDK       |
-| TITLE       | Go-Sdk       |
+| 转换器 | 效果   |
+| ------ | ------ |
+| SNAKE  | go_sdk |
+| KEBAB  | go-sdk |
+| CAMEL  | goSdk  |
+| PASCAL | GoSdk  |
+| LOWER  | go-sdk |
+| UPPER  | GO-SDK |
+| TITLE  | Go-Sdk |

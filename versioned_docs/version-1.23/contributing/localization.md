@@ -25,6 +25,6 @@ At the time of writing, this means that a changed translation may not appear unt
 
 If you use a bleeding edge build, it should appear as soon as you update after the change is synced.
 
-# How to Contribute
+## How to Contribute
 
 Different Languages have different translation guidelines. Please visit the respective page for more information.

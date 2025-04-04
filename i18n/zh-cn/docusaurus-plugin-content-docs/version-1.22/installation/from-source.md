@@ -6,12 +6,11 @@ sidebar_position: 30
 
 aliases:
   - /zh-cn/install-from-source
-
 ---
 
 # 使用源代码安装
 
-你需要 [安装Go](https://golang.google.cn/doc/install) 并正确设置Go环境。特别的，建议设置`$GOPATH`环境变量，并将 Go 的二进制目录或目录`${GOPATH//://bin:}/bin`添加到`$PATH`中。请参阅 Go 百科上关于 [GOPATH](https://github.com/golang/go/wiki/GOPATH) 的词条。
+你需要 [安装 Go](https://golang.google.cn/doc/install) 并正确设置 Go 环境。特别的，建议设置`$GOPATH`环境变量，并将 Go 的二进制目录或目录`${GOPATH//://bin:}/bin`添加到`$PATH`中。请参阅 Go 百科上关于 [GOPATH](https://github.com/golang/go/wiki/GOPATH) 的词条。
 
 接下来，[安装 Node.js 和 npm](https://nodejs.org/zh-cn/download/)， 这是构建 JavaScript 和 CSS 文件所需的。最低支持的 Node.js 版本是 @minNodeVersion@，建议使用最新的 LTS 版本。
 
@@ -36,7 +35,7 @@ git branch -a
 git checkout @sourceBranch@
 ```
 
-要验证一个拉取请求（Pull Request, PR），要先启用新的分支（其中 `xyz` 是 PR 的 ID；例如，对于 [#2663](https://github.com/go-gitea/gitea/pull/2663)，ID是 `2663 `）：
+要验证一个拉取请求（Pull Request, PR），要先启用新的分支（其中 `xyz` 是 PR 的 ID；例如，对于 [#2663](https://github.com/go-gitea/gitea/pull/2663)，ID 是 `2663 `）：
 
 ```bash
 git fetch origin pull/xyz/head:pr-xyz
@@ -58,7 +57,7 @@ git checkout @sourceVersion@  # or git checkout pr-xyz
 - `node` @minNodeVersion@ 或更高版本，并且安装 `npm`, 请参阅 [这里](https://nodejs.org/zh-cn/download/)
 - `make`, 请参阅 [这里](development/hacking-on-gitea.md)
 
-为了尽可能简化编译过程，提供了各种 [make任务](https://github.com/go-gitea/gitea/blob/main/Makefile)。
+为了尽可能简化编译过程，提供了各种 [make 任务](https://github.com/go-gitea/gitea/blob/main/Makefile)。
 
 根据你的构建需求，以下 tags 可以使用：
 
@@ -106,7 +105,7 @@ Gitea 将从`CustomPath`中查找许多信息。默认的，这会在运行 Gite
 
 尽管在开发时这些值很有用，但可能与下游用户的偏好冲突。
 
-一种选择是使用脚本文件来隐藏`gitea`二进制文件，并在运行Gitea之前创建适当的环境。然而，在构建时，可以使用`make`的`LDFLAGS`环境变量来更改这些默认值。适当的设置如下：
+一种选择是使用脚本文件来隐藏`gitea`二进制文件，并在运行 Gitea 之前创建适当的环境。然而，在构建时，可以使用`make`的`LDFLAGS`环境变量来更改这些默认值。适当的设置如下：
 
 - 要设置`CustomPath`，请使用`LDFLAGS="-X \"code.gitea.io/gitea/modules/setting.CustomPath=custom-path\""`
 - 对于`CustomConf`，应该使用`-X \"code.gitea.io/gitea/modules/setting.CustomConf=conf.ini\"`
@@ -122,7 +121,7 @@ Gitea 将从`CustomPath`中查找许多信息。默认的，这会在运行 Gite
 
 `go`编译器工具链支持将代码交叉编译到不同的目标架构上。请参考[`GOOS`和`GOARCH`环境变量](https://go.dev/doc/install/source#environment) 以获取支持的目标列表。如果您想为性能较弱的系统（如树莓派）构建 Gitea，交叉编译非常有用。
 
-要使用构建标签（`TAGS`）进行交叉编译Gitea，您还需要一个 C 交叉编译器，该编译器的目标架构与`GOOS`和`GOARCH`变量选择的架构相同。例如，要为 Linux ARM64（`GOOS=linux`和`GOARCH=arm64`）进行交叉编译，您需要`aarch64-unknown-linux-gnu-gcc`交叉编译器。这是因为 Gitea 构建标签使用了`cgo`的外部函数接口（FFI）。
+要使用构建标签（`TAGS`）进行交叉编译 Gitea，您还需要一个 C 交叉编译器，该编译器的目标架构与`GOOS`和`GOARCH`变量选择的架构相同。例如，要为 Linux ARM64（`GOOS=linux`和`GOARCH=arm64`）进行交叉编译，您需要`aarch64-unknown-linux-gnu-gcc`交叉编译器。这是因为 Gitea 构建标签使用了`cgo`的外部函数接口（FFI）。
 
 在没有任何标签的情况下，交叉编译的 Gitea 为 Linux ARM64 版本：
 
@@ -130,7 +129,7 @@ Gitea 将从`CustomPath`中查找许多信息。默认的，这会在运行 Gite
 GOOS=linux GOARCH=arm64 make build
 ```
 
-要交叉编译 Linux ARM64 下的Gitea，这是推荐的构建标签：
+要交叉编译 Linux ARM64 下的 Gitea，这是推荐的构建标签：
 
 ```
 CC=aarch64-unknown-linux-gnu-gcc GOOS=linux GOARCH=arm64 TAGS="bindata sqlite sqlite_unlock_notify" make build
@@ -216,6 +215,6 @@ make build
 
 默认情况下，gitea 会为前端文件生成精简的 Source Map 以节省空间。 这可以通过“ENABLE_SOURCEMAP”环境变量进行控制：
 
-- `ENABLE_SOURCEMAP=true` 生成所有Source Map，这是开发版本的默认设置
-- `ENABLE_SOURCEMAP=reduced` 生成有限的Source Map，这是生产版本的默认设置
-- `ENABLE_SOURCEMAP=false` 不生成Source Map
+- `ENABLE_SOURCEMAP=true` 生成所有 Source Map，这是开发版本的默认设置
+- `ENABLE_SOURCEMAP=reduced` 生成有限的 Source Map，这是生产版本的默认设置
+- `ENABLE_SOURCEMAP=false` 不生成 Source Map

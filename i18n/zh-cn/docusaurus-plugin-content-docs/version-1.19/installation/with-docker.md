@@ -295,7 +295,7 @@ docker run -it --rm docker.gitea.com/gitea:1 gitea generate secret INTERNAL_TOKE
 ```
 
 ```yaml
-...
+---
 services:
   server:
     environment:

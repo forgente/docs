@@ -6,7 +6,6 @@ sidebar_position: 45
 
 aliases:
   - /zh-cn/protected-tags
-
 ---
 
 # 受保护的标签
@@ -28,17 +27,17 @@ aliases:
 
 示例：
 
-| 类型  | 模式受保护的标签    | 可能匹配的标签                    |
+| 类型  | 模式受保护的标签         | 可能匹配的标签                          |
 | ----- | ------------------------ | --------------------------------------- |
 | Glob  | `v*`                     | `v`，`v-1`，`version2`                  |
-| Glob  | `v[0-9]`                 | `v0`，`v1` 到 `v9`                   |
+| Glob  | `v[0-9]`                 | `v0`，`v1` 到 `v9`                      |
 | Glob  | `*-release`              | `2.1-release`，`final-release`          |
 | Glob  | `gitea`                  | 仅限 `gitea`                            |
 | Glob  | `*gitea*`                | `gitea`，`2.1-gitea`，`1_gitea-release` |
 | Glob  | `{v,rel}-*`              | `v-`，`v-1`，`v-final`，`rel-`，`rel-x` |
-| Glob  | `*`                      | 匹配所有可能的标签名称          |
+| Glob  | `*`                      | 匹配所有可能的标签名称                  |
 | Regex | `/\Av/`                  | `v`，`v-1`，`version2`                  |
-| Regex | `/\Av[0-9]\z/`           | `v0`，`v1` 到 `v9`                   |
+| Regex | `/\Av[0-9]\z/`           | `v0`，`v1` 到 `v9`                      |
 | Regex | `/\Av\d+\.\d+\.\d+\z/`   | `v1.0.17`，`v2.1.0`                     |
 | Regex | `/\Av\d+(\.\d+){0,2}\z/` | `v1`，`v2.1`，`v1.2.34`                 |
 | Regex | `/-release\z/`           | `2.1-release`，`final-release`          |
@@ -46,4 +45,4 @@ aliases:
 | Regex | `/\Agitea\z/`            | 仅限 `gitea`                            |
 | Regex | `/^gitea$/`              | 仅限 `gitea`                            |
 | Regex | `/\A(v\|rel)-/`          | `v-`，`v-1`，`v-final`，`rel-`，`rel-x` |
-| Regex | `/.+/`                   | 匹配所有可能的标签名称          |
+| Regex | `/.+/`                   | 匹配所有可能的标签名称                  |

@@ -5,7 +5,6 @@ sidebar_position: 12
 
 aliases:
   - /zh-cn/git-lfs-setup
-
 ---
 
 # Git LFS 设置

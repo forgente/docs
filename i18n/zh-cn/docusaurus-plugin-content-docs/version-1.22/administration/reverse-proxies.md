@@ -6,7 +6,6 @@ sidebar_position: 16
 
 aliases:
   - /zh-cn/reverse-proxies
-
 ---
 
 # 反向代理
@@ -232,7 +231,7 @@ git.example.com {
 1. 在 IIS 中设置一个空网页，比如命名为 `Gitea Proxy`。
 2. 根据[微软社区中为 IIS 设置 URL 重写的指南](https://techcommunity.microsoft.com/t5/iis-support-blog/setup-iis-with-url-rewrite-as-a-reverse-proxy-for-real-world/ba-p/846222#M343)的前两步进行配置，也就是：
 
-- 使用 Microsoft Web Platform Installer 5.1 (WebPI) 安装 Application Request Routing（简称ARR），或者在 [IIS.net](https://www.iis.net/downloads/microsoft/application-request-routing) 下载这个插件。
+- 使用 Microsoft Web Platform Installer 5.1 (WebPI) 安装 Application Request Routing（简称 ARR），或者在 [IIS.net](https://www.iis.net/downloads/microsoft/application-request-routing) 下载这个插件。
 - 一但这个模块被安装到 IIS 上，你将会在 IIS 管理控制台看到一个叫做 URL Rewrite 的新图标。
 - 打开 IIS 管理控制台，在左边的列表中点击 `Gitea Proxy` 网页。在中间选中并且双击 URL Rewrite 的图标来加载 URL 重写的面板。
 - 在管理控制台的右边选择 `Add Rule` 操作，并且在 `Inbound and Outbound Rules` 分类中选择 `Reverse Proxy Rule`。

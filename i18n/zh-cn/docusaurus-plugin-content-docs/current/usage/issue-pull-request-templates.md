@@ -100,16 +100,13 @@ Gitea 支持两种格式的模板：Markdown 和 YAML。
 
 ```md
 ---
-
 name: "Template Name"
 about: "This template is for testing!"
 title: "[TEST] "
 ref: "main"
 labels:
-
-- bug
-- "help needed"
-
+  - bug
+  - "help needed"
 ---
 
 This is the template!

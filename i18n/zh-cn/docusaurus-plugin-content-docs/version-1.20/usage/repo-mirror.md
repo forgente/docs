@@ -6,7 +6,6 @@ sidebar_position: 45
 
 aliases:
   - /zh-cn/repo-mirror
-
 ---
 
 # 仓库镜像
@@ -56,7 +55,7 @@ aliases:
 
 要从 Gitea 设置镜像到 GitHub，您需要按照以下步骤进行操作：
 
-1. 创建一个具有选中 *public_repo* 选项的 [GitHub 个人访问令牌](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token)。
+1. 创建一个具有选中 _public_repo_ 选项的 [GitHub 个人访问令牌](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token)。
 2. 在 GitHub 上创建一个同名的仓库。与 Gitea 不同，GitHub 不支持通过推送到远程来创建仓库。如果您的现有远程仓库与您的 Gitea 仓库具有相同的提交历史，您也可以使用现有的远程仓库。
 3. 在您的 Gitea 仓库设置中，填写**Git 远程仓库 URL**：`https://github.com/<your_github_group>/<your_github_project>.git`。
 4. 使用您的 GitHub 用户名填写**授权**字段，并将个人访问令牌作为**密码**。
@@ -69,7 +68,7 @@ aliases:
 
 要从 Gitea 设置镜像到 GitLab，您需要按照以下步骤进行操作：
 
-1. 创建具有 *write_repository* 作用域的 [GitLab 个人访问令牌](https://docs.gitlab.com/ee/user/profile/personal_access_tokens.html)。
+1. 创建具有 _write_repository_ 作用域的 [GitLab 个人访问令牌](https://docs.gitlab.com/ee/user/profile/personal_access_tokens.html)。
 2. 填写**Git 远程仓库 URL**：`https://<destination host>/<your_gitlab_group_or_name>/<your_gitlab_project>.git`。
 3. 在**授权**字段中填写 `oauth2` 作为**用户名**，并将您的 GitLab 个人访问令牌作为**密码**。
 4. 选择**添加推送镜像**以保存配置。
@@ -80,7 +79,7 @@ aliases:
 
 要从 Gitea 设置镜像到 Bitbucket，您需要按照以下步骤进行操作：
 
-1. 创建一个具有选中 *Repository Write* 选项的 [Bitbucket 应用密码](https://support.atlassian.com/bitbucket-cloud/docs/app-passwords/)。
+1. 创建一个具有选中 _Repository Write_ 选项的 [Bitbucket 应用密码](https://support.atlassian.com/bitbucket-cloud/docs/app-passwords/)。
 2. 填写**Git 远程仓库 URL**：`https://bitbucket.org/<your_bitbucket_group_or_name>/<your_bitbucket_project>.git`。
 3. 使用您的 Bitbucket 用户名填写**授权**字段，并将应用密码作为**密码**。
 4. 选择**添加推送镜像**以保存配置。

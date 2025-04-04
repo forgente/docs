@@ -1,7 +1,7 @@
 // @ts-check
 // Note: type annotations allow type checking and IDEs autocompletion
 
-import {themes as prismThemes} from 'prism-react-renderer';
+import { themes as prismThemes } from "prism-react-renderer";
 
 const lightCodeTheme = prismThemes.github;
 const darkCodeTheme = prismThemes.dracula;
@@ -9,194 +9,206 @@ const darkCodeTheme = prismThemes.dracula;
 // order usage directory by type first
 function sortItemsByCategory(items) {
   // type with "category" (directory) first
-  const sortedItems = items.sort(function(a, b) {
+  const sortedItems = items.sort(function (a, b) {
     return a.type.localeCompare(b.type);
-  })
+  });
   return sortedItems;
 }
 
-const renderApiSSR = process.env.API_SSR !== 'false';
+const renderApiSSR = process.env.API_SSR !== "false";
 
 const apiConfig = [
-  'redocusaurus',
+  "redocusaurus",
   {
     // Plugin Options for loading OpenAPI files
-    specs: renderApiSSR ? [
-      {
-        route: '/api/next/',
-        spec: 'static/swagger-latest.json',
-      },
-      {
-        route: '/api/',
-        spec: 'static/swagger-23.json',
-      },
-      {
-        route: '/api/1.23/',
-        spec: 'static/swagger-23.json',
-      },
-      {
-        route: '/api/1.22/',
-        spec: 'static/swagger-22.json',
-      },
-      {
-        route: '/api/1.21/',
-        spec: 'static/swagger-21.json',
-      },
-      {
-        route: '/api/1.20/',
-        spec: 'static/swagger-20.json',
-      },
-      {
-        route: '/api/1.19/',
-        spec: 'static/swagger-19.json',
-      }
-    ]: [],
+    specs: renderApiSSR
+      ? [
+          {
+            route: "/api/next/",
+            spec: "static/swagger-latest.json",
+          },
+          {
+            route: "/api/",
+            spec: "static/swagger-23.json",
+          },
+          {
+            route: "/api/1.23/",
+            spec: "static/swagger-23.json",
+          },
+          {
+            route: "/api/1.22/",
+            spec: "static/swagger-22.json",
+          },
+          {
+            route: "/api/1.21/",
+            spec: "static/swagger-21.json",
+          },
+          {
+            route: "/api/1.20/",
+            spec: "static/swagger-20.json",
+          },
+          {
+            route: "/api/1.19/",
+            spec: "static/swagger-19.json",
+          },
+        ]
+      : [],
     // Theme Options for modifying how redoc renders them
     theme: {
       // Change with your site colors
-      primaryColor: '#1890ff',
+      primaryColor: "#1890ff",
     },
   },
-]
+];
 
-const pageConfig = renderApiSSR ? {
-  exclude: [
-    'api/**',
-  ],
-}: {}
+const pageConfig = renderApiSSR
+  ? {
+      exclude: ["api/**"],
+    }
+  : {};
 
 const globalVariables = {
   current: {
-    'goVersion': '1.23',
-    'minGoVersion': '1.23',
-    'minNodeVersion': '18',
-    'version': 'main-nightly',
-    'sourceVersion': 'main',
-    'sourceBranch': 'main',
-    'dockerVersion': 'nightly',
-    'displayVersion': '1.24-dev'
+    goVersion: "1.23",
+    minGoVersion: "1.23",
+    minNodeVersion: "18",
+    version: "main-nightly",
+    sourceVersion: "main",
+    sourceBranch: "main",
+    dockerVersion: "nightly",
+    displayVersion: "1.24-dev",
   },
-  '1.23': {
-    'goVersion': '1.23',
-    'minGoVersion': '1.22',
-    'minNodeVersion': '18',
-    'version': '1.23.6',
-    'sourceVersion': 'v1.23.0',
-    'sourceBranch': 'release/v1.23',
-    'dockerVersion': '1.23.6',
-    'displayVersion': '1.23.6'
+  1.23: {
+    goVersion: "1.23",
+    minGoVersion: "1.22",
+    minNodeVersion: "18",
+    version: "1.23.6",
+    sourceVersion: "v1.23.0",
+    sourceBranch: "release/v1.23",
+    dockerVersion: "1.23.6",
+    displayVersion: "1.23.6",
   },
-  '1.22': {
-    'goVersion': '1.22',
-    'minGoVersion': '1.22',
-    'minNodeVersion': '18',
-    'version': '1.22.6',
-    'sourceVersion': 'v1.22.6',
-    'sourceBranch': 'release/v1.22',
-    'dockerVersion': '1.22.6',
-    'displayVersion': '1.22.6'
+  1.22: {
+    goVersion: "1.22",
+    minGoVersion: "1.22",
+    minNodeVersion: "18",
+    version: "1.22.6",
+    sourceVersion: "v1.22.6",
+    sourceBranch: "release/v1.22",
+    dockerVersion: "1.22.6",
+    displayVersion: "1.22.6",
   },
-  '1.21': {
-    'goVersion': '1.21',
-    'minGoVersion': '1.21',
-    'minNodeVersion': '18',
-    'version': '1.21.11',
-    'sourceVersion': 'v1.21.11',
-    'sourceBranch': 'release/v1.21',
-    'dockerVersion': '1.21.11',
-    'displayVersion': '1.21.11'
+  1.21: {
+    goVersion: "1.21",
+    minGoVersion: "1.21",
+    minNodeVersion: "18",
+    version: "1.21.11",
+    sourceVersion: "v1.21.11",
+    sourceBranch: "release/v1.21",
+    dockerVersion: "1.21.11",
+    displayVersion: "1.21.11",
   },
-  '1.20': {
-    'goVersion': '1.20',
-    'minGoVersion': '1.20',
-    'minNodeVersion': '16',
-    'version': '1.20.6',
-    'sourceVersion': 'v1.20.6',
-    'sourceBranch': 'release/v1.20',
-    'dockerVersion': '1.20.6',
-    'displayVersion': '1.20.6'
+  "1.20": {
+    goVersion: "1.20",
+    minGoVersion: "1.20",
+    minNodeVersion: "16",
+    version: "1.20.6",
+    sourceVersion: "v1.20.6",
+    sourceBranch: "release/v1.20",
+    dockerVersion: "1.20.6",
+    displayVersion: "1.20.6",
   },
-  '1.19': {
-    'goVersion': '1.20',
-    'minGoVersion': '1.19',
-    'minNodeVersion': '14',
-    'version': '1.19.4',
-    'sourceVersion': 'v1.19.4',
-    'sourceBranch': 'release/v1.19',
-    'dockerVersion': '1.19.4',
-    'displayVersion': '1.19.4'
-  }
-}
+  1.19: {
+    goVersion: "1.20",
+    minGoVersion: "1.19",
+    minNodeVersion: "14",
+    version: "1.19.4",
+    sourceVersion: "v1.19.4",
+    sourceBranch: "release/v1.19",
+    dockerVersion: "1.19.4",
+    displayVersion: "1.19.4",
+  },
+};
 
 const versions = {
   current: {
-    label: globalVariables['current'].displayVersion, // path is kept as next for dev (so users can always find "nightly" docs)
-    banner: 'unreleased',
+    label: globalVariables["current"].displayVersion, // path is kept as next for dev (so users can always find "nightly" docs)
+    banner: "unreleased",
   },
-  '1.23': {
-    label: globalVariables['1.23'].displayVersion,
+  1.23: {
+    label: globalVariables["1.23"].displayVersion,
   },
-  '1.22': {
-    label: globalVariables['1.22'].displayVersion,
+  1.22: {
+    label: globalVariables["1.22"].displayVersion,
   },
-  '1.21': {
-    label: globalVariables['1.21'].displayVersion,
+  1.21: {
+    label: globalVariables["1.21"].displayVersion,
   },
-  '1.20': {
-    label: globalVariables['1.20'].displayVersion,
+  "1.20": {
+    label: globalVariables["1.20"].displayVersion,
   },
-  '1.19': {
-    label: globalVariables['1.19'].displayVersion,
-  }
-}
+  1.19: {
+    label: globalVariables["1.19"].displayVersion,
+  },
+};
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'Gitea Documentation',
-  tagline: 'Git with a cup of tea',
-  url: 'https://docs.gitea.com',
-  baseUrl: '/',
-  onBrokenLinks: 'warn',
-  onBrokenMarkdownLinks: 'warn',
-  favicon: 'img/favicon.png',
-  future:{
-    experimental_faster: true
+  title: "Gitea Documentation",
+  tagline: "Git with a cup of tea",
+  url: "https://docs.gitea.com",
+  baseUrl: "/",
+  onBrokenLinks: "warn",
+  onBrokenMarkdownLinks: "warn",
+  favicon: "img/favicon.png",
+  future: {
+    experimental_faster: true,
   },
   plugins: [
     [
-      'docusaurus-plugin-plausible',
+      "docusaurus-plugin-plausible",
       {
-        domain: 'docs.gitea.com',
+        domain: "docs.gitea.com",
       },
     ],
 
     // for runner documentations
     [
-      '@docusaurus/plugin-content-docs',
+      "@docusaurus/plugin-content-docs",
       {
-        id: 'runner',
-        path: 'runner',
-        routeBasePath: 'runner',
+        id: "runner",
+        path: "runner",
+        routeBasePath: "runner",
         //sidebarPath: './runner/sidebars.js',
         versions: {
           current: {
-            label: 'main',
-            banner: 'unreleased',
+            label: "main",
+            banner: "unreleased",
           },
           "0.2.11": {
-            path: '0.2.11',
-            label: '0.2.11',
-          }
+            path: "0.2.11",
+            label: "0.2.11",
+          },
         },
-        lastVersion: '0.2.11',
-        editUrl: ({versionDocsDirPath, docPath, locale, version, permalink}) => {
-          return `https://gitea.com/gitea/docs/src/branch/main/${version === 'current' ? 'runner': `runner_versioned_docs/version-${version}`}/${docPath}`;
+        lastVersion: "0.2.11",
+        editUrl: ({
+          versionDocsDirPath,
+          docPath,
+          locale,
+          version,
+          permalink,
+        }) => {
+          return `https://gitea.com/gitea/docs/src/branch/main/${
+            version === "current"
+              ? "runner"
+              : `runner_versioned_docs/version-${version}`
+          }/${docPath}`;
         },
-        async sidebarItemsGenerator({defaultSidebarItemsGenerator, ...args}) {
-          const {item} = args;
+        async sidebarItemsGenerator({ defaultSidebarItemsGenerator, ...args }) {
+          const { item } = args;
           // Use the provided data to generate a custom sidebar slice
           const sidebarItems = await defaultSidebarItemsGenerator(args);
-          if (item.dirName !== 'usage') {
+          if (item.dirName !== "usage") {
             return sidebarItems;
           } else {
             return sortItemsByCategory(sidebarItems);
@@ -207,44 +219,62 @@ const config = {
   ],
 
   i18n: {
-    defaultLocale: 'en-us',
-    locales: ['en-us', 'zh-cn'/*,'fr-fr', 'zh-tw'*/], // temporarily disable other locales
+    defaultLocale: "en-us",
+    locales: ["en-us", "zh-cn", "zh-tw"],
     localeConfigs: {
-      'en-us': {
-        label: 'English',
+      "en-us": {
+        label: "English",
       },
-      'zh-cn': {
-        label: '中文',
+      "zh-cn": {
+        label: "簡體中文",
+      },
+      "zh-tw": {
+        label: "繁體中文",
       },
     },
   },
 
   presets: [
     [
-      '@docusaurus/preset-classic',
+      "@docusaurus/preset-classic",
       //'classic',
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         docs: {
-          sidebarPath: require.resolve('./sidebars.js'),
-          routeBasePath: '/', // Serve the docs at the site's root
-          editUrl: ({versionDocsDirPath, docPath, locale, version, permalink}) => {
+          sidebarPath: require.resolve("./sidebars.js"),
+          routeBasePath: "/", // Serve the docs at the site's root
+          editUrl: ({
+            versionDocsDirPath,
+            docPath,
+            locale,
+            version,
+            permalink,
+          }) => {
             // Special case for awesome page
-            if (docPath.includes('awesome.md')) {
-              return `https://gitea.com/gitea/awesome-gitea/src/branch/main/README.md`
+            if (docPath.includes("awesome.md")) {
+              return `https://gitea.com/gitea/awesome-gitea/src/branch/main/README.md`;
             }
-            if (locale === 'en-us') {
-              return `https://gitea.com/gitea/docs/src/branch/main/${version === 'current' ? 'docs': `versioned_docs/version-${version}`}/${docPath}`;
+            if (locale === "en-us") {
+              return `https://gitea.com/gitea/docs/src/branch/main/${
+                version === "current"
+                  ? "docs"
+                  : `versioned_docs/version-${version}`
+              }/${docPath}`;
             }
-            return `https://gitea.com/gitea/docs/src/branch/main/i18n/${locale}/docusaurus-plugin-content-docs/${version === 'current' ? 'current': `version-${version}`}/${docPath}`;
+            return `https://gitea.com/gitea/docs/src/branch/main/i18n/${locale}/docusaurus-plugin-content-docs/${
+              version === "current" ? "current" : `version-${version}`
+            }/${docPath}`;
           },
           versions: versions,
-          lastVersion: '1.23',
-          async sidebarItemsGenerator({defaultSidebarItemsGenerator, ...args}) {
-            const {item} = args;
+          lastVersion: "1.23",
+          async sidebarItemsGenerator({
+            defaultSidebarItemsGenerator,
+            ...args
+          }) {
+            const { item } = args;
             // Use the provided data to generate a custom sidebar slice
             const sidebarItems = await defaultSidebarItemsGenerator(args);
-            if (item.dirName !== 'usage') {
+            if (item.dirName !== "usage") {
               return sidebarItems;
             } else {
               return sortItemsByCategory(sidebarItems);
@@ -253,37 +283,40 @@ const config = {
         },
         blog: false,
         theme: {
-          customCss: require.resolve('./src/css/custom.css'),
+          customCss: require.resolve("./src/css/custom.css"),
         },
         pages: pageConfig,
         gtag: {
-          trackingID: 'G-KHM0KYT506'
+          trackingID: "G-KHM0KYT506",
         },
       }),
     ],
     apiConfig,
   ],
   markdown: {
-    preprocessor: ({filePath, fileContent}) => {
-      var key = '';
+    preprocessor: ({ filePath, fileContent }) => {
+      var key = "";
       var found = false;
       for (key in globalVariables) {
-        let folderName = (key == 'current' ? 'current' : `version-${key}`);
+        let folderName = key == "current" ? "current" : `version-${key}`;
         if (filePath.includes(`/${folderName}/`)) {
           found = true;
           break;
         }
       }
-      if (key == '' || !found) {
-        key = 'current';
+      if (key == "" || !found) {
+        key = "current";
       }
 
       let content = fileContent;
       for (const variable in globalVariables[key]) {
-        content = content.replaceAll('@'+variable+'@', globalVariables[key][variable]);
+        content = content.replaceAll(
+          "@" + variable + "@",
+          globalVariables[key][variable]
+        );
       }
 
-      return content
+      return content;
     },
   },
   themes: [
@@ -295,164 +328,168 @@ const config = {
         highlightSearchTermsOnTargetPage: true,
         explicitSearchResultPath: true,
         indexBlog: false,
-        docsRouteBasePath: "/"
-      }
-    ]
+        docsRouteBasePath: "/",
+      },
+    ],
   ],
 
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       metadata: [
-        {name: 'keywords', content: 'gitea, git, devops, actions, packages, documentation, self-hosted, open-source, version control, gitlab, github'}
+        {
+          name: "keywords",
+          content:
+            "gitea, git, devops, actions, packages, documentation, self-hosted, open-source, version control, gitlab, github",
+        },
       ],
       colorMode: {
-        defaultMode: 'light',
+        defaultMode: "light",
         disableSwitch: false,
         respectPrefersColorScheme: true,
       },
       announcementBar: {
-        id: 'announcementBar-4', // Increment on change
+        id: "announcementBar-4", // Increment on change
         content: `<a href="https://about.gitea.com/products/cloud">Try &nbsp; Gitea Cloud &nbsp;  ☁️  &nbsp; for 30 days <span aria-hidden="true">&rarr;</span> Accelerate your Development & Deploys!</a>`,
       },
       navbar: {
-        title: 'Gitea',
+        title: "Gitea",
         logo: {
-          alt: 'Gitea Logo',
-          src: 'img/gitea.svg',
-          href: 'https://about.gitea.com/',
-          target: '_self',
+          alt: "Gitea Logo",
+          src: "img/gitea.svg",
+          href: "https://about.gitea.com/",
+          target: "_self",
         },
         items: [
           {
-            type: 'doc',
-            docId: 'index',
-            position: 'left',
-            label: 'Docs',
+            type: "doc",
+            docId: "index",
+            position: "left",
+            label: "Docs",
           },
           {
-            to: '/api/1.23/',
-            label: 'API',
-            position: 'left',
-            activeBaseRegex: 'api/(1.19|1.20|1.21|1.22|1.23|next)/',
+            to: "/api/1.23/",
+            label: "API",
+            position: "left",
+            activeBaseRegex: "api/(1.19|1.20|1.21|1.22|1.23|next)/",
           },
           {
-            to: '/runner/0.2.11/',
-            label: 'Runner',
-            position: 'left',
-            activeBaseRegex: 'runner/(0.2.11|next)/',
+            to: "/runner/0.2.11/",
+            label: "Runner",
+            position: "left",
+            activeBaseRegex: "runner/(0.2.11|next)/",
           },
           {
-            position: 'left',
-            label: 'Enterprise',
-            href: 'https://docs.gitea.com/enterprise',
-            className: 'internal-href',
-            target: '_self',
+            position: "left",
+            label: "Enterprise",
+            href: "https://docs.gitea.com/enterprise",
+            className: "internal-href",
+            target: "_self",
           },
           {
-            type: 'search',
-            position: 'right',
+            type: "search",
+            position: "right",
           },
           {
-            type: 'localeDropdown',
-            position: 'right',
+            type: "localeDropdown",
+            position: "right",
           },
           {
-            type: 'docsVersionDropdown',
-            position: 'right',
+            type: "docsVersionDropdown",
+            position: "right",
             dropdownActiveClassDisabled: true,
           },
           {
-            type: 'custom-Dropdown',
-            label: 'API Version',
-            position: 'right',
+            type: "custom-Dropdown",
+            label: "API Version",
+            position: "right",
             items: [
-              {to: '/api/next/', label: '1.24-dev' },
-              {to: '/api/1.23/', label: '1.23.6' },
-              {to: '/api/1.22/', label: '1.22.6' },
-              {to: '/api/1.21/', label: '1.21.11' },
-              {to: '/api/1.20/', label: '1.20.6' },
-              {to: '/api/1.19/', label: '1.19.4' },
+              { to: "/api/next/", label: "1.24-dev" },
+              { to: "/api/1.23/", label: "1.23.6" },
+              { to: "/api/1.22/", label: "1.22.6" },
+              { to: "/api/1.21/", label: "1.21.11" },
+              { to: "/api/1.20/", label: "1.20.6" },
+              { to: "/api/1.19/", label: "1.19.4" },
             ],
-            routerRgx: '\/api\/',
-            classNames: 'api-dropdown',
+            routerRgx: "/api/",
+            classNames: "api-dropdown",
           },
           {
-            type: 'custom-Dropdown',
-            label: 'Runner Version',
-            position: 'right',
+            type: "custom-Dropdown",
+            label: "Runner Version",
+            position: "right",
             items: [
-              {to: '/runner/next/', label: 'development' },
-              {to: '/runner/0.2.11/', label: '0.2.11' },
+              { to: "/runner/next/", label: "development" },
+              { to: "/runner/0.2.11/", label: "0.2.11" },
             ],
-            routerRgx: '\/runner\/',
-            classNames: 'runner-dropdown',
+            routerRgx: "/runner/",
+            classNames: "runner-dropdown",
           },
           {
-            to: 'help/support',
-            position: 'right',
-            label: 'Support',
-            activeBaseRegex: 'help/support',
+            to: "help/support",
+            position: "right",
+            label: "Support",
+            activeBaseRegex: "help/support",
           },
           {
-            href: 'https://gitea.com/user/login',
-            label: 'Sign In',
-            position: 'right',
-            className: 'internal-href signin-button',
-            target: '_self',
+            href: "https://gitea.com/user/login",
+            label: "Sign In",
+            position: "right",
+            className: "internal-href signin-button",
+            target: "_self",
           },
         ],
       },
       footer: {
-        style: 'dark',
+        style: "dark",
         links: [
           {
-            title: 'Community',
+            title: "Community",
             items: [
               {
-                label: 'Awesome Gitea',
-                href: 'https://gitea.com/gitea/awesome-gitea',
+                label: "Awesome Gitea",
+                href: "https://gitea.com/gitea/awesome-gitea",
               },
               {
-                label: 'Stack Overflow',
-                href: 'https://stackoverflow.com/questions/tagged/gitea',
+                label: "Stack Overflow",
+                href: "https://stackoverflow.com/questions/tagged/gitea",
               },
               {
-                label: 'Discord',
-                href: 'https://discord.gg/gitea',
+                label: "Discord",
+                href: "https://discord.gg/gitea",
               },
               {
-                label: 'Matrix',
-                href: 'https://matrix.to/#/#gitea-space:matrix.org',
+                label: "Matrix",
+                href: "https://matrix.to/#/#gitea-space:matrix.org",
               },
               {
-                label: 'Forum',
-                href: 'https://forum.gitea.com/',
+                label: "Forum",
+                href: "https://forum.gitea.com/",
               },
               {
-                label: 'Twitter',
-                href: 'https://twitter.com/giteaio',
+                label: "Twitter",
+                href: "https://twitter.com/giteaio",
               },
               {
-                label: 'Mastodon',
-                href: 'https://social.gitea.io/@gitea',
+                label: "Mastodon",
+                href: "https://social.gitea.io/@gitea",
               },
             ],
           },
           {
-            title: 'Code',
+            title: "Code",
             items: [
               {
-                label: 'GitHub',
-                href: 'https://github.com/go-gitea/gitea',
+                label: "GitHub",
+                href: "https://github.com/go-gitea/gitea",
               },
               {
-                label: 'Gitea',
-                href: 'https://gitea.com/gitea',
+                label: "Gitea",
+                href: "https://gitea.com/gitea",
               },
               {
-                label: 'Tea CLI',
-                href: 'https://gitea.com/gitea/tea',
+                label: "Tea CLI",
+                href: "https://gitea.com/gitea/tea",
               },
             ],
           },
@@ -461,7 +498,7 @@ const config = {
       prism: {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
-        additionalLanguages: ['ini','diff','json','http','docker','php'],
+        additionalLanguages: ["ini", "diff", "json", "http", "docker", "php"],
       },
     }),
 };

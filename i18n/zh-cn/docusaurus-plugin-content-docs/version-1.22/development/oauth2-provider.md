@@ -33,40 +33,40 @@ Gitea 支持作为 OAuth2 提供者，允许第三方应用程序在用户同意
 
 Gitea 支持以下令牌范围:
 
-| 名称 | 介绍 |
-| ---- | ----------- |
-| **(no scope)** | 授予对公共用户配置文件和公共存储库的只读访问权限 |
-| **repo** | 完全控制所有存储库 |
-| &nbsp;&nbsp;&nbsp; **repo:status** | 授予对所有存储库中提交状态的读/写访问权限 |
-| &nbsp;&nbsp;&nbsp; **public_repo** | 仅授予对公共存储库的读/写访问权限 |
-| **admin:repo_hook** | 授予对所有存储库的 Hooks 访问权限，该权限已包含在 `repo` 范围中 |
-| &nbsp;&nbsp;&nbsp; **write:repo_hook** | 授予对存储库 Hooks 的读/写访问权限 |
-| &nbsp;&nbsp;&nbsp; **read:repo_hook** | 授予对存储库 Hooks 的只读访问权限 |
-| **admin:org** | 授予对组织设置的完全访问权限 |
-| &nbsp;&nbsp;&nbsp; **write:org** | 授予对组织设置的读/写访问权限 |
-| &nbsp;&nbsp;&nbsp; **read:org** | 授予对组织设置的只读访问权限 |
-| **admin:public_key** | 授予公钥管理的完全访问权限 |
-| &nbsp;&nbsp;&nbsp; **write:public_key** | 授予对公钥的读/写访问权限 |
-| &nbsp;&nbsp;&nbsp; **read:public_key** | 授予对公钥的只读访问权限 |
-| **admin:org_hook** | 授予对组织级别 Hooks 的完全访问权限 |
-| **admin:user_hook** | 授予对用户级别 Hooks 的完全访问权限 |
-| **notification** | 授予对通知的完全访问权限 |
-| **user** | 授予对用户个人资料信息的完全访问权限 |
-| &nbsp;&nbsp;&nbsp; **read:user** | 授予对用户个人资料的读取权限 |
-| &nbsp;&nbsp;&nbsp; **user:email** | 授予对用户电子邮件地址的读取权限 |
-| &nbsp;&nbsp;&nbsp; **user:follow** | 授予访问权限以关注/取消关注用户 |
-| **delete_repo** | 授予删除存储库的权限 |
-| **package** | 授予对托管包的完全访问权限 |
-| &nbsp;&nbsp;&nbsp; **write:package** | 授予对包的读/写访问权限 |
-| &nbsp;&nbsp;&nbsp; **read:package** | 授予对包的读取权限 |
-| &nbsp;&nbsp;&nbsp; **delete:package** | 授予对包的删除权限 |
-| **admin:gpg_key** | 授予 GPG 密钥管理的完全访问权限 |
-| &nbsp;&nbsp;&nbsp; **write:gpg_key** | 授予对 GPG 密钥的读/写访问权限 |
-| &nbsp;&nbsp;&nbsp; **read:gpg_key** | 授予对 GPG 密钥的只读访问权限 |
-| **admin:application** | 授予应用程序管理的完全访问权限 |
-| &nbsp;&nbsp;&nbsp; **write:application** | 授予应用程序管理的读/写访问权限 |
-| &nbsp;&nbsp;&nbsp; **read:application** | 授予应用程序管理的读取权限 |
-| **sudo** | 允许以站点管理员身份执行操作 |
+| 名称                                     | 介绍                                                            |
+| ---------------------------------------- | --------------------------------------------------------------- |
+| **(no scope)**                           | 授予对公共用户配置文件和公共存储库的只读访问权限                |
+| **repo**                                 | 完全控制所有存储库                                              |
+| &nbsp;&nbsp;&nbsp; **repo:status**       | 授予对所有存储库中提交状态的读/写访问权限                       |
+| &nbsp;&nbsp;&nbsp; **public_repo**       | 仅授予对公共存储库的读/写访问权限                               |
+| **admin:repo_hook**                      | 授予对所有存储库的 Hooks 访问权限，该权限已包含在 `repo` 范围中 |
+| &nbsp;&nbsp;&nbsp; **write:repo_hook**   | 授予对存储库 Hooks 的读/写访问权限                              |
+| &nbsp;&nbsp;&nbsp; **read:repo_hook**    | 授予对存储库 Hooks 的只读访问权限                               |
+| **admin:org**                            | 授予对组织设置的完全访问权限                                    |
+| &nbsp;&nbsp;&nbsp; **write:org**         | 授予对组织设置的读/写访问权限                                   |
+| &nbsp;&nbsp;&nbsp; **read:org**          | 授予对组织设置的只读访问权限                                    |
+| **admin:public_key**                     | 授予公钥管理的完全访问权限                                      |
+| &nbsp;&nbsp;&nbsp; **write:public_key**  | 授予对公钥的读/写访问权限                                       |
+| &nbsp;&nbsp;&nbsp; **read:public_key**   | 授予对公钥的只读访问权限                                        |
+| **admin:org_hook**                       | 授予对组织级别 Hooks 的完全访问权限                             |
+| **admin:user_hook**                      | 授予对用户级别 Hooks 的完全访问权限                             |
+| **notification**                         | 授予对通知的完全访问权限                                        |
+| **user**                                 | 授予对用户个人资料信息的完全访问权限                            |
+| &nbsp;&nbsp;&nbsp; **read:user**         | 授予对用户个人资料的读取权限                                    |
+| &nbsp;&nbsp;&nbsp; **user:email**        | 授予对用户电子邮件地址的读取权限                                |
+| &nbsp;&nbsp;&nbsp; **user:follow**       | 授予访问权限以关注/取消关注用户                                 |
+| **delete_repo**                          | 授予删除存储库的权限                                            |
+| **package**                              | 授予对托管包的完全访问权限                                      |
+| &nbsp;&nbsp;&nbsp; **write:package**     | 授予对包的读/写访问权限                                         |
+| &nbsp;&nbsp;&nbsp; **read:package**      | 授予对包的读取权限                                              |
+| &nbsp;&nbsp;&nbsp; **delete:package**    | 授予对包的删除权限                                              |
+| **admin:gpg_key**                        | 授予 GPG 密钥管理的完全访问权限                                 |
+| &nbsp;&nbsp;&nbsp; **write:gpg_key**     | 授予对 GPG 密钥的读/写访问权限                                  |
+| &nbsp;&nbsp;&nbsp; **read:gpg_key**      | 授予对 GPG 密钥的只读访问权限                                   |
+| **admin:application**                    | 授予应用程序管理的完全访问权限                                  |
+| &nbsp;&nbsp;&nbsp; **write:application** | 授予应用程序管理的读/写访问权限                                 |
+| &nbsp;&nbsp;&nbsp; **read:application**  | 授予应用程序管理的读取权限                                      |
+| **sudo**                                 | 允许以站点管理员身份执行操作                                    |
 
 ## 客户端类型
 

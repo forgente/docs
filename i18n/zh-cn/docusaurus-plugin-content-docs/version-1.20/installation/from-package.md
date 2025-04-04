@@ -6,7 +6,6 @@ sidebar_position: 20
 
 aliases:
   - /zh-cn/install-from-package
-
 ---
 
 # 使用包管理器安装

@@ -6,7 +6,6 @@ sidebar_position: 110
 
 aliases:
   - /zh-cn/adding-legal-pages
-
 ---
 
 # 添加法律页面

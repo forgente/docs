@@ -6,7 +6,6 @@ sidebar_position: 60
 
 aliases:
   - /zh-cn/search-engines-indexation
-
 ---
 
 # 搜索引擎索引
@@ -25,7 +24,7 @@ User-agent: *
 Disallow: /
 ```
 
-如果您将Gitea安装在子目录中，则需要在顶级目录中创建或编辑 `robots.txt`。
+如果您将 Gitea 安装在子目录中，则需要在顶级目录中创建或编辑 `robots.txt`。
 
 ```txt
 User-agent: *

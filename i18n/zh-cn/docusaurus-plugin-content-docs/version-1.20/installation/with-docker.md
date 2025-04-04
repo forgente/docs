@@ -6,7 +6,6 @@ sidebar_position: 70
 
 aliases:
   - /zh-cn/install-with-docker
-
 ---
 
 # 使用 Docker 安装
@@ -297,7 +296,7 @@ docker run -it --rm docker.gitea.com/gitea:1 gitea generate secret INTERNAL_TOKE
 ```
 
 ```yaml
-...
+---
 services:
   server:
     environment:

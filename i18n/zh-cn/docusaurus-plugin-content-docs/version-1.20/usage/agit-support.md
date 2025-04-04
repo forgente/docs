@@ -6,7 +6,6 @@ sidebar_position: 12
 
 aliases:
   - /zh-cn/agit-setup
-
 ---
 
 # AGit 设置

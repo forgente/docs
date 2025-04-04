@@ -6,7 +6,6 @@ sidebar_position: 80
 
 aliases:
   - /zh-cn/install-on-kubernetes
-
 ---
 
 # 在 Kubernetes 中安装 Gitea
@@ -38,15 +37,15 @@ helm install gitea -f values.yaml gitea/gitea
 Gitea 附带了一个运行状况检查接口 `/api/healthz`，你可以像这样在 Kubernetes 中配置它：
 
 ```yaml
-  livenessProbe:
-    httpGet:
-      path: /api/healthz
-      port: http
-    initialDelaySeconds: 200
-    timeoutSeconds: 5
-    periodSeconds: 10
-    successThreshold: 1
-    failureThreshold: 10
+livenessProbe:
+  httpGet:
+    path: /api/healthz
+    port: http
+  initialDelaySeconds: 200
+  timeoutSeconds: 5
+  periodSeconds: 10
+  successThreshold: 1
+  failureThreshold: 10
 ```
 
 成功的运行状况检查响应代码为 HTTP `200`，下面是示例：

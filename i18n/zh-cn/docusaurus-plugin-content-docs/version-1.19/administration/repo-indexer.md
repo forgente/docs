@@ -30,7 +30,7 @@ REPO_INDEXER_EXCLUDE = resources/bin/**
 
 ### 按路径选择要索引的文件
 
-Gitea使用 [`gobwas/glob` 库](https://github.com/gobwas/glob) 中的 glob 模式匹配来选择要包含在索引中的文件。
+Gitea 使用 [`gobwas/glob` 库](https://github.com/gobwas/glob) 中的 glob 模式匹配来选择要包含在索引中的文件。
 
 限制文件列表可以防止索引被派生或无关的文件（例如 lss、sym、map 等）污染，从而使搜索结果更相关。这还有助于减小索引的大小。
 

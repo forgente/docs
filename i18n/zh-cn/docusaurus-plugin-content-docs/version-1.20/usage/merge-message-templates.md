@@ -6,7 +6,6 @@ sidebar_position: 15
 
 aliases:
   - /zh-cn/merge-message-templates
-
 ---
 
 # 合并消息模板

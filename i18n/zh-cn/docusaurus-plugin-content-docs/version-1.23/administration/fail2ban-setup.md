@@ -5,7 +5,6 @@ sidebar_position: 16
 
 aliases:
   - /zh-cn/fail2ban-setup
-
 ---
 
 # 设置 Fail2ban

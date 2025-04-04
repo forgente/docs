@@ -6,7 +6,6 @@ sidebar_position: 40
 
 aliases:
   - /zh-cn/logging-configuration
-
 ---
 
 # 日志配置

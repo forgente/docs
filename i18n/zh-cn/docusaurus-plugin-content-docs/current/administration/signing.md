@@ -69,7 +69,7 @@ MERGES = pubkey, twofa, basesigned, commitssigned
 如果您有自己定制的 Gitea git 配置，您应该将这些配置设置在系统 git 配置文件中（例如 `/etc/gitconfig`）或者 Gitea 的内部 git 配置文件 `{[git].HOME_PATH}/.gitconfig` 中。
 
 与 git 命令相关的主目录文件（如 `.gnupg`）也应该放在 Gitea 的 git 主目录 `[git].HOME_PATH` 中。
-如果您希望将 `.gnupg` 目录放在 `{[git].HOME_PATH}/` 之外的位置，请考虑设置 `$GNUPGHOME` 环境变量为您首选的位置，否则Gitea将会从 `{[git].HOME_PATH}/.gnupg` 查找私钥。
+如果您希望将 `.gnupg` 目录放在 `{[git].HOME_PATH}/` 之外的位置，请考虑设置 `$GNUPGHOME` 环境变量为您首选的位置，否则 Gitea 将会从 `{[git].HOME_PATH}/.gnupg` 查找私钥。
 :::
 
 ### `INITIAL_COMMIT`

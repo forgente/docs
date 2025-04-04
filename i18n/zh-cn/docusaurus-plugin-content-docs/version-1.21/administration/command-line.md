@@ -6,7 +6,6 @@ sidebar_position: 1
 
 aliases:
   - /zh-cn/command-line
-
 ---
 
 # 命令行
@@ -62,7 +61,7 @@ aliases:
       - 选项：
         - `--email`：要删除的用户的电子邮件。
         - `--username`：要删除的用户的用户名。
-        - `--id`：要删除的用户的ID。
+        - `--id`：要删除的用户的 ID。
         - 必须提供 `--id`、`--username` 或 `--email` 中的一个。如果提供多个，则所有条件必须匹配。
       - 示例：
         - `gitea admin user delete --id 1`
@@ -171,11 +170,11 @@ aliases:
         - `--allowed-domains`：留空以允许所有域。使用逗号（','）分隔多个域。
         - `--skip-local-2fa`：跳过 2FA 登录。
         - `--active`：启用此认证源。
-        备注：
-        `--force-smtps`、`--skip-verify`、`--disable-helo`、`--skip-local-2fs` 和 `--active` 选项可以采用以下形式使用：
+          备注：
+          `--force-smtps`、`--skip-verify`、`--disable-helo`、`--skip-local-2fs` 和 `--active` 选项可以采用以下形式使用：
         - `--option`、`--option=true` 以启用选项
         - `--option=false` 以禁用选项
-        如果未指定这些选项，则在 `update-smtp` 中不会更改值，或者在 `add-smtp` 中将使用默认的 `false` 值。
+          如果未指定这些选项，则在 `update-smtp` 中不会更改值，或者在 `add-smtp` 中将使用默认的 `false` 值。
       - 示例：
         - `gitea admin auth add-smtp --name ldap --host smtp.mydomain.org --port 587 --skip-verify --active`
     - `update-smtp`：
@@ -284,12 +283,12 @@ aliases:
 
 ### cert
 
-生成自签名的SSL证书。将输出到当前目录下的`cert.pem`和`key.pem`文件中，并且会覆盖任何现有文件。
+生成自签名的 SSL 证书。将输出到当前目录下的`cert.pem`和`key.pem`文件中，并且会覆盖任何现有文件。
 
 - 选项：
-  - `--host value`：逗号分隔的主机名和IP地址列表，此证书适用于这些主机。支持使用通配符。必填。
-  - `--ecdsa-curve value`：用于生成密钥的ECDSA曲线。可选。有效选项为P224、P256、P384、P521。
-  - `--rsa-bits value`：要生成的RSA密钥的大小。可选。如果设置了--ecdsa-curve，则忽略此选项。（默认值：3072）。
+  - `--host value`：逗号分隔的主机名和 IP 地址列表，此证书适用于这些主机。支持使用通配符。必填。
+  - `--ecdsa-curve value`：用于生成密钥的 ECDSA 曲线。可选。有效选项为 P224、P256、P384、P521。
+  - `--rsa-bits value`：要生成的 RSA 密钥的大小。可选。如果设置了--ecdsa-curve，则忽略此选项。（默认值：3072）。
   - `--start-date value`：证书的创建日期。可选。（格式：`Jan 1 15:04:05 2011`）。
   - `--duration value`：证书有效期。可选。（默认值：8760h0m0s）
   - `--ca`：如果提供此选项，则证书将生成自己的证书颁发机构。可选。
@@ -298,18 +297,18 @@ aliases:
 
 ### dump
 
-将所有文件和数据库导出到一个zip文件中。输出文件将保存在当前目录下，类似于`gitea-dump-1482906742.zip`。
+将所有文件和数据库导出到一个 zip 文件中。输出文件将保存在当前目录下，类似于`gitea-dump-1482906742.zip`。
 
 - 选项：
   - `--file name`，`-f name`：指定要创建的导出文件的名称。可选。（默认值：gitea-dump-[timestamp].zip）。
   - `--tempdir path`，`-t path`：指定临时目录的路径。可选。（默认值：/tmp）。
   - `--skip-repository`，`-R`：跳过仓库的导出。可选。
   - `--skip-custom-dir`：跳过自定义目录的导出。可选。
-  - `--skip-lfs-data`：跳过LFS数据的导出。可选。
+  - `--skip-lfs-data`：跳过 LFS 数据的导出。可选。
   - `--skip-attachment-data`：跳过附件数据的导出。可选。
   - `--skip-package-data`：跳过包数据的导出。可选。
   - `--skip-log`：跳过日志数据的导出。可选。
-  - `--database`，`-d`：指定数据库的SQL语法。可选。
+  - `--database`，`-d`：指定数据库的 SQL 语法。可选。
   - `--verbose`，`-V`：如果提供此选项，显示附加详细信息。可选。
   - `--type`：设置导出的格式。可选。（默认值：zip）
 - 示例：
@@ -402,19 +401,19 @@ gitea doctor recreate-table
 
 - 命令:
   - `shutdown`: 优雅地关闭运行中的进程
-  - `restart`: 优雅地重新启动运行中的进程（对于Windows服务器尚未实现）
+  - `restart`: 优雅地重新启动运行中的进程（对于 Windows 服务器尚未实现）
   - `flush-queues`: 刷新运行中的进程中的队列
     - 选项:
       - `--timeout value`: 刷新过程的超时时间（默认值: 1m0s）
-      - `--non-blocking`: 设置为true，以在返回之前不等待刷新完成
+      - `--non-blocking`: 设置为 true，以在返回之前不等待刷新完成
   - `logging`: 调整日志命令
     - 命令:
       - `pause`: 暂停日志记录
         - 注意:
-          - 如果日志级别低于此级别，日志级别将被临时提升为INFO。
-          - Gitea将在一定程度上缓冲日志，并在超过该点后丢弃日志。
+          - 如果日志级别低于此级别，日志级别将被临时提升为 INFO。
+          - Gitea 将在一定程度上缓冲日志，并在超过该点后丢弃日志。
       - `resume`: 恢复日志记录
-      - `release-and-reopen`: 使Gitea释放和重新打开用于日志记录的文件和连接（相当于向Gitea发送SIGUSR1信号）。
+      - `release-and-reopen`: 使 Gitea 释放和重新打开用于日志记录的文件和连接（相当于向 Gitea 发送 SIGUSR1 信号）。
       - `remove name`: 删除指定的日志记录器
         - 选项:
           - `--group group`, `-g group`: 从中删除子记录器的组（默认为`default`）
@@ -430,7 +429,7 @@ gitea doctor recreate-table
               - `--expression value`, `-e value`: 日志记录器的匹配表达式
               - `--prefix value`, `-p value`: 日志记录器的前缀
               - `--color`: 在日志中使用颜色
-              - `--stderr`: 将控制台日志输出到stderr - 仅适用于控制台
+              - `--stderr`: 将控制台日志输出到 stderr - 仅适用于控制台
           - `file`: 添加文件日志记录器
             - 选项:
               - `--group value`, `-g value`: 要添加日志记录器的组 - 默认为"default"
@@ -460,9 +459,9 @@ gitea doctor recreate-table
               - `--color`: 在日志中使用颜色
               - `--reconnect-on-message`, `-R`: 对于每个消息重新连接主机
               - `--reconnect`, `-r`: 连接中断时重新连接主机
-              - `--protocol value`, `-P value`: 设置要使用的协议：tcp、unix或udp（默认为tcp）
+              - `--protocol value`, `-P value`: 设置要使用的协议：tcp、unix 或 udp（默认为 tcp）
               - `--address value`, `-a value`: 要连接到的主机地址和端口（默认为:7020）
-          - `smtp`: 添加SMTP日志记录器
+          - `smtp`: 添加 SMTP 日志记录器
             - 选项:
               - `--group value`, `-g value`: 要添加日志记录器的组 - 默认为"default"
               - `--name value`, `-n value`: 新日志记录器的名称 - 默认为模式
