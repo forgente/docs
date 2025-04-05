@@ -10,89 +10,55 @@ aliases:
 
 ## 背景
 
-Gitea 使用 Golang 作為後端編程語言。它使用了許多第三方包，也自己編寫了一些包。
-例如，Gitea 使用 [Chi](https://github.com/go-chi/chi) 作為基本的 Web 框架。[Xorm](https://xorm.io) 是一個 ORM 框架，用於與數據庫交互。
-因此，管理這些包非常重要。在開始編寫後端代碼之前，請遵循以下指南。
+Gitea 使用 Golang 作為後端程式語言。它使用了許多第三方套件，也自己寫了一些。
+例如，Gitea 使用 [Chi](https://github.com/go-chi/chi) 作為基本的網頁框架。[Xorm](https://xorm.io) 是一個 ORM 框架，用來與資料庫互動。
+因此，管理這些套件非常重要。在開始寫後端程式碼之前，請遵循以下指南。
 
-## 包設計指南
+## 套件設計指南
 
-### 包列表
+### 套件列表
 
-為了保持代碼的可理解性並避免循環依賴，擁有良好的代碼結構非常重要。Gitea 後端分為以下幾個部分：
+為了保持程式碼的可理解性並避免循環依賴，擁有良好的程式碼結構非常重要。Gitea 的後端分為以下幾個部分：
 
 - `build`: 幫助構建 Gitea 的腳本。
-- `cmd`: 所有 Gitea 的實際子命令，包括 web、doctor、serv、hooks、admin 等等。`web` 將啟動 Web 服務。`serv` 和 `hooks` 將由 Git 或 OpenSSH 調用。其他子命令可以幫助維護 Gitea。
+- `cmd`: 所有 Gitea 的實際子命令，包括 web、doctor、serv、hooks、admin 等等。`web` 會啟動網頁服務。`serv` 和 `hooks` 會被 Git 或 OpenSSH 調用。其他子命令可以幫助維護 Gitea。
 - `tests`: 常見的測試工具函數
-  - `tests/integration`: 集成測試，用於測試後端回歸
-  - `tests/e2e`: 端到端測試，用於測試前端和後端的兼容性和視覺回歸。
-- `models`: 包含由 xorm 用於構建數據庫表的數據結構。它還包含查詢和更新數據庫的函數。應避免依賴其他 Gitea 代碼。可以在某些情況下例外，例如日誌記錄。
-  - `models/db`: 基本的數據庫操作。所有其他 `models/xxx` 包應依賴於此包。`GetEngine` 函數應僅從 `models/` 調用。
-  - `models/fixtures`: 單元測試和集成測試中使用的示
+  - `tests/integration`: 整合測試，用來測試後端的回歸
+  - `tests/e2e`: 端到端測試，用來測試前端和後端的相容性和視覺回歸。
+- `models`: 包含由 xorm 用來構建資料庫表格的資料結構。它也包含查詢和更新資料庫的函數。應避免依賴其他 Gitea 程式碼。可以在某些情況下例外，例如記錄。
+  - `models/db`: 基本的資料庫操作。所有其他 `models/xxx` 套件應依賴此套件。`GetEngine` 函數應僅從 `models/` 調用。
+  - `models/fixtures`: 單元測試和整合測試中使用的樣本資料。一個 `yml` 文件代表一個表格，測試開始時會將其載入資料庫。
+  - `models/migrations`: 存儲版本之間的資料庫遷移。更改資料庫結構的 PR **必須** 也有遷移步驟。
+- `modules`: 處理 Gitea 中特定功能的不同模組。進行中：其中一些應移動到 `services`，特別是那些依賴於 models 的，因為它們依賴於資料庫。
+  - `modules/setting`: 存儲從 ini 文件讀取的所有系統配置，並已被各處引用。但應盡可能作為函數參數使用。
+  - `modules/git`: 與 `Git` 命令行或 Gogit 套件互動的套件。
+- `public`: 編譯後的前端文件（javascript、圖片、css 等）。
+- `routers`: 處理伺服器請求。由於它使用其他 Gitea 套件來處理請求，其他套件（models、modules 或 services）不得依賴 routers。
+  - `routers/api` 包含處理 RESTful API 請求的 `/api/v1` 路由。
+  - `routers/install` 僅在系統處於安裝模式（INSTALL_LOCK=false）時響應。
+  - `routers/private` 只會被內部子命令調用，特別是 `serv` 和 `hooks`。
+  - `routers/web` 會處理來自網頁瀏覽器或 Git SMART HTTP 協議的 HTTP 請求。
+- `services`: 支持常見路由操作或命令執行的函數。使用 `models` 和 `modules` 來處理請求。
+- `templates`: 用於生成 html 輸出的 Golang 模板。
 
----
+### 套件依賴
 
-date: "2021-11-01T23:41:00+08:00"
-slug: "guidelines-backend"
-sidebar_position: 20
-aliases:
-
-- /zh-tw/guidelines-backend
-
----
-
-# Guidelines for Backend Development
-
-## Background
-
-Gitea uses Golang as the backend programming language. It uses many third-party packages and also write some itself.
-For example, Gitea uses [Chi](https://github.com/go-chi/chi) as basic web framework. [Xorm](https://xorm.io) is an ORM framework that is used to interact with the database.
-So it's very important to manage these packages. Please take the below guidelines before you start to write backend code.
-
-## Package Design Guideline
-
-### Packages List
-
-To maintain understandable code and avoid circular dependencies it is important to have a good code structure. The Gitea backend is divided into the following parts:
-
-- `build`: Scripts to help build Gitea.
-- `cmd`: All Gitea actual sub commands includes web, doctor, serv, hooks, admin and etc. `web` will start the web service. `serv` and `hooks` will be invoked by Git or OpenSSH. Other sub commands could help to maintain Gitea.
-- `tests`: Common test utility functions
-  - `tests/integration`: Integration tests, to test back-end regressions
-  - `tests/e2e`: E2e tests, to test front-end and back-end compatibility and visual regressions.
-- `models`: Contains the data structures used by xorm to construct database tables. It also contains functions to query and update the database. Dependencies to other Gitea code should be avoided. You can make exceptions in cases such as logging.
-  - `models/db`: Basic database operations. All other `models/xxx` packages should depend on this package. The `GetEngine` function should only be invoked from `models/`.
-  - `models/fixtures`: Sample data used in unit tests and integration tests. One `yml` file means one table which will be loaded into database when beginning the tests.
-  - `models/migrations`: Stores database migrations between versions. PRs that change a database structure **MUST** also have a migration step.
-- `modules`: Different modules to handle specific functionality in Gitea. Work in Progress: Some of them should be moved to `services`, in particular those that depend on models because they rely on the database.
-  - `modules/setting`: Store all system configurations read from ini files and has been referenced by everywhere. But they should be used as function parameters when possible.
-  - `modules/git`: Package to interactive with `Git` command line or Gogit package.
-- `public`: Compiled frontend files (javascript, images, css, etc.)
-- `routers`: Handling of server requests. As it uses other Gitea packages to serve the request, other packages (models, modules or services) must not depend on routers.
-  - `routers/api` Contains routers for `/api/v1` aims to handle RESTful API requests.
-  - `routers/install` Could only respond when system is in INSTALL mode (INSTALL_LOCK=false).
-  - `routers/private` will only be invoked by internal sub commands, especially `serv` and `hooks`.
-  - `routers/web` will handle HTTP requests from web browsers or Git SMART HTTP protocols.
-- `services`: Support functions for common routing operations or command executions. Uses `models` and `modules` to handle the requests.
-- `templates`: Golang templates for generating the html output.
-
-### Package Dependencies
-
-Since Golang doesn't support import cycles, we have to decide the package dependencies carefully. There are some levels between those packages. Below is the ideal package dependencies direction.
+由於 Golang 不支持導入循環，我們必須仔細決定套件依賴關係。這些套件之間有一些層次。以下是理想的套件依賴方向。
 
 `cmd` -> `routers` -> `services` -> `models` -> `modules`
 
-From left to right, left packages could depend on right packages, but right packages MUST not depend on left packages. The sub packages on the same level could depend on according this level's rules.
+從左到右，左邊的套件可以依賴右邊的套件，但右邊的套件不得依賴左邊的套件。同一層次的子套件可以根據該層次的規則依賴。
 
 :::warning
-Why do we need database transactions outside of `models`? And how?
-Some actions should allow for rollback when database record insertion/update/deletion failed.
-So services must be allowed to create a database transaction. Here is some example,
+為什麼我們需要在 `models` 之外的資料庫交易？以及如何實現？
+某些操作應允許在資料庫記錄插入/更新/刪除失敗時回滾。
+因此，services 必須允許創建資料庫交易。這裡有一些例子，
 
 ```go
 // services/repository/repository.go
 func CreateXXXX() error {
     return db.WithTx(func(ctx context.Context) error {
-        // do something, if err is returned, it will rollback automatically
+        // 做一些事情，如果返回錯誤，它會自動回滾
         if err := issues.UpdateIssue(ctx, repoID); err != nil {
             // ...
             return err
@@ -103,8 +69,8 @@ func CreateXXXX() error {
 }
 ```
 
-You should **not** use `db.GetEngine(ctx)` in `services` directly, but just write a function under `models/`.
-If the function will be used in the transaction, just let `context.Context` as the function's first parameter.
+你不應該在 `services` 中直接使用 `db.GetEngine(ctx)`，而是應該在 `models/` 下寫一個函數。
+如果該函數將在交易中使用，只需將 `context.Context` 作為該函數的第一個參數。
 
 ```go
 // models/issues/issue.go
@@ -117,34 +83,35 @@ func UpdateIssue(ctx context.Context, repoID int64) error {
 
 :::
 
-### Package Name
+### 套件名稱
 
-For the top level package, use a plural as package name, i.e. `services`, `models`, for sub packages, use singular,
-i.e. `services/user`, `models/repository`.
+對於頂層套件，使用複數作為套件名稱，即 `services`、`models`，對於子套件，使用單數，
+即 `services/user`、`models/repository`。
 
-### Import Alias
+### 導入別名
 
-Since there are some packages which use the same package name, it is possible that you find packages like `modules/user`, `models/user`, and `services/user`. When these packages are imported in one Go file, it's difficult to know which package we are using and if it's a variable name or an import name. So, we always recommend to use import aliases. To differ from package variables which are commonly in camelCase, just use **snake_case** for import aliases.
-i.e. `import user_service "code.gitea.io/gitea/services/user"`
+由於有些套件使用相同的套件名稱，可能會發現像 `modules/user`、`models/user` 和 `services/user` 這樣的套件。
+當這些套件在一個 Go 文件中導入時，很難知道我們使用的是哪個套件，以及它是變量名還是導入名。因此，我們總是建議使用導入別名。為了區分常見的駝峰式變量名，只需使用 **snake_case** 作為導入別名。
+即 `import user_service "code.gitea.io/gitea/services/user"`
 
-### Implementing `io.Closer`
+### 實現 `io.Closer`
 
-If a type implements `io.Closer`, calling `Close` multiple times must not fail or `panic` but return an error or `nil`.
+如果一種類型實現了 `io.Closer`，多次調用 `Close` 不應失敗或 `panic`，而是返回錯誤或 `nil`。
 
-### Important Gotchas
+### 重要注意事項
 
-- Never write `x.Update(exemplar)` without an explicit `WHERE` clause:
-  - This will cause all rows in the table to be updated with the non-zero values of the exemplar - including IDs.
-  - You should usually write `x.ID(id).Update(exemplar)`.
-- If during a migration you are inserting into a table using `x.Insert(exemplar)` where the ID is preset:
-  - You will need to `` SET IDENTITY_INSERT `table` ON `` for the MSSQL variant (the migration will fail otherwise)
-  - However, you will also need to update the id sequence for postgres - the migration will silently pass here but later insertions will fail:
+- 永遠不要在沒有明確 `WHERE` 子句的情況下寫 `x.Update(exemplar)`：
+  - 這會導致表中的所有行都被更新為 exemplar 的非零值 - 包括 ID。
+  - 你通常應該寫 `x.ID(id).Update(exemplar)`。
+- 如果在遷移期間你正在插入一個預設 ID 的表格，使用 `x.Insert(exemplar)`：
+  - 對於 MSSQL 變體，你需要 `` SET IDENTITY_INSERT `table` ON ``（否則遷移會失敗）
+  - 但是，你還需要更新 postgres 的 id 序列 - 遷移會在這裡默默通過，但後來的插入會失敗：
     `` SELECT setval('table_name_id_seq', COALESCE((SELECT MAX(id)+1 FROM `table_name`), 1), false) ``
 
-### Future Tasks
+### 未來任務
 
-Currently, we are creating some refactors to do the following things:
+目前，我們正在進行一些重構，以完成以下事情：
 
-- Correct that codes which doesn't follow the rules.
-- There are too many files in `models`, so we are moving some of them into a sub package `models/xxx`.
-- Some `modules` sub packages should be moved to `services` because they depend on `models`.
+- 修正不符合規則的代碼。
+- `models` 中的文件太多了，所以我們正在將其中一些移動到子套件 `models/xxx`。
+- 一些 `modules` 子套件應移動到 `services`，因為它們依賴於 `models`。

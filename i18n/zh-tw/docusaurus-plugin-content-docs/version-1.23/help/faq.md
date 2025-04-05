@@ -28,252 +28,205 @@ aliases:
 
 ## 如何找到配置文件 "app.ini"
 
-這取決於您如何安裝 Gitea。如果您沒有手動設置自定義路徑或配置文件的路徑，
-那麼配置文件 (app
+這取決於您如何安裝 Gitea。如果您沒有手動設置自定義路徑或配置文件的路徑，那麼配置文件 (app.ini) 應該存在於 Gitea 工作路徑的 "custom/conf" 目錄中。一些軟件包供應商可能會使用 "/etc/gitea" 來存儲配置文件，而其他供應商則不會。
 
----
+您可以通過檢查 Gitea 的啟動日誌或閱讀 Gitea 網站管理員 -> 配置摘要來手動查找配置文件 (app.ini)。
 
-date: "2019-04-05T16:00:00+02:00"
-slug: "faq"
-sidebar_position: 5
-aliases:
+如果您使用的是一些隔離環境（如容器 docker），您看到的路徑通常不是主機文件系統中的實際路徑。在這種情況下，您需要檢查容器的文件系統卷映射並找出主機上配置文件的實際路徑。
 
-- /zh-tw/faq
-
----
-
-# FAQ
-
-This page contains some common questions and answers.
-
-For more help resources, check all [Support Options](help/support.md).
-
-## Difference between 1.x and 1.x.x downloads, how can I get latest stable release with bug fixes?
-
-Version 1.20.x will be used for this example.
-
-On our [downloads page](https://dl.gitea.com/gitea/) you will see a 1.20 directory, as well as directories for 1.20.0, 1.20.1.
-
-The 1.20 directory is the nightly build, which is built on each merged commit to the [`release/v1.20`](https://github.com/go-gitea/gitea/tree/release/v1.20) branch.
-
-The 1.20.0 directory is a release build that was created when the [`v1.20.0`](https://github.com/go-gitea/gitea/releases/tag/v1.20.0) tag was created.
-
-The nightly builds (1.x) downloads will change as commits are merged to their respective branch, they contain the latest changes/fixes before a tag release is built.
-
-If a bug fix is targeted on 1.20.1 but 1.20.1 is not released yet, you can get the "1.20-nightly" build to get the bug fix.
-
-## How to find the config file "app.ini"
-
-It depends on how you installed Gitea. If you didn't set a path for custom path or config file manually,
-then the config file (app.ini) should exists in the "custom/conf" directory of your Gitea's working path.
-Some package vendors might use "/etc/gitea" to store the config file, while some others don't.
-
-You could manually find the config file (app.ini) by checking Gitea's startup logs
-or reading the Gitea Web's Site Administrator -> Confugiraton Summary.
-
-If you are using some isolated enviroments like container (docker),
-the path you see usually is not what it is in the host's filesystem.
-In this case you need to check the container's filesystem volume mapping
-and figure out the real path of the config file on the host.
-
-## Where does Gitea store what file
+## Gitea 存儲文件的位置
 
 - _`AppWorkPath`_
-  - The `WORK_PATH` option in `app.ini`
-  - Else the `--work-path` flag
-  - Else Environment variable `GITEA_WORK_DIR`
-  - Else a built-in value set at build time
-  - Else the directory that contains the Gitea binary
-- `AppDataPath` (default for database, indexers, etc.)
-  - `APP_DATA_PATH` from `app.ini`
-  - Else _`AppWorkPath`_`/data`
-- _`CustomPath`_ (custom templates)
-  - The `--custom-path` flag
-  - Else Environment variable `GITEA_CUSTOM`
-  - Else a built-in value set at build time
-  - Else _`AppWorkPath`_`/custom`
+  - `app.ini` 中的 `WORK_PATH` 選項
+  - 否則 `--work-path` 標誌
+  - 否則環境變量 `GITEA_WORK_DIR`
+  - 否則在構建時設置的內置值
+  - 否則包含 Gitea 二進制文件的目錄
+- `AppDataPath`（默認為數據庫、索引器等）
+  - `app.ini` 中的 `APP_DATA_PATH`
+  - 否則 _`AppWorkPath`_`/data`
+- _`CustomPath`_（自定義模板）
+  - `--custom-path` 標誌
+  - 否則環境變量 `GITEA_CUSTOM`
+  - 否則在構建時設置的內置值
+  - 否則 _`AppWorkPath`_`/custom`
 - HomeDir
-  - Unix: Environment variable `HOME`
-  - Windows: Environment variable `USERPROFILE`, else environment variables `HOMEDRIVE`+`HOMEPATH`
+  - Unix：環境變量 `HOME`
+  - Windows：環境變量 `USERPROFILE`，否則環境變量 `HOMEDRIVE`+`HOMEPATH`
 - RepoRootPath
-  - `ROOT` in the \[repository] section of `app.ini` if absolute
-  - Else _`AppWorkPath`_`/ROOT` if `ROOT` in the \[repository] section of `app.ini` if relative
-  - Default `%(APP_DATA_PATH)/gitea-repositories`
-- INI (config file)
-  - `--config` flag
-  - A possible built-in value set a build time
-  - Else _`CustomPath`_`/conf/app.ini`
-- SQLite Database
-  - `PATH` in `database` section of `app.ini`
-  - Else `%(APP_DATA_PATH)/gitea.db`
+  - `app.ini` 中 \[repository] 部分的 `ROOT`（如果是絕對路徑）
+  - 否則 _`AppWorkPath`_`/ROOT`（如果 `app.ini` 中 \[repository] 部分的 `ROOT` 是相對路徑）
+  - 默認 `%(APP_DATA_PATH)/gitea-repositories`
+- INI（配置文件）
+  - `--config` 標誌
+  - 構建時設置的可能內置值
+  - 否則 _`CustomPath`_`/conf/app.ini`
+- SQLite 數據庫
+  - `app.ini` 中 `database` 部分的 `PATH`
+  - 否則 `%(APP_DATA_PATH)/gitea.db`
 
-## Not seeing a clone URL or the clone URL being incorrect
+## 看不到克隆 URL 或克隆 URL 不正確
 
-There are a few places that could make this show incorrectly.
+有幾個地方可能會導致顯示不正確。
 
-1. If using a reverse proxy, make sure you have followed the correction directions in the [reverse proxy guide](../administration/reverse-proxies.md)
-2. Make sure you have correctly set `ROOT_URL` in the `server` section of your `app.ini`
+1. 如果使用反向代理，請確保您已按照[反向代理指南](../administration/reverse-proxies.md)中的正確指示進行操作
+2. 確保您已正確設置 `app.ini` 中 `server` 部分的 `ROOT_URL`
 
-If certain clone options aren't showing up (HTTP/S or SSH), the following options can be checked in your `app.ini`
+如果某些克隆選項未顯示（HTTP/S 或 SSH），可以在 `app.ini` 中檢查以下選項
 
-- `DISABLE_HTTP_GIT`: if set to true, there will be no HTTP/HTTPS link
-- `DISABLE_SSH`: if set to true, there will be no SSH link
-- `SSH_EXPOSE_ANONYMOUS`: if set to false, SSH links will be hidden for anonymous users
+- `DISABLE_HTTP_GIT`：如果設置為 true，則不會有 HTTP/HTTPS 連接
+- `DISABLE_SSH`：如果設置為 true，則不會有 SSH 連接
+- `SSH_EXPOSE_ANONYMOUS`：如果設置為 false，則匿名用戶將隱藏 SSH 連接
 
-## File upload fails with: 413 Request Entity Too Large
+## 文件上傳失敗：413 Request Entity Too Large
 
-This error occurs when the reverse proxy limits the file upload size.
+當反向代理限制文件上傳大小時，會出現此錯誤。
 
-See the [reverse proxy guide](../administration/reverse-proxies.md) for a solution with nginx.
+請參閱[反向代理指南](../administration/reverse-proxies.md)以獲取 nginx 的解決方案。
 
-## Custom Templates not loading or working incorrectly
+## 自定義模板未加載或工作不正確
 
-Gitea's custom templates must be added to the correct location or Gitea will not find and use them.
+Gitea 的自定義模板必須添加到正確的位置，否則 Gitea 將無法找到並使用它們。
 
-The correct path for the template(s) will be relative to the `CustomPath`
+模板的正確路徑將相對於 `CustomPath`
 
-1. To find `CustomPath`, look for Custom File Root Path in Site Administration -> Configuration
-2. If you are still unable to find a path, the default can be [calculated above](#where-does-gitea-store-what-file)
-3. Once you have figured out the correct custom path, you can refer to the [customizing Gitea](../administration/customizing-gitea.md) page to add your template to the correct location.
+1. 要查找 `CustomPath`，請在網站管理 -> 配置中查找自定義文件根路徑
+2. 如果您仍然無法找到路徑，可以[在上面計算](#where-does-gitea-store-what-file)默認值
+3. 一旦您找到了正確的自定義路徑，您可以參考[自定義 Gitea](../administration/customizing-gitea.md)頁面將模板添加到正確的位置。
 
-## Does Gitea have a "GitHub/GitLab pages" feature?
+## Gitea 是否有 "GitHub/GitLab pages" 功能？
 
-Gitea doesn't provide a built-in Pages server. You need a dedicated domain to serve static pages to avoid CSRF security risks.
+Gitea 沒有內置的 Pages 服務器。您需要一個專用域來提供靜態頁面以避免 CSRF 安全風險。
 
-For simple usage, you can use a reverse proxy to rewrite & serve static contents from Gitea's raw file URLs.
+對於簡單的使用，您可以使用反向代理來重寫並從 Gitea 的原始文件 URL 提供靜態內容。
 
-And there are already available third-party services, like a standalone [pages server](https://codeberg.org/Codeberg/pages-server) or a [caddy plugin](https://github.com/42wim/caddy-gitea), that can provide the required functionality.
+已經有可用的第三方服務，如獨立的[pages 服務器](https://codeberg.org/Codeberg/pages-server)或[caddy 插件](https://github.com/42wim/caddy-gitea)，可以提供所需的功能。
 
-## Active user vs login prohibited user
+## 活躍用戶與禁止登錄用戶
 
-In Gitea, an "active" user refers to a user that has activated their account via email.
+在 Gitea 中，“活躍”用戶是指通過電子郵件激活其帳戶的用戶。
 
-A "login prohibited" user is a user that is not allowed to log in to Gitea anymore
+“禁止登錄”用戶是指不再允許登錄 Gitea 的用戶
 
-## What is Swagger?
+## 什麼是 Swagger？
 
-[Swagger](https://swagger.io/) is what Gitea uses for its API documentation.
+[Swagger](https://swagger.io/) 是 Gitea 用於其 API 文檔的工具。
 
-All Gitea instances have the built-in API and there is no way to disable it completely.
-You can, however, disable showing its documentation by setting `ENABLE_SWAGGER` to `false` in the `api` section of your `app.ini`.
-For more information, refer to Gitea's [API docs](development/api-usage.md).
+所有 Gitea 實例都有內置的 API，無法完全禁用它。
+但是，您可以通過在 `app.ini` 的 `api` 部分中設置 `ENABLE_SWAGGER` 為 `false` 來禁用顯示其文檔。
+有關更多信息，請參閱 Gitea 的 [API 文檔](development/api-usage.md)。
 
-You can see the latest API (for example) on https://gitea.com/api/swagger
+您可以在 https://gitea.com/api/swagger 上查看最新的 API（例如）
 
-You can also see an example of the `swagger.json` file at https://gitea.com/swagger.v1.json
+您還可以在 https://gitea.com/swagger.v1.json 上查看 `swagger.json` 文件的示例
 
-## Adjusting your server for public/private use
+## 調整您的服務器以供公用/私用
 
-### Preventing spammers
+### 防止垃圾郵件
 
-There are multiple things you can combine to prevent spammers.
+有多種方法可以結合使用來防止垃圾郵件。
 
-1. By whitelisting or blocklisting certain email domains
-2. By only whitelisting certain domains with OpenID (see below)
-3. Setting `ENABLE_CAPTCHA` to `true` in your `app.ini` and properly configuring `RECAPTCHA_SECRET` and `RECAPTCHA_SITEKEY`
-4. Settings `DISABLE_REGISTRATION` to `true` and creating new users via the [CLI](../administration/command-line.md), [API](development/api-usage.md), or Gitea's Admin UI
+1. 通過白名單或黑名單某些電子郵件域
+2. 通過僅白名單某些域與 OpenID（見下文）
+3. 在 `app.ini` 中設置 `ENABLE_CAPTCHA` 為 `true` 並正確配置 `RECAPTCHA_SECRET` 和 `RECAPTCHA_SITEKEY`
+4. 設置 `DISABLE_REGISTRATION` 為 `true` 並通過 [CLI](../administration/command-line.md)、[API](development/api-usage.md) 或 Gitea 的管理 UI 創建新用戶
 
-### Only allow/block certain email domains
+### 只允許/阻止某些電子郵件域
 
-You can configure `EMAIL_DOMAIN_WHITELIST` or `EMAIL_DOMAIN_BLOCKLIST` in your app.ini under `[service]`
+您可以在 `app.ini` 的 `[service]` 部分中配置 `EMAIL_DOMAIN_WHITELIST` 或 `EMAIL_DOMAIN_BLOCKLIST`
 
-### Only allow/block certain OpenID providers
+### 只允許/阻止某些 OpenID 提供商
 
-You can configure `WHITELISTED_URIS` or `BLACKLISTED_URIS` under `[openid]` in your `app.ini`
+您可以在 `app.ini` 的 `[openid]` 部分中配置 `WHITELISTED_URIS` 或 `BLACKLISTED_URIS`
 
 :::note
-Whitelisted takes precedence, so if it is non-blank then blacklisted is ignored.
+白名單優先，如果它不是空白的，則忽略黑名單。
 :::
 
-### Issue only users
+### 僅限問題用戶
 
-The current way to achieve this is to create/modify a user with a max repo creation limit of 0.
+目前的實現方式是創建/修改用戶，將其最大倉庫創建限制設置為 0。
 
-### Restricted users
+### 受限用戶
 
-Restricted users are limited to a subset of the content based on their organization/team memberships and collaborations, ignoring the public flag on organizations/repos etc.\_\_
+受限用戶僅限於根據其組織/團隊成員資格和協作關係訪問部分內容，忽略組織/倉庫等的公共標誌。
 
-Example use case: A company runs a Gitea instance that requires login. Most repos are public (accessible/browsable by all co-workers).
+示例用例：一家公司運行一個需要登錄的 Gitea 實例。大多數倉庫是公共的（所有同事都可以訪問/瀏覽）。
 
-At some point, a customer or third party needs access to a specific repo and only that repo. Making such a customer account restricted and granting any needed access using team membership(s) and/or collaboration(s) is a simple way to achieve that without the need to make everything private.
+某個時候，客戶或第三方需要訪問特定倉庫並且僅限於該倉庫。將此類客戶帳戶設置為受限並使用團隊成員資格和/或協作關係授予所需的訪問權限是一種簡單的方法，無需將所有內容設置為私有。
 
-### Enable Fail2ban
+### 啟用 Fail2ban
 
-Use [Fail2Ban](../administration/fail2ban-setup.md) to monitor and stop automated login attempts or other malicious behavior based on log patterns
+使用 [Fail2Ban](../administration/fail2ban-setup.md) 監控並阻止基於日誌模式的自動登錄嘗試或其他惡意行為
 
-## SSHD vs built-in SSH
+## SSHD 與內置 SSH
 
-SSHD is the built-in SSH server on most Unix systems.
+SSHD 是大多數 Unix 系統上的內置 SSH 服務器。
 
-Gitea also provides its own SSH server, for usage when SSHD is not available.
+Gitea 也提供了自己的 SSH 服務器，用於 SSHD 不可用時使用。
 
-## Translation is incorrect/how to add more translations
+## 翻譯不正確/如何添加更多翻譯
 
-Our translations are currently crowd-sourced on our [Crowdin project](https://crowdin.com/project/gitea)
+我們的翻譯目前在我們的 [Crowdin 項目](https://crowdin.com/project/gitea) 上進行群眾外包
 
-Whether you want to change a translation or add a new one, it will need to be there as all translations are overwritten in our CI via the Crowdin integration.
+無論您是想更改翻譯還是添加新翻譯，都需要在那裡進行，因為所有翻譯都會在我們的 CI 中通過 Crowdin 集成進行覆蓋。
 
-## Push Hook / Webhook / Actions aren't running
+## 推送 Hook / Webhook / Actions 未運行
 
-If you can push but can't see push activities on the home dashboard, or the push doesn't trigger webhook and Actions workflows, it's likely that the git hooks are not working.
+如果您可以推送但在主頁面板上看不到推送活動，或者推送未觸發 webhook 和 Actions 工作流，這可能是 git hooks 未正常工作。
 
-There are a few possibilities:
+有幾種可能性：
 
-1. The git hooks are out of sync: run "Resynchronize pre-receive, update and post-receive hooks of all repositories" on the site admin panel
-2. The git repositories (and hooks) are stored on some filesystems (ex: mounted by NAS) which don't support script execution, make sure the filesystem supports `chmod a+x any-script`
-3. If you are using docker, make sure Docker Server (not the client) >= 20.10.6
+1. git hooks 不同步：在網站管理面板上運行“重新同步所有倉庫的 pre-receive、update 和 post-receive hooks”
+2. git 倉庫（和 hooks）存儲在某些文件系統上（例如由 NAS 掛載）不支持腳本執行，確保文件系統支持 `chmod a+x any-script`
+3. 如果您使用 docker，確保 Docker 服務器（不是客戶端）>= 20.10.6
 
-## SSH issues
+## SSH 問題
 
-If you cannot reach repositories over `ssh`, but `https` works fine, consider looking into the following.
+如果您無法通過 `ssh` 訪問倉庫，但 `https` 正常工作，請考慮查看以下內容。
 
-First, make sure you can access Gitea via SSH.
+首先，確保您可以通過 SSH 訪問 Gitea。
 
 `ssh git@myremote.example`
 
-If the connection is successful, you should receive an error message like the following:
+如果連接成功，您應該會收到如下錯誤消息：
 
 ```
 Hi there, You've successfully authenticated, but Gitea does not provide shell access.
 If this is unexpected, please log in with password and setup Gitea under another user.
 ```
 
-If you do not get the above message but still connect, it means your SSH key is **not** being managed by Gitea. This means hooks won't run, among other potential problems.
+如果您沒有收到上述消息但仍然連接，這意味著您的 SSH 密鑰**未**由 Gitea 管理。這意味著 hooks 不會運行，還有其他潛在問題。
 
-If you cannot connect at all, your SSH key may not be configured correctly locally.
-This is specific to SSH and not Gitea, so will not be covered here.
+如果您無法連接，您的 SSH 密鑰可能在本地配置不正確。
+這是特定於 SSH 而不是 Gitea 的問題，因此不在此處涵蓋。
 
-### SSH Common Errors
+### SSH 常見錯誤
 
 ```
 Permission denied (publickey).
 fatal: Could not read from remote repository.
 ```
 
-This error signifies that the server rejected a log in attempt, check the
-following things:
+此錯誤表示服務器拒絕了登錄嘗試，請檢查以下內容：
 
-- On the client:
-  - Ensure the public and private ssh keys are added to the correct Gitea user.
-  - Make sure there are no issues in the remote url. In particular, ensure the name of the
-    Git user (before the `@`) is spelled correctly.
-  - Ensure public and private ssh keys are correct on client machine.
-- On the server:
+- 在客戶端：
+  - 確保公鑰和私鑰已添加到正確的 Gitea 用戶。
+  - 確保遠程 URL 中沒有問題。特別是，確保 Git 用戶名（在 `@` 之前）拼寫正確。
+  - 確保客戶端機器上的公鑰和私鑰正確。
+- 在服務器上：
 
-  - Make sure the repository exists and is correctly named.
-  - Check the permissions of the `.ssh` directory in the system user's home directory.
-  - Verify that the correct public keys are added to `.ssh/authorized_keys`.
+  - 確保倉庫存在並且名稱正確。
+  - 檢查系統用戶主目錄中 `.ssh` 目錄的權限。
+  - 驗證正確的公鑰已添加到 `.ssh/authorized_keys`。
 
-    Try to run `Rewrite '.ssh/authorized_keys' file (for Gitea SSH keys)` on the
-    Gitea admin panel.
+    嘗試在 Gitea 管理面板上運行“重寫 '.ssh/authorized_keys' 文件（用於 Gitea SSH 密鑰）”。
 
-  - Read Gitea logs.
-  - Read /var/log/auth (or similar).
-  - Check permissions of repositories.
+  - 閱讀 Gitea 日誌。
+  - 閱讀 /var/log/auth（或類似）。
+  - 檢查倉庫的權限。
 
-The following is an example of a missing public SSH key where authentication
-succeeded, but some other setting is preventing SSH from reaching the correct
-repository.
+以下是缺少公鑰的示例，其中身份驗證成功，但某些其他設置阻止 SSH 訪問正確的倉庫。
 
 ```
 fatal: Could not read from remote repository.
@@ -282,108 +235,80 @@ Please make sure you have the correct access rights
 and the repository exists.
 ```
 
-In this case, look into the following settings:
+在這種情況下，請查看以下設置：
 
-- On the server:
-  - Make sure that the `git` system user has a usable shell set
-    - Verify this with `getent passwd git | cut -d: -f7`
-    - `usermod` or `chsh` can be used to modify this.
-  - Ensure that the `gitea serv` command in `.ssh/authorized_keys` uses the
-    correct configuration file.
+- 在服務器上：
+  - 確保 `git` 系統用戶設置了可用的 shell
+    - 使用 `getent passwd git | cut -d: -f7` 驗證
+    - 可以使用 `usermod` 或 `chsh` 進行修改。
+  - 確保 `.ssh/authorized_keys` 中的 `gitea serv` 命令使用正確的配置文件。
 
-## Missing releases after migrating repository with tags
+## 遷移帶有標籤的倉庫後缺少發布
 
-To migrate an repository _with_ all tags, you need to do two things:
+要遷移帶有所有標籤的倉庫，您需要做兩件事：
 
-- Push tags to the repository:
+- 將標籤推送到倉庫：
 
 ```
  git push --tags
 ```
 
-- (Re-)sync tags of all repositories within Gitea:
+- 在 Gitea 中（重新）同步所有倉庫的標籤：
 
 ```
 gitea admin repo-sync-releases
 ```
 
-## How can I create users before starting Gitea
+## 如何在啟動 Gitea 之前創建用戶
 
-Gitea provides a sub-command `gitea migrate` to initialize the database, after which you can use the [admin CLI commands](../administration/command-line.md#admin) to add users like normal.
+Gitea 提供了一個子命令 `gitea migrate` 來初始化數據庫，之後您可以使用 [admin CLI 命令](../administration/command-line.md#admin) 像正常一樣添加用戶。
 
-## How can I enable password reset
+## 如何啟用密碼重置
 
-There is no setting for password resets. It is enabled when a [mail service](../administration/email-setup.md) is configured, and disabled otherwise.
+沒有密碼重置的設置。當配置了[郵件服務](../administration/email-setup.md)時，它會啟用，否則禁用。
 
-## How can a user's password be changed
+## 如何更改用戶的密碼
 
-- As an **admin**, you can change any user's password (and optionally force them to change it on next login)...
+- 作為**管理員**，您可以更改任何用戶的密碼（並可選擇強制他們在下次登錄時更改）...
 
-  - By navigating to your `Site Administration -> User Accounts` page and editing a user.
-  - By using the [admin CLI commands](../administration/command-line.md#admin).
+  - 通過導航到您的 `網站管理 -> 用戶帳戶` 頁面並編輯用戶。
+  - 通過使用 [admin CLI 命令](../administration/command-line.md#admin)。
 
-    Keep in mind most commands will also need a [global flag](../administration/command-line.md#global-options) to point the CLI at the correct configuration.
+    請記住，大多數命令還需要一個[全局標誌](../administration/command-line.md#global-options)來指向正確的配置。
 
-- As a **user** you can change it...
+- 作為**用戶**，您可以更改它...
 
-  - In your account `Settings -> Account` page (this method **requires** you to know your current password).
-  - By using the `Forgot Password` link.
+  - 在您的帳戶 `設置 -> 帳戶` 頁面（此方法**需要**您知道當前密碼）。
+  - 通過使用 `忘記密碼` 連結。
 
-    If the `Forgot Password/Account Recovery` page is disabled, please contact your administrator to configure a [mail service](../administration/email-setup.md).
+    如果 `忘記密碼/帳戶恢復` 頁面被禁用，請聯繫您的管理員配置[郵件服務](../administration/email-setup.md)。
 
-## Warnings about struct defaults during database startup
+## 數據庫啟動期間有關結構默認值的警告
 
-Sometimes when there are migrations the old columns and default values may be left
-unchanged in the database schema. This may lead to warning such as:
+有時在進行遷移時，舊列和默認值可能會保留在數據庫模式中。這可能會導致如下警告：
 
 ```
 2020/08/02 11:32:29 ...rm/session_schema.go:360:Sync() [W] Table user Column keep_activity_private db default is , struct default is 0
 ```
 
-These can safely be ignored, but you are able to stop these warnings by getting Gitea to recreate these tables using:
+這些警告可以安全地忽略，但您可以通過讓 Gitea 重新創建這些表來停止這些警告：
 
 ```
 gitea doctor recreate-table user
 ```
 
-This will cause Gitea to recreate the user table and copy the old data into the new table
-with the defaults set appropriately.
+這將使 Gitea 重新創建用戶表並將舊數據複製到新表中，並適當設置默認值。
 
-You can ask Gitea to recreate multiple tables using:
+您可以讓 Gitea 重新創建多個表：
 
 ```
 gitea doctor recreate-table table1 table2 ...
 ```
 
-And if you would like Gitea to recreate all tables simply call:
+如果您希望 Gitea 重新創建所有表，只需調用：
 
 ```
 gitea doctor recreate-table
 ```
 
-It is highly recommended to back-up your database before running these commands.
-
-## How to adopt repositories from disk
-
-- Add your (bare) repositories to the correct spot for your configuration (`repository.ROOT`), ensuring they are in the correct layout `<REPO_ROOT>/[user]/[repo].git`.
-  - **Note:** the directory names must be lowercase.
-  - You can also check `<ROOT_URL>/admin/config` for the repository root path.
-- Ensure that the user/org exists that you want to adopt repositories for.
-- As an admin, go to `<ROOT_URL>/admin/repos/unadopted` and search.
-  - Users can also be given similar permissions via config [`ALLOW_ADOPTION_OF_UNADOPTED_REPOSITORIES`](../administration/config-cheat-sheet.md#repository-repository).
-- If the above steps are done correctly, you should be able to select repositories to adopt.
-  - If no repositories are found, enable [debug logging](../administration/config-cheat-sheet.md#repository-repository) to check for any specific errors.
-
-## Gitea can't start on NFS
-
-In most cases, it's caused by broken NFS lock system. You can try to stop Gitea process and
-run `flock -n /data-nfs/gitea/queues/LOCK echo 'lock acquired'` to see whether the lock can be acquired immediately.
-If the lock can't be acquired, NFS might report some errors like `lockd: cannot monitor node-3, statd: server rpc.statd not responding, timed out` in its server logs.
-
-Then the NFS lock could be reset by:
-
-```bash
-# /etc/init.d/nfs stop
-# rm -rf /var/lib/nfs/sm/*
-# /etc/init.d/nfs start
-```
+強烈建議在運行這些命令之前備份您的
