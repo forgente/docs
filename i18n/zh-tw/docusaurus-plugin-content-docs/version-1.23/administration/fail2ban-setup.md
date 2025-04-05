@@ -6,60 +6,57 @@ aliases:
   - /zh-tw/fail2ban-setup
 ---
 
-# Fail2ban Setup
+# Fail2ban 設定
 
-**Remember that fail2ban is powerful and can cause lots of issues if you do it incorrectly, so make
-sure to test this before relying on it so you don't lock yourself out.**
+**記住，fail2ban 很強大，如果你設定錯誤，可能會造成很多問題，所以在依賴它之前，務必先測試，避免把自己鎖在外面。**
 
-Gitea returns an HTTP 200 for bad logins in the web logs, but if you have logging options on in
-`app.ini`, then you should be able to go off of `log/gitea.log`, which gives you something like this
-on a bad authentication from the web or CLI using SSH or HTTP respectively:
+Gitea 在網頁日誌中對於錯誤登入會返回 HTTP 200，但如果你在 `app.ini` 中開啟了日誌選項，那麼你應該可以從 `log/gitea.log` 中看到類似這樣的錯誤認證記錄，無論是從網頁還是使用 SSH 或 HTTP 的 CLI：
 
 ```log
-2018/04/26 18:15:54 [I] Failed authentication attempt for user from xxx.xxx.xxx.xxx
+2018/04/26 18:15:54 [I] 使用者從 xxx.xxx.xxx.xxx 嘗試認證失敗
 ```
 
 ```log
-2020/10/15 16:05:09 modules/ssh/ssh.go:143:publicKeyHandler() [W] Failed authentication attempt from xxx.xxx.xxx.xxx
+2020/10/15 16:05:09 modules/ssh/ssh.go:143:publicKeyHandler() [W] 使用者從 xxx.xxx.xxx.xxx 嘗試認證失敗
 ```
 
-(DEPRECATED: This may be a false positive as the user may still go on to correctly authenticate.)
+（已棄用：這可能是誤報，因為使用者可能會繼續正確認證。）
 
 ```log
-2020/10/15 16:05:09 modules/ssh/ssh.go:155:publicKeyHandler() [W] Failed authentication attempt from xxx.xxx.xxx.xxx
+2020/10/15 16:05:09 modules/ssh/ssh.go:155:publicKeyHandler() [W] 使用者從 xxx.xxx.xxx.xxx 嘗試認證失敗
 ```
 
-(DEPRECATED: This may be a false positive as the user may still go on to correctly authenticate.)
+（已棄用：這可能是誤報，因為使用者可能會繼續正確認證。）
 
 ```log
-2020/10/15 16:05:09 modules/ssh/ssh.go:198:publicKeyHandler() [W] Failed authentication attempt from xxx.xxx.xxx.xxx
+2020/10/15 16:05:09 modules/ssh/ssh.go:198:publicKeyHandler() [W] 使用者從 xxx.xxx.xxx.xxx 嘗試認證失敗
 ```
 
-(DEPRECATED: This may be a false positive as the user may still go on to correctly authenticate.)
+（已棄用：這可能是誤報，因為使用者可能會繼續正確認證。）
 
 ```log
-2020/10/15 16:05:09 modules/ssh/ssh.go:213:publicKeyHandler() [W] Failed authentication attempt from xxx.xxx.xxx.xxx
+2020/10/15 16:05:09 modules/ssh/ssh.go:213:publicKeyHandler() [W] 使用者從 xxx.xxx.xxx.xxx 嘗試認證失敗
 ```
 
-(DEPRECATED: This may be a false positive as the user may still go on to correctly authenticate.)
+（已棄用：這可能是誤報，因為使用者可能會繼續正確認證。）
 
 ```log
-2020/10/15 16:05:09 modules/ssh/ssh.go:227:publicKeyHandler() [W] Failed authentication attempt from xxx.xxx.xxx.xxx
+2020/10/15 16:05:09 modules/ssh/ssh.go:227:publicKeyHandler() [W] 使用者從 xxx.xxx.xxx.xxx 嘗試認證失敗
 ```
 
-(DEPRECATED: This may be a false positive as the user may still go on to correctly authenticate.)
+（已棄用：這可能是誤報，因為使用者可能會繼續正確認證。）
 
 ```log
-2020/10/15 16:05:09 modules/ssh/ssh.go:249:sshConnectionFailed() [W] Failed authentication attempt from xxx.xxx.xxx.xxx
+2020/10/15 16:05:09 modules/ssh/ssh.go:249:sshConnectionFailed() [W] 使用者從 xxx.xxx.xxx.xxx 嘗試認證失敗
 ```
 
-(From 1.15 this new message will available and doesn't have any of the false positive results that above messages from publicKeyHandler do. This will only be logged if the user has completely failed authentication.)
+（從 1.15 版本開始，這個新訊息將可用，且不會有上述 publicKeyHandler 訊息中的誤報。只有當使用者完全認證失敗時，才會記錄這個訊息。）
 
 ```log
-2020/10/15 16:08:44 ...s/context/context.go:204:HandleText() [E] invalid credentials from xxx.xxx.xxx.xxx
+2020/10/15 16:08:44 ...s/context/context.go:204:HandleText() [E] 無效的憑證來自 xxx.xxx.xxx.xxx
 ```
 
-Add our filter in `/etc/fail2ban/filter.d/gitea.local`:
+在 `/etc/fail2ban/filter.d/gitea.local` 中新增我們的過濾器：
 
 ```ini
 # gitea.local
@@ -68,7 +65,7 @@ failregex =  .*(Failed authentication attempt|invalid credentials|Attempted acce
 ignoreregex =
 ```
 
-Add our jail in `/etc/fail2ban/jail.d/gitea.local`:
+在 `/etc/fail2ban/jail.d/gitea.local` 中新增我們的 jail：
 
 ```ini
 [gitea]
@@ -81,8 +78,7 @@ bantime = 900
 action = iptables-allports
 ```
 
-If you're using Docker, you'll also need to add an additional jail to handle the **FORWARD**
-chain in **iptables**. Configure it in `/etc/fail2ban/jail.d/gitea-docker.local`:
+如果你使用 Docker，你還需要新增一個 jail 來處理 **iptables** 中的 **FORWARD** 鏈。將其配置在 `/etc/fail2ban/jail.d/gitea-docker.local`：
 
 ```ini
 [gitea-docker]
@@ -95,22 +91,17 @@ bantime = 900
 action = iptables-allports[chain="FORWARD"]
 ```
 
-Then simply run `service fail2ban restart` to apply your changes. You can check to see if
-fail2ban has accepted your configuration using `service fail2ban status`.
+然後只需運行 `service fail2ban restart` 來應用你的更改。你可以使用 `service fail2ban status` 檢查 fail2ban 是否接受了你的配置。
 
-Make sure and read up on fail2ban and configure it to your needs, this bans someone
-for **15 minutes** (from all ports) when they fail authentication 10 times in an hour.
+務必閱讀 fail2ban 並根據你的需求進行配置，這會在一小時內認證失敗 10 次時，將某人從所有端口禁止 **15 分鐘**。
 
-If you run Gitea behind a reverse proxy with Nginx (for example with Docker), you need to add
-this to your Nginx configuration so that IPs don't show up as 127.0.0.1:
+如果你在 Nginx 反向代理後運行 Gitea（例如使用 Docker），你需要在 Nginx 配置中添加這一行，這樣 IP 不會顯示為 127.0.0.1：
 
 ```
 proxy_set_header X-Real-IP $remote_addr;
 ```
 
-The security options in `app.ini` need to be adjusted to allow the interpretation of the headers
-as well as the list of IP addresses and networks that describe trusted proxy servers
-(See the [configuration cheat sheet](../administration/config-cheat-sheet.md#security-security) for more information).
+`app.ini` 中的安全選項需要調整，以允許解釋標頭以及描述受信任代理伺服器的 IP 地址和網絡列表（更多信息請參見 [配置速查表](../administration/config-cheat-sheet.md#security-security)）。
 
 ```
 REVERSE_PROXY_LIMIT = 1

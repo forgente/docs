@@ -6,30 +6,26 @@ sidebar_position: 50
 
 # Secrets
 
-Secrets allow you to store sensitive information in your user, organization or repository.
-Secrets are available on Gitea 1.19+ and are only visible in 1.20+ when ACTIONS are enabled.
+Secrets 允許你在用戶、組織或倉庫中存儲敏感信息。
+Secrets 在 Gitea 1.19+ 可用，並且在 1.20+ 啟用 ACTIONS 時可見。
 
-# Naming your secrets
+## 命名你的 secrets
 
-The following rules apply to secret names:
+以下規則適用於 secret 名稱：
 
-- Secret names can only contain alphanumeric characters (`[a-z]`, `[A-Z]`, `[0-9]`) or underscores (`_`). Spaces are not allowed.
+- Secret 名稱只能包含字母數字字符 (`[a-z]`, `[A-Z]`, `[0-9]`) 或下劃線 (`_`)。不允許使用空格。
+- Secret 名稱不得以 `GITHUB_` 和 `GITEA_` 前綴開頭。
+- Secret 名稱不得以數字開頭。
+- Secret 名稱不區分大小寫。
+- Secret 名稱在創建它們的級別上必須是唯一的。
 
-- Secret names must not start with the `GITHUB_` and `GITEA_` prefix.
+例如，在倉庫級別創建的 secret 必須在該倉庫中具有唯一名稱，而在組織級別創建的 secret 必須在該級別上具有唯一名稱。
 
-- Secret names must not start with a number.
+### 使用 secrets
 
-- Secret names are not case-sensitive.
+創建配置變數後，它們將自動填充到 `secrets` 上下文中。
+可以通過表達式 `${{ secrets.SECRET_NAME }}` 在工作流程中訪問它們。
 
-- Secret names must be unique at the level they are created at.
+### 優先級
 
-For example, a secret created at the repository level must have a unique name in that repository, and a secret created at the organization level must have a unique name at that level.
-
-### Using secrets
-
-After creating configuration variables, they will be automatically filled in the `secrets` context.
-They can be accessed through expressions like `${{ secrets.SECRET_NAME }}` in the workflow.
-
-### Precedence
-
-If a secret with the same name exists at multiple levels, the secret at the lowest level takes precedence. For example, if an organization-level secret has the same name as a repository-level secret, then the repository-level secret takes precedence.
+如果在多個級別存在同名 secret，則最低級別的 secret 優先。例如，如果組織級別的 secret 與倉庫級別的 secret 同名，則倉庫級別的 secret 優先。

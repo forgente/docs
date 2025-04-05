@@ -4,39 +4,39 @@ slug: "overview"
 sidebar_position: 1
 ---
 
-# Overview
+# 概述
 
-Starting with Gitea **1.19**, Gitea Actions are available as a built-in CI/CD solution.
+從 Gitea **1.19** 開始，Gitea Actions 作為內建的 CI/CD 解決方案可用。
 
-## Name
+## 名稱
 
-It is similar and compatible to [GitHub Actions](https://github.com/features/actions), and its name is inspired by it too.
-To avoid confusion, we have clarified the spelling here:
+它類似並兼容於 [GitHub Actions](https://github.com/features/actions)，其名稱也受其啟發。
+為了避免混淆，我們在這裡澄清拼寫：
 
-- "Gitea Actions" (with an "s", both words capitalized) is the name of the Gitea feature.
-- "GitHub Actions" is the name of the GitHub feature.
-- "Actions" could refer to either of the above, depending on the context. So it refers to "Gitea Actions" in this document.
-- "action" or "actions" refer to some scripts/plugins to be used, like "actions/checkout@v4" or "actions/cache@v3".
+- "Gitea Actions"（帶有 "s"，兩個詞首字母大寫）是 Gitea 功能的名稱。
+- "GitHub Actions" 是 GitHub 功能的名稱。
+- "Actions" 可能指上述任何一個，取決於上下文。在本文檔中，它指的是 "Gitea Actions"。
+- "action" 或 "actions" 指的是一些腳本/插件，如 "actions/checkout@v4" 或 "actions/cache@v3"。
 
 ## Runners
 
-Just like other CI/CD solutions, Gitea doesn't run the jobs itself, but delegates the jobs to runners.
-The runner of Gitea Actions is called [act runner](https://gitea.com/gitea/act_runner), it is a standalone program and also written in Go.
-It is based on a [fork](https://gitea.com/gitea/act) of [nektos/act](http://github.com/nektos/act).
+就像其他 CI/CD 解決方案一樣，Gitea 不會自己運行作業，而是將作業委派給 runners。
+Gitea Actions 的 runner 稱為 [act runner](https://gitea.com/gitea/act_runner)，它是一個獨立的程序，也是用 Go 編寫的。
+它基於 [nektos/act](http://github.com/nektos/act) 的 [fork](https://gitea.com/gitea/act)。
 
-Because the runner is deployed independently, there could be potential security issues.
-To avoid them, please follow two simple rules:
+由於 runner 是獨立部署的，可能會有潛在的安全問題。
+為了避免這些問題，請遵循兩個簡單的規則：
 
-- Don't use a runner you don't trust for your repository, organization or instance.
-- Don't provide a runner to a repository, organization or instance you don't trust.
+- 不要為你不信任的倉庫、組織或實例使用你不信任的 runner。
+- 不要為你不信任的倉庫、組織或實例提供 runner。
 
-For Gitea instances used internally, such as instances used by enterprises or individuals, neither of these two rules is a problem, they are naturally so.
-However, for public Gitea instances, such as [gitea.com](https://gitea.com), these two rules should be kept in mind when adding or using runners.
+對於內部使用的 Gitea 實例，如企業或個人使用的實例，這兩個規則都不是問題，它們自然如此。
+然而，對於公共 Gitea 實例，如 [gitea.com](https://gitea.com)，在添加或使用 runners 時應記住這兩個規則。
 
-## Status
+## 狀態
 
-Gitea Actions is still under development, so there may be some bugs and missing features.
-And breaking changes may be made before it's stable (v1.20 or later).
+Gitea Actions 仍在開發中，因此可能會有一些錯誤和缺失的功能。
+在穩定之前（v1.20 或更高版本），可能會進行重大更改。
 
-If the situation changes, we will update it here.
-So please refer to the content here when you find outdated articles elsewhere.
+如果情況發生變化，我們會在這裡更新。
+因此，當你在其他地方找到過時的文章時，請參考這裡的內容。
