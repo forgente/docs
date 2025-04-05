@@ -277,17 +277,23 @@ The following configuration set `Content-Type: application/vnd.android.package-a
 
 ## Markdown (`markdown`)
 
-- `ENABLE_HARD_LINE_BREAK_IN_COMMENTS`: **true**: Render soft line breaks as hard line breaks in comments, which
-  means a single newline character between paragraphs will cause a line break and adding
-  trailing whitespace to paragraphs is not necessary to force a line break.
-- `ENABLE_HARD_LINE_BREAK_IN_DOCUMENTS`: **false**: Render soft line breaks as hard line breaks in documents, which
-  means a single newline character between paragraphs will cause a line break and adding
-  trailing whitespace to paragraphs is not necessary to force a line break.
+- `RENDER_OPTIONS_COMMENT`: **short-issue-pattern, new-line-hard-break**: Customize render options for different contexts.
+  Set to "none" to disable the defaults, or use comma separated list:
+  - short-issue-pattern: recognized "#123" issue reference and render it as a link to the issue
+  - new-line-hard-break: render soft line breaks as hard line breaks, which means a single newline character between
+    paragraphs will cause a line break and adding trailing whitespace to paragraphs is not
+    necessary to force a line break.
+- `RENDER_OPTIONS_WIKI`: **short-issue-pattern**: see also RENDER_OPTIONS_COMMENT
+- `RENDER_OPTIONS_REPO_FILE`: **_empty_**: see also RENDER_OPTIONS_COMMENT
 - `CUSTOM_URL_SCHEMES`: Use a comma separated list (ftp,git,svn) to indicate additional
   URL hyperlinks to be rendered in Markdown. URLs beginning in http and https are
   always displayed. If this entry is empty, all URL schemes are allowed
-- `FILE_EXTENSIONS`: **.md,.markdown,.mdown,.mkd,.livemd**: List of file extensions that should be rendered/edited as Markdown. Separate the extensions with a comma. To render files without any extension as markdown, just put a comma.
+- `FILE_EXTENSIONS`: **.md,.markdown,.mdown,.mkd,.livemd**: List of file extensions that should be rendered/edited as Markdown.
+  Separate the extensions with a comma. To render files without any extension as markdown, just put a comma.
 - `ENABLE_MATH`: **true**: Enables detection of `$...$`, `$$...$$`, ``` $`...`$$ ``` blocks as math blocks.
+- `MATH_CODE_BLOCK_DETECTION`: **inline-dollar,block-dollar**: Enable delimiters for math code block detection.
+  Set to "none" to disable all, or use comma separated list: inline-dollar, inline-parentheses, block-dollar, block-square-brackets.
+  Default value follows GitHub.
 
 ## Server (`server`)
 
