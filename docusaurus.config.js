@@ -226,7 +226,7 @@ const config = {
         label: "English",
       },
       "zh-cn": {
-        label: "簡體中文",
+        label: "简体中文",
       },
       "zh-tw": {
         label: "繁體中文",
