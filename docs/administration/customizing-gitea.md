@@ -165,50 +165,110 @@ Alice <-- Bob: Another authentication Response
 
 The script will detect tags with `class="language-plantuml"`, but you can change this by providing a second argument to `parsePlantumlCodeBlocks`.
 
-### Example: STL Preview
+### Example: CAD Files Preview
 
-You can display STL file directly in Gitea by adding:
+You can implement your own CAD file viewer inside your Gitea instance.
 
-```html
-<script>
-  function lS(src) {
-    return new Promise(function (resolve, reject) {
-      let s = document.createElement("script");
-      s.src = src;
-      s.addEventListener("load", () => {
-        resolve();
+This implementation supports 3D preview for of these file formats:
+'3dm', '3ds', '3mf', 'amf', 'bim', 'brep', 'dae', 'fbx', 'fcstd', 'glb',
+'gltf', 'ifc', 'igs', 'iges', 'stp', 'step', 'stl', 'obj', 'off', 'ply', 'wrl'
+
+
+Add template
+
+In $GITEA_CUSTOM we need to add our template.
+This template needs to be saved in "$GITEA_CUSTOM/templates/custom/".
+Here create file "footer.tmpl" and add following text into it:
+
+```<script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Supported 3D file types
+      const fileTypes = ['3dm', '3ds', '3mf', 'amf', 'bim', 'brep', 'dae', 'fbx', 'fcstd', 'glb', 'gltf', 'ifc', 'igs', 'iges', 'step', 'stl', 'obj', 'off', 'ply', 'wrl'];
+  
+      // Select matching link
+      const links = Array.from(document.querySelectorAll('a.ui.mini.basic.button'));
+      const link3D = links.find(link => {
+        const href = link.href.toLowerCase();
+        return href.includes('/raw/') && fileTypes.some(ext => href.endsWith(`.${ext}`));
       });
-      document.body.appendChild(s);
+  
+      if (link3D) {
+        const script = document.createElement('script');
+        script.onload = () => {
+          const fileUrl = link3D.getAttribute('href');
+  
+          // Prepare the container for the viewer
+          const fileView = document.querySelector('.file-view');
+          if (fileView) {
+            fileView.setAttribute('id', 'view-3d');
+            fileView.style.padding = '0';
+            fileView.style.margin = '0';
+            fileView.style.height = '400px';
+            fileView.style.width = '100%';
+            fileView.innerHTML = '';
+          }
+  
+          // Initialize viewer
+          const parentDiv = document.getElementById('view-3d');
+          if (parentDiv) {
+            const viewer = new OV.EmbeddedViewer(parentDiv, {
+              backgroundColor: new OV.RGBAColor(59, 68, 76, 0), // Transparent
+              defaultColor: new OV.RGBColor(200, 200, 200),
+              edgeSettings: new OV.EdgeSettings(false, new OV.RGBColor(0, 0, 0), 1),
+              environmentSettings: new OV.EnvironmentSettings([
+                '/assets/o3dv/envmaps/fishermans_bastion/negx.jpg',
+                '/assets/o3dv/envmaps/fishermans_bastion/posx.jpg',
+                '/assets/o3dv/envmaps/fishermans_bastion/posy.jpg',
+                '/assets/o3dv/envmaps/fishermans_bastion/negy.jpg',
+                '/assets/o3dv/envmaps/fishermans_bastion/posz.jpg',
+                '/assets/o3dv/envmaps/fishermans_bastion/negz.jpg'
+              ], false)
+            });
+  
+            // Load the model
+            viewer.LoadModelFromUrlList([fileUrl]);
+          }
+        };
+  
+        script.src = '/assets/o3dv/o3dv.min.js';
+        document.head.appendChild(script);
+      }
     });
-  }
-
-  if ($('.view-raw>a[href$=".stl" i]').length) {
-    $("body").append(
-      '<link href="/assets/Madeleine.js/src/css/Madeleine.css" rel="stylesheet">'
-    );
-    Promise.all([
-      lS("/assets/Madeleine.js/src/lib/stats.js"),
-      lS("/assets/Madeleine.js/src/lib/detector.js"),
-      lS("/assets/Madeleine.js/src/lib/three.min.js"),
-      lS("/assets/Madeleine.js/src/Madeleine.js"),
-    ]).then(function () {
-      $(".view-raw")
-        .attr("id", "view-raw")
-        .attr("style", "padding: 0;margin-bottom: -10px;");
-      new Madeleine({
-        target: "view-raw",
-        data: $('.view-raw>a[href$=".stl" i]').attr("href"),
-        path: "/assets/Madeleine.js/src",
-      });
-      $('.view-raw>a[href$=".stl"]').remove();
-    });
-  }
 </script>
 ```
 
-to the file `templates/custom/footer.tmpl`
 
-You also need to download the content of the library [Madeleine.js](https://github.com/beige90/Madeleine.js) and place it under `$GITEA_CUSTOM/public/assets/` folder.
+Add public files
+
+Now we need to download latest version of O3DV. Go to "$GITEA_CUSTOM/public/assets/".
+Create folder using (and cd into it):
+
+```mkdir o3dv
+cd o3dv
+```
+
+Copy latest release zip link from [`GitHub`](https://github.com/kovacsv/Online3DViewer/releases) (v0.15.0 as of now).
+Here use e.g. wget to download the file:
+```wget https://github.com/kovacsv/Online3DViewer/releases/download/0.15.0/o3dv.zip
+```
+
+Use e.g. unzip to unzip the archive:
+```unzip o3dv.zip
+```
+
+
+Folder permissions
+
+Now the last thing. Change permissions on the "footer.tmpl":
+```chown git:git $GITEA_CUSTOM/templates/custom/footer.tmpl
+chmod 770 $GITEA_CUSTOM/templates/custom/footer.tmpl
+```
+
+And on the public folder:
+```chown -R git:git $GITEA_CUSTOM/public
+```
+
+Now we have everything ready! Restart you gitea instance to apply these changes and you can test it in your browser.
 
 You should end-up with a folder structure similar to:
 
@@ -218,48 +278,15 @@ $GITEA_CUSTOM/templates
     `-- footer.tmpl
 
 $GITEA_CUSTOM/public/assets/
--- Madeleine.js
-   |-- LICENSE
-   |-- README.md
-   |-- css
-   |   |-- pygment_trac.css
-   |   `-- stylesheet.css
-   |-- examples
-   |   |-- ajax.html
-   |   |-- index.html
-   |   `-- upload.html
-   |-- images
-   |   |-- bg_hr.png
-   |   |-- blacktocat.png
-   |   |-- icon_download.png
-   |   `-- sprite_download.png
-   |-- models
-   |   |-- dino2.stl
-   |   |-- ducati.stl
-   |   |-- gallardo.stl
-   |   |-- lamp.stl
-   |   |-- octocat.stl
-   |   |-- skull.stl
-   |   `-- treefrog.stl
-   `-- src
-       |-- Madeleine.js
-       |-- css
-       |   `-- Madeleine.css
-       |-- icons
-       |   |-- logo.png
-       |   |-- madeleine.eot
-       |   |-- madeleine.svg
-       |   |-- madeleine.ttf
-       |   `-- madeleine.woff
-       `-- lib
-           |-- MadeleineConverter.js
-           |-- MadeleineLoader.js
-           |-- detector.js
-           |-- stats.js
-           `-- three.min.js
+-- o3dv
+   |-- o3dv_0.15.0.zip
+   |-- o3dv.license.md
+   |-- o3dv.min.js
+   |-- envmaps
+    \...
 ```
 
-Then restart Gitea and open a STL file on your Gitea instance.
+Now we have everything ready! Restart you gitea instance to apply these changes and you can test it in your browser.
 
 ## Customizing Gitea mails
 
