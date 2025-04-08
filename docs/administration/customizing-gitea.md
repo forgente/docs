@@ -165,26 +165,26 @@ Alice <-- Bob: Another authentication Response
 
 The script will detect tags with `class="language-plantuml"`, but you can change this by providing a second argument to `parsePlantumlCodeBlocks`.
 
-### Example: CAD Files Preview
+### Example: CAD Files Preview using Online 3D Viewer
 
-You can implement your own CAD file viewer inside your Gitea instance.
+You can implement CAD file preview inside your Gitea instance. This implemenation uses [`Online 3D Viewer`](https://github.com/kovacsv/Online3DViewer).
 
-This implementation supports 3D preview for of these file formats:
+Supports following 3D file formats:
 '3dm', '3ds', '3mf', 'amf', 'bim', 'brep', 'dae', 'fbx', 'fcstd', 'glb',
 'gltf', 'ifc', 'igs', 'iges', 'stp', 'step', 'stl', 'obj', 'off', 'ply', 'wrl'
 (Only v2 for .gltf files)
 
-Part 1: Add template
+#### Part 1: Add template
 
 In $GITEA_CUSTOM we need to add our template.
 This template needs to be saved in "$GITEA_CUSTOM/templates/custom/".
 Here create file "footer.tmpl" and add following text into it:
 
-```
+```html
 <script>
     document.addEventListener('DOMContentLoaded', () => {
       // Supported 3D file types
-      const fileTypes = ['3dm', '3ds', '3mf', 'amf', 'bim', 'brep', 'dae', 'fbx', 'fcstd', 'glb', 'gltf', 'ifc', 'igs', 'iges', 'step', 'stl', 'obj', 'off', 'ply', 'wrl'];
+      const fileTypes = ['3dm', '3ds', '3mf', 'amf', 'bim', 'brep', 'dae', 'fbx', 'fcstd', 'glb', 'gltf', 'ifc', 'igs', 'iges', 'stp'. 'step', 'stl', 'obj', 'off', 'ply', 'wrl'];
   
       // Select matching link
       const links = Array.from(document.querySelectorAll('a.ui.mini.basic.button'));
@@ -238,8 +238,7 @@ Here create file "footer.tmpl" and add following text into it:
 </script>
 ```
 
-
-Part 2: Add public files
+#### Part 2: Add public files
 
 Now we need to download latest version of O3DV. Go to "$GITEA_CUSTOM/public/assets/".
 Create folder using (and cd into it):
@@ -251,6 +250,7 @@ cd o3dv
 
 Copy latest release zip link from [`GitHub`](https://github.com/kovacsv/Online3DViewer/releases) (v0.15.0 as of now).
 Here use e.g. wget to download the file:
+
 ```
 wget https://github.com/kovacsv/Online3DViewer/releases/download/0.15.0/o3dv.zip
 ```
@@ -260,8 +260,7 @@ Use e.g. unzip to unzip the archive:
 unzip o3dv.zip
 ```
 
-
-Part 3: Folder permissions
+#### Part 3: Folder permissions
 
 Now the last thing. Change permissions on the "footer.tmpl":
 ```
@@ -274,7 +273,7 @@ And on the public folder:
 chown -R git:git $GITEA_CUSTOM/public
 ```
 
-Now we have everything ready! Restart you gitea instance to apply these changes and test it in your browser.
+Now we have everything ready! Restart your gitea instance to apply these changes and test it in your browser.
 
 You should end-up with a folder structure similar to this:
 
@@ -291,8 +290,6 @@ $GITEA_CUSTOM/public/assets/
    |-- envmaps
     \...
 ```
-
-Now we have everything ready! Restart you gitea instance to apply these changes and you can test it in your browser.
 
 ## Customizing Gitea mails
 
