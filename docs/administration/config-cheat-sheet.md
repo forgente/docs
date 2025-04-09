@@ -1244,7 +1244,7 @@ This section only does "set" config, a removed config key from this section won'
 
 ## Markup (`markup`)
 
-- `MERMAID_MAX_SOURCE_CHARACTERS`: **5000**: Set the maximum size of a Mermaid source. (Set to -1 to disable)
+- `MERMAID_MAX_SOURCE_CHARACTERS`: **50000**: Set the maximum size of a Mermaid source. (Set to -1 to disable)
 
 Gitea can support Markup using external tools. The example below will add a markup named `asciidoc`.
 
