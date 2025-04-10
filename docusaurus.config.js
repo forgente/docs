@@ -336,7 +336,12 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
+      image: '/img/gitea.svg',
       metadata: [
+        {
+          name: 'og:logo',
+          content: '/img/gitea.svg'
+        },
         {
           name: "keywords",
           content:
