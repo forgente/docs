@@ -16,7 +16,7 @@ It is designed to be compatible with [GitHub Actions workflow badge](https://doc
 You can use the following URL to get the badge:
 
 ```
-https://your-gitea-instance.com/{owner}/{repo}/actions/workflows/{workflow_file}/badge.svg?branch={branch}&event={event}
+https://your-gitea-instance.com/{owner}/{repo}/actions/workflows/{workflow_file}/badge.svg?branch={branch}&event={event}&style={style}
 ```
 
 - `{owner}`: The owner of the repository.
@@ -24,3 +24,4 @@ https://your-gitea-instance.com/{owner}/{repo}/actions/workflows/{workflow_file}
 - `{workflow_file}`: The name of the workflow file.
 - `{branch}`: Optional. The branch of the workflow. Default to your repository's default branch.
 - `{event}`: Optional. The event of the workflow. Default to none.
+- `{style}`: Optional. Style of the badge, either `flat` or `flat-square`. Default to `flat`.
