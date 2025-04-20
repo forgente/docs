@@ -749,6 +749,13 @@ And the following unique queues:
 - `DISABLE_ORGANIZATIONS_PAGE`: **false**: Disable the organizations explore page.
 - `DISABLE_CODE_PAGE`: **false**: Disable the code explore page.
 
+### Request Quality of Service (`qos`)
+
+- `ENABLED`: **false**: Enable request quality of service and overload protection.
+- `MAX_INFLIGHT`: **(dynamic)**: The maximum number of concurrent requests that the server will process before enqueueing new requests. Default is "CpuNum * 4".
+- `MAX_WAITING`: **100**: The maximum number of requests that can be enqueued before new requests will be dropped.
+- `TARGET_WAIT_TIME`: **250ms**: Target maximum wait time a request may be enqueued for. Requests that are enqueued for less than this amount of time will not be dropped. When wait times exceed this amount, a portion of requests will be dropped until wait times have decreased below this amount.
+
 ## SSH Minimum Key Sizes (`ssh.minimum_key_sizes`)
 
 Define allowed algorithms and their minimum key length (use -1 to disable a type):
