@@ -304,10 +304,11 @@ The following configuration set `Content-Type: application/vnd.android.package-a
 - `PROXY_PROTOCOL_TLS_BRIDGING`: **false**: When protocol is https, expect PROXY protocol headers after TLS negotiation.
 - `PROXY_PROTOCOL_HEADER_TIMEOUT`: **5s**: Timeout to wait for PROXY protocol header (set to 0 to have no timeout)
 - `PROXY_PROTOCOL_ACCEPT_UNKNOWN`: **false**: Accept PROXY protocol headers with Unknown type.
-- `DOMAIN`: **localhost**: Domain name of this server.
+- `DOMAIN`: **localhost**: Domain name of this server. Most users should set it to the real website domain of their Gitea instance.
 - `ROOT_URL`: **`{PROTOCOL}://{DOMAIN}:{HTTP_PORT}/`**:
    Overwrite the automatically generated public URL.
-   This is useful if the internal and the external URL don't match (e.g. in Docker).
+   This is useful if the internal and the external URL don't match (e.g. behind a reverse proxy).
+   Leave it empty to use the HTTP "Host" header and fall back to default "DOMAIN" URL when there is no "Host" header.
 - `STATIC_URL_PREFIX`: **_empty_**:
    Overwrite this option to request static resources from a different URL.
    This includes CSS files, images, JS files and web fonts.
