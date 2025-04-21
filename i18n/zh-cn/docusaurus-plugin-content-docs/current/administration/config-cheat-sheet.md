@@ -284,11 +284,14 @@ aliases:
 - `PROXY_PROTOCOL_TLS_BRIDGING`: **false**: 协议为 https 时，在`TLS`协商后预期`PROXY`协议头。
 - `PROXY_PROTOCOL_HEADER_TIMEOUT`: **5s**: 等待`PROXY`协议头的超时时间（设置为`0`表示没有超时）。
 - `PROXY_PROTOCOL_ACCEPT_UNKNOWN`: **false**:接受带有未知类型的`PROXY`协议头。
-- `DOMAIN`: **localhost**: 此服务器的域名。大多数用户都需要把这个域名设置为 Gitea 网站的真实域名。
+- `DOMAIN`: **localhost**: 此服务器的域名。
 - `ROOT_URL`: **`{PROTOCOL}://{DOMAIN}:{HTTP_PORT}/`**:
   覆盖自动生成的公共 URL。
   这个选项用于内部 URL 和外部 URL 不匹配的情况（例如 Gitea 运行在反向代理后）。
-  留空则让 Gitea 使用 HTTP 请求头的 Host 值，在没有 Host 请求头的时候会继续使用 DOMAIN 生成的 URL。
+- `PUBLIC_URL_DETECTION`: **`legacy`**: 控制如何生成公共 URL。
+   虽然它的默认值是 "legacy"（避免影响老的用户），大多数实例都应当使用 "auto" 行为，尤其是 Gitea 实例需要在容器网络中被访问的场景。
+   - "legacy": 当 "X-Forwarded-Proto" 请求头存在的时候，使用 "Host" 请求头生成公共 URL，否则使用 "ROOT_URL"。
+   - "auto": 总是使用 "Host" 请求头生成公共 URL，如果 "X-Forwarded-Proto" 请求头存在也会使用它。如果没有 "Host" 请求头则使用 "ROOT_URL"。
 - `STATIC_URL_PREFIX`: **_empty_**:
   覆盖此选项以从不同的 URL 请求静态资源。
   这包括 CSS 文件、图片、JS 文件和 Web 字体。
