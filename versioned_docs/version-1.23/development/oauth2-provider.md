@@ -80,6 +80,7 @@ The approval page displayed to the user shows the list of scopes requested by th
 | OpenID Connect Discovery | `/.well-known/openid-configuration` |
 | Authorization Endpoint   | `/login/oauth/authorize`            |
 | Access Token Endpoint    | `/login/oauth/access_token`         |
+| Token Introspection Endpoint | `/login/oauth/introspect`           |
 | OpenID Connect UserInfo  | `/login/oauth/userinfo`             |
 | JSON Web Key Set         | `/login/oauth/keys`                 |
 
