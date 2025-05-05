@@ -32,6 +32,10 @@ const apiConfig = [
             spec: "static/swagger-23.json",
           },
           {
+            route: "/api/1.24/",
+            spec: "static/swagger-24.json",
+          },
+          {
             route: "/api/1.23/",
             spec: "static/swagger-23.json",
           },
@@ -76,7 +80,17 @@ const globalVariables = {
     sourceVersion: "main",
     sourceBranch: "main",
     dockerVersion: "nightly",
-    displayVersion: "1.24-dev",
+    displayVersion: "1.25-dev",
+  },
+  1.24: {
+    goVersion: "1.24",
+    minGoVersion: "1.23",
+    minNodeVersion: "18",
+    version: "1.24.0-rc0",
+    sourceVersion: "v1.24.0-rc0",
+    sourceBranch: "release/v1.24",
+    dockerVersion: "1.24.0-rc0",
+    displayVersion: "1.24.0-rc0",
   },
   1.23: {
     goVersion: "1.23",
@@ -134,6 +148,9 @@ const versions = {
   current: {
     label: globalVariables["current"].displayVersion, // path is kept as next for dev (so users can always find "nightly" docs)
     banner: "unreleased",
+  },
+  1.24: {
+    label: globalVariables["1.24"].displayVersion,
   },
   1.23: {
     label: globalVariables["1.23"].displayVersion,
@@ -376,7 +393,7 @@ const config = {
             to: "/api/1.23/",
             label: "API",
             position: "left",
-            activeBaseRegex: "api/(1.19|1.20|1.21|1.22|1.23|next)/",
+            activeBaseRegex: "api/(1.19|1.20|1.21|1.22|1.23|1.24|next)/",
           },
           {
             to: "/runner/0.2.11/",
@@ -409,7 +426,8 @@ const config = {
             label: "API Version",
             position: "right",
             items: [
-              { to: "/api/next/", label: "1.24-dev" },
+              { to: "/api/next/", label: "1.25-dev" },
+              { to: "/api/1.24/", label: "1.24.0-rc0" },
               { to: "/api/1.23/", label: "1.23.7" },
               { to: "/api/1.22/", label: "1.22.6" },
               { to: "/api/1.21/", label: "1.21.11" },

@@ -27,7 +27,7 @@ install:
 	npm install
 
 .PHONY: prepare-docs
-prepare-docs: install prepare-awesome-latest prepare-awesome\#19 prepare-awesome\#20 prepare-awesome\#21 prepare-awesome\#22
+prepare-docs: install prepare-awesome-latest prepare-awesome\#19 prepare-awesome\#20 prepare-awesome\#21 prepare-awesome\#22 prepare-awesome\#23 prepare-awesome\#24
 
 .PHONY: build
 build:
@@ -50,3 +50,5 @@ clean:
 	rm -rf static/swagger-20.json
 	rm -rf static/swagger-21.json
 	rm -rf static/swagger-22.json
+	rm -rf static/swagger-23.json
+	rm -rf static/swagger-24.json
