@@ -266,6 +266,8 @@ files; for named volumes, this is done through another container or by direct ac
 `/var/lib/docker/volumes/gitea_gitea/_data`. The configuration file will be saved at
 `/data/gitea/conf/app.ini` after the installation.
 
+Example: Analogous to the non-docker-installation customization linked above, you can create a `/public` folder within `/data/gitea` and place your custom `robots.txt` there which will then be served normally.
+
 ## Upgrading
 
 :::warning
