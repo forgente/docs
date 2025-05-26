@@ -30,7 +30,7 @@ In order to avoid consuming too many resources and affecting the Gitea instance,
 
 You can use the [pre-built binaries](http://dl.gitea.com/act_runner) or the [docker images](https://hub.docker.com/r/gitea/act_runner/tags) to set up the runner.
 
-Before proceeding any further, we suggest running it as a command line with pre-built binaries to ensure that it works with your environment, especially if you are running a runner on your local host.
+Before proceeding any further, we suggest running it as a command line with pre-built binaries to ensure that it works with your environment, especially if you are running a runner on your localhost.
 And it could be easier to debug if something goes wrong.
 
 The runner can run the jobs in isolated Docker containers, so you need to make sure that the Docker has been installed and Docker daemon is running.
