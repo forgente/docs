@@ -29,7 +29,7 @@ const apiConfig = [
           },
           {
             route: "/api/",
-            spec: "static/swagger-23.json",
+            spec: "static/swagger-24.json",
           },
           {
             route: "/api/1.24/",
@@ -97,7 +97,7 @@ const globalVariables = {
     minGoVersion: "1.22",
     minNodeVersion: "18",
     version: "1.23.8",
-    sourceVersion: "v1.23.0",
+    sourceVersion: "v1.23.8",
     sourceBranch: "release/v1.23",
     dockerVersion: "1.23.8",
     displayVersion: "1.23.8",
@@ -283,7 +283,7 @@ const config = {
             }/${docPath}`;
           },
           versions: versions,
-          lastVersion: "1.23",
+          lastVersion: "1.24",
           async sidebarItemsGenerator({
             defaultSidebarItemsGenerator,
             ...args
