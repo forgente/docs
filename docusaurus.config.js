@@ -73,9 +73,9 @@ const pageConfig = renderApiSSR
 
 const globalVariables = {
   current: {
-    goVersion: "1.23",
-    minGoVersion: "1.23",
-    minNodeVersion: "18",
+    goVersion: "1.24",
+    minGoVersion: "1.24",
+    minNodeVersion: "22",
     version: "main-nightly",
     sourceVersion: "main",
     sourceBranch: "main",
@@ -84,13 +84,13 @@ const globalVariables = {
   },
   1.24: {
     goVersion: "1.24",
-    minGoVersion: "1.23",
-    minNodeVersion: "18",
-    version: "1.24.0-rc0",
-    sourceVersion: "v1.24.0-rc0",
+    minGoVersion: "1.24",
+    minNodeVersion: "22",
+    version: "1.24.0",
+    sourceVersion: "v1.24.0",
     sourceBranch: "release/v1.24",
-    dockerVersion: "1.24.0-rc0",
-    displayVersion: "1.24.0-rc0",
+    dockerVersion: "1.24.0",
+    displayVersion: "1.24.0",
   },
   1.23: {
     goVersion: "1.23",
@@ -390,7 +390,7 @@ const config = {
             label: "Docs",
           },
           {
-            to: "/api/1.23/",
+            to: "/api/1.24/",
             label: "API",
             position: "left",
             activeBaseRegex: "api/(1.19|1.20|1.21|1.22|1.23|1.24|next)/",
@@ -427,7 +427,7 @@ const config = {
             position: "right",
             items: [
               { to: "/api/next/", label: "1.25-dev" },
-              { to: "/api/1.24/", label: "1.24.0-rc0" },
+              { to: "/api/1.24/", label: "1.24.0" },
               { to: "/api/1.23/", label: "1.23.8" },
               { to: "/api/1.22/", label: "1.22.6" },
               { to: "/api/1.21/", label: "1.21.11" },
@@ -482,10 +482,6 @@ const config = {
                 href: "https://discord.gg/gitea",
               },
               {
-                label: "Matrix",
-                href: "https://matrix.to/#/#gitea-space:matrix.org",
-              },
-              {
                 label: "Forum",
                 href: "https://forum.gitea.com/",
               },
@@ -496,6 +492,10 @@ const config = {
               {
                 label: "Mastodon",
                 href: "https://social.gitea.io/@gitea",
+              },
+              {
+                label: "Bluesky",
+                href: "https://bsky.app/profile/gitea.com",
               },
             ],
           },
