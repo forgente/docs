@@ -180,9 +180,13 @@ In $GITEA_CUSTOM we need to add our template.
 This template needs to be saved in "$GITEA_CUSTOM/templates/custom/".
 Here create file "footer.tmpl" and add following text into it:
 
+```
+nano $GITEA_CUSTOM/templates/custom/footer.tmpl
+```
+
 ```html
 <script>
-    document.addEventListener('DOMContentLoaded', () => {
+    function onPageChange() {
       // Supported 3D file types
       const fileTypes = ['3dm', '3ds', '3mf', 'amf', 'bim', 'brep', 'dae', 'fbx', 'fcstd', 'glb', 'gltf', 'ifc', 'igs', 'iges', 'stp', 'step', 'stl', 'obj', 'off', 'ply', 'wrl'];
   
@@ -193,47 +197,112 @@ Here create file "footer.tmpl" and add following text into it:
         return href.includes('/raw/') && fileTypes.some(ext => href.endsWith(`.${ext}`));
       });
   
-      if (link3D) {
-        const script = document.createElement('script');
-        script.onload = () => {
-          const fileUrl = link3D.getAttribute('href');
-  
-          // Prepare the container for the viewer
-          const fileView = document.querySelector('.file-view');
-          if (fileView) {
-            fileView.setAttribute('id', 'view-3d');
-            fileView.style.padding = '0';
-            fileView.style.margin = '0';
-            fileView.style.height = '400px';
-            fileView.style.width = '100%';
-            fileView.innerHTML = '';
-          }
-  
-          // Initialize viewer
-          const parentDiv = document.getElementById('view-3d');
-          if (parentDiv) {
-            const viewer = new OV.EmbeddedViewer(parentDiv, {
-              backgroundColor: new OV.RGBAColor(59, 68, 76, 0), // Transparent
-              defaultColor: new OV.RGBColor(200, 200, 200),
-              edgeSettings: new OV.EdgeSettings(false, new OV.RGBColor(0, 0, 0), 1),
-              environmentSettings: new OV.EnvironmentSettings([
-                '/assets/o3dv/envmaps/fishermans_bastion/negx.jpg',
-                '/assets/o3dv/envmaps/fishermans_bastion/posx.jpg',
-                '/assets/o3dv/envmaps/fishermans_bastion/posy.jpg',
-                '/assets/o3dv/envmaps/fishermans_bastion/negy.jpg',
-                '/assets/o3dv/envmaps/fishermans_bastion/posz.jpg',
-                '/assets/o3dv/envmaps/fishermans_bastion/negz.jpg'
-              ], false)
-            });
-  
-            // Load the model
-            viewer.LoadModelFromUrlList([fileUrl]);
-          }
-        };
-  
-        script.src = '/assets/o3dv/o3dv.min.js';
-        document.head.appendChild(script);
+	if (link3D) {
+	  const existingScript = document.querySelector('script[src="/assets/o3dv/o3dv.min.js"]');
+
+	  const initializeViewer = () => {
+		const fileUrl = link3D.getAttribute('href');
+
+                const fileView = document.querySelector('.file-view');
+
+		if (!fileView) return;
+
+		// Remove only the old viewer container if it exists
+		const oldView3D = document.getElementById('view-3d');
+		if (oldView3D) {
+		  oldView3D.remove();  // safely remove old viewer container div
+		} else {
+		  // No #view-3d, so remove all children inside .file-view
+		  while (fileView.firstChild) {
+		    fileView.removeChild(fileView.firstChild);
+		  }
+		}
+
+		// Create a new container for the viewer
+		const newView3D = document.createElement('div');
+		  newView3D.id = 'view-3d';
+		  newView3D.style.padding = '0';
+		  newView3D.style.margin = '0';
+		  newView3D.style.flexGrow = '1';
+		  newView3D.style.minHeight = '0';
+		  newView3D.style.width = '100%';
+		
+		const header = document.querySelector('header');
+		const headerHeight = header ? header.offsetHeight : 0;
+
+		newView3D.style.height = `calc(100vh - ${headerHeight}px)`;		
+
+		// Append the new container inside fileView
+		fileView.appendChild(newView3D);
+
+		const parentDiv = document.getElementById('view-3d');
+		if (parentDiv) {
+		  const viewer = new OV.EmbeddedViewer(parentDiv, {
+			backgroundColor: new OV.RGBAColor(59, 68, 76, 0),
+			defaultColor: new OV.RGBColor(200, 200, 200),
+			edgeSettings: new OV.EdgeSettings(false, new OV.RGBColor(0, 0, 0), 1),
+			environmentSettings: new OV.EnvironmentSettings([
+			  '/assets/o3dv/envmaps/fishermans_bastion/negx.jpg',
+			  '/assets/o3dv/envmaps/fishermans_bastion/posx.jpg',
+			  '/assets/o3dv/envmaps/fishermans_bastion/posy.jpg',
+			  '/assets/o3dv/envmaps/fishermans_bastion/negy.jpg',
+			  '/assets/o3dv/envmaps/fishermans_bastion/posz.jpg',
+			  '/assets/o3dv/envmaps/fishermans_bastion/negz.jpg'
+			], false)
+		  });
+
+		  viewer.LoadModelFromUrlList([fileUrl]);
+		}
+	  };
+
+	  if (typeof OV === 'undefined') {
+		if (!existingScript) {
+		  const script = document.createElement('script');
+		  script.onload = initializeViewer;
+		  script.src = '/assets/o3dv/o3dv.min.js';
+		  document.head.appendChild(script);
+		} else {
+		  // Script is loading but OV not yet ready — wait for it
+		  existingScript.addEventListener('load', initializeViewer);
+		}
+	  } else {
+		// OV already loaded
+		initializeViewer();
+	  }
+	}
+    };
+
+    // Run when the page is fully loaded
+    document.addEventListener('DOMContentLoaded', onPageChange); 
+
+    const targetSelector = 'a.ui.mini.basic.button[href*="/raw/"]';
+    let lastHref = null;
+    let timeoutId = null;
+
+    const checkAndRun = () => {
+      const rawLink = document.querySelector(targetSelector);
+      if (!rawLink) return;
+
+      const currentHref = rawLink.getAttribute('href');
+      if (currentHref !== lastHref) {
+        lastHref = currentHref;
+
+        const fileName = currentHref.split('/').pop();
+        console.log('New Raw file link detected after delay:', fileName);
+        
+        onPageChange();
       }
+    };
+
+    const observer = new MutationObserver(() => {
+      // Delay execution by 300ms after last mutation
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(checkAndRun, 300);
+    });
+
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true,
     });
 </script>
 ```
@@ -248,11 +317,11 @@ mkdir o3dv
 cd o3dv
 ```
 
-Copy latest release zip link from [`GitHub`](https://github.com/kovacsv/Online3DViewer/releases) (v0.15.0 as of now).
+Copy latest release zip link from [`GitHub`](https://github.com/kovacsv/Online3DViewer/releases) (v0.16.0 as of now).
 Here use e.g. wget to download the file:
 
 ```
-wget https://github.com/kovacsv/Online3DViewer/releases/download/0.15.0/o3dv.zip
+wget https://github.com/kovacsv/Online3DViewer/releases/download/0.16.0/o3dv.zip
 ```
 
 Use e.g. unzip to unzip the archive:
@@ -262,20 +331,14 @@ unzip o3dv.zip
 
 #### Part 3: Folder permissions
 
-Now the last thing. Change permissions on the "footer.tmpl":
-```
-chown git:git $GITEA_CUSTOM/templates/custom/footer.tmpl
-chmod 770 $GITEA_CUSTOM/templates/custom/footer.tmpl
-```
-
-And on the public folder:
+Now the last thing. Change permissions on the public folder:
 ```
 chown -R git:git $GITEA_CUSTOM/public
 ```
 
 Now we have everything ready! Restart your gitea instance to apply these changes and test it in your browser.
 
-You should end-up with a folder structure similar to this:
+Sanity check. You should end-up with a folder structure similar to this:
 
 ```
 $GITEA_CUSTOM/templates
