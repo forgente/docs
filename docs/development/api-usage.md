@@ -35,7 +35,8 @@ Note that `/users/:name/tokens` is a special endpoint and requires you
 to authenticate using `BasicAuth` and a password, as follows:
 
 ```sh
-$ curl -H "Content-Type: application/json" -d '{"name":test_token","scopes":["read:activitypub","read:issue", "write:misc", "read:notification", "read:organization", "read:package", "read:repository", "read:user"]}'
+$ curl -H "Content-Type: application/json" \
+-d '{"name":"test_token","scopes":["read:activitypub","read:issue", "write:misc", "read:notification", "read:organization", "read:package", "read:repository", "read:user"]}' \
 -u 'username:password' "https://gitea.your.host/api/v1/users/{username}/tokens"
 {"id":1,"name":"test_token","sha1":"9fcb1158165773dd010fca5f0cf7174316c3e37d","token_last_eight":"16c3e37d"}
 ```
