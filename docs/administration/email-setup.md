@@ -10,7 +10,9 @@ aliases:
 
 Gitea has mailer functionality for sending transactional emails (such as registration confirmation). It can be configured to either use Sendmail (or compatible MTAs like Postfix and msmtp) or directly use SMTP server.
 
-:::note Be sure to set ENABLE_NOTIFY_MAIL=true to allow Gitea to send email notifications. Check the [Config Cheat Sheet](../administration/config-cheat-sheet.md#service-service) for details.
+:::note
+Be sure to set ENABLE_NOTIFY_MAIL=true to allow Gitea to send email notifications. Check the [Config Cheat Sheet](../administration/config-cheat-sheet.md#service-service) for details.
+:::
 
 ## Using Sendmail
 
