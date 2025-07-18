@@ -13,7 +13,7 @@ Gitea was originally forked from [Gogs](https://gogs.io) and almost all the code
 
 :::warning
 
-Gitea does not sent or cherry-picked commits from upstream, so there is no guarantee it will work if you upgrade from Gogs to Gitea. The recommended method is to migrate repositories from Gogs to Gitea.
+Gitea does not send commits to upstream or cherry-pick commits from it, so there is no guarantee it will work if you upgrade from Gogs to Gitea. The recommended method is to migrate repositories from Gogs to Gitea.
 
 :::
 
@@ -31,11 +31,11 @@ You can try it out using [the online demo](https://demo.gitea.com).
 
 - **Code Hosting**
 
-  Gitea supports creating and managing repositories, browsing commit history and code files, reviewing and merging code submissions, managing collaborators, handling branches, and more. It also supports many common Git features such as tags, Cherry-pick, hooks, integrated collaboration tools, and more.
+  Gitea supports creating and managing repositories, browsing commit history and code files, reviewing and merging code submissions, managing collaborators, handling branches, and more. It also supports many common Git features such as tags, cherry-picking, hooks, integrated collaboration tools, and more.
 
 - **Lightweight and Fast**
 
-  One of Gitea's design goals is to be lightweight and fast in response. Unlike some large code hosting platforms, it remains lean, performs well in terms of speed, and is suitable for resource-limited server environments. Due to its lightweight design, Gitea has relatively low resource consumption and performs well in resource-constrained environments.
+  One of Gitea's design goals is to be lightweight and fast in response. Unlike some large code hosting platforms, it remains lean, performs well in terms of speed, and is suitable for resource-limited server environments.
 
 - **Easy Deployment and Maintenance**
 
@@ -105,6 +105,6 @@ For more detailed information, please refer to: https://docs.gitea.com/installat
   - [github.com/mattn/go-sqlite3](https://github.com/mattn/go-sqlite3)
   - [github.com/denisenkom/go-mssqldb](https://github.com/denisenkom/go-mssqldb)
 
-## Integrated support
+## Integrated Support
 
  Please visit [Awesome Gitea](https://gitea.com/gitea/awesome-gitea/) to get more third-party integrated support
