@@ -99,7 +99,7 @@ In addition, there is _`StaticRootPath`_ which can be set as a built-in at build
    default is not to present.
 
    :::warning
-   This maybe harmful to you website if you do not give it a right value.
+   This maybe harmful to your website if you do not give it a right value.
    :::
 
 - `DEFAULT_CLOSE_ISSUES_VIA_COMMITS_IN_ANY_BRANCH`:  **false**: Close an issue if a commit on a non default branch marks it as closed.
