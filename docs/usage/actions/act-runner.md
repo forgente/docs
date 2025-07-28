@@ -128,6 +128,30 @@ If this file is missing or corrupted, you can simply remove it and register agai
 If you want to store the registration information in another place, you can specify it in the configuration file,
 and don't forget to specify the `--config` option.
 
+#### Ephemeral Runners
+
+Ephemeral runners provide a security hardening mechanism for enabling organization- or instance-wide runners without requiring full user trust. Once a job is assigned within a spot VM or container, the runner's exposed credentials are automatically revoked—blocking it from polling further jobs before any untrusted code runs, while still allowing it to report progress until completion by either Gitea or the runner.
+
+act_runner **0.2.12+** required.
+
+The updated commands for registering the runner as ephemeral are listed below. Refer to the previous section for detailed information on registering the act_runner.
+
+```bash
+./act_runner register --ephemeral
+```
+
+```bash
+./act_runner --config config.yaml register --ephemeral
+```
+
+```bash
+./act_runner register --no-interactive --ephemeral --instance <instance_url> --token <registration_token> --name <runner_name> --labels <runner_labels>
+```
+
+The runner must be registered each time it is intended to receive a job. After completing the single job it is designed to execute, the runner terminates.
+
+To automate the registration and startup of new runners when a job is queued, use the `workflow_job` webhook.
+
 ### Start the runner in command line
 
 After you have registered the runner, you can run it by running the following command:
@@ -297,6 +321,36 @@ It is because the act runner will run jobs in docker containers, so it needs to 
 As mentioned, you can remove it if you want to run jobs in the host directly.
 To be clear, the "host" actually means the container which is running the act runner now, instead of the host machine.
 
+---
+
+To enable ephemeral runners, set the environment variable `GITEA_RUNNER_EPHEMERAL=1` in the runner image. This setup doesn't use a `/data` volume because the credentials are single-use and not intended to be reused. You can find more details about this mode under [Ephemeral runners](#ephemeral-runners).
+
+```bash
+docker run \
+    -e GITEA_INSTANCE_URL=<instance_url> \
+    -e GITEA_RUNNER_REGISTRATION_TOKEN=<registration_token> \
+    -e GITEA_RUNNER_EPHEMERAL=1 \
+    -e GITEA_RUNNER_NAME=<runner_name> \
+    --name my_runner \
+    -d docker.io/gitea/act_runner:nightly
+```
+
+```bash
+docker run \
+    -v $PWD/config.yaml:/config.yaml \
+    -v /var/run/docker.sock:/var/run/docker.sock \
+    -e CONFIG_FILE=/config.yaml \
+    -e GITEA_INSTANCE_URL=<instance_url> \
+    -e GITEA_RUNNER_REGISTRATION_TOKEN=<registration_token> \
+    -e GITEA_RUNNER_EPHEMERAL=1 \
+    -e GITEA_RUNNER_NAME=<runner_name> \
+    -e GITEA_RUNNER_LABELS=<runner_labels> \
+    --name my_runner \
+    -d docker.io/gitea/act_runner:nightly
+```
+
+Mounting the host's Docker socket using `/var/run/docker.sock:/var/run/docker.sock` introduces a potential security vulnerability. If a job can access this socket, the reusable `GITEA_RUNNER_REGISTRATION_TOKEN` could be exposed through Docker inspect data.
+
 ### Start the runner using docker compose
 
 You could also set up the runner using the following `docker-compose.yml`:
@@ -319,6 +373,29 @@ services:
 ```
 
 When using docker, there is no requirement to enter the container and manually run `./act_runner daemon` command as shown below. Once the container has been started successfully, it will show up as an active runner in your Gitea instance.
+
+---
+
+To enable ephemeral runners, set the environment variable `GITEA_RUNNER_EPHEMERAL=1` in the runner image. This setup doesn't use a `/data` volume because the credentials are single-use and not intended to be reused. You can find more details about this mode under [Ephemeral runners](#ephemeral-runners).
+
+```yml
+version: "3.8"
+services:
+  runner:
+    image: docker.io/gitea/act_runner:nightly
+    environment:
+      CONFIG_FILE: /config.yaml
+      GITEA_INSTANCE_URL: "${INSTANCE_URL}"
+      GITEA_RUNNER_REGISTRATION_TOKEN: "${REGISTRATION_TOKEN}"
+      GITEA_RUNNER_NAME: "${RUNNER_NAME}"
+      GITEA_RUNNER_LABELS: "${RUNNER_LABELS}"
+      GITEA_RUNNER_EPHEMERAL: "1"
+    volumes:
+      - ./config.yaml:/config.yaml
+      - /var/run/docker.sock:/var/run/docker.sock
+```
+
+Mounting the host's Docker socket using `/var/run/docker.sock:/var/run/docker.sock` introduces a potential security vulnerability. If a job can access this socket, the reusable `GITEA_RUNNER_REGISTRATION_TOKEN` could be exposed through Docker inspect data.
 
 ## Advanced Configurations
 
