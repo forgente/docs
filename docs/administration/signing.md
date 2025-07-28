@@ -6,11 +6,13 @@ aliases:
   - /en-us/signing
 ---
 
-# GPG Commit Signatures
+# GPG/SSH Commit Signatures
 
-Gitea will verify GPG commit signatures in the provided tree by
+Gitea will verify gpg/ssh commit signatures in the provided tree by
 checking if the commits are signed by a key within the Gitea database,
 or if the commit matches the default key for Git.
+
+Additionally Gitea will verify commits signed by ssh keys, which public keys are part of [`TRUSTED_SSH_KEYS`](#general-configuration).
 
 Keys are not checked to determine if they have expired or revoked.
 Keys are also not checked with keyservers.
@@ -46,6 +48,11 @@ for GPG - in particular it is probably advisable to only install a
 signing secret subkey without the master signing and certifying secret
 key.
 
+## Installing and generating a SSH key for Gitea
+
+You can run `ssh-keygen -t ed25519 -f gitea-signing-key` to generate the private/public keypair for commit signing without any password. Usually you would store the key next to the gitea configuration, then point `SIGNING_KEY` to the generated public key `/path/to/gitea-signing-key.pub`. Gitea generates all its commits using the server `git` command at present - and therefore the server `ssh-keygen` will be used for
+signing (if configured.)
+
 ## General Configuration
 
 Gitea's configuration for signing can be found with the
@@ -65,16 +72,41 @@ MERGES = pubkey, twofa, basesigned, commitssigned
 ...
 ```
 
+---
+
+For SSH commit signing, you need to specify the `SIGNING_FORMAT` to `ssh` instead of the default `openpgp`. `SIGNING_NAME` and `SIGNING_EMAIL` are required for verifing the signatures.
+
+This looks like this:
+
+```ini
+...
+[repository.signing]
+SIGNING_KEY = /path/to/gitea-signing-key.pub
+SIGNING_NAME =
+SIGNING_EMAIL =
+SIGNING_FORMAT = ssh
+INITIAL_COMMIT = always
+CRUD_ACTIONS = pubkey, twofa, parentsigned
+WIKI = never
+MERGES = pubkey, twofa, basesigned, commitssigned
+...
+```
+
+- `/path/to/gitea-signing-key` is expected to be the private key for `/path/to/gitea-signing-key.pub` [see here how to generate a new ssh keypair](#installing-and-generating-a-ssh-key-for-gitea).
+- `TRUSTED_SSH_KEYS = ssh-<algorithm> <key>` or `TRUSTED_SSH_KEYS = ssh-<algorithm> <key1>, ssh-<algorithm> <key2>` can be used for rotating the global ssh signing key to continue verifying commits signed by the previous keys.
+
 ### `SIGNING_KEY`
 
 The first option to discuss is the `SIGNING_KEY`. There are three main
 options:
 
 - `none` - this prevents Gitea from signing any commits
-- `default` - Gitea will default to the key configured within `git config`
+- `default` - Gitea will default to the gpg key configured within `git config`
 - `KEYID` - Gitea will sign commits with the gpg key with the ID
   `KEYID`. In this case you should provide a `SIGNING_NAME` and
   `SIGNING_EMAIL` to be displayed for this key.
+- `/path/to/gitea-signing-key.pub` - Gitea will sign commits with the ssh key without the `.pub` suffix `/path/to/gitea-signing-key`. In this case you should provide a `SIGNING_NAME` and
+  `SIGNING_EMAIL` to be displayed for this key and set `SIGNING_FORMAT` to `ssh`.
 
 The `default` option will interrogate `git config` for
 `commit.gpgsign` option - if this is set, then it will use the results
@@ -95,6 +127,10 @@ or the Gitea internal git config `{[git].HOME_PATH}/.gitconfig`.
 Related home files for git command (like `.gnupg`) should also be put in Gitea's git home directory `[git].HOME_PATH`.
 
 If you like to keep the `.gnupg` directory outside of `{[git].HOME_PATH}/`, consider setting the `$GNUPGHOME` environment variable to your preferred location, otherwise Gitea will use the gpg keys only under `{[git].HOME_PATH}/.gnupg`.
+:::
+
+:::warning
+The default option and repository specific signing keys are not supported for ssh keys
 :::
 
 ### `INITIAL_COMMIT`
@@ -167,4 +203,10 @@ In cases where there is a repository specific key this can be obtained from:
 
 ```sh
 /api/v1/repos/:username/:reponame/signing-key.gpg
+```
+
+For ssh commit signing the default ssh public key can be obtained via the API at:
+
+```sh
+/api/v1/signing-key.pub
 ```
