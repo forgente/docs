@@ -47,7 +47,7 @@ Gitea signs all binaries with a [GPG key](https://keys.openpgp.org/search?q=teab
 To validate the binary, download the signature file which ends in `.asc` for the binary you downloaded and use the GPG command line tool.
 
 ```sh
-gpg --keyserver keys.openpgp.org --recv 7C9E68152594688862D62AF62D9AE806EC1592E2
+gpg --keyserver hkps://keys.openpgp.org --recv 7C9E68152594688862D62AF62D9AE806EC1592E2
 gpg --verify gitea-@version@-linux-amd64.asc gitea-@version@-linux-amd64
 ```
 

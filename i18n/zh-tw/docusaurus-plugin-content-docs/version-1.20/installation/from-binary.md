@@ -41,7 +41,7 @@ Gitea 对打包的二进制文件使用 [GPG 密钥](https://keys.openpgp.org/se
 请根据对应文件名 `.asc` 中包含的校验码检验文件的一致性。
 
 ```sh
-gpg --keyserver keys.openpgp.org --recv 7C9E68152594688862D62AF62D9AE806EC1592E2
+gpg --keyserver hkps://keys.openpgp.org --recv 7C9E68152594688862D62AF62D9AE806EC1592E2
 gpg --verify gitea-@version@-linux-amd64.asc gitea-@version@-linux-amd64
 ```
 
