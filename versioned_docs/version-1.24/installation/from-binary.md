@@ -43,11 +43,30 @@ Note that the above command will download Gitea @version@ for 64-bit Linux.
 ## Verify GPG signature
 
 Gitea signs all binaries with a [GPG key](https://keys.openpgp.org/search?q=teabot%40gitea.io) to prevent against unwanted modification of binaries.
-To validate the binary, download the signature file which ends in `.asc` for the binary you downloaded and use the GPG command line tool.
+
+To validate the binary, download the signature file which ends in `.asc` for the binary you downloaded:
+
+```shell
+wget https://dl.gitea.com/gitea/@version@/gitea-@version@-linux-amd64.asc
+```
+
+Next, use the GPG command line tool to validate the signatures:
 
 ```sh
 gpg --keyserver hkps://keys.openpgp.org --recv 7C9E68152594688862D62AF62D9AE806EC1592E2
-gpg --verify gitea-@version@-linux-amd64.asc gitea-@version@-linux-amd64
+gpg --verify gitea-@version@-linux-amd64.asc gitea
+```
+
+An example output of a successful validation should look as follows:
+
+```shell
+gpg: Signature made Mon 04 Aug 2025 06:57:27 PM UTC
+gpg:                using RSA key CC64B1DB67ABBEECAB24B6455FC346329753F4B0
+gpg: Good signature from "Teabot <teabot@gitea.io>" [unknown]
+gpg: WARNING: This key is not certified with a trusted signature!
+gpg:          There is no indication that the signature belongs to the owner.
+Primary key fingerprint: 7C9E 6815 2594 6888 62D6  2AF6 2D9A E806 EC15 92E2
+     Subkey fingerprint: CC64 B1DB 67AB BEEC AB24  B645 5FC3 4632 9753 F4B0
 ```
 
 Look for the text `Good signature from "Teabot <teabot@gitea.io>"` to assert a good binary,
