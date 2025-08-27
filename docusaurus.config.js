@@ -180,6 +180,7 @@ const config = {
   favicon: "img/favicon.png",
   future: {
     experimental_faster: true,
+    v4: true
   },
   plugins: [
     [
