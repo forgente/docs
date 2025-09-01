@@ -9,7 +9,7 @@ jobs:
   update-swagger:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - run: |
           wget https://raw.githubusercontent.com/go-gitea/gitea/refs/heads/main/templates/swagger/v1_json.tmpl
           sed -i "$@" 's\"version": "{{AppVer | JSEscape}}"\"version": "dev"\' v1_json.tmpl
