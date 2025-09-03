@@ -12,17 +12,17 @@ aliases:
 
 ### systemd 方式
 
-在 terminal 中执行以下命令：
+在 terminal 中執行以下命令：
 
 ```
 sudo vim /etc/systemd/system/gitea.service
 ```
 
-接着拷贝示例代码 [gitea.service](https://github.com/go-gitea/gitea/blob/main/contrib/systemd/gitea.service) 并取消对任何需要运行在主机上的服务部分的注释，譬如 MySQL。
+接着拷贝示例代码 [gitea.service](https://github.com/go-gitea/gitea/blob/main/contrib/systemd/gitea.service) 並取消对任何需要运行在主机上的服务部分的注释，譬如 MySQL。
 
-修改 user，home 目录以及其他必须的初始化参数，如果使用自定义端口，则需修改 PORT 参数，反之如果使用默认端口则需删除 -p 标记。
+修改 user，home 目錄以及其他必須的初始化參數，如果使用自定义端口，则需修改 PORT 參數，反之如果使用默认端口则需删除 -p 标记。
 
-激活 gitea 并将它作为系统自启动服务：
+激活 gitea 並将它作為系统自启动服务：
 
 ```
 sudo systemctl enable gitea
@@ -31,13 +31,13 @@ sudo systemctl start gitea
 
 ### 使用 supervisor
 
-在 terminal 中执行以下命令安装 supervisor：
+在 terminal 中執行以下命令安裝 supervisor：
 
 ```
 sudo apt install supervisor
 ```
 
-为 supervisor 配置日志路径：
+為 supervisor 配置日志路径：
 
 ```
 # assuming gitea is installed in /home/git/gitea/
@@ -53,9 +53,9 @@ sudo vim /etc/supervisor/supervisord.conf
 增加如下示例配置
 [supervisord config](https://github.com/go-gitea/gitea/blob/main/contrib/supervisor/gitea)。
 
-将 user(git) 和 home(/home/git) 设置为与上文部署中匹配的值。如果使用自定义端口，则需修改 PORT 参数，反之如果使用默认端口则需删除 -p 标记。
+将 user(git) 和 home(/home/git) 设置為与上文部署中匹配的值。如果使用自定义端口，则需修改 PORT 參數，反之如果使用默认端口则需删除 -p 标记。
 
-最后激活 supervisor 并将它作为系统自启动服务：
+最后激活 supervisor 並将它作為系统自启动服务：
 
 ```
 sudo systemctl enable supervisor

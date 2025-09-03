@@ -9,29 +9,29 @@ aliases:
 
 # 嵌入资源提取工具
 
-Gitea 的可执行文件包含了运行所需的所有资源：模板、图片、样式表和翻译文件。你可以通过在 `custom` 目录下的相应路径中放置替换文件来覆盖其中的任何资源（详见 [自定义 Gitea 配置](../administration/customizing-gitea.md)）。
+Gitea 的可執行文件包含了运行所需的所有资源：模板、图片、样式表和翻译文件。你可以通過在 `custom` 目錄下的相應路径中放置替换文件来覆盖其中的任何资源（详见 [自定义 Gitea 配置](../administration/customizing-gitea.md)）。
 
-要获取嵌入资源的副本以进行编辑，可以使用 CLI 中的 `embedded` 命令，通过操作系统的 shell 执行。
+要获取嵌入资源的副本以進行编辑，可以使用 CLI 中的 `embedded` 命令，通過操作系统的 shell 執行。
 
 **注意：** 嵌入资源提取工具包含在 Gitea 1.12 及以上版本中。
 
 ## 资源列表
 
-要列出嵌入在 Gitea 可执行文件中的资源，请使用以下语法：
+要列出嵌入在 Gitea 可執行文件中的资源，請使用以下语法：
 
 ```sh
 gitea embedded list [--include-vendored] [patterns...]
 ```
 
-`--include-vendored` 标志使命令包括被供应的文件，这些文件通常被排除在外；即来自外部库的文件，这些文件是 Gitea 所需的（例如 [octicons](https://octicons.github.com/) 等）。
+`--include-vendored` 标志使命令包括被供應的文件，这些文件通常被排除在外；即来自外部库的文件，这些文件是 Gitea 所需的（例如 [octicons](https://octicons.github.com/) 等）。
 
-可以提供一系列文件搜索模式。Gitea 使用 [gobwas/glob](https://github.com/gobwas/glob) 作为其 glob 语法。以下是一些示例：
+可以提供一系列文件搜索模式。Gitea 使用 [gobwas/glob](https://github.com/gobwas/glob) 作為其 glob 语法。以下是一些示例：
 
-- 列出所有模板文件，无论在哪个虚拟目录下：`**.tmpl`
+- 列出所有模板文件，無论在哪个虚拟目錄下：`**.tmpl`
 - 列出所有邮件模板文件：`templates/mail/**.tmpl`
-  列出 `public/assets/img` 目录下的所有文件：`public/assets/img/**`
+  列出 `public/assets/img` 目錄下的所有文件：`public/assets/img/**`
 
-不要忘记为模式使用引号，因为空格、`*` 和其他字符可能对命令行解释器有特殊含义。
+不要忘记為模式使用引号，因為空格、`*` 和其他字符可能对命令行解释器有特殊含义。
 
 如果未提供模式，则列出所有文件。
 
@@ -53,31 +53,31 @@ templates/user/settings/security_openid.tmpl
 
 ## 提取资源
 
-要提取嵌入在 Gitea 可执行文件中的资源，请使用以下语法：
+要提取嵌入在 Gitea 可執行文件中的资源，請使用以下语法：
 
 ```sh
 gitea [--config {file}] embedded extract [--destination {dir}|--custom] [--overwrite|--rename] [--include-vendored] {patterns...}
 ```
 
-`--config` 选项用于告知 Gitea `app.ini` 配置文件的位置（如果不在默认位置）。此选项仅在使用 `--custom` 标志时使用。
+`--config` 選项用于告知 Gitea `app.ini` 配置文件的位置（如果不在默认位置）。此選项僅在使用 `--custom` 标志时使用。
 
-`--destination` 选项用于指定提取文件的目标目录。默认为当前目录。
+`--destination` 選项用于指定提取文件的目标目錄。默认為当前目錄。
 
-`--custom` 标志告知 Gitea 直接将文件提取到 `custom` 目录中。为使其正常工作，该命令需要知道 `app.ini` 配置文件的位置（通过 `--config` 指定），并且根据配置的不同，需要从 Gitea 通常启动的目录运行。有关详细信息，请参阅 [自定义 Gitea 配置](../administration/customizing-gitea.md)。
+`--custom` 标志告知 Gitea 直接将文件提取到 `custom` 目錄中。為使其正常工作，該命令需要知道 `app.ini` 配置文件的位置（通過 `--config` 指定），並且根据配置的不同，需要从 Gitea 通常启动的目錄运行。有关详细信息，請参阅 [自定义 Gitea 配置](../administration/customizing-gitea.md)。
 
-`--overwrite` 标志允许覆盖目标目录中的任何现有文件。
+`--overwrite` 标志允许覆盖目标目錄中的任何現有文件。
 
-`--rename` 标志告知 Gitea 将目标目录中的任何现有文件重命名为 `filename.bak`。之前的 `.bak` 文件将被覆盖。
+`--rename` 标志告知 Gitea 将目标目錄中的任何現有文件重命名為 `filename.bak`。之前的 `.bak` 文件将被覆盖。
 
-至少需要提供一个文件搜索模式；有关模式的语法和示例，请参阅上述 `list` 子命令。
+至少需要提供一个文件搜索模式；有关模式的语法和示例，請参阅上述 `list` 子命令。
 
 ### 重要提示
 
-请确保**只提取需要自定义的文件**。位于 `custom` 目录中的文件不会受到 Gitea 的升级过程的影响。当 Gitea 升级到新版本（通过替换可执行文件）时，许多嵌入文件将发生变化。Gitea 将尊重并使用在 `custom` 目录中找到的任何文件，即使这些文件是旧的和不兼容的。
+請确保**只提取需要自定义的文件**。位于 `custom` 目錄中的文件不会受到 Gitea 的升级過程的影響。当 Gitea 升级到新版本（通過替换可執行文件）时，许多嵌入文件将发生变化。Gitea 将尊重並使用在 `custom` 目錄中找到的任何文件，即使这些文件是旧的和不兼容的。
 
 ### 示例：提取邮件模板
 
-将邮件模板提取到临时目录：
+将邮件模板提取到临时目錄：
 
 ```sh
 $ mkdir tempdir

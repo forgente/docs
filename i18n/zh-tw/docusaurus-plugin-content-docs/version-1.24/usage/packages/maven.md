@@ -4,18 +4,18 @@ slug: "maven"
 sidebar_position: 60
 ---
 
-# Maven 软件包注册表
+# Maven 軟體包註冊表
 
-为您的用户或组织发布 [Maven](https://maven.apache.org) 软件包。
+為您的使用者或組織發佈 [Maven](https://maven.apache.org) 軟體包。
 
 ## 要求
 
-要使用 Maven 软件包注册表，您可以使用 [Maven](https://maven.apache.org/install.html) 或 [Gradle](https://gradle.org/install/)。
+要使用 Maven 軟體包註冊表，您可以使用 [Maven](https://maven.apache.org/install.html) 或 [Gradle](https://gradle.org/install/)。
 以下示例使用 `Maven` 和 `Gradle Groovy`。
 
-## 配置软件包注册表
+## 配置軟體包註冊表
 
-要注册软件包注册表，首先需要将访问令牌添加到 [`settings.xml`](https://maven.apache.org/settings.html) 文件中：
+要注册軟體包註冊表，首先需要将访问令牌添加到 [`settings.xml`](https://maven.apache.org/settings.html) 文件中：
 
 ```xml
 <settings>
@@ -56,14 +56,14 @@ sidebar_position: 60
 </distributionManagement>
 ```
 
-| 参数           | 描述                                                                                  |
+| 參數           | 描述                                                                                  |
 | -------------- | ------------------------------------------------------------------------------------- |
-| `access_token` | 您的[个人访问令牌](development/api-usage.md#通过-api-认证) |
-| `owner`        | 软件包的所有者                                                                        |
+| `access_token` | 您的[个人访问令牌](development/api-usage.md#通過-api-認證) |
+| `owner`        | 軟體包的所有者                                                                        |
 
 ### Gradle variant
 
-如果您计划在项目中添加来自 Gitea 实例的一些软件包，请将其添加到 repositories 部分中：
+如果您计划在项目中添加来自 Gitea 实例的一些軟體包，請将其添加到 repositories 部分中：
 
 ```groovy
 repositories {
@@ -72,11 +72,11 @@ repositories {
 }
 ```
 
-在 Groovy gradle 中，您可以在发布部分中包含以下脚本：
+在 Groovy gradle 中，您可以在發佈部分中包含以下脚本：
 
 ```groovy
 publishing {
-    // 其他发布设置
+    // 其他發佈设置
     repositories {
         maven {
             name = "Gitea"
@@ -95,35 +95,35 @@ publishing {
 }
 ```
 
-## 发布软件包
+## 發佈軟體包
 
-要发布软件包，只需运行以下命令：
+要發佈軟體包，只需运行以下命令：
 
 ```shell
 mvn deploy
 ```
 
-或者，如果您使用的是 Gradle，请使用 `gradle` 命令和 `publishAllPublicationsToGiteaRepository` 任务：
+或者，如果您使用的是 Gradle，請使用 `gradle` 命令和 `publishAllPublicationsToGiteaRepository` 任务：
 
 ```groovy
 ./gradlew publishAllPublicationsToGiteaRepository
 ```
 
-如果您想要将预构建的软件包发布到注册表中，可以使用 [`mvn deploy:deploy-file`](https://maven.apache.org/plugins/maven-deploy-plugin/deploy-file-mojo.html) 命令：
+如果您想要将预构建的軟體包發佈到註冊表中，可以使用 [`mvn deploy:deploy-file`](https://maven.apache.org/plugins/maven-deploy-plugin/deploy-file-mojo.html) 命令：
 
 ```shell
 mvn deploy:deploy-file -Durl=https://gitea.example.com/api/packages/{owner}/maven -DrepositoryId=gitea -Dfile=/path/to/package.jar
 ```
 
-| 参数    | 描述           |
+| 參數    | 描述           |
 | ------- | -------------- |
-| `owner` | 软件包的所有者 |
+| `owner` | 軟體包的所有者 |
 
-如果存在相同名称和版本的软件包，您无法发布该软件包。您必须先删除现有的软件包。
+如果存在相同名稱和版本的軟體包，您無法發佈該軟體包。您必須先删除現有的軟體包。
 
-## 安装软件包
+## 安裝軟體包
 
-要从软件包注册表中安装 Maven 软件包，请在项目的 `pom.xml` 文件中添加新的依赖项：
+要从軟體包註冊表中安裝 Maven 軟體包，請在项目的 `pom.xml` 文件中添加新的依赖项：
 
 ```xml
 <dependency>

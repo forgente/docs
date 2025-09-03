@@ -6,30 +6,30 @@ sidebar_position: 70
 
 # NPM Package Registry
 
-为您的用户或组织发布 [npm](https://www.npmjs.com/) 包。
+為您的使用者或組織發佈 [npm](https://www.npmjs.com/) 包。
 
 ## 要求
 
-要使用 npm 包注册表，您需要安装 [Node.js](https://nodejs.org/en/download/)  以及与之配套的软件包管理器，例如 [Yarn](https://classic.yarnpkg.com/en/docs/install) 或 [npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm/) 本身。
+要使用 npm 包註冊表，您需要安裝 [Node.js](https://nodejs.org/en/download/)  以及与之配套的軟體包管理器，例如 [Yarn](https://classic.yarnpkg.com/en/docs/install) 或 [npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm/) 本身。
 
-该注册表支持[作用域](https://docs.npmjs.com/misc/scope/)和非作用域软件包。
+該註冊表支持[作用域](https://docs.npmjs.com/misc/scope/)和非作用域軟體包。
 
 以下示例使用具有作用域 `@test` 的 `npm` 工具。
 
-## 配置软件包注册表
+## 配置軟體包註冊表
 
-要注册软件包注册表，您需要配置一个新的软件包源。
+要注册軟體包註冊表，您需要配置一个新的軟體包源。
 
 ```shell
 npm config set {scope}:registry=https://gitea.example.com/api/packages/{owner}/npm/
 npm config set -- '//gitea.example.com/api/packages/{owner}/npm/:_authToken' "{token}"
 ```
 
-| 参数    | 描述                                                                                    |
+| 參數    | 描述                                                                                    |
 | ------- | --------------------------------------------------------------------------------------- |
-| `scope` | 软件包的作用域                                                                          |
-| `owner` | 软件包的所有者                                                                          |
-| `token` | 您的[个人访问令牌](development/api-usage.md#通过-api-认证)。 |
+| `scope` | 軟體包的作用域                                                                          |
+| `owner` | 軟體包的所有者                                                                          |
+| `token` | 您的[个人访问令牌](development/api-usage.md#通過-api-認證)。 |
 
 例如：
 
@@ -45,28 +45,28 @@ npm config set registry https://gitea.example.com/api/packages/testuser/npm/
 npm config set -- '//gitea.example.com/api/packages/testuser/npm/:_authToken' "personal_access_token"
 ```
 
-## 发布软件包
+## 發佈軟體包
 
-在项目中运行以下命令发布软件包：
+在项目中运行以下命令發佈軟體包：
 
 ```shell
 npm publish
 ```
 
-如果已经存在相同名称和版本的软件包，您无法发布该软件包。您必须先删除现有的软件包。
+如果已经存在相同名稱和版本的軟體包，您無法發佈該軟體包。您必須先删除現有的軟體包。
 
-## 删除软件包
+## 删除軟體包
 
-通过运行以下命令删除软件包：
+通過运行以下命令删除軟體包：
 
 ```shell
 npm unpublish {package_name}[@{package_version}]
 ```
 
-| 参数              | 描述       |
+| 參數              | 描述       |
 | ----------------- | ---------- |
-| `package_name`    | 软件包名称 |
-| `package_version` | 软件包版本 |
+| `package_name`    | 軟體包名稱 |
+| `package_version` | 軟體包版本 |
 
 例如
 
@@ -75,17 +75,17 @@ npm unpublish @test/test_package
 npm unpublish @test/test_package@1.0.0
 ```
 
-## 安装软件包
+## 安裝軟體包
 
-要从软件包注册表中安装软件包，请执行以下命令：
+要从軟體包註冊表中安裝軟體包，請執行以下命令：
 
 ```shell
 npm install {package_name}
 ```
 
-| 参数           | 描述       |
+| 參數           | 描述       |
 | -------------- | ---------- |
-| `package_name` | 软件包名称 |
+| `package_name` | 軟體包名稱 |
 
 例如：
 
@@ -93,19 +93,19 @@ npm install {package_name}
 npm install @test/test_package
 ```
 
-## 给软件包打标签
+## 给軟體包打標籤
 
-该注册表支持[版本标签](https://docs.npmjs.com/adding-dist-tags-to-packages/)，可以通过 `npm dist-tag` 管理：
+該註冊表支持[版本標籤](https://docs.npmjs.com/adding-dist-tags-to-packages/)，可以通過 `npm dist-tag` 管理：
 
 ```shell
 npm dist-tag add {package_name}@{version} {tag}
 ```
 
-| 参数           | 描述       |
+| 參數           | 描述       |
 | -------------- | ---------- |
-| `package_name` | 软件包名称 |
-| `version`      | 软件包版本 |
-| `tag`          | 软件包标签 |
+| `package_name` | 軟體包名稱 |
+| `version`      | 軟體包版本 |
+| `tag`          | 軟體包標籤 |
 
 例如：
 
@@ -113,11 +113,11 @@ npm dist-tag add {package_name}@{version} {tag}
 npm dist-tag add test_package@1.0.2 release
 ```
 
-标签名称不能是有效的版本。所有可解析为版本的标签名称都将被拒绝。
+標籤名稱不能是有效的版本。所有可解析為版本的標籤名稱都将被拒绝。
 
-## 搜索软件包
+## 搜索軟體包
 
-该注册表支持[搜索](https://docs.npmjs.com/cli/v7/commands/npm-search/)，但不支持像 `author:gitea` 这样的特殊搜索限定符。
+該註冊表支持[搜索](https://docs.npmjs.com/cli/v7/commands/npm-search/)，但不支持像 `author:gitea` 这样的特殊搜索限定符。
 
 ## 支持的命令
 
