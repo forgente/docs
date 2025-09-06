@@ -47,7 +47,7 @@ Gitea 包括数据库、文件和 Git 仓库，当它被使用时所有这些都
 
 ```sh
 # mysql
-mysqldump -u$USER -p$PASS --database $DATABASE > gitea-db.sql
+mysqldump -u$USER -p$PASS --databases $DATABASE > gitea-db.sql
 # postgres
 pg_dump -U $USER $DATABASE > gitea-db.sql
 ```
