@@ -149,6 +149,20 @@ server {
 }
 ```
 
+## Nginx Proxy Manager
+
+If you are using Nginx Proxy Manager to serve your Gitea instance it differs slighly from the raw Nginx.
+
+It is [adding some directives](https://github.com/NginxProxyManager/nginx-proxy-manager/blob/master/docker/rootfs/etc/nginx/conf.d/include/proxy.conf) for a custom location by default, so you have to skip these from the above mentioned Nginx config. Otherwise Nginx will produce `400 bad request` error due to duplicated directives (`proxy_set_header Host $host` is the particularly problematic one).
+
+So while creating the `/` Custom location, just add the following lines to it's configuration:
+
+```nginx
+client_max_body_size 512M;
+proxy_set_header Connection $http_connection;
+proxy_set_header Upgrade $http_upgrade;
+```
+
 ## Apache HTTPD
 
 If you want Apache HTTPD to serve your Gitea instance, you can add the following to your Apache HTTPD configuration (usually located at `/etc/apache2/httpd.conf` in Ubuntu):
