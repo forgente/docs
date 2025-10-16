@@ -384,7 +384,7 @@ In this option, the idea is that the host simply uses the `authorized_keys` that
 
 - Please note depending on the local version of ssh you may want to consider using `-t ecdsa` here.
 
-- `/home/git/.ssh/authorized_keys` on the host now needs to be modified. It needs to act in the same way as `authorized_keys` within the Gitea container. Therefore add the public key of the key you created above ("Gitea Host Key") to `~/git/.ssh/authorized_keys`. As an administrative user on the host run:
+- `/home/git/.ssh/authorized_keys` on the host now needs to be modified. It needs to act in the same way as `authorized_keys` within the Gitea container. Therefore add the public key of the key you created above ("Gitea Host Key") to `/home/git/.ssh/authorized_keys`. As an administrative user on the host run:
 
   ```bash
   sudo -u git cat /home/git/.ssh/id_rsa.pub | sudo -u git tee -a /home/git/.ssh/authorized_keys

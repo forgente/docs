@@ -343,7 +343,7 @@ ports:
   - "127.0.0.1:2222:22"
 ```
 
-另外，主机上的 `/home/git/.ssh/authorized_keys` 需要修改。它需要以与 Gitea 容器内的 `authorized_keys` 相同的方式进行操作。因此，将您在上面创建的密钥（“Gitea 主机密钥”）的公共密钥添加到 `~/git/.ssh/authorized_keys`。这可以通过 `echo "$(cat /home/git/.ssh/id_rsa.pub)" >> /home/git/.ssh/authorized_keys` 完成。重要提示：来自 `git` 用户的公钥需要“按原样”添加，而通过 Gitea 网络界面添加的所有其他公钥将以 `command="/app [...]` 作为前缀。
+另外，主机上的 `/home/git/.ssh/authorized_keys` 需要修改。它需要以与 Gitea 容器内的 `authorized_keys` 相同的方式进行操作。因此，将您在上面创建的密钥（“Gitea 主机密钥”）的公共密钥添加到 `/home/git/.ssh/authorized_keys`。这可以通过 `echo "$(cat /home/git/.ssh/id_rsa.pub)" >> /home/git/.ssh/authorized_keys` 完成。重要提示：来自 `git` 用户的公钥需要“按原样”添加，而通过 Gitea 网络界面添加的所有其他公钥将以 `command="/app [...]` 作为前缀。
 
 该文件应该看起来像：
 
