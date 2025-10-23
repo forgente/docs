@@ -100,3 +100,26 @@ Using code-block with language:
 \alpha
 ```
 ````
+
+## Frontmatter
+
+Gitea supports frontmatter and Table of Contents (TOC) rendering. By default, frontmatter rendering is enabled, and TOC rendering is disabled.
+
+### Enabling TOC rendering
+
+To enable TOC rendering for a markdown file, add `include_toc: true` to its frontmatter section.
+
+### Disabling frontmatter
+
+To disable frontmatter rendering for a markdown file, add `gitea: none` to its frontmatter section.
+
+### Example
+
+```yaml
+---
+include_toc: true
+gitea: none
+---
+```
+
+Then, when you preview this markdown file in Gitea, the frontmatter section will not be rendered, and a Table of Contents will be generated at the top of the content.
