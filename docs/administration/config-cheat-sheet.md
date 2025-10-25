@@ -1,5 +1,5 @@
 ---
-date: "2016-12-26T16:00:00+02:00"
+date: "2025-10-26T00:00:00+00:00"
 slug: "config-cheat-sheet"
 sidebar_position: 30
 aliases:
@@ -234,6 +234,7 @@ The following configuration set `Content-Type: application/vnd.android.package-a
 - `CUSTOM_EMOJIS`: **gitea, codeberg, gitlab, git, github, gogs**: Additional Emojis not defined in the utf8 standard.
     By default, we support Gitea (:gitea:), to add more copy them to public/assets/img/emoji/emoji_name.png and
     add it to this config.
+- `ENABLED_EMOJIS`: **_empty_**: Comma separated list of enabled emojis, for example: "smile, thumbsup, thumbsdown". Leave it empty to enable all emojis.
 - `DEFAULT_SHOW_FULL_NAME`: **false**: Whether the full name of the users should be shown where possible. If the full name isn't set, the username will be used.
 - `SEARCH_REPO_DESCRIPTION`: **true**: Whether to search within description at repository search on explore page.
 - `ONLY_SHOW_RELEVANT_REPOS`: **false**: Whether to only show relevant repos on the explore page when no keyword is specified and default sorting is used.
@@ -1259,6 +1260,8 @@ This section only does "set" config, a removed config key from this section won'
 
 - `MERMAID_MAX_SOURCE_CHARACTERS`: **50000**: Set the maximum size of a Mermaid source. (Set to -1 to disable)
 
+## Markup External Render (`markup.external-render-name`)
+
 Gitea can support Markup using external tools. The example below will add a markup named `asciidoc`.
 
 ```ini
@@ -1271,7 +1274,6 @@ IS_INPUT_FILE = false
 ```
 
 - ENABLED: **false** Enable markup support; set to **true** to enable this renderer.
-- NEED\_POSTPROCESS: **true** set to **true** to replace links / sha1 and etc.
 - FILE\_EXTENSIONS: **_empty_** List of file extensions that should be rendered by an external
    command. Multiple extensions needs a comma as splitter.
 - RENDER\_COMMAND: External command to render all matching extensions.
@@ -1280,6 +1282,10 @@ IS_INPUT_FILE = false
   - sanitized: Sanitize the content and render it inside current page, default to only allow a few HTML tags and attributes. Customized sanitizer rules can be defined in `[markup.sanitizer.*]`.
   - no-sanitizer: Disable the sanitizer and render the content inside current page. It's **insecure** and may lead to XSS attack if the content contains malicious code.
   - iframe: Render the content in a separate standalone page and embed it into current page by iframe. The iframe is in sandbox mode with same-origin disabled, and the JS code are safely isolated from parent page.
+- RENDER_CONTENT_SANDBOX: **_empty_** The sandbox applied to the iframe and Content-Security-Policy header when RENDER_CONTENT_MODE is `iframe`. It defaults to a safe set of "allow-*" restrictions (space separated). You can also set it by your requirements or use "disabled" to disable the sandbox completely. When set it, make sure there is no security risk:
+    - PDF-only content: generally safe to use "disabled", and it needs to be "disabled" because PDF only renders with no sandbox.
+    - HTML content with JS: if the "RENDER_COMMAND" can guarantee there is no XSS, then it is safe, otherwise, you need to fine tune the "allow-*" restrictions.
+- NEED_POST_PROCESS: **false** Whether post-process the rendered HTML content, including: resolve relative links and image sources, recognizing issue/commit references, escaping invisible characters, mentioning users, rendering permlink code blocks, replacing emoji shorthands, etc. By default, this is true when RENDER_CONTENT_MODE is `sanitized`, otherwise false.
 
 Two special environment variables are passed to the render command:
 
