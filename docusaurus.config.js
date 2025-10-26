@@ -86,11 +86,11 @@ const globalVariables = {
     goVersion: "1.24",
     minGoVersion: "1.24",
     minNodeVersion: "22",
-    version: "1.24.6",
+    version: "1.24.7",
     sourceVersion: "v1.24.0",
     sourceBranch: "release/v1.24",
-    dockerVersion: "1.24.6",
-    displayVersion: "1.24.6",
+    dockerVersion: "1.24.7",
+    displayVersion: "1.24.7",
   },
   1.23: {
     goVersion: "1.23",
@@ -428,7 +428,7 @@ const config = {
             position: "right",
             items: [
               { to: "/api/next/", label: "1.25-dev" },
-              { to: "/api/1.24/", label: "1.24.6" },
+              { to: "/api/1.24/", label: "1.24.7" },
               { to: "/api/1.23/", label: "1.23.8" },
               { to: "/api/1.22/", label: "1.22.6" },
               { to: "/api/1.21/", label: "1.21.11" },
