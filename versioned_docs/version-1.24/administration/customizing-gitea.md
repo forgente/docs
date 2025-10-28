@@ -184,7 +184,7 @@ Here create file "footer.tmpl" and add following text into it:
 <script>
     document.addEventListener('DOMContentLoaded', () => {
       // Supported 3D file types
-      const fileTypes = ['3dm', '3ds', '3mf', 'amf', 'bim', 'brep', 'dae', 'fbx', 'fcstd', 'glb', 'gltf', 'ifc', 'igs', 'iges', 'stp'. 'step', 'stl', 'obj', 'off', 'ply', 'wrl'];
+      const fileTypes = ['3dm', '3ds', '3mf', 'amf', 'bim', 'brep', 'dae', 'fbx', 'fcstd', 'glb', 'gltf', 'ifc', 'igs', 'iges', 'stp', 'step', 'stl', 'obj', 'off', 'ply', 'wrl'];
   
       // Select matching link
       const links = Array.from(document.querySelectorAll('a.ui.mini.basic.button'));
