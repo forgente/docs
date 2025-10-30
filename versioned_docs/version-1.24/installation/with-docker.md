@@ -26,11 +26,8 @@ If you don't give the volume correct permissions, the container may not start.
 For a stable release you can use `:latest`, `:1` or specify a certain release like `:@dockerVersion@`, but if you'd like to use the latest development version of Gitea then you could use the `:nightly` tag. If you'd like to run the latest commit from a release branch you can use the `:1.x-nightly` tag, where x is the minor version of Gitea. (e.g. `:1.16-nightly`)
 
 ```yaml
-version: "3"
-
 networks:
   gitea:
-    external: false
 
 services:
   server:
@@ -58,11 +55,8 @@ the port section. It's common to just change the host port and keep the ports wi
 the container like they are.
 
 ```diff
-version: "3"
-
 networks:
   gitea:
-    external: false
 
 services:
   server:
@@ -93,11 +87,8 @@ To start Gitea in combination with a MySQL database, apply these changes to the
 `docker-compose.yml` file created above.
 
 ```diff
-version: "3"
-
 networks:
   gitea:
-    external: false
 
 services:
   server:
@@ -144,11 +135,8 @@ To start Gitea in combination with a PostgreSQL database, apply these changes to
 the `docker-compose.yml` file created above.
 
 ```diff
-version: "3"
-
 networks:
   gitea:
-    external: false
 
 services:
   server:
@@ -196,11 +184,8 @@ create the required volume. You don't need to worry about permissions with
 named volumes; Docker will deal with that automatically.
 
 ```diff
-version: "3"
-
 networks:
   gitea:
-    external: false
 
 +volumes:
 +  gitea:
