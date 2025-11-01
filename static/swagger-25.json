@@ -7634,7 +7634,7 @@
         "tags": [
           "repository"
         ],
-        "summary": "Update a file in a repository if SHA is set, or create the file if SHA is not set",
+        "summary": "Update a file in a repository",
         "operationId": "repoUpdateFile",
         "parameters": [
           {
@@ -7669,9 +7669,6 @@
         ],
         "responses": {
           "200": {
-            "$ref": "#/responses/FileResponse"
-          },
-          "201": {
             "$ref": "#/responses/FileResponse"
           },
           "403": {
@@ -9112,7 +9109,7 @@
           },
           {
             "type": "string",
-            "description": "comma separated list of label names. Fetch only issues that have any of this label names. Non existent labels are discarded.",
+            "description": "comma separated list of labels. Fetch only issues that have any of this labels. Non existent labels are discarded",
             "name": "labels",
             "in": "query"
           },
@@ -21668,7 +21665,7 @@
           "$ref": "#/definitions/Identity"
         },
         "branch": {
-          "description": "branch (optional) is the base branch for the changes. If not supplied, the default branch is used",
+          "description": "branch (optional) to base this file from. if not given, the default branch is used",
           "type": "string",
           "x-go-name": "BranchName"
         },
@@ -21682,18 +21679,13 @@
         "dates": {
           "$ref": "#/definitions/CommitDateOptions"
         },
-        "force_push": {
-          "description": "force_push (optional) will do a force-push if the new branch already exists",
-          "type": "boolean",
-          "x-go-name": "ForcePush"
-        },
         "message": {
-          "description": "message (optional) is the commit message of the changes. If not supplied, a default message will be used",
+          "description": "message (optional) for the commit of this file. if not supplied, a default message will be used",
           "type": "string",
           "x-go-name": "Message"
         },
         "new_branch": {
-          "description": "new_branch (optional) will make a new branch from base branch for the changes. If not supplied, the changes will be committed to the base branch",
+          "description": "new_branch (optional) will make a new branch from `branch` before creating the file",
           "type": "string",
           "x-go-name": "NewBranchName"
         },
@@ -22055,7 +22047,7 @@
           "$ref": "#/definitions/Identity"
         },
         "branch": {
-          "description": "branch (optional) is the base branch for the changes. If not supplied, the default branch is used",
+          "description": "branch (optional) to base this file from. if not given, the default branch is used",
           "type": "string",
           "x-go-name": "BranchName"
         },
@@ -22073,18 +22065,13 @@
           },
           "x-go-name": "Files"
         },
-        "force_push": {
-          "description": "force_push (optional) will do a force-push if the new branch already exists",
-          "type": "boolean",
-          "x-go-name": "ForcePush"
-        },
         "message": {
-          "description": "message (optional) is the commit message of the changes. If not supplied, a default message will be used",
+          "description": "message (optional) for the commit of this file. if not supplied, a default message will be used",
           "type": "string",
           "x-go-name": "Message"
         },
         "new_branch": {
-          "description": "new_branch (optional) will make a new branch from base branch for the changes. If not supplied, the changes will be committed to the base branch",
+          "description": "new_branch (optional) will make a new branch from `branch` before creating the file",
           "type": "string",
           "x-go-name": "NewBranchName"
         },
@@ -22889,7 +22876,7 @@
       "x-go-package": "code.gitea.io/gitea/modules/structs"
     },
     "CreateFileOptions": {
-      "description": "CreateFileOptions options for creating a file\nNote: `author` and `committer` are optional (if only one is given, it will be used for the other, otherwise the authenticated user will be used)",
+      "description": "CreateFileOptions options for creating files\nNote: `author` and `committer` are optional (if only one is given, it will be used for the other, otherwise the authenticated user will be used)",
       "type": "object",
       "required": [
         "content"
@@ -22899,7 +22886,7 @@
           "$ref": "#/definitions/Identity"
         },
         "branch": {
-          "description": "branch (optional) is the base branch for the changes. If not supplied, the default branch is used",
+          "description": "branch (optional) to base this file from. if not given, the default branch is used",
           "type": "string",
           "x-go-name": "BranchName"
         },
@@ -22914,18 +22901,13 @@
         "dates": {
           "$ref": "#/definitions/CommitDateOptions"
         },
-        "force_push": {
-          "description": "force_push (optional) will do a force-push if the new branch already exists",
-          "type": "boolean",
-          "x-go-name": "ForcePush"
-        },
         "message": {
-          "description": "message (optional) is the commit message of the changes. If not supplied, a default message will be used",
+          "description": "message (optional) for the commit of this file. if not supplied, a default message will be used",
           "type": "string",
           "x-go-name": "Message"
         },
         "new_branch": {
-          "description": "new_branch (optional) will make a new branch from base branch for the changes. If not supplied, the changes will be committed to the base branch",
+          "description": "new_branch (optional) will make a new branch from `branch` before creating the file",
           "type": "string",
           "x-go-name": "NewBranchName"
         },
@@ -23907,7 +23889,7 @@
       "x-go-package": "code.gitea.io/gitea/modules/structs"
     },
     "DeleteFileOptions": {
-      "description": "DeleteFileOptions options for deleting a file\nNote: `author` and `committer` are optional (if only one is given, it will be used for the other, otherwise the authenticated user will be used)",
+      "description": "DeleteFileOptions options for deleting files (used for other File structs below)\nNote: `author` and `committer` are optional (if only one is given, it will be used for the other, otherwise the authenticated user will be used)",
       "type": "object",
       "required": [
         "sha"
@@ -23917,7 +23899,7 @@
           "$ref": "#/definitions/Identity"
         },
         "branch": {
-          "description": "branch (optional) is the base branch for the changes. If not supplied, the default branch is used",
+          "description": "branch (optional) to base this file from. if not given, the default branch is used",
           "type": "string",
           "x-go-name": "BranchName"
         },
@@ -23927,23 +23909,18 @@
         "dates": {
           "$ref": "#/definitions/CommitDateOptions"
         },
-        "force_push": {
-          "description": "force_push (optional) will do a force-push if the new branch already exists",
-          "type": "boolean",
-          "x-go-name": "ForcePush"
-        },
         "message": {
-          "description": "message (optional) is the commit message of the changes. If not supplied, a default message will be used",
+          "description": "message (optional) for the commit of this file. if not supplied, a default message will be used",
           "type": "string",
           "x-go-name": "Message"
         },
         "new_branch": {
-          "description": "new_branch (optional) will make a new branch from base branch for the changes. If not supplied, the changes will be committed to the base branch",
+          "description": "new_branch (optional) will make a new branch from `branch` before creating the file",
           "type": "string",
           "x-go-name": "NewBranchName"
         },
         "sha": {
-          "description": "the blob ID (SHA) for the file to delete",
+          "description": "the blob ID (SHA) for the file that already exists, it is required for changing existing files",
           "type": "string",
           "x-go-name": "SHA"
         },
@@ -28703,9 +28680,10 @@
       "x-go-package": "code.gitea.io/gitea/modules/structs"
     },
     "UpdateFileOptions": {
-      "description": "UpdateFileOptions options for updating or creating a file\nNote: `author` and `committer` are optional (if only one is given, it will be used for the other, otherwise the authenticated user will be used)",
+      "description": "UpdateFileOptions options for updating files\nNote: `author` and `committer` are optional (if only one is given, it will be used for the other, otherwise the authenticated user will be used)",
       "type": "object",
       "required": [
+        "sha",
         "content"
       ],
       "properties": {
@@ -28713,7 +28691,7 @@
           "$ref": "#/definitions/Identity"
         },
         "branch": {
-          "description": "branch (optional) is the base branch for the changes. If not supplied, the default branch is used",
+          "description": "branch (optional) to base this file from. if not given, the default branch is used",
           "type": "string",
           "x-go-name": "BranchName"
         },
@@ -28728,28 +28706,23 @@
         "dates": {
           "$ref": "#/definitions/CommitDateOptions"
         },
-        "force_push": {
-          "description": "force_push (optional) will do a force-push if the new branch already exists",
-          "type": "boolean",
-          "x-go-name": "ForcePush"
-        },
         "from_path": {
           "description": "from_path (optional) is the path of the original file which will be moved/renamed to the path in the URL",
           "type": "string",
           "x-go-name": "FromPath"
         },
         "message": {
-          "description": "message (optional) is the commit message of the changes. If not supplied, a default message will be used",
+          "description": "message (optional) for the commit of this file. if not supplied, a default message will be used",
           "type": "string",
           "x-go-name": "Message"
         },
         "new_branch": {
-          "description": "new_branch (optional) will make a new branch from base branch for the changes. If not supplied, the changes will be committed to the base branch",
+          "description": "new_branch (optional) will make a new branch from `branch` before creating the file",
           "type": "string",
           "x-go-name": "NewBranchName"
         },
         "sha": {
-          "description": "the blob ID (SHA) for the file that already exists to update, or leave it empty to create a new file",
+          "description": "the blob ID (SHA) for the file that already exists, it is required for changing existing files",
           "type": "string",
           "x-go-name": "SHA"
         },

@@ -29,7 +29,11 @@ const apiConfig = [
           },
           {
             route: "/api/",
-            spec: "static/swagger-24.json",
+            spec: "static/swagger-25.json",
+          },
+          {
+            route: "/api/1.25/",
+            spec: "static/swagger-25.json",
           },
           {
             route: "/api/1.24/",
@@ -72,17 +76,27 @@ const pageConfig = renderApiSSR
   : {};
 
 const globalVariables = {
-  current: {
-    goVersion: "1.24",
-    minGoVersion: "1.24",
+  "current": {
+    goVersion: "1.25",
+    minGoVersion: "1.25",
     minNodeVersion: "22",
     version: "main-nightly",
     sourceVersion: "main",
     sourceBranch: "main",
     dockerVersion: "nightly",
-    displayVersion: "1.25-dev",
+    displayVersion: "1.26-dev",
   },
-  1.24: {
+  "1.25": {
+    goVersion: "1.25",
+    minGoVersion: "1.25",
+    minNodeVersion: "22",
+    version: "1.25.0",
+    sourceVersion: "v1.25.0",
+    sourceBranch: "release/v1.25",
+    dockerVersion: "1.25.0",
+    displayVersion: "1.25.0",
+  },
+  "1.24": {
     goVersion: "1.24",
     minGoVersion: "1.24",
     minNodeVersion: "22",
@@ -92,7 +106,7 @@ const globalVariables = {
     dockerVersion: "1.24.7",
     displayVersion: "1.24.7",
   },
-  1.23: {
+  "1.23": {
     goVersion: "1.23",
     minGoVersion: "1.22",
     minNodeVersion: "18",
@@ -102,7 +116,7 @@ const globalVariables = {
     dockerVersion: "1.23.8",
     displayVersion: "1.23.8",
   },
-  1.22: {
+  "1.22": {
     goVersion: "1.22",
     minGoVersion: "1.22",
     minNodeVersion: "18",
@@ -112,7 +126,7 @@ const globalVariables = {
     dockerVersion: "1.22.6",
     displayVersion: "1.22.6",
   },
-  1.21: {
+  "1.21": {
     goVersion: "1.21",
     minGoVersion: "1.21",
     minNodeVersion: "18",
@@ -132,7 +146,7 @@ const globalVariables = {
     dockerVersion: "1.20.6",
     displayVersion: "1.20.6",
   },
-  1.19: {
+  "1.19": {
     goVersion: "1.20",
     minGoVersion: "1.19",
     minNodeVersion: "14",
@@ -145,26 +159,29 @@ const globalVariables = {
 };
 
 const versions = {
-  current: {
+  "current": {
     label: globalVariables["current"].displayVersion, // path is kept as next for dev (so users can always find "nightly" docs)
     banner: "unreleased",
   },
-  1.24: {
+  "1.25": {
+    label: globalVariables["1.25"].displayVersion,
+  },
+  "1.24": {
     label: globalVariables["1.24"].displayVersion,
   },
-  1.23: {
+  "1.23": {
     label: globalVariables["1.23"].displayVersion,
   },
-  1.22: {
+  "1.22": {
     label: globalVariables["1.22"].displayVersion,
   },
-  1.21: {
+  "1.21": {
     label: globalVariables["1.21"].displayVersion,
   },
   "1.20": {
     label: globalVariables["1.20"].displayVersion,
   },
-  1.19: {
+  "1.19": {
     label: globalVariables["1.19"].displayVersion,
   },
 };
@@ -284,7 +301,7 @@ const config = {
             }/${docPath}`;
           },
           versions: versions,
-          lastVersion: "1.24",
+          lastVersion: "1.25",
           async sidebarItemsGenerator({
             defaultSidebarItemsGenerator,
             ...args
@@ -391,10 +408,10 @@ const config = {
             label: "Docs",
           },
           {
-            to: "/api/1.24/",
+            to: "/api/1.25/",
             label: "API",
             position: "left",
-            activeBaseRegex: "api/(1.19|1.20|1.21|1.22|1.23|1.24|next)/",
+            activeBaseRegex: "api/(1.19|1.20|1.21|1.22|1.23|1.24|1.25|next)/",
           },
           {
             to: "/runner/0.2.11/",
