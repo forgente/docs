@@ -33,13 +33,6 @@ See [Using concurrency](https://docs.github.com/en/actions/using-jobs/using-conc
 
 It's ignored by Gitea Actions now.
 
-### `run-name`
-
-The name for workflow runs generated from the workflow.
-See [Workflow syntax for GitHub Actions](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#run-name).
-
-It's ignored by Gitea Actions now.
-
 ### `permissions` and `jobs.<job_id>.permissions`
 
 See [Workflow syntax for GitHub Actions](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#permissions).
