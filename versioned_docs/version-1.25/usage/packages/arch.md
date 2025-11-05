@@ -36,23 +36,24 @@ pacman-key --lsign-key {key id}
 
 Now add the registry configuration to `/etc/pacman.conf`.
 ```conf
-[{owner}.gitea.example.com]
+[{repository}]
 SigLevel = Required
-Server = https://gitea.example.com/api/packages/{owner}/arch/{repository}/{architecture}
+Server = https://gitea.example.com/api/packages/{owner}/arch/$repo/$arch
 ```
 
 | Placeholder    | Description |
 | -------------- | ----------- |
 | `owner`        | The owner of the packages. |
 | `repository`   | The repository to use. |
-| `architecture` | The architecture to use. |
 
 Consult the owners package overview to see what `repository` and `architecture` is available.
 
 If the registry is private, provide credentials in the url. You can use a password or a [personal access token](development/api-usage.md#authentication):
 
 ```
-Server = https://{username}:{your_password_or_token}@gitea.example.com/api/packages/{owner}/arch/{repository}/{architecture}
+[{repository}]
+SigLevel = Required
+Server = https://{username}:{your_password_or_token}@gitea.example.com/api/packages/{owner}/arch/$repo/$arch
 ```
 
 ## Publish a package
