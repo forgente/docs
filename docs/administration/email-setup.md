@@ -45,7 +45,7 @@ ENABLED        = true
 FROM           = gitea@mydomain.com
 PROTOCOL       = smtps
 SMTP_ADDR      = mail.mydomain.com
-SMTP_PORT      = 587
+SMTP_PORT      = 465
 USER           = gitea@mydomain.com
 PASSWD         = `password`
 ```
