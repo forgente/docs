@@ -819,7 +819,7 @@ and
   - Please note: authentication is only supported when the SMTP server communication is encrypted with TLS (this can be via `STARTTLS`) or SMTP host is localhost. See [Email Setup](email-setup.md) for more information.
 - `ENABLE_HELO`: **true**: Enable HELO operation.
 - `HELO_HOSTNAME`: **(retrieved from system)**: HELO hostname.
-- `FROM`: **_empty_**: Mail from address, RFC 5322. This can be just an email address, or the "Name" `\<email@example.com\>` format.
+- `FROM`: **_empty_**: Mail from address, RFC 5322. This can be just an email address, or the `"Name" <email@example.com>` format.
 - `ENVELOPE_FROM`: **_empty_**: Address set as the From address on the SMTP mail envelope. Set to `<>` to send an empty address.
 - `FROM_DISPLAY_NAME_FORMAT`: **`{{ .DisplayName }}`**: If gitea sends mails on behave of users, it will just use the name also displayed in the WebUI. If you want e.g. `Mister X (by CodeIt) <gitea@codeit.net>`, set it to `{{ .DisplayName }} (by {{ .AppName }})`. Available Variables: `.DisplayName`, `.AppName` and `.Domain`.
 - `SUBJECT_PREFIX`: **_empty_**: Prefix to be placed before e-mail subject lines.
