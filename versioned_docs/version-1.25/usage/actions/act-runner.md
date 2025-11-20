@@ -435,6 +435,15 @@ docker run \
 
 ### Labels
 
+```mermaid
+flowchart TD
+    A[Workflow: runs-on: ubuntu-22.04] --> B[Act Runner receives Job request]
+    B --> C[Match label: ubuntu-22.04:docker://node:16-bullseye]
+    C --> D[Start Docker container: node:16-bullseye]
+    D --> E[Run Job steps inside the container]
+    E --> F[Return execution results to Gitea]
+```
+
 The labels of a runner are used to determine which jobs the runner can run, and how to run them.
 
 The default labels are `ubuntu-latest:docker://node:16-bullseye,ubuntu-22.04:docker://node:16-bullseye,ubuntu-20.04:docker://node:16-bullseye,ubuntu-18.04:docker://node:16-buster`.

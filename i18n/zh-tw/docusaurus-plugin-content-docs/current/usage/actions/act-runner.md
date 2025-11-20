@@ -236,6 +236,15 @@ docker run \
 
 ### 标签
 
+```mermaid
+flowchart TD
+    A[Workflow: runs-on: ubuntu-22.04] --> B[Act Runner 收到 Job 請求]
+    B --> C[匹配標籤: ubuntu-22.04:docker://node:16-bullseye]
+    C --> D[啟動 Docker 容器: node:16-bullseye]
+    D --> E[在容器中執行 Job 步驟]
+    E --> F[返回執行結果給 Gitea]
+```
+
 Runner的标签用于确定Runner可以运行哪些Job以及如何运行它们。
 
 默认标签为`ubuntu-latest:docker://node:16-bullseye,ubuntu-22.04:docker://node:16-bullseye,ubuntu-20.04:docker://node:16-bullseye,ubuntu-18.04:docker://node:16-buster`。
