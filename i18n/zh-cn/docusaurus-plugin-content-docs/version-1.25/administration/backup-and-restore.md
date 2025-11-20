@@ -23,7 +23,7 @@ Gitea 包括数据库、文件和 Git 仓库，当它被使用时所有这些都
 
 ```
 2016/12/27 22:32:09 Creating tmp work dir: /tmp/gitea-dump-417443001
-2016/12/27 22:32:09 Dumping local repositories.../home/git/gitea-repositories
+2016/12/27 22:32:09 Dumping local repositories.../home/git/repositories
 2016/12/27 22:32:22 Dumping database...
 2016/12/27 22:32:22 Packing dump files...
 2016/12/27 22:32:34 Removing tmp work dir: /tmp/gitea-dump-417443001
@@ -80,7 +80,7 @@ cd gitea-dump-1610949662
 mv app.ini /etc/gitea/conf/app.ini
 mv data/* /var/lib/gitea/data/
 mv log/* /var/lib/gitea/log/
-mv repos/* /var/lib/gitea/gitea-repositories/
+mv repos/* /var/lib/gitea/repositories/
 chown -R gitea:gitea /etc/gitea/conf/app.ini /var/lib/gitea
 
 # mysql
@@ -114,7 +114,7 @@ cd gitea-dump-1610949662
 # 恢复 Gitea 数据
 mv data/* /data/gitea
 # 恢复仓库本身
-mv repos/* /data/git/gitea-repositories/
+mv repos/* /data/git/repositories/
 # 调整文件权限
 chown -R git:git /data
 # 重新生成 Git 钩子
@@ -138,7 +138,7 @@ mv data/conf/app.ini /etc/gitea/app.ini
 # 恢复 Gitea 数据
 mv data/* /var/lib/gitea
 # 恢复仓库本身
-mv repos/* /var/lib/gitea/git/gitea-repositories
+mv repos/* /var/lib/gitea/git/repositories
 # 调整文件权限
 chown -R git:git /etc/gitea/app.ini /var/lib/gitea
 # 重新生成 Git 钩子

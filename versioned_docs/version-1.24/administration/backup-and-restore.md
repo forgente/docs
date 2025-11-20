@@ -24,7 +24,7 @@ directory. There should be some output similar to the following:
 
 ```log
 2016/12/27 22:32:09 Creating tmp work dir: /tmp/gitea-dump-417443001
-2016/12/27 22:32:09 Dumping local repositories.../home/git/gitea-repositories
+2016/12/27 22:32:09 Dumping local repositories.../home/git/repositories
 2016/12/27 22:32:22 Dumping database...
 2016/12/27 22:32:22 Packing dump files...
 2016/12/27 22:32:34 Removing tmp work dir: /tmp/gitea-dump-417443001
@@ -83,7 +83,7 @@ cd gitea-dump-1610949662
 mv app.ini /etc/gitea/conf/app.ini
 mv data/* /var/lib/gitea/data/
 mv log/* /var/lib/gitea/log/
-mv repos/* /var/lib/gitea/data/gitea-repositories/
+mv repos/* /var/lib/gitea/data/repositories/
 chown -R gitea:gitea /etc/gitea/conf/app.ini /var/lib/gitea
 
 # mysql
@@ -119,7 +119,7 @@ cd gitea-dump-1610949662
 # restore the gitea data
 mv data/* /data/gitea
 # restore the repositories itself
-mv repos/* /data/git/gitea-repositories/
+mv repos/* /data/git/repositories/
 # adjust file permissions
 chown -R git:git /data
 # Regenerate Git Hooks
@@ -143,7 +143,7 @@ mv data/conf/app.ini /etc/gitea/app.ini
 # restore the gitea data
 mv data/* /var/lib/gitea
 # restore the repositories itself
-mv repos/* /var/lib/gitea/git/gitea-repositories
+mv repos/* /var/lib/gitea/git/repositories
 # adjust file permissions
 chown -R git:git /etc/gitea/app.ini /var/lib/gitea
 # Regenerate Git Hooks
