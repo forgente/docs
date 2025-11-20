@@ -174,7 +174,7 @@ server as mentioned above.
 
 ### Working on JS and CSS
 
-Frontend development should follow [Guidelines for Frontend Development](contributing/guidelines-frontend.md)
+Frontend development should follow [Guidelines for Frontend Development](../contributing/guidelines-frontend.md)
 
 To build with frontend resources, either use the `watch-frontend` target mentioned above or just build once:
 

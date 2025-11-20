@@ -321,7 +321,7 @@ The [legacy file format](https://github.com/go-gitea/gitea/blob/main/options/lab
 
 `#hex-color label name ; label description`
 
-For more information, see the [labels documentation](usage/labels.md).
+For more information, see the [labels documentation](../usage/labels.md).
 
 ### Licenses
 

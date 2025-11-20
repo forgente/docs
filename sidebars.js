@@ -61,7 +61,8 @@ module.exports = {
       type: 'category',
       label: 'Contributing',
       link: {
-        "type": "generated-index"
+        "type": "doc",
+        "id": "contributing/contributing"
       },
       items: [
         {

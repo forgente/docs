@@ -9,7 +9,7 @@ aliases:
 # Customizing Gitea
 
 Customizing Gitea is typically done using the `CustomPath` folder - by default this is
-the `custom` folder from the working directory (WorkPath), but may be different if your [installation](../installation/installation.md) has
+the `custom` folder from the working directory (WorkPath), but may be different if your [installation](../installation/from-binary.md) has
 set this differently. This is the central place to override configuration settings,
 templates, etc. You can check the `CustomPath` using `gitea help`. You can also find
 the path on the _Configuration_ tab in the _Site Administration_ page. You can override
@@ -23,7 +23,7 @@ the Linux Filesystem Standard. Gitea will attempt to create required folders, in
 `custom/`. Distributions may provide a symlink for `custom` using `/etc/gitea/`.
 
 Application settings can be found in file `CustomConf` which is by default,
-`$GITEA_CUSTOM/conf/app.ini` but may be different if your [installation](../installation/installation.md) has set this differently.
+`$GITEA_CUSTOM/conf/app.ini` but may be different if your [installation](../installation/from-binary.md) has set this differently.
 Again `gitea help` will allow you review this variable and you can override it using the
 `--config` option on the `gitea` binary.
 
@@ -414,7 +414,7 @@ The [legacy file format](https://github.com/go-gitea/gitea/blob/main/options/lab
 
 `#hex-color label name ; label description`
 
-For more information, see the [labels documentation](usage/labels.md).
+For more information, see the [labels documentation](../usage/issues-prs/labels.md).
 
 ### Licenses
 

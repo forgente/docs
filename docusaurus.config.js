@@ -193,7 +193,6 @@ const config = {
   url: "https://docs.gitea.com",
   baseUrl: "/",
   onBrokenLinks: "warn",
-  onBrokenMarkdownLinks: "warn",
   favicon: "img/favicon.png",
   future: {
     experimental_faster: true,
@@ -329,6 +328,9 @@ const config = {
     apiConfig,
   ],
   markdown: {
+    hooks: {
+      onBrokenMarkdownLinks: "warn",
+    },
     preprocessor: ({ filePath, fileContent }) => {
       var key = "";
       var found = false;
