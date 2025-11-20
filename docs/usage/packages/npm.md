@@ -29,7 +29,7 @@ npm config set -- '//gitea.example.com/api/packages/{owner}/npm/:_authToken' "{t
 | ------------ | ----------- |
 | `scope`      | The scope of the packages. |
 | `owner`      | The owner of the package. |
-| `token`      | Your [personal access token](development/api-usage.md#authentication). |
+| `token`      | Your [personal access token](development/api-usage.md#authentication). With `package` permissions. |
 
 For example:
 
