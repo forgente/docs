@@ -10,7 +10,10 @@ This page will introduce the [act runner](https://gitea.com/gitea/act_runner) in
 
 ## Requirements
 
-Currently the runner supports run in two modes. One is running in docker container, another is running in host. It is recommended to run jobs in a [docker](https://docker.com) container, if you chose this mode, you need to [install docker](https://docs.docker.com/engine/install/) first and make sure that the docker daemon is running.
+Currently the runner supports three modes in which it can be run.
+1. Host: act_runner will run as an application on the host. This provides no encapsulation.
+2. Docker (recommended):  Runs jobs in a [docker](https://docker.com) container. If you chose this mode, you need to [install docker](https://docs.docker.com/engine/install/) first and make sure that the docker daemon is running.
+3. Docker-in-Docker (DinD): Puts the runner into rootless mode. It then runs in a docker container with its own Docker daemon that has less privileges. Will spawn job containers from there. Best security but more complex setup. 
 
 Other OCI container engines which are compatible with Docker's API should also work, but are untested.
 
@@ -262,7 +265,7 @@ Just like the binary, you can use the latest nightly build by using the `nightly
 docker pull docker.io/gitea/act_runner:latest # for the latest stable release
 ```
 
-If you want to test newly features, you could also use nightly image
+If you want to use the newest or experimental features, you could also use the nightly image
 ```bash
 docker pull docker.io/gitea/act_runner:nightly # for the latest nightly build
 ```
@@ -286,21 +289,21 @@ Before running the act runner, we need to register it to your Gitea instance fir
 
 ### Start the runner with docker
 
-If you are using the docker image, behaviour will be slightly different. Registration and running are combined into one step in this case, so you need to specify the registration information when running the act runner.
+If you are using the docker image, behavior will be slightly different. Registration and running are combined into one step in this case, so you need to specify the registration information when running the act runner.
 
-A quick start with docker run like below. You need to get `<registration_token>` from the above step, and give
-a special unique name for `<runner_name>`
+A quick start with docker run along with a minimal parameter set is shown below. You need to get the `<registration_token>` from the above step, and set a unique name for `<gitea_runner_name>` and `<container_name>`
 
 ```bash
 docker run \
     -e GITEA_INSTANCE_URL=<instance_url> \
     -e GITEA_RUNNER_REGISTRATION_TOKEN=<registration_token> \
-    -e GITEA_RUNNER_NAME=<runner_name> \
-    --name my_runner \
-    -d docker.io/gitea/act_runner:nightly
+    -e GITEA_RUNNER_NAME=<gitea_runner_name> \
+    --name <container_name> \
+    -v /var/run/docker.sock:/var/run/docker.sock \
+    -d docker.io/gitea/act_runner:latest
 ```
 
-There are more parameters so that you can configure it.
+You can add more parameters to use a custom config, add a `data` directory for non-voltatile file storage etc.
 
 ```bash
 docker run \
@@ -310,14 +313,14 @@ docker run \
     -e CONFIG_FILE=/config.yaml \
     -e GITEA_INSTANCE_URL=<instance_url> \
     -e GITEA_RUNNER_REGISTRATION_TOKEN=<registration_token> \
-    -e GITEA_RUNNER_NAME=<runner_name> \
+    -e GITEA_RUNNER_NAME=<gitea_runner_name> \
     -e GITEA_RUNNER_LABELS=<runner_labels> \
-    --name my_runner \
-    -d docker.io/gitea/act_runner:nightly
+    --name <container_name> \
+    -d docker.io/gitea/act_runner:latest
 ```
 
-You may notice that we have mounted the `/var/run/docker.sock` into the container.
-It is because the act runner will run jobs in docker containers, so it needs to communicate with the docker daemon.
+You may notice that we have mounted `/var/run/docker.sock` into the container.
+It is because with this setup, act runner will execute jobs in temporary docker containers so it needs to communicate with the docker daemon. 
 As mentioned, you can remove it if you want to run jobs in the host directly.
 To be clear, the "host" actually means the container which is running the act runner now, instead of the host machine.
 
@@ -396,6 +399,9 @@ services:
 ```
 
 Mounting the host's Docker socket using `/var/run/docker.sock:/var/run/docker.sock` introduces a potential security vulnerability. If a job can access this socket, the reusable `GITEA_RUNNER_REGISTRATION_TOKEN` could be exposed through Docker inspect data.
+
+### More start examples
+A couple of more usage examples can be found in the [act_runner](https://gitea.com/gitea/act_runner/src/branch/main/examples) repository.
 
 ## Advanced Configurations
 
