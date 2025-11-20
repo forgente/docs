@@ -8,7 +8,7 @@ all: build
 
 .PHONY: create_dir
 create_dir:
-	mkdir -p .tmp awesome
+	mkdir -p .tmp
 
 .PHONY: clone_awesome
 clone_awesome: create_dir

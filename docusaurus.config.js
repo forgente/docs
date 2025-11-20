@@ -211,8 +211,8 @@ const config = {
     [
       "@docusaurus/plugin-content-docs",
       {
-        id: "runner",
-        path: "runner",
+        id: "runner-docs",
+        path: "runner-docs",
         routeBasePath: "runner",
         //sidebarPath: './runner/sidebars.js',
         versions: {
@@ -235,8 +235,8 @@ const config = {
         }) => {
           return `https://gitea.com/gitea/docs/src/branch/main/${
             version === "current"
-              ? "runner"
-              : `runner_versioned_docs/version-${version}`
+              ? "runner-docs"
+              : `runner-docs_versioned_docs/version-${version}`
           }/${docPath}`;
         },
         async sidebarItemsGenerator({ defaultSidebarItemsGenerator, ...args }) {
