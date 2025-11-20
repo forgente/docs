@@ -210,6 +210,50 @@ Then you **MUST** set something like `[server] ROOT_URL = http://git.example.com
 The following Apache HTTPD mods must be enabled: `proxy`, `proxy_http`.
 :::
 
+## Apache HTTPD and serve static resources directly
+
+We can tune the performance in splitting requests into categories static and dynamic.
+
+CSS files, JavaScript files, images and web fonts are static content.
+The front page, a repository view or issue list is dynamic content.
+
+Apache HTTPD can serve static resources directly and proxy only the dynamic requests to Gitea.
+
+Download a snapshot of the Gitea source repository to `/path/to/gitea/`.
+After this, run `make frontend` in the repository directory to generate the static resources. We are only interested in the `public/` directory for this task, so you can delete the rest.
+(You will need to have [Node with npm](https://nodejs.org/en/download/) and `make` installed to generate the static resources)
+
+Depending on the scale of your user base, you might want to split the traffic to two distinct servers,
+or use a cdn for the static files.
+
+### Single node and single domain
+
+Set `[server] STATIC_URL_PREFIX = /_/static` in your configuration.
+
+```apacheconf
+<VirtualHost *:80>
+    ...
+    <Proxy *>
+         Order allow,deny
+         Allow from all
+    </Proxy>
+
+    ProxyPass /_/static/ !
+    Alias /_/static/ /path/to/gitea/public/
+    <Directory /path/to/gitea/public/>
+        Options FollowSymlinks
+		AllowOverride None
+		Require all granted
+    </Directory>
+
+    AllowEncodedSlashes NoDecode
+    # Note: no trailing slash after either /git or port
+    ProxyPass / http://localhost:3000/ nocanon
+    ProxyPreserveHost On
+    RequestHeader set "X-Forwarded-Proto" expr=%{REQUEST_SCHEME}
+</VirtualHost>
+```
+
 ## Caddy
 
 If you want Caddy to serve your Gitea instance, you can add the following server block to your Caddyfile:
