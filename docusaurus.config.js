@@ -47,18 +47,6 @@ const apiConfig = [
             route: "/api/1.22/",
             spec: "static/swagger-22.json",
           },
-          {
-            route: "/api/1.21/",
-            spec: "static/swagger-21.json",
-          },
-          {
-            route: "/api/1.20/",
-            spec: "static/swagger-20.json",
-          },
-          {
-            route: "/api/1.19/",
-            spec: "static/swagger-19.json",
-          },
         ]
       : [],
     // Theme Options for modifying how redoc renders them
@@ -126,36 +114,6 @@ const globalVariables = {
     dockerVersion: "1.22.6",
     displayVersion: "1.22.6",
   },
-  "1.21": {
-    goVersion: "1.21",
-    minGoVersion: "1.21",
-    minNodeVersion: "18",
-    version: "1.21.11",
-    sourceVersion: "v1.21.11",
-    sourceBranch: "release/v1.21",
-    dockerVersion: "1.21.11",
-    displayVersion: "1.21.11",
-  },
-  "1.20": {
-    goVersion: "1.20",
-    minGoVersion: "1.20",
-    minNodeVersion: "16",
-    version: "1.20.6",
-    sourceVersion: "v1.20.6",
-    sourceBranch: "release/v1.20",
-    dockerVersion: "1.20.6",
-    displayVersion: "1.20.6",
-  },
-  "1.19": {
-    goVersion: "1.20",
-    minGoVersion: "1.19",
-    minNodeVersion: "14",
-    version: "1.19.4",
-    sourceVersion: "v1.19.4",
-    sourceBranch: "release/v1.19",
-    dockerVersion: "1.19.4",
-    displayVersion: "1.19.4",
-  },
 };
 
 const versions = {
@@ -174,15 +132,6 @@ const versions = {
   },
   "1.22": {
     label: globalVariables["1.22"].displayVersion,
-  },
-  "1.21": {
-    label: globalVariables["1.21"].displayVersion,
-  },
-  "1.20": {
-    label: globalVariables["1.20"].displayVersion,
-  },
-  "1.19": {
-    label: globalVariables["1.19"].displayVersion,
   },
 };
 
@@ -413,7 +362,7 @@ const config = {
             to: "/api/1.25/",
             label: "API",
             position: "left",
-            activeBaseRegex: "api/(1.19|1.20|1.21|1.22|1.23|1.24|1.25|next)/",
+            activeBaseRegex: "api/(1.22|1.23|1.24|1.25|next)/",
           },
           {
             to: "/runner/0.2.11/",
@@ -446,13 +395,11 @@ const config = {
             label: "API Version",
             position: "right",
             items: [
-              { to: "/api/next/", label: "1.25-dev" },
+              { to: "/api/next/", label: "1.26-dev" },
+              { to: "/api/1.25/", label: "1.25.1" },
               { to: "/api/1.24/", label: "1.24.7" },
               { to: "/api/1.23/", label: "1.23.8" },
               { to: "/api/1.22/", label: "1.22.6" },
-              { to: "/api/1.21/", label: "1.21.11" },
-              { to: "/api/1.20/", label: "1.20.6" },
-              { to: "/api/1.19/", label: "1.19.4" },
             ],
             routerRgx: "/api/",
             classNames: "api-dropdown",
