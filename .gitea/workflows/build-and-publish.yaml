@@ -17,7 +17,9 @@ jobs:
           cache: npm
       - name: install necessary tools
         run: |
-          apt update -y && apt install -y rsync python3 python3-pip python-is-python3 awscli
+          curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+          unzip awscliv2.zip
+          sudo ./aws/install
       - name: prepare awesome list
         run: |
           make prepare-awesome-latest prepare-awesome\#25 prepare-awesome\#24 prepare-awesome\#23 prepare-awesome\#22
