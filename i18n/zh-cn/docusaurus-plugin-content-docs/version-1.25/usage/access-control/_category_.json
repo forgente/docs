@@ -1,9 +1,9 @@
 {
-  "label": "Access Control",
+  "label": "权限控制",
   "position": 100,
   "link": {
     "type": "generated-index",
     "slug": "/usage/access-control",
-    "description": "Permissions, security, and access control features"
+    "description": "权限，安全，和访问控制功能"
   }
 }
