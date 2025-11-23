@@ -19,9 +19,9 @@
       "name": "MIT",
       "url": "http://opensource.org/licenses/MIT"
     },
-    "version": "{{AppVer | JSEscape}}"
+    "version": "1.23.8"
   },
-  "basePath": "{{AppSubUrl | JSEscape}}/api/v1",
+  "basePath": "https://gitea.com/api/v1",
   "paths": {
     "/activitypub/user-id/{user-id}": {
       "get": {
@@ -19616,7 +19616,18 @@
           "items": {
             "type": "string"
           },
-          "x-go-name": "Scopes"
+          "x-go-name": "Scopes",
+          "example": [
+            "all",
+            "read:activitypub",
+            "read:issue",
+            "write:misc",
+            "read:notification",
+            "read:organization",
+            "read:package",
+            "read:repository",
+            "read:user"
+          ]
         }
       },
       "x-go-package": "code.gitea.io/gitea/modules/structs"

@@ -52,3 +52,7 @@ clean:
 	rm -rf static/swagger-22.json
 	rm -rf static/swagger-23.json
 	rm -rf static/swagger-24.json
+
+.PHONY: update-api-docs
+update-api-docs:
+	./update_api_docs.sh
