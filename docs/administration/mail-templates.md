@@ -257,7 +257,6 @@ the messages. Here's a list of some of them:
 | `AppDomain`      | -           | Any       | Gitea's host name                                                   |
 | `EllipsisString` | string, int | Any       | Truncates a string to the specified length; adds ellipsis as needed |
 | `SanitizeHTML`   | string      | Body only | Sanitizes text by removing any dangerous HTML tags from it          |
-| `SafeHTML`       | string      | Body only | Takes the input as HTML, can be used for outputing raw HTML content |
 
 These are _functions_, not metadata, so they have to be used:
 
