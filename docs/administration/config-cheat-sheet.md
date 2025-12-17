@@ -1203,6 +1203,7 @@ Synchronize external user data (only LDAP user synchronization is supported)
 - `LARGE_OBJECT_THRESHOLD`: **1048576**: (Go-Git only), don't cache objects greater than this in memory. (Set to 0 to disable.)
 - `DISABLE_CORE_PROTECT_NTFS`: **false** Set to true to forcibly set `core.protectNTFS` to false.
 - `DISABLE_PARTIAL_CLONE`: **false** Disable the usage of using partial clones for git.
+- `DIFF_RENAME_SIMILARITY_THRESHOLD`: **50%** Set the similarity threshold passed to git commands via `--find-renames=<threshold>`. Default is 50%, the same as git. Must be a integer percentage between 0% and 100%.
 
 ### Git - Timeout settings (`git.timeout`)
 
