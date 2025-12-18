@@ -19,7 +19,7 @@
       "name": "MIT",
       "url": "http://opensource.org/licenses/MIT"
     },
-    "version": "1.25.2"
+    "version": "1.25.3"
   },
   "basePath": "https://gitea.com/api/v1",
   "paths": {
