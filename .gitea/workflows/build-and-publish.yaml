@@ -24,7 +24,7 @@ jobs:
         run: |
           make prepare-awesome-latest prepare-awesome\#25 prepare-awesome\#24 prepare-awesome\#23 prepare-awesome\#22
       - name: Cache ~/.npm for npm ci
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: ~/.npm
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
