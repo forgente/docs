@@ -1207,11 +1207,8 @@ Synchronize external user data (only LDAP user synchronization is supported)
 
 ### Git - Timeout settings (`git.timeout`)
 
-- `DEFAULT`: **360**: Git operations default timeout seconds.
 - `MIGRATE`: **600**: Migrate external repositories timeout seconds.
 - `MIRROR`: **300**: Mirror external repositories timeout seconds.
-- `CLONE`: **300**: Git clone from internal repositories timeout seconds.
-- `PULL`: **300**: Git pull from internal repositories timeout seconds.
 - `GC`: **60**: Git repository GC timeout seconds.
 
 ### Git - Config options (`git.config`)
