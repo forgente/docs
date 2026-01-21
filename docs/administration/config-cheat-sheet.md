@@ -34,7 +34,7 @@ A full restart is required for Gitea configuration changes to take effect.
 
 ## Use environment variables to setup Gitea
 
-There is [environment-to-ini](https://github.com/go-gitea/gitea/tree/main/contrib/environment-to-ini) to help to
+There is [environment-to-ini](https://github.com/go-gitea/gitea/blob/main/docker/root/usr/local/bin/environment-to-ini) to help to
 generate Gitea's `app.ini` from environment variables.
 
 ## Default Internal Variables (non-`app.ini` configuration)
