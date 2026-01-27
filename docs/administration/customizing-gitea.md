@@ -317,11 +317,17 @@ mkdir o3dv
 cd o3dv
 ```
 
-Copy latest release zip link from [`GitHub`](https://github.com/kovacsv/Online3DViewer/releases) (v0.16.0 as of now).
-Here use e.g. wget to download the file:
+Copy latest release zip link from [`GitHub`](https://github.com/kovacsv/Online3DViewer/releases) (v0.18.0 as of now).
+Here use e.g. wget or curl to download the file:
 
 ```
-wget https://github.com/kovacsv/Online3DViewer/releases/download/0.16.0/o3dv.zip
+wget https://github.com/kovacsv/Online3DViewer/releases/download/0.18.0/o3dv.zip
+```
+
+or
+
+```
+curl -L -O https://github.com/kovacsv/Online3DViewer/releases/download/0.18.0/o3dv.zip
 ```
 
 Use e.g. unzip to unzip the archive:
@@ -347,7 +353,7 @@ $GITEA_CUSTOM/templates
 
 $GITEA_CUSTOM/public/assets/
 -- o3dv
-   |-- o3dv_0.15.0.zip
+   |-- o3dv.zip
    |-- o3dv.license.md
    |-- o3dv.min.js
    |-- envmaps
