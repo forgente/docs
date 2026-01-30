@@ -178,15 +178,14 @@ LDFLAGS="-linkmode external -extldflags '-static' $LDFLAGS" TAGS="netgo osusergo
 
 This can be combined with `CC`, `GOOS`, and `GOARCH` as above.
 
-### Adding bash/zsh autocompletion (from 1.19)
+### Adding shell autocompletion (from 1.25)
 
-A script to enable bash-completion can be found at [`contrib/autocompletion/bash_autocomplete`](https://raw.githubusercontent.com/go-gitea/gitea/main/contrib/autocompletion/bash_autocomplete). This should be altered as appropriate and can be `source` in your `.bashrc`
-or copied as `/usr/share/bash-completion/completions/gitea`.
+Shell completion can be generated directly from binary with:
+```sh
+gitea completion <shell>
+```
 
-Similarly, a script for zsh-completion can be found at [`contrib/autocompletion/zsh_autocomplete`](https://raw.githubusercontent.com/go-gitea/gitea/main/contrib/autocompletion/zsh_autocomplete). This can be copied to `/usr/share/zsh/_gitea` or sourced within your
-`.zshrc`.
-
-YMMV and these scripts may need further improvement.
+Supported values for `<shell>` are `bash`, `fish`, `pwsh` and `zsh`. Details on how to load the completion for your shell can be found in the completion command help.
 
 ## Compile or cross-compile using Linux with Zig
 
