@@ -224,7 +224,8 @@ The following configuration set `Content-Type: application/vnd.android.package-a
 - `DEFAULT_THEME`: **gitea-auto**: Set the default theme for the Gitea installation, custom themes could be provided by `{CustomPath}/public/assets/css/theme-*.css`.
 - `SHOW_USER_EMAIL`: **true**: Whether the email of the user should be shown in the Explore Users page.
 - `THEMES`: **_empty_**: All available themes by `{CustomPath}/public/assets/css/theme-*.css`. Allow users select personalized themes.
-- `FILE_ICON_THEME`: **material**: The icons for file list (basic/material).
+- `FILE_ICON_THEME`: **material**: The icon theme for files (basic/material).
+- `FOLDER_ICON_THEME`: **basic**: The icon theme for folders (basic/material).
 - `MAX_DISPLAY_FILE_SIZE`: **8388608**: Max size of files to be displayed (default is 8MiB)
 - `AMBIGUOUS_UNICODE_DETECTION`: **true**: Detect ambiguous unicode characters in file contents and show warnings on the UI
 - `REACTIONS`: All available reactions users can choose on issues/prs and comments
@@ -309,7 +310,7 @@ The following configuration set `Content-Type: application/vnd.android.package-a
 - `ROOT_URL`: **`{PROTOCOL}://{DOMAIN}:{HTTP_PORT}/`**:
    Overwrite the automatically generated public URL.
    This is useful if the internal and the external URL don't match (e.g. behind a reverse proxy).
-- `PUBLIC_URL_DETECTION`: **`legacy`**: Controls how to generate the public URL. 
+- `PUBLIC_URL_DETECTION`: **`legacy`**: Controls how to generate the public URL.
    Although it defaults to "legacy" (to avoid breaking existing users), most instances should use the "auto" behavior,
    especially when the Gitea instance needs to be accessed in a container network.
    - "legacy": generate the public URL by "Host" header if "X-Forwarded-Proto" header exists, otherwise use "ROOT_URL".
