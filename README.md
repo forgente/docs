@@ -19,5 +19,5 @@ make serve
 ## Test en version
 
 ```shell
-npm run start
+pnpm run start
 ```

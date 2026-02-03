@@ -24,22 +24,22 @@ prepare-awesome\#%:
 
 .PHONY: install
 install:
-	npm install
+	pnpm install
 
 .PHONY: prepare-docs
 prepare-docs: install prepare-awesome-latest prepare-awesome\#19 prepare-awesome\#20 prepare-awesome\#21 prepare-awesome\#22 prepare-awesome\#23 prepare-awesome\#24
 
 .PHONY: build
 build:
-	npm run build
+	pnpm run build
 
 .PHONY: serve
 serve: prepare-docs
-	npm run start
+	pnpm run start
 
 .PHONY: serve-zh
 serve-zh: prepare-docs
-	npm run start -- --locale zh-cn
+	pnpm run start -- --locale zh-cn
 
 .PHONY: clean
 clean:
