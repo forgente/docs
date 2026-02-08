@@ -20,13 +20,23 @@ Gitea supports these methods of API authentication:
 - `token=...` parameter in URL query string
 - `access_token=...` parameter in URL query string
 - `Authorization: token ...` header in HTTP headers
+- HTTP signatures using an SSH public key or SSH certificate
 
 All of these methods accept the same API key token type. You can
 better understand this by looking at the code -- as of this writing,
 Gitea parses queries and headers to find the token in
 [modules/auth/auth.go](https://github.com/go-gitea/gitea/blob/6efdcaed86565c91a3dc77631372a9cc45a58e89/modules/auth/auth.go#L47).
 
+Gitea can also authenticate API requests using an SSH key or SSH certificate via
+HTTP signatures. The SSH public key (or certificate) must be registered to the
+user account in Gitea, and the client signs requests with the corresponding
+private key. The signature is sent in the standard `Signature` header, and SSH
+certificates additionally include an `X-SSH-Certificate` header. The official
+[go-sdk](https://gitea.com/gitea/go-sdk) implements this flow if you need a
+reference implementation.
+
 ## Generating and listing API tokens
+
 API tokens can be created either in the user interface or via the API. Tokens have by default limited permissions and it is important to create tokens with the correct permissions for your task.
 ### User Interface
 Tokens can be created via the `Manage Access Tokens` dialog, accessed via `User Settings` / `Applications` or via the link `gitea-domain.example/user/settings/applications`. The interface allows you to create tokens and manage their permissions via the `Select permissions` sub-menu.
@@ -34,6 +44,7 @@ Tokens can be created via the `Manage Access Tokens` dialog, accessed via `User 
 Once created, the token is displayed in a toast message above the `Manage Access Tokens` dialog. Please note, that you can view this toast only once and it is not possible to redisplay the token for security reasons.
 
 ### Token API
+
 A new token can be generated with a `POST` request to
 `/users/:name/tokens`.
 
@@ -57,6 +68,7 @@ $ curl --url https://yourusername:password@gitea.your.host/api/v1/users/<usernam
 ```
 
 By default, this creates a token with very limited permissions. To complete your tasks, your token may require extra permissions. These permissions are created via the json variable `scopes`, which takes an array of permissions as strings. Eg.: `"scopes":["all"]`. Possible permissions, as reflected in the user interface are:
+
 - `activitypub`
 - `admin`
 - `issue`
@@ -68,6 +80,7 @@ By default, this creates a token with very limited permissions. To complete your
 - `user`
 
 Each permission may be set to `read` or `write`. `write` implies both Read & Write. To set permissions you write the permissions string as `<read or write>:<permission name>`, eg.: `write:package` or `read:notification`. A properly formatted API call may look like:
+
 ```sh
 $ curl -H "Content-Type: application/json" -d '{"name":"test", "scopes":["write:package", "read:notification"]}' -u username:password https://gitea.your.host/api/v1/users/<username>/tokens
 ```
