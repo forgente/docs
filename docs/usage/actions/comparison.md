@@ -100,6 +100,14 @@ Services steps don't have their own section in the job log user interface.
 
 ## Different behavior
 
+### Concurrency
+
+As of v1.21.0, gitea behaves as if `concurrency.cancel-in-progress` is set to `true`.
+
+This means that newly-triggered workflows will pre-empt runs already in progress for previous triggers.
+
+See [PR #25716](https://github.com/go-gitea/gitea/pull/25716) for additional details.
+
 ### Downloading actions
 
 Previously (Pre 1.21.0), `[actions].DEFAULT_ACTIONS_URL` defaulted to `https://gitea.com`.
