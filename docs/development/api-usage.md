@@ -30,10 +30,12 @@ Gitea parses queries and headers to find the token in
 Gitea can also authenticate API requests using an SSH key or SSH certificate via
 HTTP signatures. The SSH public key (or certificate) must be registered to the
 user account in Gitea, and the client signs requests with the corresponding
-private key. The signature is sent in the standard `Signature` header, and SSH
-certificates additionally include an `X-SSH-Certificate` header. The official
-[go-sdk](https://gitea.com/gitea/go-sdk) implements this flow if you need a
-reference implementation.
+private key. The client signs requests using the SSH private key following the
+[draft-cavage-http-signatures](https://datatracker.ietf.org/doc/html/draft-cavage-http-signatures)
+specification (not RFC 9421). The signature is sent in the `Signature` header,
+and SSH certificates additionally include an `x-ssh-certificate` header. The
+official [go-sdk](https://gitea.com/gitea/go-sdk) implements this flow if you
+need a reference implementation.
 
 ## Generating and listing API tokens
 
