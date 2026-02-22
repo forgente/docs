@@ -161,7 +161,9 @@ In addition, there is _`StaticRootPath`_ which can be set as a built-in at build
 
 - `ALLOWED_TYPES`: **_empty_**: Comma-separated list of allowed file extensions (`.zip`), mime types (`text/plain`) or wildcard type (`image/*`, `audio/*`, `video/*`). Empty value or `*/*` allows all types.
 - `DEFAULT_PAGING_NUM`: **10**: The default paging number of releases user interface
-- For settings related to file attachments on releases, see the `attachment` section.
+- `FILE_MAX_SIZE`: **2048**: Max filesize limit for release attachments (MB)
+- `MAX_FILES`: **5**: Maximum number of attachments that can be uploaded at once for a release.
+- For other settings related to file attachments on releases, see the `attachment` section.
 
 ### Repository - Signing (`repository.signing`)
 
@@ -924,7 +926,7 @@ Default templates for project board view:
 
 - `ENABLED`: **true**: Whether issue and pull request attachments are enabled.
 - `ALLOWED_TYPES`: **.avif,.cpuprofile,.csv,.dmp,.docx,.fodg,.fodp,.fods,.fodt,.gif,.gz,.jpeg,.jpg,.json,.jsonc,.log,.md,.mov,.mp4,.odf,.odg,.odp,.ods,.odt,.patch,.pdf,.png,.pptx,.svg,.tgz,.txt,.webm,.webp,.xls,.xlsx,.zip**: Comma-separated list of allowed file extensions (`.zip`), mime types (`text/plain`) or wildcard type (`image/*`, `audio/*`, `video/*`). Empty value or `*/*` allows all types.
-- `MAX_SIZE`: **2048**: Maximum size (MB).
+- `MAX_SIZE`: **100**: Max size of each file in MB.
 - `MAX_FILES`: **5**: Maximum number of attachments that can be uploaded at once.
 - `STORAGE_TYPE`: **local**: Storage type for attachments, it could be `<blank>`, `local`, `minio`, `azureblob` or `xxx` which defined in another section with `[storage.xxx]`.
 
