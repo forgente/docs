@@ -292,6 +292,7 @@ aliases:
    虽然它的默认值是 "legacy"（避免影响老的用户），大多数实例都应当使用 "auto" 行为，尤其是 Gitea 实例需要在容器网络中被访问的场景。
    - "legacy": 当 "X-Forwarded-Proto" 请求头存在的时候，使用 "Host" 请求头生成公共 URL，否则使用 "ROOT_URL"。
    - "auto": 总是使用 "Host" 请求头生成公共 URL，如果 "X-Forwarded-Proto" 请求头存在也会使用它。如果没有 "Host" 请求头则使用 "ROOT_URL"。
+   - "never": 总是使用 "ROOT_URL" 生成公共 URL，不从请求头进行检测。
 - `STATIC_URL_PREFIX`: **_empty_**:
   覆盖此选项以从不同的 URL 请求静态资源。
   这包括 CSS 文件、图片、JS 文件和 Web 字体。

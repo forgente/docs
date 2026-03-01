@@ -316,6 +316,7 @@ The following configuration set `Content-Type: application/vnd.android.package-a
    especially when the Gitea instance needs to be accessed in a container network.
    - "legacy": generate the public URL by "Host" header if "X-Forwarded-Proto" header exists, otherwise use "ROOT_URL".
    - "auto": always use "Host" header, and also use "X-Forwarded-Proto" header if it exists. If no "Host" header, use "ROOT_URL".
+   - "never": always use "ROOT_URL", never detect from request headers.
 - `STATIC_URL_PREFIX`: **_empty_**:
    Overwrite this option to request static resources from a different URL.
    This includes CSS files, images, JS files and web fonts.
