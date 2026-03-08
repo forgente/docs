@@ -394,15 +394,16 @@ Starting with Gitea 1.20, you can customize the git configuration via the `git.c
 
 ### Enabling signed git pushes
 
-To enable signed git pushes, set these two options:
+[Signed pushes](https://git-scm.com/docs/git-push#Documentation/git-push.txt---signedtruefalseif-asked) allow clients to cryptographically sign the push operation itself (not just individual commits). To enable signed pushes, add the following to `app.ini`:
 
 ```ini
 [git.config]
-receive.advertisePushOptions = true
 receive.certNonceSeed = <randomstring>
 ```
 
-`certNonceSeed` should be set to a random string and be kept secret.
+`certNonceSeed` should be set to a random string and be kept secret. It is used to generate anti-replay nonces. Gitea already sets `receive.advertisePushOptions = true` by default, so no additional configuration is needed. Note that Gitea does not read `/etc/gitconfig`, so this option must be set via `app.ini` as shown above.
+
+On the client side, pushes can be signed via `git push --signed` or enabled permanently using `git config --global push.gpgSign if-asked`.
 
 ### Labels
 
