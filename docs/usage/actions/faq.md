@@ -158,7 +158,7 @@ For events supported only by GitHub, see GitHub's [documentation](https://docs.g
 | push                        | not applicable                                                                                                           |
 | issues                      | `opened`, `edited`, `closed`, `reopened`, `assigned`, `unassigned`, `milestoned`, `demilestoned`, `labeled`, `unlabeled` |
 | issue_comment               | `created`, `edited`, `deleted`                                                                                           |
-| pull_request                | `opened`, `edited`, `closed`, `reopened`, `assigned`, `unassigned`, `synchronize`, `labeled`, `unlabeled`                |
+| pull_request                | `opened`, `edited`, `closed`, `reopened`, `assigned`, `unassigned`, `synchronized`, `labeled`, `unlabeled`                |
 | pull_request_review         | `submitted`, `edited`                                                                                                    |
 | pull_request_review_comment | `created`, `edited`                                                                                                      |
 | release                     | `published`, `edited`                                                                                                    |
