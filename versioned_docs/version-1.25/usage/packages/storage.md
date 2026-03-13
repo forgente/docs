@@ -16,7 +16,7 @@ This ensures no space is wasted for duplicated files.
 
 If two packages are uploaded with identical files, both packages will display the same size but on the filesystem they require only half of the size.
 Whenever a package gets deleted, only the references to the underlying blobs are removed.
-The blobs get not removed at this moment, so they still require space on the filesystem.
+The blobs are not removed at this moment, so they still require space on the filesystem.
 When a new package gets uploaded the existing blobs may get referenced again.
 
 These unreferenced blobs get deleted by a [clean up job](../../administration/config-cheat-sheet.md#cron---cleanup-expired-packages-croncleanup_packages).
