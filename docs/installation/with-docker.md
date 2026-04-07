@@ -6,7 +6,7 @@ aliases:
   - /en-us/install-with-docker
 ---
 
-# Installation with Docker (rootful)
+# Installation with Docker
 
 Gitea provides automatically updated Docker images within its Docker Hub organization. It is
 possible to always use the latest stable tag or to use another service that handles updating
