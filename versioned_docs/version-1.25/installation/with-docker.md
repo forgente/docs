@@ -6,15 +6,22 @@ aliases:
   - /en-us/install-with-docker
 ---
 
-# Installation with Docker
+# Installation with Docker (rootful)
 
 Gitea provides automatically updated Docker images within its Docker Hub organization. It is
 possible to always use the latest stable tag or to use another service that handles updating
 Docker images.
 
-This reference setup guides users through the setup based on `docker-compose`, but the installation
-of `docker-compose` is out of scope of this documentation. To install `docker-compose` itself, follow
-the official [install instructions](https://docs.docker.com/compose/install/).
+This reference setup guides users through the setup based on `docker compose`.
+Docker compose has been included in the Docker Engine since the shift to Compose v2.
+If, for some reason, compose is not available on your system, follow the official [install instructions](https://docs.docker.com/compose/install/).
+
+This document targets for the default rootful image. For the rootless image,
+see "[Installation with Docker (rootless)](./with-docker-rootless.md)"
+
+ATTENTION: the rootful/rootless images are not compatible with the other.
+If you have chosen one, you should always use the same one,
+don't switch to the other one by changing the compose file's `image` value.
 
 ## Basics
 
@@ -26,8 +33,6 @@ If you don't give the volume correct permissions, the container may not start.
 For a stable release you can use `:latest`, `:1` or specify a certain release like `:@dockerVersion@`, but if you'd like to use the latest development version of Gitea then you could use the `:nightly` tag. If you'd like to run the latest commit from a release branch you can use the `:1.x-nightly` tag, where x is the minor version of Gitea. (e.g. `:1.16-nightly`)
 
 ```yaml
-version: "3"
-
 networks:
   gitea:
     external: false
@@ -58,8 +63,6 @@ the port section. It's common to just change the host port and keep the ports wi
 the container like they are.
 
 ```diff
-version: "3"
-
 networks:
   gitea:
     external: false
@@ -93,8 +96,6 @@ To start Gitea in combination with a MySQL database, apply these changes to the
 `docker-compose.yml` file created above.
 
 ```diff
-version: "3"
-
 networks:
   gitea:
     external: false
@@ -144,8 +145,6 @@ To start Gitea in combination with a PostgreSQL database, apply these changes to
 the `docker-compose.yml` file created above.
 
 ```diff
-version: "3"
-
 networks:
   gitea:
     external: false
@@ -196,8 +195,6 @@ create the required volume. You don't need to worry about permissions with
 named volumes; Docker will deal with that automatically.
 
 ```diff
-version: "3"
-
 networks:
   gitea:
     external: false
@@ -227,17 +224,11 @@ MySQL or PostgreSQL containers will need to be created separately.
 
 ## Startup
 
-:::note
-From July 2023 Compose V1 stopped receiving updates. It's also no longer available in new releases of Docker Desktop.
+To start this setup based on `docker compose`, execute `docker compose up -d`,
+to launch Gitea in the background. Using `docker compose ps` will show if Gitea
+started properly. Logs can be viewed with `docker compose logs`.
 
-Compose V2 is included with all currently supported versions of Docker Desktop. Please use V2 to do below operations.
-:::
-
-To start this setup based on `docker-compose`, execute `docker-compose up -d`,
-to launch Gitea in the background. Using `docker-compose ps` will show if Gitea
-started properly. Logs can be viewed with `docker-compose logs`.
-
-To shut down the setup, execute `docker-compose down`. This will stop
+To shut down the setup, execute `docker compose down`. This will stop
 and kill the containers. The volumes will still exist.
 
 :::note
@@ -247,9 +238,9 @@ If using a non-3000 port on http, change app.ini to match
 
 ## Installation
 
-After starting the Docker setup via `docker-compose`, Gitea should be available using a
+After starting the Docker setup via `docker compose`, Gitea should be available using a
 favorite browser to finalize the installation. Visit http://server-ip:3000 and follow the
-installation wizard. If the database was started with the `docker-compose` setup as
+installation wizard. If the database was started with the `docker compose` setup as
 documented above, please note that `db` must be used as the database hostname.
 
 ## Configure the user inside Gitea using environment variables
@@ -279,17 +270,18 @@ To upgrade your installation to the latest release:
 ```bash
 # Edit `docker-compose.yml` to update the version, if you have one specified
 # Pull new images
-docker-compose pull
+docker compose pull
 # Start a new container, automatically removes old one
-docker-compose up -d
+docker compose up -d
 ```
 
 ## Managing Deployments With Environment Variables
 
 In addition to the environment variables above, any settings in `app.ini` can be set
-or overridden with an environment variable of the form: `GITEA__SECTION_NAME__KEY_NAME`.
-These settings are applied each time the docker container starts, and won't be passed into Gitea's sub-processes.
-Full information [here](https://github.com/go-gitea/gitea/blob/0d740a6a7231b254306d0b1513ff27e32646cd5e/contrib/environment-to-ini/README).
+or overridden with an environment variable of the form: `GITEA__section_name__KEY_NAME=value`.
+These settings are applied each time the docker container starts by `environment-to-ini` command
+(a warpper of `gitea config edit-ini`), and won't be passed into Gitea's sub-processes.
+See `./gitea config edit-ini --help` for more details.
 
 These environment variables can be passed to the docker container in `docker-compose.yml`.
 The following example will enable an smtp mail server if the required env variables
@@ -332,5 +324,6 @@ services:
 ```
 
 ### SSH with multiple IP addresses
+
 This assumes that the host machine has more than one reachable IP address: `192.168.1.1` (host) `192.168.1.2` (gitea)
 On the host machine, configure SSHD in `/etc/ssh/sshd_config` to listen on one IP address `ListenAddress 192.168.1.1`. In the compose file the SSH port forwarding then needs to be changed to `"192.168.1.2:22:22"`. The port forwarding needs to be adjusted similarily for all other forwarded ports to avoid problems with DNS.
