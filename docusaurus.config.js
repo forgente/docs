@@ -31,6 +31,10 @@ const apiConfig = [
             route: "/api/",
             spec: "static/swagger-25.json",
           },
+           {
+            route: "/api/1.26/",
+            spec: "static/swagger-26.json",
+          },
           {
             route: "/api/1.25/",
             spec: "static/swagger-25.json",
@@ -65,14 +69,24 @@ const pageConfig = renderApiSSR
 
 const globalVariables = {
   "current": {
-    goVersion: "1.25",
-    minGoVersion: "1.25",
+    goVersion: "1.26",
+    minGoVersion: "1.26",
     minNodeVersion: "22",
     version: "main-nightly",
     sourceVersion: "main",
     sourceBranch: "main",
     dockerVersion: "nightly",
-    displayVersion: "1.26-dev",
+    displayVersion: "1.27-dev",
+  },
+  "1.26": {
+    goVersion: "1.26",
+    minGoVersion: "1.26",
+    minNodeVersion: "22",
+    version: "1.26.0-rc0",
+    sourceVersion: "v1.26.0-rc0",
+    sourceBranch: "release/v1.26",
+    dockerVersion: "1.26.0-rc0",
+    displayVersion: "1.26.0-rc0",
   },
   "1.25": {
     goVersion: "1.25",
@@ -120,6 +134,9 @@ const versions = {
   "current": {
     label: globalVariables["current"].displayVersion, // path is kept as next for dev (so users can always find "nightly" docs)
     banner: "unreleased",
+  },
+  "1.26": {
+    label: globalVariables["1.26"].displayVersion,
   },
   "1.25": {
     label: globalVariables["1.25"].displayVersion,
@@ -362,7 +379,7 @@ const config = {
             to: "/api/1.25/",
             label: "API",
             position: "left",
-            activeBaseRegex: "api/(1.22|1.23|1.24|1.25|next)/",
+            activeBaseRegex: "api/(1.22|1.23|1.24|1.25|1.26|next)/",
           },
           {
             to: "/runner/0.2.11/",
@@ -395,7 +412,8 @@ const config = {
             label: "API Version",
             position: "right",
             items: [
-              { to: "/api/next/", label: "1.26-dev" },
+              { to: "/api/next/", label: "1.27-dev" },
+              { to: "/api/1.26/", label: "1.26.0-rc0" },
               { to: "/api/1.25/", label: "1.25.5" },
               { to: "/api/1.24/", label: "1.24.7" },
               { to: "/api/1.23/", label: "1.23.8" },
