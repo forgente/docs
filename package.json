@@ -24,7 +24,7 @@
     "@emotion/react": "^11.11.3",
     "@emotion/styled": "^11.11.0",
     "@mdx-js/react": "^3.0.0",
-    "@mui/material": "^7.0.0",
+    "@mui/material": "^9.0.0",
     "clsx": "^2.1.1",
     "docusaurus-plugin-plausible": "^0.0.5",
     "prism-react-renderer": "^2.1.0",
