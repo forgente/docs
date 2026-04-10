@@ -23,10 +23,10 @@ aliases:
 
 本文档使用以下约定：
 
-- `[section].FOO_BAR` 或 `[section]FOO_BAR`: 一个位于 INI 文件 `[section]` 段中的配置项。
-- `FooBar`: 这是一个 Gitea 内部变量，不是一个配置项，仅用于描述相关逻辑。
-- `$FOO_BAR`: 这是一个环境变量，Gitea 可能会使用它的值，但是它不能直接用于配置文件中。
-- `{FOO_BAR}/something` 或 `{FooBar}/something`: 这个值会默认使用配置项 `FOO_BAR` 或者内部变量 `FooBar`。
+* `[section].FOO_BAR` 或 `[section]FOO_BAR`: 一个位于 INI 文件 `[section]` 段中的配置项。
+* `FooBar`: 这是一个 Gitea 内部变量，不是一个配置项，仅用于描述相关逻辑。
+* `$FOO_BAR`: 这是一个环境变量，Gitea 可能会使用它的值，但是它不能直接用于配置文件中。
+* `{FOO_BAR}/something` 或 `{FooBar}/something`: 这个值会默认使用配置项 `FOO_BAR` 或者内部变量 `FooBar`。
 
 **注意:** 修改完配置文件后，需要重启 Gitea 服务才能生效。
 
@@ -113,6 +113,7 @@ aliases:
 - `ALLOW_DELETION_OF_UNADOPTED_REPOSITORIES`: **false**: 允许非管理员用户删除未被认领的仓库。
 - `DISABLE_DOWNLOAD_SOURCE_ARCHIVES`: **false**: 不允许从用户界面下载源代码存档文件。
 - `ALLOW_FORK_WITHOUT_MAXIMUM_LIMIT`: **true**: 允许无限制得派生仓库。
+- `ALLOW_FORK_INTO_SAME_OWNER`: **false**: 允许将仓库派生到同一所有者（用户或组织）中。此功能为实验性功能，尚未完全测试，将来可能会更改。
 
 ### 仓库 - 编辑器 (`repository.editor`)
 
@@ -134,7 +135,8 @@ aliases:
 - `DEFAULT_MERGE_MESSAGE_OFFICIAL_APPROVERS_ONLY`: **true**: 在默认合并消息中，仅包括官方允许审查的审批者。
 - `POPULATE_SQUASH_COMMENT_WITH_COMMIT_MESSAGES`: **false**: 在默认的 squash 合并消息中，包括构成拉取请求的所有提交的提交消息。
 - `ADD_CO_COMMITTER_TRAILERS`: **true**: 如果提交者与作者不匹配，在合并提交消息中添加`co-authored-by`和`co-committed-by`标记。
-- `TEST_CONFLICTING_PATCHES_WITH_GIT_APPLY`:使用三方合并方法测试`PR Patch`以发现是否存在冲突。如果此设置`true`，将使用`git apply`重新测试冲突的`PR Pathch` - 这是 1.18（和之前版本）中的先前行为，但效率相对较低。如果发现需要此设置，请报告。
+- `RETARGET_CHILDREN_ON_MERGE`: **true**: 当父合并请求被合并时，将子合并请求重新定向到父合并请求的目标分支。仅适用于头分支和基分支指向同一仓库的已合并合并请求。
+- `DEFAULT_DELETE_BRANCH_AFTER_MERGE`: **false**: 为新仓库设置"合并后默认删除合并请求分支"的默认值。
 
 ### 仓库 - 工单 (`repository.issue`)
 
@@ -153,6 +155,8 @@ aliases:
 
 - `ALLOWED_TYPES`: **_empty_**: 允许发布的文件类型列表，用逗号分隔 。如压缩包类型(`.zip`), mime 类型 (`text/plain`) ，也支持通配符 (`image/*`, `audio/*`, `video/*`)。 空值或者 `*/*` 代表允许所有类型。
 - `DEFAULT_PAGING_NUM`: **10**: 默认的发布版本页面分页大小
+- `FILE_MAX_SIZE`: **2048**: 版本发布附件的最大文件大小限制（MB）
+- `MAX_FILES`: **5**: 版本发布一次最多上传的附件数量。
 - 关于版本发布相关的附件设置，详见`附件`部分。
 
 ### 仓库 - Signing (`repository.signing`)
@@ -216,17 +220,24 @@ aliases:
 - `DEFAULT_THEME`: **gitea-auto**: 在 Gitea 安装时候设置的默认主题，自定义的主题可以通过 `{CustomPath}/public/assets/css/theme-*.css` 提供。
 - `SHOW_USER_EMAIL`: **true**: 用户的电子邮件是否应该显示在`Explore Users`页面中。
 - `THEMES`: **_empty_**: 所有可用的主题（由 `{CustomPath}/public/assets/css/theme-*.css` 提供）。允许用户选择个性化的主题，
+- `FILE_ICON_THEME`: **material**: 文件图标主题（basic/material）。
+- `FOLDER_ICON_THEME`: **basic**: 文件夹图标主题（basic/material）。
 - `MAX_DISPLAY_FILE_SIZE`: **8388608**: 能够显示文件的最大大小（默认为 8MiB）。
+- `AMBIGUOUS_UNICODE_DETECTION`: **true**: 检测文件内容中的歧义 Unicode 字符并在界面上显示警告。
 - `REACTIONS`: 用户可以在问题（Issue）、Pull Request（PR）以及评论中选择的所有可选的反应。
   这些值可以是表情符号别名（例如：:smile:）或 Unicode 表情符号。
   对于自定义的反应，在 public/assets/img/emoji/ 目录下添加一个紧密裁剪的正方形图像，文件名为 reaction_name.png。
+- `REACTION_MAX_USER_NUM`: **10**: 更改在反应工具提示中显示的用户数量（鼠标悬停时触发）。
 - `CUSTOM_EMOJIS`: **gitea, codeberg, gitlab, git, github, gogs**: 不在 utf8 标准中定义的额外表情符号。
   默认情况下，我们支持 Gitea 表情符号（:gitea:）。要添加更多表情符号，请将它们复制到 public/assets/img/emoji/ 目录下，
   并将其添加到此配置中。
+- `ENABLED_EMOJIS`: **_empty_**: 以逗号分隔的启用表情符号列表，例如："smile, thumbsup, thumbsdown"。留空以启用所有表情符号。
 - `DEFAULT_SHOW_FULL_NAME`: **false**: 是否在可能的情况下显示用户的全名。如果没有设置全名，则将使用用户名。
 - `SEARCH_REPO_DESCRIPTION`: **true**: 是否在探索页面上的仓库搜索中搜索描述。
 - `ONLY_SHOW_RELEVANT_REPOS`: **false** 在没有指定关键字并使用默认排序时，是否仅在探索页面上显示相关的仓库。
   如果一个仓库是分叉或者没有元数据（没有描述、图标、主题），则被视为不相关的仓库。
+- `EXPLORE_PAGING_DEFAULT_SORT`: **recentupdate**: 更改探索页面的排序类型。有效值为 "recentupdate"、"alphabetically"、"reverselastlogin"、"newest" 和 "oldest"。
+- `PREFERRED_TIMESTAMP_TENSE`: **mixed**: 所有时间戳应呈现的时态。可选值为 `absolute` 时间（即 1970-01-01, 11:59）和 `mixed`。`mixed` 表示大部分时间戳以相对时间显示（即 2 天前）。
 
 ### 界面 - 管理员 (`ui.admin`)
 
@@ -264,17 +275,21 @@ aliases:
 
 ## Markdown (`markdown`)
 
-- `ENABLE_HARD_LINE_BREAK_IN_COMMENTS`: **true**: 在评论中将软换行符呈现为硬换行符，
-  这意味着段落之间的单个换行符将导致换行，
-  并且不需要在段落后添加尾随空格来强制换行。
-- `ENABLE_HARD_LINE_BREAK_IN_DOCUMENTS`: **false**: 在文档中将软换行符呈现为硬换行符，
-  这意味着段落之间的单个换行符将导致换行，
-  并且不需要在段落后添加尾随空格来强制换行。
+- `RENDER_OPTIONS_COMMENT`: **short-issue-pattern, new-line-hard-break**: 自定义不同上下文的渲染选项。
+  设置为 "none" 以禁用默认值，或使用逗号分隔的列表：
+  - short-issue-pattern: 识别 "#123" 工单引用并将其渲染为指向工单的链接
+  - new-line-hard-break: 将软换行符渲染为硬换行符，这意味着段落之间的单个换行符将导致换行，
+    并且不需要在段落后添加尾随空格来强制换行。
+- `RENDER_OPTIONS_WIKI`: **short-issue-pattern**: 参见 RENDER_OPTIONS_COMMENT
+- `RENDER_OPTIONS_REPO_FILE`: **_empty_**: 参见 RENDER_OPTIONS_COMMENT
 - `CUSTOM_URL_SCHEMES`: 使用逗号分隔的列表（ftp、git、svn）来指示要在 Markdown 中呈现的附加 URL 超链接。
   以 http 和 https 开头的 URL 始终显示。
   如果此条目为空，则允许所有 URL 方案。
 - `FILE_EXTENSIONS`: **.md,.markdown,.mdown,.mkd,.livemd**: 应呈现/编辑为 Markdown 的文件扩展名列表。使用逗号分隔扩展名。要将没有任何扩展名的文件呈现为 Markdown，请只需放置一个逗号。
 - `ENABLE_MATH`: **true**: 启用对`\(...\)`, `\[...\]`, `$...$`和`$$...$$` 作为数学块的检测。
+- `MATH_CODE_BLOCK_DETECTION`: **inline-dollar,block-dollar**: 启用数学代码块检测的分隔符。
+  设置为 "none" 以禁用全部，或使用逗号分隔的列表：inline-dollar, inline-parentheses, block-dollar, block-square-brackets。
+  默认值遵循 GitHub 的行为。
 
 ## 服务器 (`server`)
 
@@ -365,12 +380,14 @@ aliases:
 - `PPROF_DATA_PATH`: **_`AppWorkPath`_/data/tmp/pprof**: `PPROF_DATA_PATH`，当您将 Gitea 作为服务启动时，请使用绝对路径。
 - `LANDING_PAGE`: **home**: 未经身份验证用户的登录页面 \[home, explore, organizations, login, **custom**]。其中 custom 可以是任何 URL，例如 "/org/repo" 或甚至是 `https://anotherwebsite.com`。
 - `LFS_START_SERVER`: **false**: 启用 Git LFS 支持。
+- `LFS_ALLOW_PURE_SSH`: **false**: 启用 Git LFS 纯 SSH 协议支持。当前默认禁用，参见 [Git LFS 支持](administration/git-lfs-support.md)。
 - `LFS_CONTENT_PATH`: **`{APP_DATA_PATH}/lfs`**: 默认的 LFS 内容路径（如果它在本地存储中）。**已弃用**，请使用 `[lfs]` 中的设置。
 - `LFS_JWT_SECRET`: **_empty_**: LFS 身份验证密钥，将其更改为唯一的字符串。你可以通过 Gitea 子命令来生成此字符串。转到 [Command Line](administration/command-line.md#generate)。
 - `LFS_JWT_SECRET_URI`: **_empty_**: 代替在配置中定义 LFS_JWT_SECRET，可以使用此配置选项为 Gitea 提供包含密钥的文件的路径（示例值：`file:/etc/gitea/lfs_jwt_secret`）。
 - `LFS_HTTP_AUTH_EXPIRY`: **24h**: LFS 身份验证的有效期，以 time.Duration 表示，超过此期限的推送可能会失败。
 - `LFS_MAX_FILE_SIZE`: **0**: 允许的最大 LFS 文件大小（以字节为单位，设置为 0 为无限制）。
 - `LFS_LOCKS_PAGING_NUM`: **50**: 每页返回的最大 LFS 锁定数。
+- `LFS_MAX_BATCH_SIZE`: **0**: 客户端可通过 LFS 批量 API 请求的最大 LFS 指针数量。零为默认行为，允许任意大小的批量请求。
 - `REDIRECT_OTHER_PORT`: **false**: 如果为 true 并且 `PROTOCOL` 为 https，则允许将 http 请求重定向到 Gitea 监听的 https 端口的 `PORT_TO_REDIRECT`。
 - `REDIRECTOR_USE_PROXY_PROTOCOL`: **`{USE_PROXY_PROTOCOL}`**: 在连接到 https 重定向器时，需要 PROXY 协议头。
 - `PORT_TO_REDIRECT`: **80**: http 重定向服务监听的端口。当 `REDIRECT_OTHER_PORT` 为 true 时使用。
@@ -427,6 +444,7 @@ aliases:
 - `NAME`: **gitea**: 数据库名称。
 - `USER`: **root**: 数据库用户名。
 - `PASSWD`: **_empty_**: 数据库密码。如果密码包含特殊字符，请使用 \`your password\` 或 """your password"""。
+- `CHARSET_COLLATION`: **_empty_**:（仅限 MySQL/MSSQL）Gitea 期望使用区分大小写的排序规则。留空以使用 Gitea 决定的默认排序规则。除非您明确知道需要什么，否则不要更改它。
 - `SCHEMA`: **_empty_**: 对于 PostgreSQL，如果与 "public" 不同的模式。模式必须事先存在，用户必须对其具有创建特权，并且用户搜索路径必须设置为首先查找模式（例如 `ALTER USER user SET SEARCH_PATH = schema_name,"$user",public;`）。
 - `SSL_MODE`: **disable**: MySQL 或 PostgreSQL 数据库是否启用 SSL 模式，仅适用于 MySQL 和 PostgreSQL。
   - MySQL 的有效值：
@@ -451,6 +469,7 @@ aliases:
 - `MAX_IDLE_CONNS`：**2**: 连接池上的最大空闲数据库连接数，默认为 2 - 这将限制为 `MAX_OPEN_CONNS`。
 - `CONN_MAX_LIFETIME`：**0 或 3s**: 设置 DB 连接可以重用的最长时间 - 默认为 0，表示没有限制（除了 MySQL，其中为 3s - 请参见 #6804 和 #7071）。
 - `AUTO_MIGRATION`：**true**: 是否自动执行数据库模型迁移。
+- `SLOW_QUERY_THRESHOLD` **5s**: 超过此秒数阈值的查询执行时间将在 xorm 日志中记录为警告。
 
 请参见 #8540 和 #8273 以获取有关 `MAX_OPEN_CONNS`、`MAX_IDLE_CONNS` 和 `CONN_MAX_LIFETIME` 的适当值及其与端口耗尽的关系的进一步讨论。
 
@@ -511,6 +530,14 @@ Gitea 创建以下非唯一队列：
   - `deletion`: 用户不能通过界面或者 API 删除他自己。
   - `manage_ssh_keys`: 用户不能通过界面或者 API 配置 SSH Keys。
   - `manage_gpg_keys`: 用户不能配置 GPG 密钥。
+- `EXTERNAL_USER_DISABLE_FEATURES`：**_empty_**：仅在用户使用外部登录方式（例如 LDAP、OAuth 等）时禁用的功能列表，以逗号分隔，可选值为 `deletion`、`manage_ssh_keys`、`manage_gpg_keys`、`manage_mfa`、`manage_credentials`。此设置独立于 `USER_DISABLED_FEATURES`，并作为其行为的补充。
+  - `deletion`：用户不能删除自己的帐户。
+  - `manage_ssh_keys`：用户不能配置 SSH 密钥。
+  - `manage_gpg_keys`：用户不能配置 GPG 密钥。
+  - `manage_mfa`：用户不能配置 MFA 设备。
+  - `manage_credentials`：用户不能配置邮箱、密码或 OpenID。
+  - `change_username`：用户不能更改其用户名。
+  - `change_full_name`：用户不能更改其全名。
 
 ## 安全性 (`security`)
 
@@ -563,6 +590,8 @@ Gitea 创建以下非唯一队列：
   - off - 不检查密码复杂性
 - `PASSWORD_CHECK_PWN`: **false**: 检查密码是否在 [HaveIBeenPwned](https://haveibeenpwned.com/Passwords) 中曝光。
 - `SUCCESSFUL_TOKENS_CACHE_SIZE`: **20**: 缓存成功的令牌哈希。API 令牌在数据库中存储为 pbkdf2 哈希，但这意味着在存在多个 API 操作时可能会有显着的哈希负载。此缓存将在 LRU 缓存中存储成功的哈希令牌，以在性能和安全性之间保持平衡。
+- `DISABLE_QUERY_AUTH_TOKEN`: **false**: 拒绝通过 URL 查询字符串发送的 API 令牌（仅接受基于 Header 的 API 令牌）。此设置将在 Gitea 1.23 中默认为 `true`，并在 Gitea 1.24 中弃用。
+- `TWO_FACTOR_AUTH`：**_empty_**：设置为 enforced 以强制启用双因素认证。仅在 Gitea 1.24 及更高版本中可用。
 
 ## Camo (`camo`)
 
@@ -604,7 +633,10 @@ Gitea 创建以下非唯一队列：
 - `REQUIRE_SIGNIN_VIEW`: **false**: 启用此项以强制用户登录以查看任何页面或使用 API。
 - `ENABLE_NOTIFY_MAIL`: **false**: 启用此项以在发生某些情况（如创建问题）时向存储库的观察者发送电子邮件。需要启用`Mailer`。
 - `ENABLE_BASIC_AUTHENTICATION`: **true**: 禁用此项以禁止使用 HTTP BASIC 和用户的密码进行身份验证。请注意，如果禁用此项，您将无法使用密码访问令牌 API 端点。此外，这仅会禁用使用密码的 BASIC 身份验证，而不会禁用令牌或 OAuth Basic。
+- `ENABLE_PASSWORD_SIGNIN_FORM`：**true**：显示密码登录表单（用于基于密码的登录），否则仅显示已启用的 OAuth2 或 Passkey 登录方式。如果设置为 false，可能还需要将 `ENABLE_BASIC_AUTHENTICATION` 设置为 false 以完全禁用基于密码的身份验证。
+- `ENABLE_PASSKEY_AUTHENTICATION`：**true**：允许用户使用 Passkey 登录。
 - `ENABLE_REVERSE_PROXY_AUTHENTICATION`: **false**: 启用此项以允许反向代理身份验证。
+- `ENABLE_REVERSE_PROXY_AUTHENTICATION_API`：**false**：启用此项以允许 API 请求的反向代理身份验证，反向代理负责确保不会发生 CSRF 攻击。
 - `ENABLE_REVERSE_PROXY_AUTO_REGISTRATION`: **false**: 启用此项以允许反向身份验证的自动注册。
 - `ENABLE_REVERSE_PROXY_EMAIL`: **false**: 启用此项以允许使用提供的电子邮件而不是生成的电子邮件进行自动注册。
 - `ENABLE_REVERSE_PROXY_FULL_NAME`: **false**: 启用此项以允许使用提供的全名进行自动注册。
@@ -655,6 +687,13 @@ Gitea 创建以下非唯一队列：
 - `DISABLE_USERS_PAGE`: **false**: 禁用用户探索页面。
 - `DISABLE_ORGANIZATIONS_PAGE`: **false**: 禁用组织探索页面。
 - `DISABLE_CODE_PAGE`: **false**: 禁用代码探索页面。
+
+### 请求服务质量（`qos`）
+
+- `ENABLED`: **false**: 启用请求服务质量和过载保护。
+- `MAX_INFLIGHT`: **（动态）**: 服务器在将新请求加入队列之前将处理的最大并发请求数。默认值为"CpuNum * 4"。
+- `MAX_WAITING`: **100**: 在新请求被丢弃之前可以加入队列的最大请求数。
+- `TARGET_WAIT_TIME`: **250ms**: 请求在队列中等待的目标最大时间。等待时间低于此值的请求不会被丢弃。当等待时间超过此值时，将丢弃部分请求，直到等待时间降低到此值以下。
 
 ## SSH Minimum Key Sizes (`ssh.minimum_key_sizes`)
 
@@ -712,6 +751,7 @@ Gitea 创建以下非唯一队列：
 - `HELO_HOSTNAME`: **（从系统检索）**: HELO 主机名。
 - `FROM`: **_empty_**: 邮件的发件人地址，符合 RFC 5322。这可以是一个电子邮件地址，也可以是 "Name" \<email@example.com\> 格式。
 - `ENVELOPE_FROM`: **_empty_**: 在 SMTP 邮件信封上设置的地址作为发件地址。设置为 `<>` 以发送一个空地址。
+- `FROM_DISPLAY_NAME_FORMAT`：**`{{ .DisplayName }}`**：当 Gitea 代表用户发送邮件时，将使用 WebUI 中显示的名称。如果您希望例如 `Mister X (by CodeIt) <gitea@codeit.net>`，请设置为 `{{ .DisplayName }} (by {{ .AppName }})`。可用变量：`.DisplayName`、`.AppName` 和 `.Domain`。
 - `SUBJECT_PREFIX`: **_empty_**: 放置在电子邮件主题行之前的前缀。
 - `SENDMAIL_PATH`: **sendmail**: 操作系统上 `sendmail` 的位置（可以是命令或完整路径）。
 - `SENDMAIL_ARGS`: **_empty_**: 指定任何额外的 sendmail 参数。（注意：您应该知道电子邮件地址可能看起来像选项 - 如果您的 `sendmail` 命令带有选项，您必须设置选项终止符 `--`）
@@ -719,6 +759,22 @@ Gitea 创建以下非唯一队列：
 - `SENDMAIL_CONVERT_CRLF`: **true**: 大多数版本的 sendmail 偏好使用 LF 换行符，而不是 CRLF 换行符。如果您的 sendmail 版本需要 CRLF 换行符，请将此设置为 false。
 - `SEND_BUFFER_LEN`: **100**: 邮件队列的缓冲区长度。**已弃用**，请在 `[queue.mailer]` 中使用 `LENGTH`。
 - `SEND_AS_PLAIN_TEXT`: **false**: 仅以纯文本形式发送邮件，不包括 HTML 备选方案。
+- `EMBED_ATTACHMENT_IMAGES`: **false**: 在 HTML 邮件中以 base64 格式嵌入附件图片。（适用于不加载外部图片的客户端或断开 VPN 连接仍接收邮件的用户；注意：gmail 等在线 Web 客户端不会显示 base64 嵌入的图片）
+
+## 覆盖邮件头（`mailer.override_header`）
+
+:::warning
+此项默认为空，仅在您明确知道需要时使用。
+:::
+
+示例如下：
+
+```ini
+[mailer.override_header]
+Reply-To = test@example.com, test2@example.com
+Content-Type = text/html; charset=utf-8
+In-Reply-To =
+```
 
 ## 入站邮件 (`email.incoming`)
 
@@ -798,19 +854,22 @@ Gitea 创建以下非唯一队列：
 - `ALLOWED_TYPES`: **.avif,.cpuprofile,.csv,.dmp,.docx,.fodg,.fodp,.fods,.fodt,.gif,.gz,.jpeg,.jpg,.json,.jsonc,.log,.md,.mov,.mp4,.odf,.odg,.odp,.ods,.odt,.patch,.pdf,.png,.pptx,.svg,.tgz,.txt,.webm,.webp,.xls,.xlsx,.zip**: 允许的文件扩展名（`.zip`）、mime 类型（`text/plain`）或通配符类型（`image/*`、`audio/*`、`video/*`）的逗号分隔列表。空值或 `*/*` 允许所有类型。
 - `MAX_SIZE`: **2048**: 附件的最大限制（MB）。
 - `MAX_FILES`: **5**: 一次最多上传的附件数量。
-- `STORAGE_TYPE`: **local**: 附件的存储类型，`local` 表示本地磁盘，`minio` 表示兼容 S3 的对象存储服务，如果未设置将使用默认值 `local` 或其他在 `[storage.xxx]` 中定义的名称。
-- `SERVE_DIRECT`: **false**: 允许存储驱动器重定向到经过身份验证的 URL 以直接提供文件。目前，只支持 Minio/S3 通过签名 URL 提供支持，local 不会执行任何操作。
-- `PATH`: **attachments**: 存储附件的路径，仅当 STORAGE_TYPE 为 `local` 时可用。如果是相对路径，将会被解析为 `{AppDataPath}/{attachment.PATH}`.
-- `MINIO_ENDPOINT`: **localhost:9000**: Minio 端点以连接，仅当 STORAGE_TYPE 为 `minio` 时可用。
-- `MINIO_ACCESS_KEY_ID`: Minio accessKeyID 以连接，仅当 STORAGE_TYPE 为 `minio` 时可用。
-- `MINIO_SECRET_ACCESS_KEY`: Minio secretAccessKey 以连接，仅当 STORAGE_TYPE 为 `minio` 时可用。
-- `MINIO_BUCKET`: **gitea**: Minio 存储附件的存储桶，仅当 STORAGE_TYPE 为 `minio` 时可用。
-- `MINIO_LOCATION`: **us-east-1**: Minio 存储桶的位置以创建，仅当 STORAGE_TYPE 为 `minio` 时可用。
-- `MINIO_BASE_PATH`: **attachments/**: Minio 存储桶上的基本路径，仅当 STORAGE_TYPE 为 `minio` 时可用。
-- `MINIO_USE_SSL`: **false**: Minio 启用 SSL，仅当 STORAGE_TYPE 为 `minio` 时可用。
-- `MINIO_INSECURE_SKIP_VERIFY`: **false**: Minio 跳过 SSL 验证，仅当 STORAGE_TYPE 为 `minio` 时可用。
-- `MINIO_CHECKSUM_ALGORITHM`: **default**: Minio 校验算法：`default`（适用于 MinIO 或 AWS S3）或 `md5`（适用于 Cloudflare 或 Backblaze）
-- `MINIO_BUCKET_LOOKUP_TYPE`: **auto**: Minio 的 bucket 查找方式默认为`auto`模式，可将其设置为`dns`（虚拟托管样式）或`path`（路径样式），仅当`STORAGE_TYPE`为`minio`时可用。
+- `STORAGE_TYPE`: **local**: 附件的存储类型，可以为空、`local`、`minio`、`azureblob` 或在 `[storage.xxx]` 中定义的其他名称。
+
+  当 `STORAGE_TYPE` 为空或未配置此项时，所有存储将从 `[storage]`（如已配置）或默认值派生。
+
+  当 `STORAGE_TYPE = local` 时，以下为可用配置项
+
+  - `PATH`: **attachments**: 存储附件的路径，仅当 STORAGE_TYPE 为 `local` 时可用。如果是相对路径，将会被解析为 `{AppDataPath}/{attachment.PATH}`。
+
+  当 `STORAGE_TYPE = minio` 时，相关配置详见 [Minio 存储配置](#storage_minio)，您也可以如下定义配置来覆盖派生的或默认的值。
+
+  - `MINIO_BASE_PATH`: **attachments/**: Minio 存储桶上的基本路径，仅当 STORAGE_TYPE 为 `minio` 时可用。
+
+  当 `STORAGE_TYPE = xxx` 时，配置将从 `[storage.xxx]` 派生，以下配置项可被覆盖。
+
+  - `PATH`: 同上
+  - `MINIO_BASE_PATH`: 同上
 
 ## 日志 (`log`)
 
@@ -888,25 +947,34 @@ Gitea 创建以下非唯一队列：
 
 - `ENABLED`: **true**: 是否启用该定时任务。
 - `RUN_AT_START`: **true**: 设置在服务启动时运行。
+- `NOTICE_ON_SUCCESS`: **false**: 是否在成功执行时也发出通知。
 - `SCHEDULE`: **@midnight**: 使用 Cron 语法的定时任务触发配置，例如 `@every 1h`。
 - `OLDER_THAN`: **24h**: 超过`OLDER_THAN`时间的存档将被删除，例如 `12h`。
 
 #### 定时任务 - 更新镜像仓库 (`cron.update_mirrors`)
 
+- `ENABLED`: **true**: 启用定期运行更新镜像任务。
 - `SCHEDULE`: **@every 10m**: 使用 Cron 语法的定时任务触发配置，例如 `@every 3h`。
+- `RUN_AT_START`: **false**: 在 Gitea 启动时运行更新镜像任务。
+- `NOTICE_ON_SUCCESS`: **false**: 是否在成功时发出通知。
 - `PULL_LIMIT`: **50**: 将要添加到队列的镜像数量限制为此数字（负值表示无限制，0 将导致不会将镜像加入队列，从而有效地禁用镜像更新）。
 - `PUSH_LIMIT`: **50**: 将要添加到队列的镜像数量限制为此数字（负值表示无限制，0 将导致不会将镜像加入队列，从而有效地禁用镜像更新）。
 
 #### 定时任务 - 健康检查所有仓库 (`cron.repo_health_check`)
 
+- `ENABLED`: **true**: 启用定期运行仓库健康检查任务。
 - `SCHEDULE`: **@midnight**: Cron 语法，用于安排仓库健康检查。
+- `RUN_AT_START`: **false**: 在 Gitea 启动时运行仓库健康检查任务。
+- `NOTICE_ON_SUCCESS`: **false**: 是否在成功时发出通知。
 - `TIMEOUT`: **60s**: 用于健康检查执行超时的时间持续语法。
 - `ARGS`: **_empty_**: `git fsck` 命令的参数，例如 `--unreachable --tags`。在 http://git-scm.com/docs/git-fsck 上了解更多。
 
 #### 定时任务 - 检查所有仓库统计 (`cron.check_repo_stats`)
 
-- `RUN_AT_START`: **true**: 在启动时运行仓库统计检查。
 - `SCHEDULE`: **@midnight**: Cron 语法，用于安排仓库统计检查。
+- `ENABLED`: **true**: 启用定期运行仓库统计检查任务。
+- `RUN_AT_START`: **true**: 在启动时运行仓库统计检查。
+- `NOTICE_ON_SUCCESS`: **false**: 是否在成功时发出通知。
 
 #### 定时任务 - 清理 hook_task 表 (`cron.cleanup_hook_task_table`)
 
@@ -927,14 +995,48 @@ Gitea 创建以下非唯一队列：
 
 #### Cron - 更新迁移海报 ID (`cron.update_migration_poster_id`)
 
+- `ENABLED`: **true**: 启用更新迁移海报 ID 任务。
+- `RUN_AT_START`: **true**: 在启动服务器时更新迁移仓库的工单和评论的海报 ID。
+- `NOTICE_ON_SUCCESS`: **false**: 是否在成功时发出通知。
 - `SCHEDULE`: **@midnight** : 同步之间的间隔作为持续时间，每次实例启动时都会尝试同步。
 
 #### Cron - 同步外部用户 (`cron.sync_external_users`)
 
+- `ENABLED`: **true**: 启用同步外部用户数据任务。
+- `RUN_AT_START`: **false**: 在启动服务器时同步外部用户数据。
+- `NOTICE_ON_SUCCESS`: **false**: 是否在成功时发出通知。
 - `SCHEDULE`: **@midnight** : 同步之间的间隔作为持续时间，每次实例启动时都会尝试同步。
 - `UPDATE_EXISTING`: **true**: 创建新用户，更新现有用户数据，并禁用不再在外部源中的用户（默认设置）或仅在 UPDATE_EXISTING 设置为 false 时创建新用户。
 
+#### Cron - 清理过期的 Actions 资源 (`cron.cleanup_actions`)
+
+- `ENABLED`: **true**: 启用清理过期 Actions 资源的任务。
+- `RUN_AT_START`: **true**: 在启动时运行任务（如果启用）。
+- `SCHEDULE`: **@midnight**: Cron 语法，用于任务调度。
+
+#### Cron - 清理已删除的分支 (`cron.deleted_branches_cleanup`)
+
+- `ENABLED`: **true**: 启用已删除分支清理。
+- `RUN_AT_START`: **true**: 在启动时运行任务（如果启用）。
+- `NOTICE_ON_SUCCESS`: **false**: 设置为 true 以记录成功消息。
+- `SCHEDULE`: **@midnight**: Cron 语法，用于安排已删除分支清理。
+- `OLDER_THAN`: **24h**: 删除超过 OLDER_THAN 时间的已删除分支。
+
+#### Cron - 同步仓库许可证 (`cron.sync_repo_licenses`)
+
+- `ENABLED`: **false**: 启用仓库许可证同步。
+- `RUN_AT_START`: **false**: 在启动时运行任务（如果启用）。
+- `NOTICE_ON_SUCCESS`: **false**: 设置为 true 以记录成功消息。
+- `SCHEDULE`: **@annually*: Cron 语法，用于安排仓库许可证同步。
+
 ### 扩展的定时任务（默认未启用）
+
+#### Cron - 删除所有仓库存档 (`cron.delete_repo_archives`)
+
+- `ENABLED`: **false**: 启用服务。
+- `RUN_AT_START`: **false**: 在启动时运行任务（如果启用）。
+- `NOTICE_ON_SUCCESS`: **false**: 设置为 true 以打开成功通知。
+- `SCHEDULE`: **@annually**: Cron 语法，用于删除所有仓库存档，例如 `@annually`。
 
 #### Cron - 垃圾收集所有仓库 (`cron.git_gc_repos`)
 
@@ -951,6 +1053,13 @@ Gitea 创建以下非唯一队列：
 - `RUN_AT_START`: **false**: 在启动时运行任务（如果启用）。
 - `NOTICE_ON_SUCCESS`: **false**: 设置为 true 以打开成功通知。
 - `SCHEDULE`: **@every 72h**: Cron 语法，用于安排仓库存档清理，例如 `@every 1h`。
+
+#### Cron - 更新 '.ssh/authorized_principals' 文件 (`cron.resync_all_sshprincipals`)
+
+- `ENABLED`: **false**: 启用服务。
+- `RUN_AT_START`: **false**: 在启动时运行任务（如果启用）。
+- `NOTICE_ON_SUCCESS`: **false**: 设置为 true 以打开成功通知。
+- `SCHEDULE`: **@every 72h**: Cron 语法，用于安排 authorized_principals 更新，例如 `@every 1h`。
 
 #### Cron - 重新同步所有仓库的 pre-receive、update 和 post-receive 钩子 (`cron.resync_all_hooks`)
 
@@ -988,6 +1097,14 @@ Gitea 创建以下非唯一队列：
 - `SCHEDULE`: **@every 168h**: Cron 语法，用于设置多长时间进行检查。
 - `OLDER_THAN`: **8760h**: 早于此表达式的任何操作都将从数据库中删除，建议使用 `8760h`（1 年），因为这是热力图的最大长度。
 
+#### Cron - 检查 Gitea 新版本 (`cron.update_checker`)
+
+- `ENABLED`: **true**: 启用服务。
+- `RUN_AT_START`: **false**: 在启动时运行任务（如果启用）。
+- `ENABLE_SUCCESS_NOTICE`: **true**: 设置为 false 以关闭成功通知。
+- `SCHEDULE`: **@every 168h**: Cron 语法，用于安排任务，例如 `@every 168h`。
+- `HTTP_ENDPOINT`: **https://dl.gitea.com/gitea/version.json**: Gitea 用于检查新版本的端点。
+
 #### Cron - 从数据库中删除所有旧的系统通知 (`cron.delete_old_system_notices`)
 
 - `ENABLED`: **false**: 启用服务。
@@ -1004,6 +1121,44 @@ Gitea 创建以下非唯一队列：
 - `OLDER_THAN`: **168h**: 只会尝试回收早于此时间（默认 7 天）的 LFSMetaObject。
 - `LAST_UPDATED_MORE_THAN_AGO`: **72h**: 只会尝试回收超过此时间（默认 3 天）没有尝试过回收的 LFSMetaObject。
 - `NUMBER_TO_CHECK_PER_REPO`: **100**: 每个仓库要检查的过期 LFSMetaObject 的最小数量。设置为 `0` 以始终检查所有。
+- `PROPORTION_TO_CHECK_PER_REPO`: **0.6**: 每个仓库至少检查此比例的 LFSMetaObject。（这可能导致检查所有过期的 LFSMetaObject。）
+
+### Actions 定时任务
+
+#### Cron - 重建工单索引 (`cron.rebuild_issue_indexer`)
+
+- `ENABLED`: **true**: 启用服务。
+- `RUN_AT_START`: **true**: 在启动时运行任务（如果启用）。
+- `NO_SUCCESS_NOTICE`: **false**: 设置为 true 以关闭成功通知。
+- `SCHEDULE`: **@annually**: Cron 语法，用于设置重建索引的频率。
+
+#### Cron - 停止长时间未更新的运行中任务 (`cron.stop_zombie_tasks`)
+
+- `ENABLED`: **true**: 启用服务。
+- `RUN_AT_START`: **true**: 在启动时运行任务（如果启用）。
+- `NO_SUCCESS_NOTICE`: **false**: 设置为 true 以关闭成功通知。
+- `SCHEDULE`: **@every 5m**: Cron 语法，用于设置检查的频率。
+
+#### Cron - 停止持续更新但长时间未结束的运行中任务 (`cron.stop_endless_tasks`)
+
+- `ENABLED`: **true**: 启用服务。
+- `RUN_AT_START`: **true**: 在启动时运行任务（如果启用）。
+- `NO_SUCCESS_NOTICE`: **false**: 设置为 true 以关闭成功通知。
+- `SCHEDULE`: **@every 30m**: Cron 语法，用于设置检查的频率。
+
+#### Cron - 取消长时间未被领取的任务 (`cron.cancel_abandoned_jobs`)
+
+- `ENABLED`: **true**: 启用服务。
+- `RUN_AT_START`: **false**: 在启动时运行任务（如果启用）。
+- `NO_SUCCESS_NOTICE`: **false**: 设置为 true 以关闭成功通知。
+- `SCHEDULE`: **@every 6h**: Cron 语法，用于设置检查的频率。
+
+#### Cron - 启动基于定时的 Actions (`cron.start_schedule_tasks`)
+
+- `ENABLED`: **true**: 启用服务。
+- `RUN_AT_START`: **false**: 在启动时运行任务（如果启用）。
+- `NO_SUCCESS_NOTICE`: **false**: 设置为 true 以关闭成功通知。
+- `SCHEDULE`: **@every 1m**: Cron 语法，用于设置调度任务的频率。
 
 ## Git (`git`)
 
@@ -1025,14 +1180,12 @@ Gitea 创建以下非唯一队列：
 - `LARGE_OBJECT_THRESHOLD`: **1048576**: （仅限于 Go-Git），不要在内存中缓存大于此大小的对象。（设置为 0 以禁用。）
 - `DISABLE_CORE_PROTECT_NTFS`: **false** 将`core.protectNTFS`强制设置为 false。
 - `DISABLE_PARTIAL_CLONE`: **false** 禁用使用部分克隆进行 git。
+- `DIFF_RENAME_SIMILARITY_THRESHOLD`：**50%** 设置通过 `--find-renames=<threshold>` 传递给 git 命令的相似度阈值。默认值为 50%，与 git 相同。必须是 0% 到 100% 之间的整数百分比。
 
 ### Git - 超时设置 (`git.timeout`)
 
-- `DEFAULT`: **360**: Git 操作的默认超时时间，单位秒
 - `MIGRATE`: **600**: 在迁移外部存储库时的超时时间，单位秒
 - `MIRROR`: **300**: 在镜像外部存储库时的超时时间，单位秒
-- `CLONE`: **300**: 在存储库之间进行内部克隆的超时时间，单位秒
-- `PULL`: **300**: 在存储库之间进行内部拉取的超时时间，单位秒
 - `GC`: **60**: git 存储库 GC 的超时时间，单位秒
 
 ### Git - 配置选项 (`git.config`)
@@ -1082,9 +1235,11 @@ Gitea 创建以下非唯一队列：
 
 ## Markup (`markup`)
 
-- `MERMAID_MAX_SOURCE_CHARACTERS`: **5000**: 设置 Mermaid 源的最大大小。(设为-1 代表禁止)
+- `MERMAID_MAX_SOURCE_CHARACTERS`: **50000**: 设置 Mermaid 源的最大大小。(设为-1 代表禁止)
 
-gitea 支持外部渲染工具，你可以配置你熟悉的文档渲染工具. 比如一下将新增一个名字为 asciidoc 的渲染工具。
+## Markup 外部渲染（`markup.external-render-name`）
+
+Gitea 支持使用外部工具进行 Markup 渲染。以下示例将新增一个名为 `asciidoc` 的 Markup 渲染器。
 
 ```ini
 [markup.asciidoc]
@@ -1095,15 +1250,18 @@ RENDER_COMMAND = "asciidoctor --embedded --safe-mode=secure --out-file=- -"
 IS_INPUT_FILE = false
 ```
 
-- ENABLED：**false** 设置是否启动渲染器
-- NEED_POSTPROCESS：**true** 设置为**true**以替换链接/SHA1 等。
-- FILE*EXTENSIONS：\*\*\_empty*\*\* 要由外部命令渲染的文件扩展名列表。多个扩展名需要用逗号分隔。
-- RENDER_COMMAND：用于渲染所有匹配的扩展名的外部命令。
-- IS_INPUT_FILE：**false** 输入不是标准输入，而是一个在`RENDER_COMMAND`之后带有文件参数的文件。
+- ENABLED：**false** 启用 Markup 支持；设置为 **true** 以启用此渲染器。
+- FILE\_EXTENSIONS：**_empty_** 要由外部命令渲染的文件扩展名列表。多个扩展名需要用逗号分隔。
+- RENDER\_COMMAND：用于渲染所有匹配的扩展名的外部命令。
+- IS\_INPUT\_FILE：**false** 输入不是标准输入，而是一个在 `RENDER_COMMAND` 之后带有文件参数的文件。
 - RENDER_CONTENT_MODE：**sanitized** 内容将如何呈现。
-  - sanitized：对内容进行清理，并在当前页面内呈现，默认仅允许一些 HTML 标签和属性。可以在`[markup.sanitizer.*]`中定义自定义的清理规则。
+  - sanitized：对内容进行清理，并在当前页面内呈现，默认仅允许一些 HTML 标签和属性。可以在 `[markup.sanitizer.*]` 中定义自定义的清理规则。
   - no-sanitizer：禁用清理程序，在当前页面内呈现内容。这是**不安全**的，如果内容包含恶意代码，可能会导致 XSS 攻击。
   - iframe：在单独的独立页面中呈现内容，并通过 iframe 嵌入到当前页面中。iframe 处于禁用同源策略的沙箱模式，并且 JS 代码与父页面安全隔离。
+- RENDER_CONTENT_SANDBOX：**_empty_** 当 RENDER_CONTENT_MODE 为 `iframe` 时应用于 iframe 和 Content-Security-Policy 头的沙箱设置。默认为一组安全的"allow-*"限制（空格分隔）。您也可以根据需要设置或使用"disabled"完全禁用沙箱。设置时请确保没有安全风险：
+    - 仅 PDF 内容：通常可以安全使用"disabled"，并且需要设置为"disabled"，因为 PDF 仅在无沙箱时渲染。
+    - 包含 JS 的 HTML 内容：如果"RENDER_COMMAND"能保证不存在 XSS，则是安全的，否则需要微调"allow-*"限制。
+- NEED_POST_PROCESS：**false** 是否对渲染后的 HTML 内容进行后处理，包括：解析相对链接和图片源、识别 issue/commit 引用、转义不可见字符、提及用户、渲染永久链接代码块、替换 emoji 短代码等。当 RENDER_CONTENT_MODE 为 `sanitized` 时默认为 true，否则为 false。
 
 两个特殊的环境变量会传递给渲染命令：
 
@@ -1191,6 +1349,7 @@ ALLOW_DATA_URI_IMAGES = true
 - `LIMIT_SIZE_RUBYGEMS`：**-1**: RubyGems 上传的最大大小（`-1` 表示无限制，格式为 `1000`、`1 MB`、`1 GiB`）。
 - `LIMIT_SIZE_SWIFT`：**-1**: Swift 上传的最大大小（`-1` 表示无限制，格式为 `1000`、`1 MB`、`1 GiB`）。
 - `LIMIT_SIZE_VAGRANT`：**-1**: Vagrant 上传的最大大小（`-1` 表示无限制，格式为 `1000`、`1 MB`、`1 GiB`）。
+- `LIMIT_SIZE_TERRAFORM_STATE`：**-1**：Terraform state 上传的最大大小（`-1` 表示无限制，格式为 `1000`、`1 MB`、`1 GiB`）。
 
 ## 镜像（`mirror`）
 
@@ -1205,50 +1364,67 @@ ALLOW_DATA_URI_IMAGES = true
 用于 lfs 数据的存储配置。当将 `STORAGE_TYPE` 设置为 `xxx` 时，它将从默认的 `[storage]` 或 `[storage.xxx]` 派生。
 当派生时，`PATH` 的默认值是 `data/lfs`，`MINIO_BASE_PATH` 的默认值是 `lfs/`。
 
-- `STORAGE_TYPE`：**local**: lfs 的存储类型，`local` 表示本地磁盘，`minio` 表示 S3 兼容对象存储服务，或者使用 `[storage.xxx]` 中定义的其他名称。
-- `SERVE_DIRECT`：**false**: 允许存储驱动程序重定向到经过身份验证的 URL 以直接提供文件。目前，仅支持通过签名的 URL 提供 Minio/S3，本地不执行任何操作。
+- `STORAGE_TYPE`：**local**: lfs 的存储类型，可以为空、`local`、`minio`、`azureblob` 或在 `[storage.xxx]` 中定义的其他名称。
+
+  当 `STORAGE_TYPE` 为空或未配置此项时，所有存储将从 `[storage]`（如已配置）或默认值派生。
+
+  当 `STORAGE_TYPE = local` 时，以下为可用配置项
+
 - `PATH`：**./data/lfs**: 存储 LFS 文件的位置，仅在 `STORAGE_TYPE` 为 `local` 时可用。如果未设置，则回退到 `[server]` 部分中已弃用的 `LFS_CONTENT_PATH` 值。
-- `MINIO_ENDPOINT`：**localhost:9000**: 连接的 Minio 终端点，仅在 `STORAGE_TYPE` 为 `minio` 时可用。
-- `MINIO_ACCESS_KEY_ID`：Minio 的 accessKeyID，仅在 `STORAGE_TYPE` 为 `minio` 时可用。
-- `MINIO_SECRET_ACCESS_KEY`：Minio 的 secretAccessKey，仅在 `STORAGE_TYPE` 为 `minio` 时可用。
-- `MINIO_BUCKET`：**gitea**: 用于存储 lfs 的 Minio 桶，仅在 `STORAGE_TYPE` 为 `minio` 时可用。
-- `MINIO_LOCATION`：**us-east-1**: 创建桶的 Minio 位置，仅在 `STORAGE_TYPE` 为 `minio` 时可用。
-- `MINIO_BASE_PATH`：**lfs/**: 桶上的 Minio 基本路径，仅在 `STORAGE_TYPE` 为 `minio` 时可用。
-- `MINIO_USE_SSL`：**false**: Minio 启用 ssl，仅在 `STORAGE_TYPE` 为 `minio` 时可用。
-- `MINIO_INSECURE_SKIP_VERIFY`：**false**: Minio 跳过 SSL 验证，仅在 `STORAGE_TYPE` 为 `minio` 时可用。
-- `MINIO_BUCKET_LOOKUP_TYPE`: **auto**: Minio 的 bucket 查找方式默认为`auto`模式，可将其设置为`dns`（虚拟托管样式）或`path`（路径样式），仅当`STORAGE_TYPE`为`minio`时可用。
+
+  当 `STORAGE_TYPE = minio` 时，相关配置详见 [Minio 存储配置](#storage_minio)，您也可以如下定义配置来覆盖派生的或默认的值。
+
+  - `MINIO_BASE_PATH`：**attachments/**: 桶上的 Minio 基本路径，仅在 `STORAGE_TYPE` 为 `minio` 时可用。
+
+  当 `STORAGE_TYPE = xxx` 时，配置将从 `[storage.xxx]` 派生，以下配置项可被覆盖。
+
+- `PATH`：同上
+- `MINIO_BASE_PATH`：同上
+
+## LFS 客户端（`lfs_client`）
+
+- `BATCH_SIZE`: **20**: 上游镜像每次批量 API 请求的 LFS 指针数量。
+- `BATCH_OPERATION_CONCURRENCY`: **8**: 批量操作中并发上传/下载的数量。
 
 ## 存储 (`storage`)
 
-默认的附件、lfs、头像、仓库头像、仓库归档、软件包、操作日志、artifacts 的存储配置。推荐仅仅配置此 section 并让其它的 section 从此配置项继承。
+`attachments`、`lfs`、`avatars`、`repo-avatars`、`repo-archive`、`packages`、`actions_log`、`actions_artifact` 的默认存储配置。推荐仅配置此部分并让其他部分从此配置继承，前提是所有存储都位于同一父目录或 Minio 桶下。
 
-- `STORAGE_TYPE`：**local**: 存储类型，`local` 表示本地磁盘，`minio` 表示 S3，`azureblob` 表示 azure 对象存储。
+- `STORAGE_TYPE`：**local**: 存储类型，`local` 表示本地磁盘，`minio` 表示 S3 兼容对象存储服务，`azureblob` 表示 Azure Blob 存储服务。
+
+### Minio 存储配置（`storage_minio`）
+
 - `SERVE_DIRECT`：**false**: 允许存储驱动程序重定向到经过身份验证的 URL 以直接提供文件。目前，仅支持通过签名的 URL 提供 Minio/S3，本地不执行任何操作。
-- `MINIO_ENDPOINT`：**localhost:9000**: 连接的 Minio 终端点，仅在 `STORAGE_TYPE` 为 `minio` 时可用。
-- `MINIO_ACCESS_KEY_ID`：Minio 的 accessKeyID，仅在 `STORAGE_TYPE` 为 `minio` 时可用。
+- `MINIO_ENDPOINT`：**localhost:9000**: Minio 连接终端点，仅在 `STORAGE_TYPE` 为 `minio` 时可用。
+- `MINIO_ACCESS_KEY_ID`：Minio 的 accessKeyID，仅在 `STORAGE_TYPE` 为 `minio` 时可用。如果未提供且 `STORAGE_TYPE` 为 `minio`，将在已知的环境变量（MINIO_ACCESS_KEY_ID、AWS_ACCESS_KEY_ID）、凭据文件（~/.mc/config.json、~/.aws/credentials）以及 EC2 实例元数据中搜索凭据。
 - `MINIO_SECRET_ACCESS_KEY`：Minio 的 secretAccessKey，仅在 `STORAGE_TYPE` 为 `minio` 时可用。
+- `MINIO_IAM_ENDPOINT`：用于覆盖 Minio 默认 IAM 终端点解析的首选 IAM 终端点，仅在 `STORAGE_TYPE` 为 `minio` 时可用。如果未提供且 `STORAGE_TYPE` 为 `minio`，将从已知的环境变量（AWS_CONTAINER_AUTHORIZATION_TOKEN、AWS_CONTAINER_AUTHORIZATION_TOKEN_FILE、AWS_CONTAINER_CREDENTIALS_RELATIVE_URI、AWS_CONTAINER_CREDENTIALS_FULL_URI、AWS_WEB_IDENTITY_TOKEN_FILE、AWS_ROLE_ARN、AWS_ROLE_SESSION_NAME、AWS_REGION）中搜索和派生终端点，如果未另行提供则使用 DefaultIAMRoleEndpoint。
 - `MINIO_BUCKET`：**gitea**: 用于存储数据的 Minio 桶，仅在 `STORAGE_TYPE` 为 `minio` 时可用。
 - `MINIO_LOCATION`：**us-east-1**: 创建桶的 Minio 位置，仅在 `STORAGE_TYPE` 为 `minio` 时可用。
-- `MINIO_USE_SSL`：**false**: Minio 启用 ssl，仅在 `STORAGE_TYPE` 为 `minio` 时可用。
+- `MINIO_USE_SSL`：**false**: Minio 启用 SSL，仅在 `STORAGE_TYPE` 为 `minio` 时可用。
 - `MINIO_INSECURE_SKIP_VERIFY`：**false**: Minio 跳过 SSL 验证，仅在 `STORAGE_TYPE` 为 `minio` 时可用。
-- `MINIO_BUCKET_LOOKUP_TYPE`: **auto**: Minio 的 bucket 查找方式默认为`auto`模式，可将其设置为`dns`（虚拟托管样式）或`path`（路径样式），仅当`STORAGE_TYPE`为`minio`时可用。
+- `MINIO_BUCKET_LOOKUP_TYPE`：**auto**: Minio 的 bucket 查找方式默认为 `auto` 模式；可将其设置为 `dns`（虚拟托管样式）或 `path`（路径样式），仅在 `STORAGE_TYPE` 为 `minio` 时可用。
 
-- `AZURE_BLOB_ENDPOINT`: **_empty_**: Azure Blob 终端点，仅在 `STORAGE_TYPE` 为 `azureblob` 时可用。例如：https://accountname.blob.core.windows.net 或 http://127.0.0.1:10000/devstoreaccount1
-- `AZURE_BLOB_ACCOUNT_NAME`: **_empty_**: Azure Blob 账号名，仅在 `STORAGE_TYPE` 为 `azureblob` 时可用。
-- `AZURE_BLOB_ACCOUNT_KEY`: **_empty_**: Azure Blob 访问密钥，仅在 `STORAGE_TYPE` 为 `azureblob` 时可用。
-- `AZURE_BLOB_CONTAINER`: **gitea**: 用于存储数据的 Azure Blob 容器名，仅在 `STORAGE_TYPE` 为 `azureblob` 时可用。
-
-建议的 minio 存储配置如下：
+建议的 Minio 存储配置如下：
 
 ```ini
 [storage]
 STORAGE_TYPE = minio
 ; Minio endpoint to connect only available when STORAGE_TYPE is `minio`
 MINIO_ENDPOINT = localhost:9000
-; Minio accessKeyID to connect only available when STORAGE_TYPE is `minio`
+; Minio accessKeyID to connect only available when STORAGE_TYPE is `minio`.
+; If not provided and STORAGE_TYPE is `minio`, will search for credentials in known
+; environment variables (MINIO_ACCESS_KEY_ID, AWS_ACCESS_KEY_ID), credentials files
+; (~/.mc/config.json, ~/.aws/credentials), and EC2 instance metadata.
 MINIO_ACCESS_KEY_ID =
 ; Minio secretAccessKey to connect only available when STORAGE_TYPE is `minio`
 MINIO_SECRET_ACCESS_KEY =
+; Preferred IAM Endpoint to override Minio's default IAM Endpoint resolution only available when STORAGE_TYPE is `minio`.
+; If not provided and STORAGE_TYPE is `minio`, will search for and derive endpoint from known environment variables
+; (AWS_CONTAINER_AUTHORIZATION_TOKEN, AWS_CONTAINER_AUTHORIZATION_TOKEN_FILE, AWS_CONTAINER_CREDENTIALS_RELATIVE_URI,
+; AWS_CONTAINER_CREDENTIALS_FULL_URI, AWS_WEB_IDENTITY_TOKEN_FILE, AWS_ROLE_ARN, AWS_ROLE_SESSION_NAME, AWS_REGION), or
+; the DefaultIAMRoleEndpoint if not provided otherwise.
+MINIO_IAM_ENDPOINT =
 ; Minio bucket to store the attachments only available when STORAGE_TYPE is `minio`
 MINIO_BUCKET = gitea
 ; Minio location to create bucket only available when STORAGE_TYPE is `minio`
@@ -1261,6 +1437,18 @@ SERVE_DIRECT = true
 ; Minio bucket lookup method defaults to auto mode; set it to `dns` for virtual host style or `path` for path style, only available when STORAGE_TYPE is `minio`
 MINIO_BUCKET_LOOKUP_TYPE = auto
 ```
+
+### Azure Blob 存储配置（`storage_azureblob`）
+
+- `SERVE_DIRECT`：**false**: 允许存储驱动程序重定向到经过身份验证的 URL 以直接提供文件。目前，仅支持通过签名的 URL 提供 Minio/S3，本地不执行任何操作。
+- `AZURE_BLOB_ENDPOINT`：**_empty_**: Azure Blob 连接终端点，仅在 `STORAGE_TYPE` 为 `azureblob` 时可用。例如：https://accountname.blob.core.windows.net 或 http://127.0.0.1:10000/devstoreaccount1
+- `AZURE_BLOB_ACCOUNT_NAME`：**_empty_**: Azure Blob 账号名，仅在 `STORAGE_TYPE` 为 `azureblob` 时可用。
+- `AZURE_BLOB_ACCOUNT_KEY`：**_empty_**: Azure Blob 访问密钥，仅在 `STORAGE_TYPE` 为 `azureblob` 时可用。
+- `AZURE_BLOB_CONTAINER`：**gitea**: 用于存储数据的 Azure Blob 容器名，仅在 `STORAGE_TYPE` 为 `azureblob` 时可用。
+
+### 覆盖配置（`storage_override`）
+
+覆盖可以有 3 个层级。`[LFS]/[attachment]...` >> `[storage.xxx]` >> `[storage]` >> 默认值。
 
 默认情况下，每个存储都有其默认的基本路径，如下所示：
 
@@ -1275,7 +1463,7 @@ MINIO_BUCKET_LOOKUP_TYPE = auto
 | actions_log       | actions_log/       |
 | actions_artifacts | actions_artifacts/ |
 
-并且桶（bucket）、基本路径或`SERVE_DIRECT`可以是特殊的或被覆盖的，如果您想要使用不同的设置，您可以：
+桶（bucket）、基本路径或 `SERVE_DIRECT` 可以被特别指定或覆盖，如果您想使用不同的设置，可以：
 
 ```ini
 [storage.actions_log]
@@ -1284,7 +1472,7 @@ SERVE_DIRECT = true
 MINIO_BASE_PATH = my_actions_log/ ; default is actions_log/ if blank
 ```
 
-如果您想为' lfs '自定义一个不同的存储，如果上面定义了默认存储
+如果您想为 `lfs` 自定义一个不同的存储（在上面已定义默认存储的情况下）：
 
 ```ini
 [lfs]
@@ -1294,10 +1482,19 @@ STORAGE_TYPE = my_minio
 STORAGE_TYPE = minio
 ; Minio endpoint to connect only available when STORAGE_TYPE is `minio`
 MINIO_ENDPOINT = localhost:9000
-; Minio accessKeyID to connect only available when STORAGE_TYPE is `minio`
+; Minio accessKeyID to connect only available when STORAGE_TYPE is `minio`.
+; If not provided and STORAGE_TYPE is `minio`, will search for credentials in known
+; environment variables (MINIO_ACCESS_KEY_ID, AWS_ACCESS_KEY_ID), credentials files
+; (~/.mc/config.json, ~/.aws/credentials), and EC2 instance metadata.
 MINIO_ACCESS_KEY_ID =
 ; Minio secretAccessKey to connect only available when STORAGE_TYPE is `minio`
 MINIO_SECRET_ACCESS_KEY =
+; Preferred IAM Endpoint to override Minio's default IAM Endpoint resolution only available when STORAGE_TYPE is `minio`.
+; If not provided and STORAGE_TYPE is `minio`, will search for and derive endpoint from known environment variables
+; (AWS_CONTAINER_AUTHORIZATION_TOKEN, AWS_CONTAINER_AUTHORIZATION_TOKEN_FILE, AWS_CONTAINER_CREDENTIALS_RELATIVE_URI,
+; AWS_CONTAINER_CREDENTIALS_FULL_URI, AWS_WEB_IDENTITY_TOKEN_FILE, AWS_ROLE_ARN, AWS_ROLE_SESSION_NAME, AWS_REGION), or
+; the DefaultIAMRoleEndpoint if not provided otherwise.
+MINIO_IAM_ENDPOINT =
 ; Minio bucket to store the attachments only available when STORAGE_TYPE is `minio`
 MINIO_BUCKET = gitea
 ; Minio location to create bucket only available when STORAGE_TYPE is `minio`
@@ -1310,27 +1507,31 @@ MINIO_INSECURE_SKIP_VERIFY = false
 MINIO_BUCKET_LOOKUP_TYPE = auto
 ```
 
-### 存储库归档存储 (`storage.repo-archive`)
+## 存储库归档存储 (`storage.repo-archive`)
 
-存储库归档存储的配置。当将`STORAGE_TYPE`设置为`xxx`时，它将继承默认的 `[storage]` 或 `[storage.xxx]` 配置。`PATH`的默认值是`data/repo-archive`，`MINIO_BASE_PATH`的默认值是`repo-archive/`。
+存储库归档存储的配置。当将 `STORAGE_TYPE` 设置为 `xxx` 时，它将继承默认的 `[storage]` 或 `[storage.xxx]` 配置。`PATH` 的默认值是 `data/repo-archive`，`MINIO_BASE_PATH` 的默认值是 `repo-archive/`。
 
-- `STORAGE_TYPE`: **local**: 存储类型，`local`表示本地磁盘，`minio`表示与 S3 兼容的对象存储服务，或者使用定义为`[storage.xxx]`的其他名称。
-- `SERVE_DIRECT`: **false**: 允许存储驱动程序重定向到经过身份验证的 URL 以直接提供文件。目前，只有 Minio/S3 支持通过签名 URL，本地不执行任何操作。
-- `PATH`: **./data/repo-archive**: 用于存储归档文件的位置，仅在`STORAGE_TYPE`为`local`时可用。
-- `MINIO_ENDPOINT`: **localhost:9000**: Minio 端点，仅在`STORAGE_TYPE`为`minio`时可用。
-- `MINIO_ACCESS_KEY_ID`: Minio 的 accessKeyID，仅在`STORAGE_TYPE`为`minio`时可用。
-- `MINIO_SECRET_ACCESS_KEY`: Minio 的 secretAccessKey，仅在`STORAGE_TYPE`为`minio`时可用。
-- `MINIO_BUCKET`: **gitea**: 用于存储归档的 Minio 存储桶，仅在`STORAGE_TYPE`为`minio`时可用。
-- `MINIO_LOCATION`: **us-east-1**: 用于创建存储桶的 Minio 位置，仅在`STORAGE_TYPE`为`minio`时可用。
-- `MINIO_BASE_PATH`: **repo-archive/**: 存储桶上的 Minio 基本路径，仅在`STORAGE_TYPE`为`minio`时可用。
-- `MINIO_USE_SSL`: **false**: 启用 Minio 的 SSL，仅在`STORAGE_TYPE`为`minio`时可用。
-- `MINIO_INSECURE_SKIP_VERIFY`: **false**: 跳过 Minio 的 SSL 验证，仅在`STORAGE_TYPE`为`minio`时可用。
-- `MINIO_BUCKET_LOOKUP_TYPE`: **auto**: Minio 的 bucket 查找方式默认为`auto`模式，可将其设置为`dns`（虚拟托管样式）或`path`（路径样式），仅当`STORAGE_TYPE`为`minio`时可用。
+- `STORAGE_TYPE`：**local**: 存储库归档的存储类型，可以为空、`local`、`minio`、`azureblob` 或在 `[storage.xxx]` 中定义的其他名称。
 
-### 存储库归档 (`repo-archive`)
+  当 `STORAGE_TYPE` 为空或未配置此项时，所有存储将从 `[storage]`（如已配置）或默认值派生。
 
-- `STORAGE_TYPE`: **local**: 存储类型，用于操作日志，`local`表示本地磁盘，`minio`表示与 S3 兼容的对象存储服务，默认为`local`，或者使用定义为`[storage.xxx]`的其他名称。
-- `MINIO_BASE_PATH`: **repo-archive/**: Minio 存储桶上的基本路径，仅在`STORAGE_TYPE`为`minio`时可用。
+  当 `STORAGE_TYPE = local` 时，以下为可用配置项
+
+  - `PATH`：**./data/repo-archive**: 用于存储归档文件的位置，仅在 `STORAGE_TYPE` 为 `local` 时可用。
+
+  当 `STORAGE_TYPE = minio` 时，相关配置详见 [Minio 存储配置](#storage_minio)，您可以如下覆盖部分配置。
+
+  - `MINIO_BASE_PATH`：**repo-archive/**: 桶上的 Minio 基本路径，仅在 `STORAGE_TYPE` 为 `minio` 时可用。
+
+  当 `STORAGE_TYPE = xxx` 时，配置将从 `[storage.xxx]` 派生，以下配置项可被覆盖。
+
+  - `PATH`：同上
+  - `MINIO_BASE_PATH`：同上
+
+## 存储库归档 (`repo-archive`)
+
+- `STORAGE_TYPE`：**local**: 存储类型，用于操作日志，`local` 表示本地磁盘，`minio` 表示与 S3 兼容的对象存储服务，默认为 `local`，或者使用定义为 `[storage.xxx]` 的其他名称。
+- `MINIO_BASE_PATH`：**repo-archive/**: Minio 存储桶上的基本路径，仅在 `STORAGE_TYPE` 为 `minio` 时可用。
 
 ## 代理 (`proxy`)
 
@@ -1363,6 +1564,7 @@ PROXY_HOSTS = *.github.com
 - `ENDLESS_TASK_TIMEOUT`: **3h**: 无尽任务超时时间，指具有运行状态并持续更新，但长时间未结束的任务。
 - `ABANDONED_JOB_TIMEOUT`: **24h**: 被遗弃的作业超时时间，指具有等待状态但长时间未被 runner 选中并执行的作业。
 - `SKIP_WORKFLOW_STRINGS`: **[skip ci],[ci skip],[no ci],[skip actions],[actions skip]**: 提交者可以在提交消息或 PR 标题中放置的字符串，以跳过执行相应的工作流。
+- `WORKFLOW_DIRS`：**.gitea/workflows,.github/workflows**：以逗号分隔的工作流目录列表，仓库中第一个存在的目录将用于查找 Actions 工作流文件。
 
 `DEFAULT_ACTIONS_URL` 指示 Gitea 操作运行程序应该在哪里找到带有相对路径的操作。
 例如，`uses: actions/checkout@v4` 表示 `https://github.com/actions/checkout@v4`，因为 `DEFAULT_ACTIONS_URL` 的值为 `github`。
