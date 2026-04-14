@@ -13,7 +13,7 @@ aliases:
 1. 在您的 `app.ini` 文件中設置 `[server] ROOT_URL = https://git.example.com/`。
 2. 使反向代理將 `https://git.example.com/foo` 傳遞到 `http://gitea:3000/foo`。
 3. 確保反向代理不解碼 URI。請求 `https://git.example.com/a%2Fb` 應傳遞為 `http://gitea:3000/a%2Fb`。
-4. 確保 `Host` 和 `X-Fowarded-Proto` 標頭正確傳遞給 Gitea，以使 Gitea 看到實際訪問的 URL。
+4. 確保 `Host` 和 `X-Forwarded-Proto` 標頭正確傳遞給 Gitea，以使 Gitea 看到實際訪問的 URL。
 
 ### 使用子路徑
 
