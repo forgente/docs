@@ -362,9 +362,7 @@ As of v1.8, there is a problem with the arm7 version of Gitea, and it doesn't ru
 
 It is recommended to switch to the arm6 version, which has been tested and shown to work on Raspberry Pis and similar devices.
 
-<!---
-please remove after fixing the arm7 bug
---->
+{/* please remove after fixing the arm7 bug */}
 
 ### Git error after updating to a new version of Gitea
 
