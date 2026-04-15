@@ -161,7 +161,7 @@ const config = {
   onBrokenLinks: "warn",
   favicon: "img/favicon.png",
   future: {
-    experimental_faster: true,
+    faster: true,
     v4: true
   },
   plugins: [
