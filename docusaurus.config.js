@@ -29,7 +29,7 @@ const apiConfig = [
           },
           {
             route: "/api/",
-            spec: "static/swagger-25.json",
+            spec: "static/swagger-26.json",
           },
            {
             route: "/api/1.26/",
@@ -82,11 +82,11 @@ const globalVariables = {
     goVersion: "1.26",
     minGoVersion: "1.26",
     minNodeVersion: "22",
-    version: "1.26.0-rc0",
-    sourceVersion: "v1.26.0-rc0",
+    version: "1.26.0",
+    sourceVersion: "v1.26.0",
     sourceBranch: "release/v1.26",
-    dockerVersion: "1.26.0-rc0",
-    displayVersion: "1.26.0-rc0",
+    dockerVersion: "1.26.0",
+    displayVersion: "1.26.0",
   },
   "1.25": {
     goVersion: "1.25",
@@ -266,7 +266,7 @@ const config = {
             }/${docPath}`;
           },
           versions: versions,
-          lastVersion: "1.25",
+          lastVersion: "1.26",
           async sidebarItemsGenerator({
             defaultSidebarItemsGenerator,
             ...args
@@ -376,7 +376,7 @@ const config = {
             label: "Docs",
           },
           {
-            to: "/api/1.25/",
+            to: "/api/1.26/",
             label: "API",
             position: "left",
             activeBaseRegex: "api/(1.22|1.23|1.24|1.25|1.26|next)/",
@@ -413,7 +413,7 @@ const config = {
             position: "right",
             items: [
               { to: "/api/next/", label: "1.27-dev" },
-              { to: "/api/1.26/", label: "1.26.0-rc0" },
+              { to: "/api/1.26/", label: "1.26.0" },
               { to: "/api/1.25/", label: "1.25.5" },
               { to: "/api/1.24/", label: "1.24.7" },
               { to: "/api/1.23/", label: "1.23.8" },
