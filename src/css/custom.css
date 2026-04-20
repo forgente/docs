@@ -25,13 +25,13 @@
   --palette-charade: #21222c;
   --palette-rock: #262833;
   --palette-pale-blue: #b1b5d3;
-  --ifm-color-primary: #3c6018;
-  --ifm-color-primary-dark: #365616;
-  --ifm-color-primary-darker: #335214;
-  --ifm-color-primary-darkest: #2a4311;
-  --ifm-color-primary-light: #426a1a;
-  --ifm-color-primary-lighter: #456e1c;
-  --ifm-color-primary-lightest: #4e7d1f;
+  --ifm-color-primary: #4183c4;
+  --ifm-color-primary-dark: #3a76b0;
+  --ifm-color-primary-darker: #356ba0;
+  --ifm-color-primary-darkest: #2b5680;
+  --ifm-color-primary-light: #498fce;
+  --ifm-color-primary-lighter: #5498d3;
+  --ifm-color-primary-lightest: #6aa7db;
   --ifm-code-font-size: 95%;
   --ifm-global-border-radius: 8px;
   --docusaurus-highlighted-code-line-bg: var(--palette-dark-10);
@@ -51,18 +51,20 @@
   --theme-button-tertiary-text-color: var(--palette-dark-80);
   --theme-button-tertiary-hover-background-color: var(--palette-dark-40);
   --theme-input-bg-color: #f0f1f5;
+  --ifm-navbar-link-active-color: #2f7d1f;
+  --ifm-menu-color-active: var(--ifm-color-primary);
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
 [data-theme='dark'] {
   --palette-gray: #4b4e5d;
-  --ifm-color-primary: #79c230;
-  --ifm-color-primary-dark: #6daf2b;
-  --ifm-color-primary-darker: #67a529;
-  --ifm-color-primary-darkest: #5b9224;
-  --ifm-color-primary-light: #85cf3c;
-  --ifm-color-primary-lighter: #8bd145;
-  --ifm-color-primary-lightest: #9dd862;
+  --ifm-color-primary: #6aa7db;
+  --ifm-color-primary-dark: #5f97c6;
+  --ifm-color-primary-darker: #578bb8;
+  --ifm-color-primary-darkest: #466f92;
+  --ifm-color-primary-light: #77b1df;
+  --ifm-color-primary-lighter: #85b9e3;
+  --ifm-color-primary-lightest: #9cc7ea;
   --docusaurus-highlighted-code-line-bg: var(--palette-dark-30);
   --theme-attention-card-bg-color: var(--palette-gray);
   --theme-input-bg-color: #44475a;
@@ -77,6 +79,8 @@
   --theme-button-tertiary-background-color: var(--palette-white-10);
   --theme-button-tertiary-text-color: var(--ifm-color-white);
   --theme-button-tertiary-hover-background-color: var(--palette-white-20);
+  --ifm-navbar-link-active-color: #9bdc63;
+  --ifm-menu-color-active: var(--ifm-color-primary);
 }
 
 [data-theme='dark'] [class*='announcementBar'] {
@@ -181,6 +185,11 @@
 
 .internal-href [class*='iconExternalLink'] {
   display: none;
+}
+
+.navbar__link--active,
+.navbar__link[aria-current='page'] {
+  color: var(--ifm-navbar-link-active-color) !important;
 }
 
 .signin-button {

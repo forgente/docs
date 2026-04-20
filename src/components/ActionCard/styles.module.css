@@ -31,11 +31,11 @@
 }
 
 .skinPrimary {
-  background: var(--ifm-color-primary-lighter);
+  background: #3c6018;
 }
 
 [data-theme='dark'] .skinPrimary {
-  background: var(--ifm-color-primary-darker);
+  background: #335214;
 }
 
 .skinPrimary .title,
