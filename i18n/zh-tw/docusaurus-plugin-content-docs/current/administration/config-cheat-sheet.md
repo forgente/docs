@@ -475,14 +475,14 @@ aliases:
 
 ## 索引 (`indexer`)
 
-- `ISSUE_INDEXER_TYPE`: **bleve**: 工单索引类型，当前支持：`bleve`、`db`、`elasticsearch` 或 `meilisearch`。
+- `ISSUE_INDEXER_TYPE`: **bleve**: 工单索引类型，当前支持：`bleve`、`db`、`elasticsearch`（也兼容 OpenSearch）或 `meilisearch`。
 - `ISSUE_INDEXER_CONN_STR`：\*\*\*\* : 工单索引连接字符串，仅适用于 elasticsearch 和 meilisearch（例如：`http://elastic:password@localhost:9200`）或者（例如：`http://:apikey@localhost:7700`）。
 - `ISSUE_INDEXER_NAME`：**gitea_issues**: 工单索引器名称，在 ISSUE_INDEXER_TYPE 为 elasticsearch 或 meilisearch 时可用。
 - `ISSUE_INDEXER_PATH`：**indexers/issues.bleve**: 用于工单搜索的索引文件；在 ISSUE*INDEXER_TYPE 为 bleve 和 elasticsearch 时可用。相对路径将相对于 *`AppWorkPath`\_ 进行绝对路径化。
 
 - `REPO_INDEXER_ENABLED`：**false**: 启用代码搜索（占用大量磁盘空间，约为存储库大小的 6 倍）。
 - `REPO_INDEXER_REPO_TYPES`：**sources,forks,mirrors,templates**: 存储库索引器单元。要索引的项目可以是 `sources`、`forks`、`mirrors`、`templates` 或它们的任何组合，用逗号分隔。如果为空，则默认为仅 `sources`，如果要完全禁用，请参见 `REPO_INDEXER_ENABLED`。
-- `REPO_INDEXER_TYPE`：**bleve**: 代码搜索引擎类型，可以为 `bleve` 或者 `elasticsearch`。
+- `REPO_INDEXER_TYPE`：**bleve**: 代码搜索引擎类型，可以为 `bleve` 或者 `elasticsearch`（也兼容 OpenSearch）。
 - `REPO_INDEXER_PATH`：**indexers/repos.bleve**: 用于代码搜索的索引文件。
 - `REPO_INDEXER_CONN_STR`：\*\*\*\*: 代码索引器连接字符串，在 `REPO_INDEXER_TYPE` 为 elasticsearch 时可用。例如：`http://elastic:password@localhost:9200`
 - `REPO_INDEXER_NAME`：**gitea_codes**: 代码索引器名称，在 `REPO_INDEXER_TYPE` 为 elasticsearch 时可用。
