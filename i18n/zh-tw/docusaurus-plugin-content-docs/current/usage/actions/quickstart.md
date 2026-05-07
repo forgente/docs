@@ -25,10 +25,10 @@ ENABLED=true
 
 ### 设置Runner
 
-Gitea Actions需要[act runner](https://gitea.com/gitea/act_runner) 来运行Job。
+Gitea Actions需要[runner](https://gitea.com/gitea/runner) 来运行Job。
 为了避免消耗过多资源并影响Gitea实例，建议您在与Gitea实例分开的机器上启动Runner。
 
-您可以使用[预构建的二进制文件](http://dl.gitea.com/act_runner)或[容器镜像](https://hub.docker.com/r/gitea/act_runner/tags)来设置Runner。
+您可以使用[预构建的二进制文件](http://dl.gitea.com/gitea-runner)或[容器镜像](https://hub.docker.com/r/gitea/runner/tags)来设置Runner。
 
 在进一步操作之前，建议您先使用预构建的二进制文件以命令行方式运行它，以确保它与您的环境兼容，尤其是如果您在本地主机上运行Runner。
 如果出现问题，这样调试起来会更容易。
@@ -40,7 +40,7 @@ Gitea Actions需要[act runner](https://gitea.com/gitea/act_runner) 来运行Job
 在运行Runner之前，您需要使用以下命令将其注册到Gitea实例中：
 
 ```bash
-./act_runner register --no-interactive --instance <instance> --token <token>
+./runner register --no-interactive --instance <instance> --token <token>
 ```
 
 需要两个必需的参数：`instance` 和 `token`。
@@ -68,14 +68,14 @@ Runner和Job容器（由Runner启动以执行Job）将连接到此地址。
 最后，是时候启动Runner了：
 
 ```bash
-./act_runner daemon
+./runner daemon
 ```
 
 您可以在管理页面上看到新的Runner：
 
 ![view runner](/images/usage/actions/view-runner.png)
 
-您可以通过访问[act runner](usage/actions/act-runner.md) 获取更多信息。
+您可以通过访问[runner](runner) 获取更多信息。
 
 ### 使用Actions
 

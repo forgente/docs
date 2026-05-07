@@ -73,7 +73,7 @@ Runner仅具有连接到您的Gitea实例的权限。
 - 对于 fork 的拉取请求，需要获得批准才能运行Actions。参见[#22803](https://github.com/go-gitea/gitea/pull/22803)。
 - 如果有人在[gitea.com](http://gitea.com/)为其仓库或组织注册自己的Runner，我们不会反对，只是不会在我们的组织中使用它。然而，他们应该注意确保该Runner不被他们不认识的其他用户使用。
 
-## act runner支持哪些操作系统？
+## Runner 支持哪些操作系统？
 
 它在Linux、macOS和Windows上运行良好。
 虽然理论上支持其他操作系统，但需要进一步测试。
@@ -101,7 +101,7 @@ defaults:
 
 这是有效的语法。
 它意味着它应该在具有`label_a` **和** `label_b`标签的Runner上运行，参考[GitHub Actions的工作流语法](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idruns-on)。
-不幸的是，act runner 并不支持这种方式。
+不幸的是，runner 并不支持这种方式。
 如上所述，我们将标签映射到环境：
 
 - `ubuntu` → `ubuntu:22.04`
@@ -117,31 +117,31 @@ defaults:
 具有`ubuntu`、`centos`或`with-gpu`的Runner并不一定表示它可以接受`[centos, with-gpu]`的Job。
 因此，Runner应该通知Gitea实例它只能接受具有 `[ubuntu]`、`[centos]`、`[with-gpu]` 和 `[ubuntu, with-gpu]`的Job。
 这不是一个技术问题，只是在早期设计中被忽视了。
-参见[runtime.go#L65](https://gitea.com/gitea/act_runner/src/commit/90b8cc6a7a48f45cc28b5ef9660ebf4061fcb336/runtime/runtime.go#L65)。
+参见[runtime.go#L65](https://gitea.com/gitea/runner/src/commit/90b8cc6a7a48f45cc28b5ef9660ebf4061fcb336/runtime/runtime.go#L65)。
 
-目前，act runner尝试匹配标签中的每一个，并使用找到的第一个匹配项。
+目前，runner 尝试匹配标签中的每一个，并使用找到的第一个匹配项。
 
 ## 代理标签和自定义标签对于Runner有什么区别？
 
 ![labels](/images/usage/actions/labels.png)
 
-代理标签是由Runner在注册过程中向Gitea实例报告的。
+代理标签是由 Runner 在注册过程中向 Gitea 实例报告的。
 而自定义标签则是由Gitea的管理员或组织或仓库的所有者手动添加的（取决于Runner所属的级别）。
 
 然而，目前这方面的设计还有待改进，因为它目前存在一些不完善之处。
 您可以向已注册的Runner添加自定义标签，比如 `centos`，这意味着该Runner将接收具有`runs-on: centos`的Job。
 然而，Runner可能不知道要使用哪个环境来执行该标签，导致它使用默认镜像或导致逻辑死胡同。
 这个默认值可能与用户的期望不符。
-参见[runtime.go#L71](https://gitea.com/gitea/act_runner/src/commit/90b8cc6a7a48f45cc28b5ef9660ebf4061fcb336/runtime/runtime.go#L71)。
+参见[runtime.go#L71](https://gitea.com/gitea/runner/src/commit/90b8cc6a7a48f45cc28b5ef9660ebf4061fcb336/runtime/runtime.go#L71)。
 
 与此同时，如果您想更改Runner的标签，我们建议您重新注册Runner。
 
 ## Gitea Actions runner会有更多的实现吗？
 
-虽然我们希望提供更多的选择，但由于我们有限的人力资源，act runner将是唯一受支持的官方Runner。
-然而，无论您如何决定，Gitea 和act runner都是完全开源的，所以任何人都可以创建一个新的/更好的实现。
+虽然我们希望提供更多的选择，但由于我们有限的人力资源，runner 将是唯一受支持的官方 Runner。
+然而，无论您如何决定，Gitea 和 runner都是完全开源的，所以任何人都可以创建一个新的/更好的实现。
 我们支持您的选择，无论您如何决定。
-如果您选择分支act runner来创建自己的版本，请在您认为您的更改对其他人也有帮助的情况下贡献这些更改。
+如果您选择分支 runner来创建自己的版本，请在您认为您的更改对其他人也有帮助的情况下贡献这些更改。
 
 ## Gitea 支持哪些工作流触发事件？
 

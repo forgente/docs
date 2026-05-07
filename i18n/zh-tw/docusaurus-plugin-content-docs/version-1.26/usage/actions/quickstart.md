@@ -75,7 +75,7 @@ Runner和Job容器（由Runner启动以执行Job）将连接到此地址。
 
 ![view runner](/images/usage/actions/view-runner.png)
 
-您可以通过访问[act runner](usage/actions/act-runner.md) 获取更多信息。
+您可以通过访问[act runner](act-runner) 获取更多信息。
 
 ### 使用Actions
 
