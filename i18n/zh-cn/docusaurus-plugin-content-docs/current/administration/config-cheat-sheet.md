@@ -84,8 +84,13 @@ aliases:
 - `FORCE_PRIVATE`: **false**: 强制使每个新仓库变为私有。
 - `DEFAULT_PRIVATE`: **last**: 创建新仓库时默认为私有：`last`, `private`, `public`。
 - `DEFAULT_PUSH_CREATE_PRIVATE`: **true**: 使用推送创建新仓库时默认为私有。
-- `MAX_CREATION_LIMIT`: **-1**: 每个用户的全局仓库创建上限,
-  `-1` 代表无限制.
+- `MAX_CREATION_LIMIT`: **-1**: 每个用户/组织的全局仓库创建上限,
+  `-1` 代表无限制. 当 `USER_MAX_CREATION_LIMIT` 与 `ORG_MAX_CREATION_LIMIT`
+  未单独配置时, 这两项的默认值都会继承自此项.
+- `USER_MAX_CREATION_LIMIT`: **-1**: 每个用户的全局仓库创建上限, 在创建仓库时生效.
+  `-1` 代表无限制. 设置后优先级高于 `MAX_CREATION_LIMIT`.
+- `ORG_MAX_CREATION_LIMIT`: **-1**: 每个组织的全局仓库创建上限, 在创建仓库时生效.
+  `-1` 代表无限制. 设置后优先级高于 `MAX_CREATION_LIMIT`.
 - `PREFERRED_LICENSES`: **Apache License 2.0,MIT License**: 要放置在列表顶部的指定许可证。
   名称必须与 options/license 或 custom/options/license 中的文件名匹配。
 - `DISABLE_HTTP_GIT`: **false**: 禁用 HTTP 协议与仓库进行
