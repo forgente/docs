@@ -1,7 +1,6 @@
 ---
-date: "2023-04-27T15:00:00+08:00"
-slug: "runner"
-sidebar_position: 20
+sidebar_position: 1
+slug: /
 ---
 
 # Gitea Runner
@@ -134,8 +133,6 @@ and don't forget to specify the `--config` option.
 #### Ephemeral Runners
 
 Ephemeral runners provide a security hardening mechanism for enabling organization- or instance-wide runners without requiring full user trust. Once a job is assigned within a spot VM or container, the runner's exposed credentials are automatically revoked—blocking it from polling further jobs before any untrusted code runs, while still allowing it to report progress until completion by either Gitea or the runner.
-
-Gitea Runner **0.2.12+** is required.
 
 The updated commands for registering the runner as ephemeral are listed below. Refer to the previous section for detailed information on registering the runner.
 

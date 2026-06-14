@@ -185,12 +185,16 @@ const config = {
             label: "main",
             banner: "unreleased",
           },
+          "1.0.8": {
+            path: "1.0.8",
+            label: "1.0.8",
+          },
           "0.2.11": {
             path: "0.2.11",
             label: "0.2.11",
           },
         },
-        lastVersion: "0.2.11",
+        lastVersion: "1.0.8",
         editUrl: ({
           versionDocsDirPath,
           docPath,
@@ -382,10 +386,10 @@ const config = {
             activeBaseRegex: "api/(1.22|1.23|1.24|1.25|1.26|next)/",
           },
           {
-            to: "/runner/0.2.11/",
+            to: "/runner/1.0.8/",
             label: "Runner",
             position: "left",
-            activeBaseRegex: "runner/(0.2.11|next)/",
+            activeBaseRegex: "runner/(1.0.8|0.2.11|next)/",
           },
           {
             position: "left",
@@ -428,6 +432,7 @@ const config = {
             position: "right",
             items: [
               { to: "/runner/next/", label: "development" },
+              { to: "/runner/1.0.8/", label: "1.0.8" },
               { to: "/runner/0.2.11/", label: "0.2.11" },
             ],
             routerRgx: "/runner/",
