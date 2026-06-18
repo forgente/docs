@@ -1,0 +1,8 @@
+savePrefix: ''
+dedupePeerDependents: false
+updateNotifier: false
+minimumReleaseAge: 0
+
+allowBuilds:
+  '@swc/core': true
+  core-js: false
