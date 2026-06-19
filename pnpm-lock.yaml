@@ -33,8 +33,8 @@ importers:
         specifier: 3.1.1
         version: 3.1.1(@types/react@19.2.17)(react@19.2.7)
       '@mui/material':
-        specifier: 9.1.0
-        version: 9.1.0(@emotion/react@11.14.0(@types/react@19.2.17)(react@19.2.7))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.2.17)(react@19.2.7))(@types/react@19.2.17)(react@19.2.7))(@types/react@19.2.17)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
+        specifier: 9.1.1
+        version: 9.1.1(@emotion/react@11.14.0(@types/react@19.2.17)(react@19.2.7))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.2.17)(react@19.2.7))(@types/react@19.2.17)(react@19.2.7))(@types/react@19.2.17)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
       clsx:
         specifier: 2.1.1
         version: 2.1.1
@@ -1520,13 +1520,13 @@ packages:
   '@mui/core-downloads-tracker@9.1.1':
     resolution: {integrity: sha512-AupmMICbdJHqAh6FfOMaaiiIr7dfEgZJn5DFfiPuGNrbs+ZZy9cD1APwO0TSVBz5j08MJEEY6n7iC76/2wjMEA==}
 
-  '@mui/material@9.1.0':
-    resolution: {integrity: sha512-KV3EqUb50g0Mhxiv3pCMX1KpW/M+JGD2lrQelMcjWJ4ABKKU4yotS9G10nvqPRiI9ylZUeIf36UKxTY7jeyfcw==}
+  '@mui/material@9.1.1':
+    resolution: {integrity: sha512-Wv+gInjrpf99l1Q0oHe0eOWGTnlbkzs5nowClX65KCT/2fyPMwcbFEEkUsOHdpcHhB5UAbz/d7jlwt5ajWVvlA==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
       '@emotion/react': ^11.5.0
       '@emotion/styled': ^11.3.0
-      '@mui/material-pigment-css': ^9.1.0
+      '@mui/material-pigment-css': ^9.1.1
       '@types/react': ^17.0.0 || ^18.0.0 || ^19.0.0
       react: ^17.0.0 || ^18.0.0 || ^19.0.0
       react-dom: ^17.0.0 || ^18.0.0 || ^19.0.0
@@ -8920,7 +8920,7 @@ snapshots:
 
   '@mui/core-downloads-tracker@9.1.1': {}
 
-  '@mui/material@9.1.0(@emotion/react@11.14.0(@types/react@19.2.17)(react@19.2.7))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.2.17)(react@19.2.7))(@types/react@19.2.17)(react@19.2.7))(@types/react@19.2.17)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)':
+  '@mui/material@9.1.1(@emotion/react@11.14.0(@types/react@19.2.17)(react@19.2.7))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.2.17)(react@19.2.7))(@types/react@19.2.17)(react@19.2.7))(@types/react@19.2.17)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)':
     dependencies:
       '@babel/runtime': 7.29.7
       '@mui/core-downloads-tracker': 9.1.1
