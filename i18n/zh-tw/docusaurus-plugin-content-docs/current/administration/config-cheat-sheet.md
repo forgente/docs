@@ -1570,6 +1570,7 @@ PROXY_HOSTS = *.github.com
 - `ABANDONED_JOB_TIMEOUT`: **24h**: 被遗弃的作业超时时间，指具有等待状态但长时间未被 runner 选中并执行的作业。
 - `SKIP_WORKFLOW_STRINGS`: **[skip ci],[ci skip],[no ci],[skip actions],[actions skip]**: 提交者可以在提交消息或 PR 标题中放置的字符串，以跳过执行相应的工作流。
 - `WORKFLOW_DIRS`：**.gitea/workflows,.github/workflows**：以逗号分隔的工作流目录列表，仓库中第一个存在的目录将用于查找 Actions 工作流文件。
+- `SCOPED_WORKFLOW_DIRS`：**.gitea/scoped_workflows**：以逗號分隔的目錄列表，用於存放[作用域工作流程](usage/actions/scoped-workflows.md)（在一個中心來源儲存庫中定義、並在其他儲存庫上執行的工作流程）。不得與 `WORKFLOW_DIRS` 重疊。留空則不會掃描任何目錄來尋找作用域工作流程，也就不會找到或執行任何作用域工作流程。
 - `MAX_RERUN_ATTEMPTS`：**50**：單個工作流執行最多可以有的嘗試次數（初始執行 + 重新執行）。預設 50。可根據需要設置為任何正整數。
 
 `DEFAULT_ACTIONS_URL` 指示 Gitea 操作运行程序应该在哪里找到带有相对路径的操作。
