@@ -25,7 +25,7 @@ inplace_sed 's|"version": "{{.SwaggerAppVer}}"|"version": "dev"|' v1_json.tmpl
 inplace_sed 's|"basePath": "{{.SwaggerAppSubUrl}}/api/v1"|"basePath": "https://gitea.com/api/v1"|' v1_json.tmpl
 mv v1_json.tmpl static/swagger-latest.json
 
-for ver in '1.26.4' '1.25.5' '1.24.7' '1.23.8' '1.22.6'; do
+for ver in '1.27.0-rc0' '1.26.4' '1.25.5' '1.24.7' '1.23.8' '1.22.6'; do
   curl --silent --output v1_json.tmpl https://raw.githubusercontent.com/go-gitea/gitea/refs/tags/v${ver}/templates/swagger/v1_json.tmpl
   inplace_sed "s|\"version\": \"{{.SwaggerAppVer}}\"|\"version\": \"${ver}\"|" v1_json.tmpl
   inplace_sed 's|"basePath": "{{.SwaggerAppSubUrl}}/api/v1"|"basePath": "https://gitea.com/api/v1"|' v1_json.tmpl
