@@ -6,7 +6,7 @@ sidebar_position: 90
 
 # Pub 套件註冊表
 
-為您的用戶或組織發布 [Pub](https://dart.dev/guides/packages) 套件。
+為您的使用者或組織發布 [Pub](https://dart.dev/guides/packages) 套件。
 
 ## 需求
 
@@ -14,7 +14,7 @@ sidebar_position: 90
 
 以下範例使用 dart。
 
-## 配置套件註冊表
+## 設定套件註冊表
 
 要註冊套件註冊表並提供憑證，請執行：
 
@@ -26,7 +26,7 @@ dart pub token add https://gitea.example.com/api/packages/{owner}/pub
 | ------- | -------------- |
 | `owner` | 套件的擁有者。 |
 
-您需要提供您的 [個人訪問令牌](development/api-usage.md#authentication)。
+您需要提供您的 [個人存取權杖](development/api-usage.md#認證)。
 
 ## 發布套件
 
@@ -40,7 +40,7 @@ publish_to: https://gitea.example.com/api/packages/{owner}/pub
 | ------- | -------------- |
 | `owner` | 套件的擁有者。 |
 
-現在您可以通過運行以下命令來發布套件：
+現在您可以透過運行以下命令來發布套件：
 
 ```shell
 dart pub publish

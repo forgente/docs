@@ -4,27 +4,27 @@ slug: "rubygems"
 sidebar_position: 110
 ---
 
-# RubyGems 软件包注册表
+# RubyGems 套件註冊表
 
-为您的用户或组织发布 [RubyGems](https://guides.rubygems.org/) 软件包。
+為您的使用者或組織發佈 [RubyGems](https://guides.rubygems.org/) 套件。
 
 ## 要求
 
-要使用RubyGems软件包注册表，您需要使用 [gem](https://guides.rubygems.org/command-reference/) 命令行工具来消费和发布软件包。
+要使用RubyGems套件註冊表，您需要使用 [gem](https://guides.rubygems.org/command-reference/) 命令行工具來消費和發佈套件。
 
-## 配置软件包注册表
+## 設定套件註冊表
 
-要注册软件包注册表，请编辑 `~/.gem/credentials` 文件并添加：
+要註冊套件註冊表，請編輯 `~/.gem/credentials` 文件並添加：
 
 ```ini
 ---
 https://gitea.example.com/api/packages/{owner}/rubygems: Bearer {token}
 ```
 
-| 参数    | 描述                                                                                  |
+| 參數    | 描述                                                                                  |
 | ------- | ------------------------------------------------------------------------------------- |
-| `owner` | 软件包的所有者                                                                        |
-| `token` | 您的[个人访问令牌](development/api-usage.md#通过-api-认证) |
+| `owner` | 套件的所有者                                                                        |
+| `token` | 您的[個人存取權杖](development/api-usage.md#透過-api-認證) |
 
 例如：
 
@@ -33,18 +33,18 @@ https://gitea.example.com/api/packages/{owner}/rubygems: Bearer {token}
 https://gitea.example.com/api/packages/testuser/rubygems: Bearer 3bd626f84b01cd26b873931eace1e430a5773cc4
 ```
 
-## 发布软件包
+## 發佈套件
 
-通过运行以下命令来发布软件包：
+通過運行以下命令來發布套件：
 
 ```shell
 gem push --host {host} {package_file}
 ```
 
-| 参数           | 描述                     |
+| 參數           | 描述                     |
 | -------------- | ------------------------ |
-| `host`         | 软件包注册表的URL        |
-| `package_file` | 软件包 `.gem` 文件的路径 |
+| `host`         | 套件註冊表的URL        |
+| `package_file` | 套件 `.gem` 文件的路徑 |
 
 例如：
 
@@ -52,15 +52,15 @@ gem push --host {host} {package_file}
 gem push --host https://gitea.example.com/api/packages/testuser/rubygems test_package-1.0.0.gem
 ```
 
-如果已经存在相同名称和版本的软件包，您将无法发布软件包。您必须先删除现有的软件包。
+如果已經存在相同名稱和版本的套件，您將無法發佈套件。您必須先刪除現有的套件。
 
-## 安装软件包
+## 安裝套件
 
-要从软件包注册表安装软件包，您可以使用 [Bundler](https://bundler.io) 或 `gem`。
+要從套件註冊表安裝套件，您可以使用 [Bundler](https://bundler.io) 或 `gem`。
 
 ### Bundler
 
-在您的 `Gemfile` 中添加一个新的 `source` 块：
+在您的 `Gemfile` 中添加一個新的 `source` 塊：
 
 ```
 source "https://gitea.example.com/api/packages/{owner}/rubygems" do
@@ -68,10 +68,10 @@ source "https://gitea.example.com/api/packages/{owner}/rubygems" do
 end
 ```
 
-| 参数           | 描述           |
+| 參數           | 描述           |
 | -------------- | -------------- |
-| `owner`        | 软件包的所有者 |
-| `package_name` | 软件包名称     |
+| `owner`        | 套件的所有者 |
+| `package_name` | 套件名稱     |
 
 例如：
 
@@ -81,7 +81,7 @@ source "https://gitea.example.com/api/packages/testuser/rubygems" do
 end
 ```
 
-之后运行以下命令：
+之後運行以下命令：
 
 ```shell
 bundle install
@@ -89,16 +89,16 @@ bundle install
 
 ### gem
 
-执行以下命令：
+執行以下命令：
 
 ```shell
 gem install --host https://gitea.example.com/api/packages/{owner}/rubygems {package_name}
 ```
 
-| 参数           | 描述           |
+| 參數           | 描述           |
 | -------------- | -------------- |
-| `owner`        | 软件包的所有者 |
-| `package_name` | 软件包名称     |
+| `owner`        | 套件的所有者 |
+| `package_name` | 套件名稱     |
 
 例如：
 
@@ -106,7 +106,7 @@ gem install --host https://gitea.example.com/api/packages/{owner}/rubygems {pack
 gem install --host https://gitea.example.com/api/packages/testuser/rubygems test_package
 ```
 
-## 支持的命令
+## 支援的命令
 
 ```
 gem install

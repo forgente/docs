@@ -6,21 +6,21 @@ aliases:
   - /zh-tw/integrations
 ---
 
-# 集成
+# 整合
 
-Gitea 拥有一个出色的第三方集成社区，以及在其他各种项目中的一流支持。
+Gitea 擁有一個出色的第三方整合社區，以及在其他各種專案中的一流支援。
 
-我们正在[awesome-gitea](https://gitea.com/gitea/awesome-gitea)上整理一个列表来跟踪这些集成！
+我們正在[awesome-gitea](https://gitea.com/gitea/awesome-gitea)上整理一個列表來跟蹤這些整合！
 
-如果你正在寻找[CI/CD](https://gitea.com/gitea/awesome-gitea#user-content-devops)，
-一个[SDK](https://gitea.com/gitea/awesome-gitea#user-content-sdk)，
-甚至一些额外的[主题](https://gitea.com/gitea/awesome-gitea#user-content-themes)，
-你可以在[awesome-gitea](https://gitea.com/gitea/awesome-gitea)中找到它们的列表！
+如果你正在尋找[CI/CD](https://gitea.com/gitea/awesome-gitea#user-content-devops)，
+一個[SDK](https://gitea.com/gitea/awesome-gitea#user-content-sdk)，
+甚至一些額外的[主題](https://gitea.com/gitea/awesome-gitea#user-content-themes)，
+你可以在[awesome-gitea](https://gitea.com/gitea/awesome-gitea)中找到它們的列表！
 
-## 预填新文件名和内容
+## 預填新文件名和內容
 
-如果你想打开一个具有给定名称和内容的新文件，
-你可以使用查询参数来实现：
+如果你想打開一個具有給定名稱和內容的新文件，
+你可以使用查詢參數來實現：
 
 ```txt
 GET /{{org}}/{{repo}}/_new/{{filepath}}

@@ -6,17 +6,17 @@ sidebar_position: 80
 
 # NuGet 套件註冊表
 
-為您的用戶或組織發布 [NuGet](https://www.nuget.org/) 套件。套件註冊表支持 V2 和 V3 API 協議，您還可以使用 [NuGet 符號包](https://docs.microsoft.com/zh-tw/nuget/create-packages/symbol-packages-snupkg)。
+為您的使用者或組織發布 [NuGet](https://www.nuget.org/) 套件。套件註冊表支援 V2 和 V3 API 協議，您還可以使用 [NuGet 符號包](https://docs.microsoft.com/zh-tw/nuget/create-packages/symbol-packages-snupkg)。
 
 ## 需求
 
-要使用 NuGet 套件註冊表，您可以使用命令行界面工具以及各種 IDE（如 Visual Studio）中的 NuGet 功能。
-有關 NuGet 客戶端的更多信息，請參閱[官方文檔](https://docs.microsoft.com/zh-tw/nuget/install-nuget-client-tools)。
+要使用 NuGet 套件註冊表，您可以使用命令行介面工具以及各種 IDE（如 Visual Studio）中的 NuGet 功能。
+有關 NuGet 客戶端的更多資訊，請參閱[官方文件](https://docs.microsoft.com/zh-tw/nuget/install-nuget-client-tools)。
 以下範例使用 `dotnet nuget` 工具。
 
-## 配置套件註冊表
+## 設定套件註冊表
 
-要註冊套件註冊表，您需要配置一個新的 NuGet 源：
+要註冊套件註冊表，您需要設定一個新的 NuGet 源：
 
 ```shell
 dotnet nuget add source --name {source_name} --username {username} --password {password} https://gitea.example.com/api/packages/{owner}/nuget/index.json
@@ -25,8 +25,8 @@ dotnet nuget add source --name {source_name} --username {username} --password {p
 | 參數          | 描述                                                                                                                |
 | ------------- | ------------------------------------------------------------------------------------------------------------------- |
 | `source_name` | 所需的源名稱。                                                                                                      |
-| `username`    | 您的 Gitea 用戶名。                                                                                                 |
-| `password`    | 您的 Gitea 密碼。如果您使用 2FA 或 OAuth，請使用 [個人訪問令牌](development/api-usage.md#authentication) 代替密碼。 |
+| `username`    | 您的 Gitea 使用者名稱。                                                                                                 |
+| `password`    | 您的 Gitea 密碼。如果您使用 2FA 或 OAuth，請使用 [個人存取權杖](development/api-usage.md#認證) 代替密碼。 |
 | `owner`       | 套件的擁有者。                                                                                                      |
 
 例如：
@@ -35,7 +35,7 @@ dotnet nuget add source --name {source_name} --username {username} --password {p
 dotnet nuget add source --name gitea --username testuser --password password123 https://gitea.example.com/api/packages/testuser/nuget/index.json
 ```
 
-您可以在沒有憑證的情況下添加源，並在發布套件時使用 [`--api-key`](https://docs.microsoft.com/zh-tw/dotnet/core/tools/dotnet-nuget-push) 參數。在這種情況下，您需要提供 [個人訪問令牌](development/api-usage.md#authentication)。
+您可以在沒有憑證的情況下添加源，並在發布套件時使用 [`--api-key`](https://docs.microsoft.com/zh-tw/dotnet/core/tools/dotnet-nuget-push) 參數。在這種情況下，您需要提供 [個人存取權杖](development/api-usage.md#認證)。
 
 ## 發布套件
 
@@ -60,7 +60,7 @@ dotnet nuget push --source gitea test_package.1.0.0.nupkg
 
 ### 符號包
 
-NuGet 套件註冊表支持符號服務器。嵌入在符號包（`.snupkg`）中的 PDB 文件可以被客戶端請求。
+NuGet 套件註冊表支援符號伺服器。嵌入在符號包（`.snupkg`）中的 PDB 文件可以被客戶端請求。
 為此，請將 NuGet 套件註冊表註冊為符號源：
 
 ```
@@ -97,7 +97,7 @@ dotnet add package --source {source_name} --version {package_version} {package_n
 dotnet add package --source gitea --version 1.0.0 test_package
 ```
 
-## 支持的命令
+## 支援的命令
 
 ```
 dotnet add

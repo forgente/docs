@@ -10,25 +10,25 @@ sidebar_position: 1
 
 ## 名稱
 
-它類似並兼容於 [GitHub Actions](https://github.com/features/actions)，其名稱也受其啟發。
+它類似並相容於 [GitHub Actions](https://github.com/features/actions)，其名稱也受其啟發。
 為了避免混淆，我們在這裡澄清拼寫：
 
 - "Gitea Actions"（帶有 "s"，兩個詞首字母大寫）是 Gitea 功能的名稱。
 - "GitHub Actions" 是 GitHub 功能的名稱。
-- "Actions" 可能指上述任何一個，取決於上下文。在本文檔中，它指的是 "Gitea Actions"。
-- "action" 或 "actions" 指的是一些腳本/插件，如 "actions/checkout@v4" 或 "actions/cache@v3"。
+- "Actions" 可能指上述任何一個，取決於上下文。在本文件中，它指的是 "Gitea Actions"。
+- "action" 或 "actions" 指的是一些腳本/外掛，如 "actions/checkout@v4" 或 "actions/cache@v3"。
 
 ## Runners
 
 就像其他 CI/CD 解決方案一樣，Gitea 不會自己運行作業，而是將作業委派給 runners。
-Gitea Actions 的 runner 稱為 [act runner](https://gitea.com/gitea/act_runner)，它是一個獨立的程序，也是用 Go 編寫的。
+Gitea Actions 的 runner 稱為 [act runner](https://gitea.com/gitea/act_runner)，它是一個獨立的程式，也是用 Go 編寫的。
 它基於 [nektos/act](http://github.com/nektos/act) 的 [fork](https://gitea.com/gitea/act)。
 
 由於 runner 是獨立部署的，可能會有潛在的安全問題。
 為了避免這些問題，請遵循兩個簡單的規則：
 
-- 不要為你不信任的倉庫、組織或實例使用你不信任的 runner。
-- 不要為你不信任的倉庫、組織或實例提供 runner。
+- 不要為你不信任的儲存庫、組織或實例使用你不信任的 runner。
+- 不要為你不信任的儲存庫、組織或實例提供 runner。
 
 對於內部使用的 Gitea 實例，如企業或個人使用的實例，這兩個規則都不是問題，它們自然如此。
 然而，對於公共 Gitea 實例，如 [gitea.com](https://gitea.com)，在添加或使用 runners 時應記住這兩個規則。

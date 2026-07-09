@@ -6,14 +6,14 @@ aliases:
   - /zh-tw/cmd-embedded
 ---
 
-# 嵌入式數據提取工具
+# 嵌入式資料提取工具
 
-Gitea 的可執行文件包含運行所需的所有資源：模板、圖像、樣式表和翻譯。可以通過將替換文件放置在 `custom` 目錄中的匹配路徑中來覆蓋其中的任何資源（請參閱 [自定義 Gitea](../administration/customizing-gitea.md)）。
+Gitea 的可執行文件包含運行所需的所有資源：模板、圖像、樣式表和翻譯。可以透過將替換文件放置在 `custom` 目錄中的匹配路徑中來覆蓋其中的任何資源（請參閱 [自訂 Gitea](../administration/customizing-gitea.md)）。
 
-要獲取嵌入資源的副本以供編輯，可以從操作系統的 shell 界面使用 CLI 的 `embedded` 命令。
+要獲取嵌入資源的副本以供編輯，可以從操作系統的 shell 介面使用 CLI 的 `embedded` 命令。
 
 :::note
-嵌入式數據提取工具包含在 Gitea 1.12 及更高版本中。
+嵌入式資料提取工具包含在 Gitea 1.12 及更高版本中。
 :::
 
 ## 列出資源
@@ -26,7 +26,7 @@ gitea embedded list [--include-vendored] [patterns...]
 
 `--include-vendored` 標誌使命令包括供應商文件，這些文件通常被排除在外；即，Gitea 所需的外部庫中的文件（例如 [octicons](https://octicons.github.com/) 等）。
 
-可以提供文件搜索模式列表。Gitea 使用 [gobwas/glob](https://github.com/gobwas/glob) 進行其 glob 語法。以下是一些示例：
+可以提供文件搜索模式列表。Gitea 使用 [gobwas/glob](https://github.com/gobwas/glob) 進行其 glob 語法。以下是一些範例：
 
 - 列出所有模板文件，在任何虛擬目錄中：`**.tmpl`
 - 列出所有郵件模板文件：`templates/mail/**.tmpl`
@@ -36,7 +36,7 @@ gitea embedded list [--include-vendored] [patterns...]
 
 如果未提供任何模式，則列出所有文件。
 
-### 示例：列出所有嵌入文件
+### 範例：列出所有嵌入文件
 
 列出所有路徑中包含 `openid` 的嵌入文件：
 
@@ -60,23 +60,23 @@ templates/user/settings/security_openid.tmpl
 gitea [--config {file}] embedded extract [--destination {dir}|--custom] [--overwrite|--rename] [--include-vendored] {patterns...}
 ```
 
-`--config` 選項告訴 Gitea `app.ini` 配置文件的位置（如果它不在默認位置）。此選項僅與 `--custom` 標誌一起使用。
+`--config` 選項告訴 Gitea `app.ini` 設定文件的位置（如果它不在預設位置）。此選項僅與 `--custom` 標誌一起使用。
 
-`--destination` 選項告訴 Gitea 文件必須提取到的目錄。默認是當前目錄。
+`--destination` 選項告訴 Gitea 文件必須提取到的目錄。預設是當前目錄。
 
-`--custom` 標誌告訴 Gitea 將文件直接提取到 `custom` 目錄中。為了使其工作，命令需要知道 `app.ini` 配置文件的位置（`--config`），並且根據配置，從 Gitea 通常啟動的目錄運行。詳情請參閱 [自定義 Gitea](../administration/customizing-gitea.md)。
+`--custom` 標誌告訴 Gitea 將文件直接提取到 `custom` 目錄中。為了使其工作，命令需要知道 `app.ini` 設定文件的位置（`--config`），並且根據設定，從 Gitea 通常啟動的目錄運行。詳情請參閱 [自訂 Gitea](../administration/customizing-gitea.md)。
 
 `--overwrite` 標誌允許覆蓋目標目錄中的任何現有文件。
 
 `--rename` 標誌告訴 Gitea 將目標目錄中的任何現有文件重命名為 `filename.bak`。以前的 `.bak` 文件將被覆蓋。
 
-必須提供至少一個文件搜索模式；請參閱上面的 `list` 子命令以了解模式語法和示例。
+必須提供至少一個文件搜索模式；請參閱上面的 `list` 子命令以瞭解模式語法和範例。
 
 ### 重要通知
 
-確保**僅提取那些需要自定義的文件**。`custom` 目錄中存在的文件不會被 Gitea 的升級過程升級。當 Gitea 升級到新版本（通過替換可執行文件）時，許多嵌入文件將發生變化。Gitea 將尊重並使用 `custom` 目錄中找到的任何文件，即使它們是舊的且不兼容。
+確保**僅提取那些需要自訂的文件**。`custom` 目錄中存在的文件不會被 Gitea 的升級過程升級。當 Gitea 升級到新版本（通過替換可執行文件）時，許多嵌入文件將發生變化。Gitea 將尊重並使用 `custom` 目錄中找到的任何文件，即使它們是舊的且不相容。
 
-### 示例：提取郵件模板
+### 範例：提取郵件模板
 
 將郵件模板提取到臨時目錄：
 

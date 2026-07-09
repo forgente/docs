@@ -6,11 +6,11 @@ sidebar_position: 500
 
 # 通用套件註冊表
 
-為您的用戶或組織發布通用文件，如發布的二進制文件或其他輸出。
+為您的使用者或組織發布通用文件，如發布的二進制文件或其他輸出。
 
 ## 認證到套件註冊表
 
-要認證到套件註冊表，您需要提供[自定義 HTTP 標頭或使用 HTTP 基本認證](development/api-usage.md#authentication)。
+要認證到套件註冊表，您需要提供[自訂 HTTP 標頭或使用 HTTP 基本認證](development/api-usage.md#認證)。
 
 ## 發布套件
 
@@ -36,9 +36,9 @@ curl --user your_username:your_password_or_token \
      https://gitea.example.com/api/packages/testuser/generic/test_package/1.0.0/file.bin
 ```
 
-如果您使用 2FA 或 OAuth，請使用 [個人訪問令牌](development/api-usage.md#authentication) 代替密碼。
+如果您使用 2FA 或 OAuth，請使用 [個人存取權杖](development/api-usage.md#認證) 代替密碼。
 
-服務器響應以下 HTTP 狀態碼。
+伺服器響應以下 HTTP 狀態碼。
 
 | HTTP 狀態碼       | 含義                               |
 | ----------------- | ---------------------------------- |
@@ -70,7 +70,7 @@ curl --user your_username:your_token_or_password \
      https://gitea.example.com/api/packages/testuser/generic/test_package/1.0.0/file.bin
 ```
 
-服務器響應以下 HTTP 狀態碼。
+伺服器響應以下 HTTP 狀態碼。
 
 | HTTP 狀態碼     | 含義               |
 | --------------- | ------------------ |
@@ -98,7 +98,7 @@ curl --user your_username:your_token_or_password -X DELETE \
      https://gitea.example.com/api/packages/testuser/generic/test_package/1.0.0
 ```
 
-服務器響應以下 HTTP 狀態碼。
+伺服器響應以下 HTTP 狀態碼。
 
 | HTTP 狀態碼      | 含義         |
 | ---------------- | ------------ |
@@ -127,7 +127,7 @@ curl --user your_username:your_token_or_password -X DELETE \
      https://gitea.example.com/api/packages/testuser/generic/test_package/1.0.0/file.bin
 ```
 
-服務器響應以下 HTTP 狀態碼。
+伺服器響應以下 HTTP 狀態碼。
 
 | HTTP 狀態碼      | 含義               |
 | ---------------- | ------------------ |

@@ -4,122 +4,122 @@ slug: "comparison"
 sidebar_position: 15
 ---
 
-# 与GitHub Actions的对比
+# 與GitHub Actions的對比
 
-尽管Gitea Actions旨在与GitHub Actions兼容，但它们之间存在一些差异。
+儘管Gitea Actions旨在與GitHub Actions相容，但它們之間存在一些差異。
 
-## 额外功能
+## 額外功能
 
-### Action URL绝对路径
+### Action URL絕對路徑
 
-Gitea Actions支持通过URL绝对路径定义actions，这意味着您可以使用来自任何Git存储库的Actions。
+Gitea Actions支援通過URL絕對路徑定義actions，這意味著您可以使用來自任何Git儲存庫的Actions。
 例如，`uses: https://github.com/actions/checkout@v4`或`uses: http://your_gitea.com/owner/repo@branch`。
 
-### 使用Go编写Actions
+### 使用Go編寫Actions
 
-Gitea Actions支持使用Go编写Actions。
-请参阅[创建Go Actions](https://blog.gitea.com/creating-go-actions/)。
+Gitea Actions支援使用Go編寫Actions。
+請參閱[建立Go Actions](https://blog.gitea.com/creating-go-actions/)。
 
-### 支持非标准的调度语法 @yearly, @monthly, @weekly, @daily, @hourly
+### 支援非標準的調度語法 @yearly, @monthly, @weekly, @daily, @hourly
 
-Github Actions 不支持这些语法，详见： https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule
+Github Actions 不支援這些語法，詳見： https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule
 
-## 不支持的工作流语法
+## 不支援的工作流語法
 
 ### `concurrency`
 
-这是用于一次运行一个Job。
-请参阅[使用并发](https://docs.github.com/zh/actions/using-jobs/using-concurrency)。
+這是用於一次運行一個Job。
+請參閱[使用併發](https://docs.github.com/zh/actions/using-jobs/using-concurrency)。
 
-Gitea Actions目前不支持此功能。
+Gitea Actions目前不支援此功能。
 
 ### `run-name`
 
-这是工作流生成的工作流运行的名称。
-请参阅[GitHub Actions 的工作流语法](https://docs.github.com/zh/actions/using-workflows/workflow-syntax-for-github-actions#run-name)。
+這是工作流生成的工作流運行的名稱。
+請參閱[GitHub Actions 的工作流語法](https://docs.github.com/zh/actions/using-workflows/workflow-syntax-for-github-actions#run-name)。
 
-Gitea Actions目前不支持此功能。
+Gitea Actions目前不支援此功能。
 
 ### `permissions`和`jobs.<job_id>.permissions`
 
-请参阅[GitHub Actions的工作流语法](https://docs.github.com/zh/actions/using-workflows/workflow-syntax-for-github-actions#permissions)。
+請參閱[GitHub Actions的工作流語法](https://docs.github.com/zh/actions/using-workflows/workflow-syntax-for-github-actions#permissions)。
 
-Gitea Actions目前不支持此功能。
+Gitea Actions目前不支援此功能。
 
 ### `jobs.<job_id>.timeout-minutes`
 
-请参阅[GitHub Actions的工作流语法](https://docs.github.com/zh/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idtimeout-minutes)。
+請參閱[GitHub Actions的工作流語法](https://docs.github.com/zh/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idtimeout-minutes)。
 
-Gitea Actions目前不支持此功能。
+Gitea Actions目前不支援此功能。
 
 ### `jobs.<job_id>.continue-on-error`
 
-请参阅[GitHub Actions的工作流语法](https://docs.github.com/zh/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idcontinue-on-error)。
+請參閱[GitHub Actions的工作流語法](https://docs.github.com/zh/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idcontinue-on-error)。
 
-Gitea Actions目前不支持此功能。
+Gitea Actions目前不支援此功能。
 
 ### `jobs.<job_id>.environment`
 
-请参阅[GitHub Actions的工作流语法](https://docs.github.com/zh/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idenvironment)。
+請參閱[GitHub Actions的工作流語法](https://docs.github.com/zh/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idenvironment)。
 
-Gitea Actions 目前不支持此功能。
+Gitea Actions 目前不支援此功能。
 
-### 复杂的`runs-on`
+### 複雜的`runs-on`
 
-请参阅[GitHub Actions的工作流语法](https://docs.github.com/zh/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idruns-on)。
+請參閱[GitHub Actions的工作流語法](https://docs.github.com/zh/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idruns-on)。
 
-Gitea Actions目前只支持`runs-on: xyz`或`runs-on: [xyz]`。
+Gitea Actions目前只支援`runs-on: xyz`或`runs-on: [xyz]`。
 
-### `hashFiles`表达式
+### `hashFiles`表達式
 
-请参阅[表达式](https://docs.github.com/en/actions/learn-github-actions/expressions#hashfiles)。
+請參閱[表達式](https://docs.github.com/en/actions/learn-github-actions/expressions#hashfiles)。
 
-Gitea Actions目前不支持此功能，如果使用它，结果将始终为空字符串。
+Gitea Actions目前不支援此功能，如果使用它，結果將始終為空字符串。
 
-作为解决方法，您可以使用[go-hashfiles](https://gitea.com/actions/go-hashfiles)。
+作為解決方法，您可以使用[go-hashfiles](https://gitea.com/actions/go-hashfiles)。
 
 ## 缺失的功能
 
-### 问题匹配器
+### 問題匹配器
 
-问题匹配器是一种扫描Actions输出以查找指定正则表达式模式并在用户界面中突出显示该信息的方法。
-请参阅[问题匹配器](https://github.com/actions/toolkit/blob/main/docs/problem-matchers.md)。
+問題匹配器是一種掃描Actions輸出以查找指定正則表達式模式並在使用者介面中突出顯示該資訊的方法。
+請參閱[問題匹配器](https://github.com/actions/toolkit/blob/main/docs/problem-matchers.md)。
 
-Gitea Actions目前不支持此功能。
+Gitea Actions目前不支援此功能。
 
-### 为错误创建注释
+### 為錯誤建立註釋
 
-请参阅[为错误创建注释](https://docs.github.com/zh/actions/using-workflows/workflow-commands-for-github-actions#example-creating-an-annotation-for-an-error)。
+請參閱[為錯誤建立註釋](https://docs.github.com/zh/actions/using-workflows/workflow-commands-for-github-actions#example-creating-an-annotation-for-an-error)。
 
-Gitea Actions目前不支持此功能。
+Gitea Actions目前不支援此功能。
 
-### 表达式
+### 表達式
 
-对于 [表达式](https://docs.github.com/en/actions/learn-github-actions/expressions), 当前仅 [`always()`](https://docs.github.com/en/actions/learn-github-actions/expressions#always) 被支持。
+對於 [表達式](https://docs.github.com/en/actions/learn-github-actions/expressions), 當前僅 [`always()`](https://docs.github.com/en/actions/learn-github-actions/expressions#always) 被支援。
 
 ## 缺失的UI功能
 
-### 预处理和后处理步骤
+### 預處理和後處理步驟
 
-预处理和后处理步骤在Job日志用户界面中没有自己的用户界面。
+預處理和後處理步驟在Job日誌使用者介面中沒有自己的使用者介面。
 
-### 服务步骤
+### 服務步驟
 
-服务步骤在Job日志用户界面中没有自己的用户界面。
+服務步驟在Job日誌使用者介面中沒有自己的使用者介面。
 
-## 不一样的行为
+## 不一樣的行為
 
-### 下载Actions
+### 下載Actions
 
-当 `[actions].DEFAULT_ACTIONS_URL` 保持默认值为 `github` 时，Gitea将会从 https://github.com 下载相对路径的actions。比如：
-如果你使用 `uses: actions/checkout@v4`，Gitea将会从 https://github.com/actions/checkout.git 下载这个 actions 项目。
-如果你想要从另外一个 Git服务下载actions，你只需要使用绝对URL `uses: https://gitea.com/actions/checkout@v4` 来下载。
+當 `[actions].DEFAULT_ACTIONS_URL` 保持預設值為 `github` 時，Gitea將會從 https://github.com 下載相對路徑的actions。比如：
+如果你使用 `uses: actions/checkout@v4`，Gitea將會從 https://github.com/actions/checkout.git 下載這個 actions 專案。
+如果你想要從另外一個 Git服務下載actions，你只需要使用絕對URL `uses: https://gitea.com/actions/checkout@v4` 來下載。
 
-如果你的 Gitea 实例是部署在一个互联网限制的网络中，也可以使用绝对地址来下载 actions。你也可以将配置项修改为 `[actions].DEFAULT_ACTIONS_URL = self`。这样所有的相对路径的actions引用，将不再会从 github.com 去下载，而会从这个 Gitea 实例自己的仓库中去下载。例如： `uses: actions/checkout@v4` 将会从 `[server].ROOT_URL`/actions/checkout.git 这个地址去下载 actions。
+如果你的 Gitea 實例是部署在一個互聯網限制的網路中，也可以使用絕對地址來下載 actions。你也可以將設定項修改為 `[actions].DEFAULT_ACTIONS_URL = self`。這樣所有的相對路徑的actions引用，將不再會從 github.com 去下載，而會從這個 Gitea 實例自己的儲存庫中去下載。例如： `uses: actions/checkout@v4` 將會從 `[server].ROOT_URL`/actions/checkout.git 這個地址去下載 actions。
 
-设置`[actions].DEFAULT_ACTIONS_URL`进行配置。请参阅[配置备忘单](../../administration/config-cheat-sheet.md#actions-actions)。
+設定`[actions].DEFAULT_ACTIONS_URL`進行設定。請參閱[設定備忘單](../../administration/config-cheat-sheet.md#actions-actions)。
 
 ### 上下文可用性
 
-不检查上下文可用性，因此您可以在更多地方使用env上下文。
-请参阅[上下文可用性](https://docs.github.com/en/actions/learn-github-actions/contexts#context-availability)。
+不檢查上下文可用性，因此您可以在更多地方使用env上下文。
+請參閱[上下文可用性](https://docs.github.com/en/actions/learn-github-actions/contexts#context-availability)。

@@ -6,7 +6,7 @@ sidebar_position: 4
 
 # Alpine 套件註冊表
 
-為您的用戶或組織發布 [Alpine](https://pkgs.alpinelinux.org/) 套件。
+為您的使用者或組織發布 [Alpine](https://pkgs.alpinelinux.org/) 套件。
 
 ## 需求
 
@@ -14,7 +14,7 @@ sidebar_position: 4
 
 以下範例使用 `apk`。
 
-## 配置套件註冊表
+## 設定套件註冊表
 
 要註冊 Alpine 註冊表，請將 URL 添加到已知的 apk 來源列表中（`/etc/apk/repositories`）：
 
@@ -26,15 +26,15 @@ https://gitea.example.com/api/packages/{owner}/alpine/<branch>/<repository>
 | ------------ | -------------- |
 | `owner`      | 套件的擁有者。 |
 | `branch`     | 要使用的分支。 |
-| `repository` | 要使用的倉庫。 |
+| `repository` | 要使用的儲存庫。 |
 
-如果註冊表是私有的，請在 URL 中提供憑證。您可以使用密碼或 [個人訪問令牌](development/api-usage.md#authentication)：
+如果註冊表是私有的，請在 URL 中提供憑證。您可以使用密碼或 [個人存取權杖](development/api-usage.md#認證)：
 
 ```
 https://{username}:{your_password_or_token}@gitea.example.com/api/packages/{owner}/alpine/<branch>/<repository>
 ```
 
-Alpine 註冊表文件使用 RSA 密鑰簽名，該密鑰必須為 apk 所知。下載公鑰並將其存儲在 `/etc/apk/keys/` 中：
+Alpine 註冊表文件使用 RSA 密鑰簽名，該密鑰必須為 apk 所知。下載公鑰並將其儲存在 `/etc/apk/keys/` 中：
 
 ```shell
 curl -JO https://gitea.example.com/api/packages/{owner}/alpine/key
@@ -58,7 +58,7 @@ PUT https://gitea.example.com/api/packages/{owner}/alpine/{branch}/{repository}
 | ------------ | ------------------------------------------------------------------------------------------------- |
 | `owner`      | 套件的擁有者。                                                                                    |
 | `branch`     | 分支可能與操作系統的發行版本匹配，例如：`v3.17`。                                                 |
-| `repository` | 倉庫可以用來[分組套件](https://wiki.alpinelinux.org/wiki/Repositories) 或者只是 `main` 或類似的。 |
+| `repository` | 儲存庫可以用來[分組套件](https://wiki.alpinelinux.org/wiki/Repositories) 或者只是 `main` 或類似的。 |
 
 使用 HTTP 基本身份驗證的範例請求：
 
@@ -68,16 +68,16 @@ curl --user your_username:your_password_or_token \
      https://gitea.example.com/api/packages/testuser/alpine/v3.17/main
 ```
 
-如果您使用 2FA 或 OAuth，請使用 [個人訪問令牌](development/api-usage.md#authentication) 代替密碼。
+如果您使用 2FA 或 OAuth，請使用 [個人存取權杖](development/api-usage.md#認證) 代替密碼。
 
 您不能將同名文件兩次發布到套件中。您必須先刪除現有的套件文件。
 
-服務器響應以下 HTTP 狀態碼。
+伺服器響應以下 HTTP 狀態碼。
 
 | HTTP 狀態碼       | 含義                                     |
 | ----------------- | ---------------------------------------- |
 | `201 Created`     | 套件已發布。                             |
-| `400 Bad Request` | 套件名稱、版本、分支、倉庫或架構無效。   |
+| `400 Bad Request` | 套件名稱、版本、分支、儲存庫或架構無效。   |
 | `409 Conflict`    | 套件中已存在具有相同參數組合的套件文件。 |
 
 ## 刪除套件
@@ -92,7 +92,7 @@ DELETE https://gitea.example.com/api/packages/{owner}/alpine/{branch}/{repositor
 | -------------- | -------------- |
 | `owner`        | 套件的擁有者。 |
 | `branch`       | 要使用的分支。 |
-| `repository`   | 要使用的倉庫。 |
+| `repository`   | 要使用的儲存庫。 |
 | `architecture` | 套件架構。     |
 | `filename`     | 要刪除的文件。 |
 
@@ -103,7 +103,7 @@ curl --user your_username:your_token_or_password -X DELETE \
      https://gitea.example.com/api/packages/testuser/alpine/v3.17/main/test-package-1.0.0.apk
 ```
 
-服務器響應以下 HTTP 狀態碼。
+伺服器響應以下 HTTP 狀態碼。
 
 | HTTP 狀態碼      | 含義               |
 | ---------------- | ------------------ |

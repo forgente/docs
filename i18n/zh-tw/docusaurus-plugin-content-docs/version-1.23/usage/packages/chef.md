@@ -6,7 +6,7 @@ sidebar_position: 10
 
 # Chef 套件註冊表
 
-為您的用戶或組織發布 [Chef](https://chef.io/) 食譜。
+為您的使用者或組織發布 [Chef](https://chef.io/) 食譜。
 
 ## 需求
 
@@ -14,14 +14,14 @@ sidebar_position: 10
 
 ## 認證
 
-Chef 套件註冊表不使用用戶名：密碼認證，而是使用私鑰：公鑰對進行簽名請求。
-訪問套件擁有者設置頁面以創建必要的密鑰對。
-只有公鑰存儲在 Gitea 中。如果您丟失了私鑰的訪問權限，您必須重新生成密鑰對。
-[配置 `knife`](https://docs.chef.io/workstation/knife_setup/) 以使用下載的私鑰和您的 Gitea 用戶名作為 `client_name`。
+Chef 套件註冊表不使用使用者名稱：密碼認證，而是使用私鑰：公鑰對進行簽名請求。
+訪問套件擁有者設定頁面以建立必要的密鑰對。
+只有公鑰儲存在 Gitea 中。如果您丟失了私鑰的存取權限，您必須重新生成密鑰對。
+[設定 `knife`](https://docs.chef.io/workstation/knife_setup/) 以使用下載的私鑰和您的 Gitea 使用者名稱作為 `client_name`。
 
-## 配置套件註冊表
+## 設定套件註冊表
 
-要[配置 `knife`](https://docs.chef.io/workstation/knife_setup/) 以使用 Gitea 套件註冊表，請將 URL 添加到 `~/.chef/config.rb` 文件中。
+要[設定 `knife`](https://docs.chef.io/workstation/knife_setup/) 以使用 Gitea 套件註冊表，請將 URL 添加到 `~/.chef/config.rb` 文件中。
 
 ```
 knife[:supermarket_site] = 'https://gitea.example.com/api/packages/{owner}/chef'

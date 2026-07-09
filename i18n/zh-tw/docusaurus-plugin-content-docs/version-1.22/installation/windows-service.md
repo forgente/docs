@@ -8,61 +8,61 @@ aliases:
   - /zh-tw/windows-service
 ---
 
-## 准备工作
+## 準備工作
 
-在 C:\gitea\custom\conf\app.ini 中进行了以下更改：
+在 C:\gitea\custom\conf\app.ini 中進行了以下更改：
 
 ```ini title="app.ini"
 RUN_USER = COMPUTERNAME$
 ```
 
-将 Gitea 设置为以本地系统用户运行。
+將 Gitea 設定為以本地系統使用者運行。
 
-COMPUTERNAME 是从命令行中运行 `echo %COMPUTERNAME%` 后得到的响应。如果响应是 `USER-PC`，那么 `RUN_USER = USER-PC$`。
+COMPUTERNAME 是從命令行中運行 `echo %COMPUTERNAME%` 後得到的響應。如果響應是 `USER-PC`，那麼 `RUN_USER = USER-PC$`。
 
-### 使用绝对路径
+### 使用絕對路徑
 
-如果您使用 SQLite3，请将 `PATH` 更改为包含完整路径：
+如果您使用 SQLite3，請將 `PATH` 更改為包含完整路徑：
 
 ```ini title="app.ini"
 [database]
 PATH     = c:/gitea/data/gitea.db
 ```
 
-## 注册为 Windows 服务
+## 註冊為 Windows 服務
 
-要注册为 Windows 服务，首先以 Administrator 身份运行 `cmd`，然后执行以下命令：
+要註冊為 Windows 服務，首先以 Administrator 身份運行 `cmd`，然後執行以下命令：
 
 ```sh
 sc.exe create gitea start= auto binPath= "\"C:\gitea\gitea.exe\" web --config \"C:\gitea\custom\conf\app.ini\""
 ```
 
-别忘了将 `C:\gitea` 替换成你的 Gitea 安装目录。
+別忘了將 `C:\gitea` 替換成你的 Gitea 安裝目錄。
 
-之后在控制面板打开 "Windows Services"，搜索 "gitea"，右键选择 "Run"。在浏览器打开 `http://localhost:3000` 就可以访问了。（如果你修改了端口，请访问对应的端口，3000 是默认端口）。
+之後在控制面板打開 "Windows Services"，搜索 "gitea"，右鍵選擇 "Run"。在瀏覽器打開 `http://localhost:3000` 就可以訪問了。（如果你修改了端口，請前往對應的端口，3000 是預設端口）。
 
-### 服务启动类型
+### 服務啟動類型
 
-据观察，在启动期间加载的系统上，Gitea 服务可能无法启动，并在 Windows 事件日志中记录超时。
-在这种情况下，将启动类型更改为`Automatic-Delayed`。这可以在服务创建期间完成，或者通过运行配置命令来完成。
+據觀察，在啟動期間加載的系統上，Gitea 服務可能無法啟動，並在 Windows 事件日誌中記錄超時。
+在這種情況下，將啟動類型更改為`Automatic-Delayed`。這可以在服務建立期間完成，或者通過運行設定命令來完成。
 
 ```sh
 sc.exe config gitea start= delayed-auto
 ```
 
-### 添加启动依赖项
+### 添加啟動依賴項
 
-要将启动依赖项添加到 Gitea Windows 服务（例如 Mysql、Mariadb），作为管理员，然后运行以下命令：
+要將啟動依賴項添加到 Gitea Windows 服務（例如 Mysql、Mariadb），作為管理員，然後運行以下命令：
 
 ```sh
 sc.exe config gitea depend= mariadb
 ```
 
-这将确保在 Windows 计算机重新启动时，将延迟自动启动 Gitea，直到数据库准备就绪，从而减少启动失败的情况。
+這將確保在 Windows 計算機重新啟動時，將延遲自動啟動 Gitea，直到資料庫準備就緒，從而減少啟動失敗的情況。
 
-## 从 Windows 服务中删除
+## 從 Windows 服務中刪除
 
-以 Administrator 身份运行 `cmd`，然后执行以下命令：
+以 Administrator 身份運行 `cmd`，然後執行以下命令：
 
 ```sh
 sc.exe delete gitea

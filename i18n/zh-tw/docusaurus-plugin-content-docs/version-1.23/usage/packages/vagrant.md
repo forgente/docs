@@ -6,7 +6,7 @@ sidebar_position: 120
 
 # Vagrant 套件註冊表
 
-為您的用戶或組織發布 [Vagrant](https://www.vagrantup.com/) 套件。
+為您的使用者或組織發布 [Vagrant](https://www.vagrantup.com/) 套件。
 
 ## 需求
 
@@ -14,7 +14,7 @@ sidebar_position: 120
 
 ## 發布套件
 
-通過執行 HTTP PUT 請求來發布 Vagrant box：
+透過執行 HTTP PUT 請求來發布 Vagrant box：
 
 ```
 PUT https://gitea.example.com/api/packages/{owner}/vagrant/{package_name}/{package_version}/{provider}.box
@@ -25,7 +25,7 @@ PUT https://gitea.example.com/api/packages/{owner}/vagrant/{package_name}/{packa
 | `owner`           | 套件的擁有者。                                                     |
 | `package_name`    | 套件名稱。                                                         |
 | `package_version` | 套件版本，符合 semver。                                            |
-| `provider`        | [支持的提供者名稱](https://www.vagrantup.com/docs/providers)之一。 |
+| `provider`        | [支援的提供者名稱](https://www.vagrantup.com/docs/providers)之一。 |
 
 上傳 Hyper-V box 的範例：
 
@@ -35,11 +35,11 @@ curl --user your_username:your_password_or_token \
      https://gitea.example.com/api/packages/testuser/vagrant/test_system/1.0.0/hyperv.box
 ```
 
-如果您使用 2FA 或 OAuth，請使用 [個人訪問令牌](development/api-usage.md#authentication) 代替密碼。
+如果您使用 2FA 或 OAuth，請使用 [個人存取權杖](development/api-usage.md#認證) 代替密碼。
 
 如果已經存在同名、同版本和同提供者的 box，您不能發布該 box。您必須先刪除現有的套件。
 
-服務器響應以下 HTTP 狀態碼。
+伺服器響應以下 HTTP 狀態碼。
 
 | HTTP 狀態碼       | 含義                                 |
 | ----------------- | ------------------------------------ |
@@ -67,9 +67,9 @@ vagrant box add "https://gitea.example.com/api/packages/testuser/vagrant/test_sy
 ```
 
 這將安裝套件的最新版本。要添加特定版本，請使用 `--box-version` 參數。
-如果註冊表是私有的，您可以在 `VAGRANT_CLOUD_TOKEN` 環境變量中傳遞您的 [個人訪問令牌](development/api-usage.md#authentication)。
+如果註冊表是私有的，您可以在 `VAGRANT_CLOUD_TOKEN` 環境變量中傳遞您的 [個人存取權杖](development/api-usage.md#認證)。
 
-## 支持的命令
+## 支援的命令
 
 ```
 vagrant box add

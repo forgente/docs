@@ -4,62 +4,62 @@ slug: "pub"
 sidebar_position: 90
 ---
 
-# Pub 软件包注册表
+# Pub 套件註冊表
 
-为您的用户或组织发布 [Pub](https://dart.dev/guides/packages) 软件包。
+為您的使用者或組織發佈 [Pub](https://dart.dev/guides/packages) 套件。
 
 ## 要求
 
-要使用Pub软件包注册表，您需要使用 [dart](https://dart.dev/tools/dart-tool) 和/或 [flutter](https://docs.flutter.dev/reference/flutter-cli). 工具。
+要使用Pub套件註冊表，您需要使用 [dart](https://dart.dev/tools/dart-tool) 和/或 [flutter](https://docs.flutter.dev/reference/flutter-cli). 工具。
 
-以下示例使用 `dart`。
+以下範例使用 `dart`。
 
-## 配置软件包注册表
+## 設定套件註冊表
 
-要注册软件包注册表并提供凭据，请执行以下操作：
+要註冊套件註冊表並提供憑據，請執行以下操作：
 
 ```shell
 dart pub token add https://gitea.example.com/api/packages/{owner}/pub
 ```
 
-| 占位符  | 描述           |
+| 佔位符  | 描述           |
 | ------- | -------------- |
-| `owner` | 软件包的所有者 |
+| `owner` | 套件的所有者 |
 
-您需要提供您的[个人访问令牌](development/api-usage.md#通过-api-认证)。
+您需要提供您的[個人存取權杖](development/api-usage.md#透過-api-認證)。
 
-## 发布软件包
+## 發佈套件
 
-要发布软件包，请编辑 `pubspec.yaml` 文件，并添加以下行：
+要發佈套件，請編輯 `pubspec.yaml` 文件，並添加以下行：
 
 ```yaml
 publish_to: https://gitea.example.com/api/packages/{owner}/pub
 ```
 
-| 占位符  | 描述           |
+| 佔位符  | 描述           |
 | ------- | -------------- |
-| `owner` | 软件包的所有者 |
+| `owner` | 套件的所有者 |
 
-现在，您可以通过运行以下命令来发布软件包：
+現在，您可以透過運行以下命令來發布套件：
 
 ```shell
 dart pub publish
 ```
 
-如果已存在具有相同名称和版本的软件包，则无法发布软件包。您必须先删除现有的软件包。
+如果已存在具有相同名稱和版本的套件，則無法發佈套件。您必須先刪除現有的套件。
 
-## 安装软件包
+## 安裝套件
 
-要从软件包注册表安装Pub软件包，请执行以下命令：
+要從套件註冊表安裝Pub套件，請執行以下命令：
 
 ```shell
 dart pub add {package_name} --hosted-url=https://gitea.example.com/api/packages/{owner}/pub/
 ```
 
-| 参数           | 描述           |
+| 參數           | 描述           |
 | -------------- | -------------- |
-| `owner`        | 软件包的所有者 |
-| `package_name` | 软件包名称     |
+| `owner`        | 套件的所有者 |
+| `package_name` | 套件名稱     |
 
 例如：
 

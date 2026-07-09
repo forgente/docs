@@ -8,34 +8,36 @@ aliases:
 
 # API 使用指南
 
-## 开启/配置 API 访问
+## 開啟/設定 API 存取
 
-通常情况下， `ENABLE_SWAGGER` 默认开启并且参数 `MAX_RESPONSE_ITEMS` 默认为 50。您可以从 [Config Cheat Sheet](../administration/config-cheat-sheet.md) 中获取更多配置相关信息。
+通常情況下， `ENABLE_SWAGGER` 預設開啟並且參數 `MAX_RESPONSE_ITEMS` 預設為 50。您可以從 [Config Cheat Sheet](../administration/config-cheat-sheet.md) 中獲取更多設定相關資訊。
 
-## 通过 API 认证
+<a id="authentication"></a>
+<a id="通過-api-認證"></a>
+## 透過 API 認證
 
-Gitea 支持以下几种 API 认证方式：
+Gitea 支援以下幾種 API 認證方式：
 
 - HTTP basic authentication 方式
-- 通过指定 `token=...` URL 查询参数方式
-- 通过指定 `access_token=...` URL 查询参数方式
-- 通过指定 `Authorization: token ...` HTTP header 方式
+- 透過指定 `token=...` URL 查詢參數方式
+- 透過指定 `access_token=...` URL 查詢參數方式
+- 透過指定 `Authorization: token ...` HTTP header 方式
 
-以上提及的认证方法接受相同的 apiKey token 类型，您可以在编码时通过查阅代码更好地理解这一点。
-Gitea 调用解析查询参数以及头部信息来获取 token 的代码可以在 [modules/auth/auth.go](https://github.com/go-gitea/gitea/blob/6efdcaed86565c91a3dc77631372a9cc45a58e89/modules/auth/auth.go#L47) 中找到。
+以上提及的認證方法接受相同的 apiKey token 類型，您可以在編碼時透過查閱程式碼更好地理解這一點。
+Gitea 調用解析查詢參數以及頭部資訊來獲取 token 的程式碼可以在 [modules/auth/auth.go](https://github.com/go-gitea/gitea/blob/6efdcaed86565c91a3dc77631372a9cc45a58e89/modules/auth/auth.go#L47) 中找到。
 
-您可以通过您的 gitea web 界面来创建 apiKey token：
+您可以透過您的 gitea Web 介面來建立 apiKey token：
 `Settings | Applications | Generate New Token`.
 
-### 关于 `Authorization:` header
+### 關於 `Authorization:` header
 
-由于一些历史原因，Gitea 需要在 header 的 apiKey token 里引入前缀 `token`，类似于如下形式：
+由於一些歷史原因，Gitea 需要在 header 的 apiKey token 裡引入前綴 `token`，類似於如下形式：
 
 ```
 Authorization: token 65eaa9c8ef52460d22a93307fe0aee76289dc675
 ```
 
-以 `curl` 命令为例，它会以如下形式携带在请求中：
+以 `curl` 命令為例，它會以如下形式攜帶在請求中：
 
 ```
 curl "http://localhost:4000/api/v1/repos/test1/test1/issues" \
@@ -44,20 +46,20 @@ curl "http://localhost:4000/api/v1/repos/test1/test1/issues" \
     -H "Content-Type: application/json" -d "{ \"body\": \"testing\", \"title\": \"test 20\"}" -i
 ```
 
-正如上例所示，您也可以在 GET 请求中使用同一个 token 并以 `token=` 的查询参数形式携带 token 来进行认证。
+正如上例所示，您也可以在 GET 請求中使用同一個 token 並以 `token=` 的查詢參數形式攜帶 token 來進行認證。
 
-## 通过 API 列出您发布的令牌
+## 透過 API 列出您發佈的令牌
 
-`/users/:name/tokens` 是一个特殊的接口，需要您使用 basic authentication 进行认证，具体原因在 issue 中
+`/users/:name/tokens` 是一個特殊的介面，需要您使用 basic authentication 進行認證，具體原因在 issue 中
 [#3842](https://github.com/go-gitea/gitea/issues/3842#issuecomment-397743346) 有所提及，使用方法如下所示：
 
-### 使用 Basic authentication 认证
+### 使用 Basic authentication 認證
 
 ```
 $ curl --url https://yourusername:yourpassword@gitea.your.host/api/v1/users/yourusername/tokens
 [{"name":"test","sha1":"..."},{"name":"dev","sha1":"..."}]
 ```
 
-## 使用 Sudo 方式请求 API
+## 使用 Sudo 方式請求 API
 
-此 API 允许管理员借用其他用户身份进行 API 请求。只需在请求中指定查询参数 `sudo=` 或是指定 header 中的 `Sudo:` 为需要使用的用户 username 即可。
+此 API 允許管理員借用其他使用者身份進行 API 請求。只需在請求中指定查詢參數 `sudo=` 或是指定 header 中的 `Sudo:` 為需要使用的使用者 username 即可。

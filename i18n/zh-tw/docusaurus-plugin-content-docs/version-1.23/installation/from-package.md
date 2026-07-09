@@ -12,9 +12,9 @@ aliases:
 
 ### macOS
 
-目前，在 MacOS 上安裝的唯一支持方法是 [Homebrew](http://brew.sh/)。
+目前，在 MacOS 上安裝的唯一支援方法是 [Homebrew](http://brew.sh/)。
 按照[從二進制部署](installation/from-binary.md)指南可能有效，
-但不受支持。要通過 `brew` 安裝 Gitea：
+但不受支援。要通過 `brew` 安裝 Gitea：
 
 ```
 brew install gitea
@@ -24,7 +24,7 @@ brew install gitea
 
 ### Alpine Linux
 
-Alpine Linux 在其社區存儲庫中有 [Gitea](https://pkgs.alpinelinux.org/packages?name=gitea&branch=edge)，該存儲庫遵循最新的穩定版本。
+Alpine Linux 在其社區儲存庫中有 [Gitea](https://pkgs.alpinelinux.org/packages?name=gitea&branch=edge)，該儲存庫遵循最新的穩定版本。
 
 ```sh
 apk add gitea
@@ -32,7 +32,7 @@ apk add gitea
 
 ### Arch Linux
 
-滾動發行版在其官方額外存儲庫中有 [Gitea](https://www.archlinux.org/packages/extra/x86_64/gitea/)，並且隨著新的 Gitea 發行版提供包更新。
+滾動發行版在其官方額外儲存庫中有 [Gitea](https://www.archlinux.org/packages/extra/x86_64/gitea/)，並且隨著新的 Gitea 發行版提供包更新。
 
 ```sh
 pacman -S gitea
@@ -48,7 +48,7 @@ pacman -S gitea
 
 ### Gentoo Linux
 
-滾動發行版在其官方社區存儲庫中有 [Gitea](https://packages.gentoo.org/packages/www-apps/gitea)，並且隨著新的 Gitea 發行版提供包更新。
+滾動發行版在其官方社區儲存庫中有 [Gitea](https://packages.gentoo.org/packages/www-apps/gitea)，並且隨著新的 Gitea 發行版提供包更新。
 
 ```sh
 emerge gitea -va
@@ -66,7 +66,7 @@ snap install gitea
 ### SUSE 和 openSUSE
 
 OpenSUSE 構建服務提供 [openSUSE 和 SLE](https://software.opensuse.org/download/package?package=gitea&project=devel%3Atools%3Ascm) 的包
-在開發軟件配置管理存儲庫中
+在開發軟件設定管理儲存庫中
 
 ### Windows
 
@@ -86,7 +86,7 @@ choco install gitea
 pkg install gitea
 ```
 
-要獲取最新版本，或使用自定義選項構建端口，
+要獲取最新版本，或使用自訂選項構建端口，
 [從端口安裝](https://www.freebsd.org/doc/handbook/ports-using.html)：
 
 ```
@@ -95,8 +95,8 @@ cd /usr/ports/www/gitea
 make install clean
 ```
 
-該端口使用標準的 FreeBSD 文件系統佈局：配置文件位於 `/usr/local/etc/gitea`，
-捆綁的模板、選項、插件和主題位於 `/usr/local/share/gitea`，啟動腳本
+該端口使用標準的 FreeBSD 文件系統佈局：設定文件位於 `/usr/local/etc/gitea`，
+捆綁的模板、選項、外掛和主題位於 `/usr/local/share/gitea`，啟動腳本
 位於 `/usr/local/etc/rc.d/gitea`。
 
 要使 Gitea 作為服務運行，請運行 `sysrc gitea_enable=YES` 並使用 `service gitea start` 啟動它。

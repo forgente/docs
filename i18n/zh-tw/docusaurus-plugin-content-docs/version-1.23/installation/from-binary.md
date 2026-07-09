@@ -8,7 +8,7 @@ aliases:
 
 # 從二進制安裝
 
-所有下載都支持 SQLite、MySQL 和 PostgreSQL，並內置資產。這可能與 Gogs 不同。
+所有下載都支援 SQLite、MySQL 和 PostgreSQL，並內置資產。這可能與 Gogs 不同。
 
 ## 下載
 
@@ -21,7 +21,7 @@ aliases:
 **對於 Windows**，您可能需要 `windows-4.0-amd64`。它適用於所有現代版本的 Windows，但還有一個 `386` 平台可用，專為舊的 32 位版本的 Windows 設計。
 
 :::info
-還有一個 `gogit-windows` 文件可用，它是為了解決一些[性能問題](https://github.com/go-gitea/gitea/pull/15482)而創建的，這些問題是一些 Windows 用戶在舊系統/版本上報告的。如果您遇到性能問題，應該考慮使用此文件，並讓我們知道它是否改善了性能。
+還有一個 `gogit-windows` 文件可用，它是為瞭解決一些[性能問題](https://github.com/go-gitea/gitea/pull/15482)而建立的，這些問題是一些 Windows 使用者在舊系統/版本上報告的。如果您遇到性能問題，應該考慮使用此文件，並讓我們知道它是否改善了性能。
 :::
 
 **對於 macOS**，如果您的硬件使用 Apple Silicon，您應該選擇 `darwin-arm64`，或者對於 Intel 選擇 `darwin-amd64`。
@@ -52,22 +52,22 @@ gpg --verify gitea-@version@-linux-amd64.asc gitea-@version@-linux-amd64
 查找文本 `Good signature from "Teabot <teabot@gitea.io>"` 以確認二進制文件良好，
 儘管有 `This key is not certified with a trusted signature!` 之類的警告。
 
-## 推薦的服務器配置
+## 推薦的伺服器設定
 
 :::note
-以下許多目錄也可以使用[環境變量](../administration/environment-variables.md)進行配置！
-值得注意的是，配置 `GITEA_WORK_DIR` 將告訴 Gitea 將其工作目錄設置在哪裡，並簡化安裝過程。
+以下許多目錄也可以使用[環境變量](../administration/environment-variables.md)進行設定！
+值得注意的是，設定 `GITEA_WORK_DIR` 將告訴 Gitea 將其工作目錄設定在哪裡，並簡化安裝過程。
 :::
 
 ### 準備環境
 
-檢查服務器上是否安裝了 Git。如果沒有，請先安裝它。Gitea 需要 Git 版本 >= 2.0。
+檢查伺服器上是否安裝了 Git。如果沒有，請先安裝它。Gitea 需要 Git 版本 >= 2.0。
 
 ```sh
 git --version
 ```
 
-創建一個用戶來運行 Gitea（例如 `git`）
+建立一個使用者來運行 Gitea（例如 `git`）
 
 ```sh
 # 在 Ubuntu/Debian 上：
@@ -92,7 +92,7 @@ adduser \
    git
 ```
 
-### 創建所需的目錄結構
+### 建立所需的目錄結構
 
 ```sh
 mkdir -p /var/lib/gitea/{custom,data,log}
@@ -105,7 +105,7 @@ chmod 770 /etc/gitea
 
 :::note
 
-> `/etc/gitea` 暫時設置為用戶 `git` 的寫入權限，以便 Web 安裝程序可以寫入配置文件。安裝完成後，建議將權限設置為只讀：
+> `/etc/gitea` 暫時設定為使用者 `git` 的寫入權限，以便 Web 安裝程式可以寫入設定文件。安裝完成後，建議將權限設定為只讀：
 > :::
 
 > ```sh
@@ -113,26 +113,26 @@ chmod 770 /etc/gitea
 > chmod 640 /etc/gitea/app.ini
 > ```
 
-如果您不希望 Web 安裝程序能夠寫入配置文件，可以使配置文件對 Gitea 用戶（所有者/組 `root:git`，模式 `0640`）只讀，但您需要手動編輯配置文件以：
+如果您不希望 Web 安裝程式能夠寫入設定文件，可以使設定文件對 Gitea 使用者（所有者/組 `root:git`，模式 `0640`）只讀，但您需要手動編輯設定文件以：
 
-- 設置 `INSTALL_LOCK= true`，
-- 確保所有數據庫配置詳細信息正確設置
-- 確保設置了 `SECRET_KEY` 和 `INTERNAL_TOKEN` 值。（您可能需要使用 `gitea generate secret` 來生成這些密鑰。）
-- 確保設置了您需要的任何其他密鑰。
+- 設定 `INSTALL_LOCK= true`，
+- 確保所有資料庫設定詳細資訊正確設定
+- 確保設定了 `SECRET_KEY` 和 `INTERNAL_TOKEN` 值。（您可能需要使用 `gitea generate secret` 來生成這些密鑰。）
+- 確保設定了您需要的任何其他密鑰。
 
-有關使用 `gitea generate secret` 的信息，請參閱[命令行文檔](../administration/command-line.md)。
+有關使用 `gitea generate secret` 的資訊，請參閱[命令行文件](../administration/command-line.md)。
 
-### 配置 Gitea 的工作目錄
+### 設定 Gitea 的工作目錄
 
 :::note
-如果您計劃將 Gitea 作為 Linux 服務運行，則可以跳過此步驟，因為服務文件允許您設置 `WorkingDirectory`。否則，請考慮（半）永久性地設置此環境變量，以便 Gitea 始終使用正確的工作目錄。
+如果您計劃將 Gitea 作為 Linux 服務運行，則可以跳過此步驟，因為服務文件允許您設定 `WorkingDirectory`。否則，請考慮（半）永久性地設定此環境變量，以便 Gitea 始終使用正確的工作目錄。
 :::
 
 ```sh
 export GITEA_WORK_DIR=/var/lib/gitea/
 ```
 
-### 將 Gitea 二進制文件複製到全局位置
+### 將 Gitea 二進制文件複製到全域位置
 
 ```sh
 cp gitea /usr/local/bin/gitea

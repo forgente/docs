@@ -97,7 +97,7 @@ You can specify the configuration file path with `-c`/`--config` argument.
 ./act_runner -c config.yaml daemon # run with config file
 ```
 
-You can read the latest version of the configuration file online at [config.example.yaml](internal/pkg/config/config.example.yaml).
+You can read the latest version of the configuration file online at [config.example.yaml](https://gitea.com/gitea/act_runner/src/branch/main/internal/pkg/config/config.example.yaml).
 
 ### Example Deployments
 

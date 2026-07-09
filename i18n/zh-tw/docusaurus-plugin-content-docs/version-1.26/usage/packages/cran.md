@@ -4,53 +4,53 @@ slug: "cran"
 sidebar_position: 35
 ---
 
-# CRAN 软件包注册表
+# CRAN 套件註冊表
 
-将 [R](https://www.r-project.org/) 软件包发布到您的用户或组织的类似 [CRAN](https://cran.r-project.org/) 的注册表。
+將 [R](https://www.r-project.org/) 套件發佈到您的使用者或組織的類似 [CRAN](https://cran.r-project.org/) 的註冊表。
 
 ## 要求
 
-要使用CRAN软件包注册表，您需要安装 [R](https://cran.r-project.org/)。
+要使用CRAN套件註冊表，您需要安裝 [R](https://cran.r-project.org/)。
 
-## 配置软件包注册表
+## 設定套件註冊表
 
-要注册软件包注册表，您需要将其添加到 `Rprofile.site` 文件中，可以是系统级别、用户级别 `~/.Rprofile` 或项目级别：
+要註冊套件註冊表，您需要將其添加到 `Rprofile.site` 文件中，可以是系統級別、使用者級別 `~/.Rprofile` 或專案級別：
 
 ```
 options("repos" = c(getOption("repos"), c(gitea="https://gitea.example.com/api/packages/{owner}/cran")))
 ```
 
-| 参数    | 描述           |
+| 參數    | 描述           |
 | ------- | -------------- |
-| `owner` | 软件包的所有者 |
+| `owner` | 套件的所有者 |
 
-如果需要提供凭据，可以将它们嵌入到URL(`https://user:password@gitea.example.com/...`)中。
+如果需要提供憑據，可以將它們嵌入到URL(`https://user:password@gitea.example.com/...`)中。
 
-## 发布软件包
+## 發佈套件
 
-要发布 R 软件包，请执行带有软件包内容的 HTTP `PUT` 操作。
+要發佈 R 套件，請執行帶有套件內容的 HTTP `PUT` 操作。
 
-源代码软件包：
+源程式碼套件：
 
 ```
 PUT https://gitea.example.com/api/packages/{owner}/cran/src
 ```
 
-| 参数    | 描述           |
+| 參數    | 描述           |
 | ------- | -------------- |
-| `owner` | 软件包的所有者 |
+| `owner` | 套件的所有者 |
 
-二进制软件包：
+二進制套件：
 
 ```
 PUT https://gitea.example.com/api/packages/{owner}/cran/bin?platform={platform}&rversion={rversion}
 ```
 
-| 参数       | 描述           |
+| 參數       | 描述           |
 | ---------- | -------------- |
-| `owner`    | 软件包的所有者 |
-| `platform` | 平台的名称     |
-| `rversion` | 二进制的R版本  |
+| `owner`    | 套件的所有者 |
+| `platform` | 平台的名稱     |
+| `rversion` | 二進制的R版本  |
 
 例如：
 
@@ -60,17 +60,17 @@ curl --user your_username:your_password_or_token \
      https://gitea.example.com/api/packages/testuser/cran/bin?platform=windows&rversion=4.2
 ```
 
-如果同名和版本的软件包已存在，则无法发布软件包。您必须首先删除现有的软件包。
+如果同名和版本的套件已存在，則無法發佈套件。您必須首先刪除現有的套件。
 
-## 安装软件包
+## 安裝套件
 
-要从软件包注册表中安装R软件包，请执行以下命令：
+要從套件註冊表中安裝R套件，請執行以下命令：
 
 ```shell
 install.packages("{package_name}")
 ```
 
-| 参数           | 描述              |
+| 參數           | 描述              |
 | -------------- | ----------------- |
 | `package_name` | The package name. |
 

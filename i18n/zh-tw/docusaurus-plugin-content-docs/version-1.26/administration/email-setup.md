@@ -7,17 +7,17 @@ aliases:
   - /zh-tw/email-setup
 ---
 
-# Email 设置
+# Email 設定
 
-Gitea 具有邮件功能，用于发送事务性邮件（例如注册确认邮件）。它可以配置为使用 Sendmail（或兼容的 MTA，例如 Postfix 和 msmtp）或直接使用 SMTP 服务器。
+Gitea 具有郵件功能，用於發送事務性郵件（例如註冊確認郵件）。它可以設定為使用 Sendmail（或相容的 MTA，例如 Postfix 和 msmtp）或直接使用 SMTP 伺服器。
 
 ## 使用 Sendmail
 
-使用 `sendmail` 命令作为邮件传输代理（mailer）。
+使用 `sendmail` 命令作為郵件傳輸代理（mailer）。
 
-注意：对于在官方 Gitea Docker 镜像中使用，请使用 SMTP 版本进行配置（请参考下一节）。
+注意：對於在官方 Gitea Docker 鏡像中使用，請使用 SMTP 版本進行設定（請參考下一節）。
 
-注意：对于面向互联网的网站，请查阅您的 MTA 文档以了解通过 TLS 发送邮件的说明。同时设置 SPF、DMARC 和 DKIM DNS 记录，以使发送的邮件被各个电子邮件提供商接受为合法邮件。
+注意：對於面向互聯網的網站，請查閱您的 MTA 文件以瞭解通過 TLS 發送郵件的說明。同時設定 SPF、DMARC 和 DKIM DNS 記錄，以使發送的郵件被各個電子郵件提供商接受為合法郵件。
 
 ```ini title="app.ini"
 [mailer]
@@ -25,12 +25,12 @@ ENABLED       = true
 FROM          = gitea@mydomain.com
 PROTOCOL   = sendmail
 SENDMAIL_PATH = /usr/sbin/sendmail
-SENDMAIL_ARGS = "--" ; 大多数 "sendmail" 程序都接受选项，使用 "--" 将防止电子邮件地址被解释为选项。
+SENDMAIL_ARGS = "--" ; 大多數 "sendmail" 程序都接受選項，使用 "--" 將防止電子郵件地址被解釋為選項。
 ```
 
 ## 使用 SMTP
 
-直接使用 SMTP 服务器作为中继。如果您不想在实例上设置 MTA，但在电子邮件提供商那里有一个帐户，这个选项非常有用。
+直接使用 SMTP 伺服器作為中繼。如果您不想在實例上設定 MTA，但在電子郵件提供商那裡有一個帳戶，這個選項非常有用。
 
 ```ini title="app.ini"
 [mailer]
@@ -43,29 +43,29 @@ USER           = gitea@mydomain.com
 PASSWD         = `password`
 ```
 
-重启 Gitea 以使配置更改生效。
+重啟 Gitea 以使設定更改生效。
 
-要发送测试邮件以验证设置，请转到 Gitea > 站点管理 > 配置 > SMTP 邮件配置。
+要發送測試郵件以驗證設定，請轉到 Gitea > 站點管理 > 設定 > SMTP 郵件設定。
 
-有关所有选项的完整列表，请查看[配置速查表](../administration/config-cheat-sheet.md)。
+有關所有選項的完整列表，請查看[設定速查表](../administration/config-cheat-sheet.md)。
 
-请注意：只有在使用 TLS 或 `HOST=localhost` 加密 SMTP 服务器通信时才支持身份验证。TLS 加密可以通过以下方式进行：
+請注意：只有在使用 TLS 或 `HOST=localhost` 加密 SMTP 伺服器通信時才支援身份驗證。TLS 加密可以透過以下方式進行：
 
-- 通过端口 587 的 STARTTLS（也称为 Opportunistic TLS）。初始连接是明文的，但如果服务器支持，则可以升级为 TLS。
-- 通过默认端口 465 的 SMTPS 连接。连接到服务器从一开始就使用 TLS。
-- 使用 `PROTOCOL=smtps` 进行强制的 SMTPS 连接。（这两种方式都被称为 Implicit TLS）
-  这是由于 Go 内部库对 STRIPTLS 攻击的保护机制。
+- 通過端口 587 的 STARTTLS（也稱為 Opportunistic TLS）。初始連接是明文的，但如果伺服器支援，則可以升級為 TLS。
+- 通過預設端口 465 的 SMTPS 連接。連接到伺服器從一開始就使用 TLS。
+- 使用 `PROTOCOL=smtps` 進行強制的 SMTPS 連接。（這兩種方式都被稱為 Implicit TLS）
+  這是由於 Go 內部庫對 STRIPTLS 攻擊的保護機制。
 
-请注意，自 2018 年起，[RFC8314](https://tools.ietf.org/html/rfc8314#section-3) 推荐使用 Implicit TLS。
+請注意，自 2018 年起，[RFC8314](https://tools.ietf.org/html/rfc8314#section-3) 推薦使用 Implicit TLS。
 
 ### Gmail
 
-以下配置应该适用于 Gmail 的 SMTP 服务器：
+以下設定應該適用於 Gmail 的 SMTP 伺服器：
 
 ```ini title="app.ini"
 [mailer]
 ENABLED        = true
-HOST           = smtp.gmail.com:465 ; 对于 Gitea >= 1.18.0，删除此行
+HOST           = smtp.gmail.com:465 ; 對於 Gitea >= 1.18.0，刪除此行
 SMTP_ADDR      = smtp.gmail.com
 SMTP_PORT      = 465
 FROM           = example.user@gmail.com
@@ -74,4 +74,4 @@ PASSWD         = `***`
 PROTOCOL    = smtps
 ```
 
-请注意，您需要创建并使用一个 [应用密码](https://support.google.com/accounts/answer/185833?hl=en) 并在您的 Google 帐户上启用 2FA。您将无法直接使用您的 Google 帐户密码。
+請注意，您需要建立並使用一個 [應用密碼](https://support.google.com/accounts/answer/185833?hl=en) 並在您的 Google 帳戶上啟用 2FA。您將無法直接使用您的 Google 帳戶密碼。

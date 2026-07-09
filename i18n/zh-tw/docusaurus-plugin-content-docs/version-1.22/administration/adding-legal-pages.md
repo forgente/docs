@@ -6,28 +6,28 @@ aliases:
   - /zh-tw/adding-legal-pages
 ---
 
-# 添加法律页面
+# 添加法律頁面
 
-一些法域（例如欧盟）要求在网站上添加特定的法律页面（例如隐私政策）。按照以下步骤将它们添加到你的 Gitea 实例中。
+一些法域（例如歐盟）要求在網站上添加特定的法律頁面（例如隱私政策）。按照以下步驟將它們添加到你的 Gitea 實例中。
 
-## 获取页面
+## 獲取頁面
 
-Gitea 源代码附带了示例页面，位于 `contrib/legal` 目录中。将它们复制到 `custom/public/assets/` 目录下。例如，如果要添加隐私政策：
+Gitea 源程式碼附帶了範例頁面，位於 `contrib/legal` 目錄中。將它們複製到 `custom/public/assets/` 目錄下。例如，如果要添加隱私政策：
 
 ```
 wget -O /path/to/custom/public/assets/privacy.html https://raw.githubusercontent.com/go-gitea/gitea/main/contrib/legal/privacy.html.sample
 ```
 
-现在，你需要编辑该页面以满足你的需求。特别是，你必须更改电子邮件地址、网址以及与 "Your Gitea Instance" 相关的引用，以匹配你的情况。
+現在，你需要編輯該頁面以滿足你的需求。特別是，你必須更改電子電子郵件地址、網址以及與 "Your Gitea Instance" 相關的引用，以匹配你的情況。
 
-请务必不要放置会暗示 Gitea 项目对你的服务器负责的一般服务条款或隐私声明。
+請務必不要放置會暗示 Gitea 專案對你的伺服器負責的一般服務條款或隱私聲明。
 
-## 使其可见
+## 使其可見
 
-创建或追加到 `/path/to/custom/templates/custom/extra_links_footer.tmpl` 文件中：
+建立或追加到 `/path/to/custom/templates/custom/extra_links_footer.tmpl` 文件中：
 
 ```go
-<a class="item" href="{{AppSubUrl}}/assets/privacy.html">隐私政策</a>
+<a class="item" href="{{AppSubUrl}}/assets/privacy.html">隱私政策</a>
 ```
 
-重启 Gitea 以查看更改。
+重啟 Gitea 以查看更改。

@@ -78,7 +78,7 @@ bantime = 900
 action = iptables-allports
 ```
 
-如果你使用 Docker，你還需要新增一個 jail 來處理 **iptables** 中的 **FORWARD** 鏈。將其配置在 `/etc/fail2ban/jail.d/gitea-docker.local`：
+如果你使用 Docker，你還需要新增一個 jail 來處理 **iptables** 中的 **FORWARD** 鏈。將其設定在 `/etc/fail2ban/jail.d/gitea-docker.local`：
 
 ```ini
 [gitea-docker]
@@ -91,17 +91,17 @@ bantime = 900
 action = iptables-allports[chain="FORWARD"]
 ```
 
-然後只需運行 `service fail2ban restart` 來應用你的更改。你可以使用 `service fail2ban status` 檢查 fail2ban 是否接受了你的配置。
+然後只需運行 `service fail2ban restart` 來應用你的更改。你可以使用 `service fail2ban status` 檢查 fail2ban 是否接受了你的設定。
 
-務必閱讀 fail2ban 並根據你的需求進行配置，這會在一小時內認證失敗 10 次時，將某人從所有端口禁止 **15 分鐘**。
+務必閱讀 fail2ban 並根據你的需求進行設定，這會在一小時內認證失敗 10 次時，將某人從所有端口禁止 **15 分鐘**。
 
-如果你在 Nginx 反向代理後運行 Gitea（例如使用 Docker），你需要在 Nginx 配置中添加這一行，這樣 IP 不會顯示為 127.0.0.1：
+如果你在 Nginx 反向代理後運行 Gitea（例如使用 Docker），你需要在 Nginx 設定中添加這一行，這樣 IP 不會顯示為 127.0.0.1：
 
 ```
 proxy_set_header X-Real-IP $remote_addr;
 ```
 
-`app.ini` 中的安全選項需要調整，以允許解釋標頭以及描述受信任代理伺服器的 IP 地址和網絡列表（更多信息請參見 [配置速查表](../administration/config-cheat-sheet.md#security-security)）。
+`app.ini` 中的安全選項需要調整，以允許解釋標頭以及描述受信任代理伺服器的 IP 地址和網路列表（更多資訊請參見 [設定速查表](../administration/config-cheat-sheet.md)）。
 
 ```
 REVERSE_PROXY_LIMIT = 1

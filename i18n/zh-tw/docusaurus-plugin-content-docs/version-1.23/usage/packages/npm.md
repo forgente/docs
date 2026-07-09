@@ -6,19 +6,19 @@ sidebar_position: 70
 
 # NPM 套件註冊表
 
-為您的用戶或組織發布 [npm](https://www.npmjs.com/) 套件。
+為您的使用者或組織發布 [npm](https://www.npmjs.com/) 套件。
 
 ## 需求
 
-要使用 npm 套件註冊表，您需要 [Node.js](https://nodejs.org/en/download/) 以及一個包管理器，如 [Yarn](https://classic.yarnpkg.com/en/docs/install) 或 [npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm/) 本身。
+要使用 npm 套件註冊表，您需要 [Node.js](https://nodejs.org/en/download/) 以及一個套件管理器，如 [Yarn](https://classic.yarnpkg.com/en/docs/install) 或 [npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm/) 本身。
 
-註冊表支持[範圍](https://docs.npmjs.com/misc/scope/)和非範圍套件。
+註冊表支援[範圍](https://docs.npmjs.com/misc/scope/)和非範圍套件。
 
 以下範例使用 `npm` 工具和範圍 `@test`。
 
-## 配置套件註冊表
+## 設定套件註冊表
 
-要註冊套件註冊表，您需要配置一個新的包源。
+要註冊套件註冊表，您需要設定一個新的包源。
 
 ```shell
 npm config set {scope}:registry=https://gitea.example.com/api/packages/{owner}/npm/
@@ -29,7 +29,7 @@ npm config set -- '//gitea.example.com/api/packages/{owner}/npm/:_authToken' "{t
 | ------- | -------------------------------------------------------------- |
 | `scope` | 套件的範圍。                                                   |
 | `owner` | 套件的擁有者。                                                 |
-| `token` | 您的 [個人訪問令牌](development/api-usage.md#authentication)。 |
+| `token` | 您的 [個人存取權杖](development/api-usage.md#認證)。 |
 
 例如：
 
@@ -47,7 +47,7 @@ npm config set -- '//gitea.example.com/api/packages/testuser/npm/:_authToken' "p
 
 ## 發布套件
 
-在您的項目中運行以下命令來發布套件：
+在您的專案中運行以下命令來發布套件：
 
 ```shell
 npm publish
@@ -95,7 +95,7 @@ npm install @test/test_package
 
 ## 標記套件
 
-註冊表支持[版本標籤](https://docs.npmjs.com/adding-dist-tags-to-packages/)，可以通過 `npm dist-tag` 進行管理：
+註冊表支援[版本標籤](https://docs.npmjs.com/adding-dist-tags-to-packages/)，可以透過 `npm dist-tag` 進行管理：
 
 ```shell
 npm dist-tag add {package_name}@{version} {tag}
@@ -117,9 +117,9 @@ npm dist-tag add test_package@1.0.2 release
 
 ## 搜索套件
 
-註冊表支持[搜索](https://docs.npmjs.com/cli/v7/commands/npm-search/)，但不支持特殊搜索限定符，如 `author:gitea`。
+註冊表支援[搜索](https://docs.npmjs.com/cli/v7/commands/npm-search/)，但不支援特殊搜索限定符，如 `author:gitea`。
 
-## 支持的命令
+## 支援的命令
 
 ```
 npm install

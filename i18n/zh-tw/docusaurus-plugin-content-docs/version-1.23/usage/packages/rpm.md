@@ -6,7 +6,7 @@ sidebar_position: 105
 
 # RPM 套件註冊表
 
-為您的用戶或組織發布 [RPM](https://rpm.org/) 套件。
+為您的使用者或組織發布 [RPM](https://rpm.org/) 套件。
 
 ## 需求
 
@@ -14,7 +14,7 @@ sidebar_position: 105
 
 以下範例使用 `dnf`。
 
-## 配置套件註冊表
+## 設定套件註冊表
 
 要註冊 RPM 註冊表，請將 URL 添加到已知來源列表中：
 
@@ -37,13 +37,13 @@ dnf config-manager --add-repo https://gitea.example.com/api/packages/testuser/rp
 dnf config-manager --add-repo https://gitea.example.com/api/packages/testuser/rpm/centos/el7.repo
 ```
 
-如果註冊表是私有的，請在 URL 中提供憑證。您可以使用密碼或 [個人訪問令牌](development/api-usage.md#authentication)：
+如果註冊表是私有的，請在 URL 中提供憑證。您可以使用密碼或 [個人存取權杖](development/api-usage.md#認證)：
 
 ```shell
 dnf config-manager --add-repo https://{username}:{your_password_or_token}@gitea.example.com/api/packages/{owner}/rpm/{group}.repo
 ```
 
-您還需要將憑證添加到創建的 `.repo` 文件中的 URL 中，位於 `/etc/yum.repos.d`。
+您還需要將憑證添加到建立的 `.repo` 文件中的 URL 中，位於 `/etc/yum.repos.d`。
 
 ## 發布套件
 
@@ -72,10 +72,10 @@ curl --user your_username:your_password_or_token \
      https://gitea.example.com/api/packages/testuser/rpm/centos/el7/upload
 ```
 
-如果您使用 2FA 或 OAuth，請使用 [個人訪問令牌](development/api-usage.md#authentication) 代替密碼。
+如果您使用 2FA 或 OAuth，請使用 [個人存取權杖](development/api-usage.md#認證) 代替密碼。
 您不能將同名文件兩次發布到套件中。您必須先刪除現有的套件版本。
 
-服務器響應以下 HTTP 狀態碼。
+伺服器響應以下 HTTP 狀態碼。
 
 | HTTP 狀態碼       | 含義                                 |
 | ----------------- | ------------------------------------ |
@@ -111,7 +111,7 @@ curl --user your_username:your_token_or_password -X DELETE \
      https://gitea.example.com/api/packages/testuser/rpm/centos/el7/package/test-package/1.0.0/x86_64
 ```
 
-服務器響應以下 HTTP 狀態碼。
+伺服器響應以下 HTTP 狀態碼。
 
 | HTTP 狀態碼      | 含義               |
 | ---------------- | ------------------ |

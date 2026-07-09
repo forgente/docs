@@ -8,21 +8,21 @@ aliases:
 
 # 搜索引擎索引
 
-默认情况下，您的 Gitea 安装将被搜索引擎索引。
-如果您不希望您的仓库对搜索引擎可见，请进一步阅读。
+預設情況下，您的 Gitea 安裝將被搜索引擎索引。
+如果您不希望您的儲存庫對搜索引擎可見，請進一步閱讀。
 
 ## 使用 robots.txt 阻止搜索引擎索引
 
-为了使 Gitea 为顶级安装提供自定义的`robots.txt`（默认为空的 404），请在 [`custom`文件夹或`CustomPath`]（administration/customizing-gitea.md）中创建一个名为 `public/robots.txt` 的文件。
+為了使 Gitea 為頂級安裝提供自訂的`robots.txt`（預設為空的 404），請在 [`custom`文件夾或`CustomPath`]（administration/customizing-gitea.md）中建立一個名為 `public/robots.txt` 的文件。
 
-有关如何配置 `robots.txt` 的示例，请参考 [https://moz.com/learn/seo/robotstxt](https://moz.com/learn/seo/robotstxt)。
+有關如何設定 `robots.txt` 的範例，請參考 [https://moz.com/learn/seo/robotstxt](https://moz.com/learn/seo/robotstxt)。
 
 ```txt
 User-agent: *
 Disallow: /
 ```
 
-如果您将 Gitea 安装在子目录中，则需要在顶级目录中创建或编辑 `robots.txt`。
+如果您將 Gitea 安裝在子目錄中，則需要在頂級目錄中建立或編輯 `robots.txt`。
 
 ```txt
 User-agent: *

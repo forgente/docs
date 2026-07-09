@@ -12,11 +12,11 @@ aliases:
 
 ## 使用 systemd
 
-將示例 [gitea.service](https://github.com/go-gitea/gitea/blob/main/contrib/systemd/gitea.service) 複製到 `/etc/systemd/system/gitea.service`，然後使用您喜歡的編輯器編輯該文件。
+將範例 [gitea.service](https://github.com/go-gitea/gitea/blob/main/contrib/systemd/gitea.service) 複製到 `/etc/systemd/system/gitea.service`，然後使用您喜歡的編輯器編輯該文件。
 
 取消註釋需要在此主機上啟用的任何服務，例如 MySQL。
 
-更改用戶、主目錄和其他所需的啟動值。如果使用默認端口，請更改 PORT 或刪除 -p 標誌。
+更改使用者、主目錄和其他所需的啟動值。如果使用預設端口，請更改 PORT 或刪除 -p 標誌。
 
 在啟動時啟用並啟動 Gitea：
 
@@ -39,17 +39,17 @@ sudo systemctl enable gitea --now
 sudo apt install supervisor
 ```
 
-為 supervisor 日誌創建一個日誌目錄：
+為 supervisor 日誌建立一個日誌目錄：
 
 ```
 # 假設 Gitea 安裝在 /home/git/gitea/
 mkdir /home/git/gitea/log/supervisor
 ```
 
-將示例中的配置附加到 `/etc/supervisor/supervisord.conf`
-[supervisord 配置](https://github.com/go-gitea/gitea/blob/main/contrib/supervisor/gitea)。
+將範例中的設定附加到 `/etc/supervisor/supervisord.conf`
+[supervisord 設定](https://github.com/go-gitea/gitea/blob/main/contrib/supervisor/gitea)。
 
-使用您喜歡的編輯器，更改用戶 (`git`) 和主目錄 (`/home/git`) 設置以匹配部署環境。如果使用默認端口，請更改 PORT 或刪除 -p 標誌。
+使用您喜歡的編輯器，更改使用者 (`git`) 和主目錄 (`/home/git`) 設定以匹配部署環境。如果使用預設端口，請更改 PORT 或刪除 -p 標誌。
 
 最後在啟動時啟用並啟動 supervisor：
 

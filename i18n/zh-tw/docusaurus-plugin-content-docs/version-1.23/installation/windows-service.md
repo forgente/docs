@@ -16,7 +16,7 @@ aliases:
 RUN_USER = COMPUTERNAME$
 ```
 
-將 Gitea 設置為以本地系統用戶身份運行。
+將 Gitea 設定為以本地系統使用者身份運行。
 
 COMPUTERNAME 是命令行中 `echo %COMPUTERNAME%` 的響應。如果響應是 `USER-PC`，則 `RUN_USER = USER-PC$`
 
@@ -41,12 +41,12 @@ sc.exe create gitea start= auto binPath= "\"C:\gitea\gitea.exe\" web --config \"
 不要忘記將 `C:\gitea` 替換為正確的 Gitea 目錄。
 
 打開“Windows 服務”，搜索名為“gitea”的服務，右鍵單擊它並單擊
-“運行”。如果一切正常，Gitea 將在 `http://localhost:3000`（或配置的端口）上可訪問。
+“運行”。如果一切正常，Gitea 將在 `http://localhost:3000`（或設定的端口）上可訪問。
 
 ### 服務啟動類型
 
 觀察到在加載系統期間啟動時，Gitea 服務可能會在 Windows 事件日誌中記錄超時並且無法啟動。
-在這種情況下，將啟動類型更改為“自動延遲”。這可以在服務創建期間完成，也可以通過運行配置命令完成
+在這種情況下，將啟動類型更改為“自動延遲”。這可以在服務建立期間完成，也可以透過運行設定命令完成
 
 ```sh
 sc.exe config gitea start= delayed-auto
@@ -60,7 +60,7 @@ sc.exe config gitea start= delayed-auto
 sc.exe config gitea depend= mariadb
 ```
 
-這將確保當 Windows 機器重新啟動時，Gitea 的自動啟動將推遲到數據庫準備就緒，從而減少啟動失敗。
+這將確保當 Windows 機器重新啟動時，Gitea 的自動啟動將推遲到資料庫準備就緒，從而減少啟動失敗。
 
 ## 註銷 Gitea
 

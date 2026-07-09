@@ -4,25 +4,25 @@ slug: "go"
 sidebar_position: 45
 ---
 
-# Go 软件包注册表
+# Go 套件註冊表
 
-为您的用户或组织发布 Go 软件包。
+為您的使用者或組織發佈 Go 套件。
 
-## 发布软件包
+## 發佈套件
 
-要发布 Go 软件包，请执行 HTTP `PUT` 操作，并将软件包内容放入请求主体中。
-如果已经存在相同名称和版本的软件包，您无法发布软件包。您必须首先删除现有的软件包。
-该软件包必须遵循[文档中的结构](https://go.dev/ref/mod#zip-files)。
+要發佈 Go 套件，請執行 HTTP `PUT` 操作，並將套件內容放入請求主體中。
+如果已經存在相同名稱和版本的套件，您無法發佈套件。您必須首先刪除現有的套件。
+該套件必須遵循[文件中的結構](https://go.dev/ref/mod#zip-files)。
 
 ```
 PUT https://gitea.example.com/api/packages/{owner}/go/upload
 ```
 
-| 参数    | 描述           |
+| 參數    | 描述           |
 | ------- | -------------- |
-| `owner` | 软件包的所有者 |
+| `owner` | 套件的所有者 |
 
-要身份验证到软件包注册表，您需要提供[自定义 HTTP 头或使用 HTTP 基本身份验证](development/api-usage.md#通过-api-认证)：
+要身份驗證到套件註冊表，您需要提供[自訂 HTTP 頭或使用 HTTP 基本身份驗證](development/api-usage.md#透過-api-認證)：
 
 ```shell
 curl --user your_username:your_password_or_token \
@@ -30,19 +30,19 @@ curl --user your_username:your_password_or_token \
      https://gitea.example.com/api/packages/testuser/go/upload
 ```
 
-如果您使用的是 2FA 或 OAuth，请使用[个人访问令牌](development/api-usage.md#通过-api-认证)替代密码进行身份验证。
+如果您使用的是 2FA 或 OAuth，請使用[個人存取權杖](development/api-usage.md#透過-api-認證)替代密碼進行身份驗證。
 
-服务器将使用以下 HTTP 状态代码进行响应。
+伺服器將使用以下 HTTP 狀態程式碼進行響應。
 
-| HTTP 状态码       | 含义                       |
+| HTTP 狀態碼       | 含義                       |
 | ----------------- | -------------------------- |
-| `201 Created`     | 软件包已发布               |
-| `400 Bad Request` | 软件包无效                 |
-| `409 Conflict`    | 具有相同名称的软件包已存在 |
+| `201 Created`     | 套件已發佈               |
+| `400 Bad Request` | 套件無效                 |
+| `409 Conflict`    | 具有相同名稱的套件已存在 |
 
-## 安装软件包
+## 安裝套件
 
-要安装Go软件包，请指示Go使用软件包注册表作为代理：
+要安裝Go套件，請指示Go使用套件註冊表作為代理：
 
 ```shell
 # 使用最新版本
@@ -53,12 +53,12 @@ GOPROXY=https://gitea.example.com/api/packages/{owner}/go go install {package_na
 GOPROXY=https://gitea.example.com/api/packages/{owner}/go go install {package_name}@{package_version}
 ```
 
-| 参数              | 描述           |
+| 參數              | 描述           |
 | ----------------- | -------------- |
-| `owner`           | 软件包的所有者 |
-| `package_name`    | 软件包名称     |
-| `package_version` | 软件包版本     |
+| `owner`           | 套件的所有者 |
+| `package_name`    | 套件名稱     |
+| `package_version` | 套件版本     |
 
-如果软件包的所有者是私有的，则需要[提供凭据](https://go.dev/ref/mod#private-module-proxy-auth)。
+如果套件的所有者是私有的，則需要[提供憑據](https://go.dev/ref/mod#private-module-proxy-auth)。
 
-有关 `GOPROXY` 环境变量的更多信息以及如何防止数据泄漏的信息，请[参阅文档](https://go.dev/ref/mod#private-modules)。
+有關 `GOPROXY` 環境變量的更多資訊以及如何防止資料泄漏的資訊，請[參閱文件](https://go.dev/ref/mod#private-modules)。

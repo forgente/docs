@@ -51,7 +51,7 @@ Gitea 支援以下對外 Webhook 整合：
 
 ### 設定 Webhook
 
-建立 Webhook 時，主要設定項目包括：
+建立 Webhook 時，主要設定專案包括：
 
 - `Target URL`：接收投遞的目標位址。
 - `HTTP Method`：通用 Webhook 通常使用 `POST`。
@@ -565,7 +565,7 @@ http_response_code(204);
 
 #### `pull_request_review_approved`
 
-當 pull request review 以核准形式提交時，會觸發此事件。
+當 pull request review 以覈准形式提交時，會觸發此事件。
 
 **動作類型：** `reviewed`
 

@@ -8,25 +8,25 @@ aliases:
 
 # Webhooks
 
-Gitea 支持用于存放庫事件的 Webhooks。这可以在存放庫管理员在设置页面 `/:username/:reponame/settings/hooks` 中進行配置。Webhooks 還可以基于組織和整个系统進行配置。
-所有事件推送都是 POST 請求。目前支持：
+Gitea 支援用於存放庫事件的 Webhooks。這可以在存放庫管理員在設定頁面 `/:username/:reponame/settings/hooks` 中進行設定。Webhooks 還可以基於組織和整個系統進行設定。
+所有事件推送都是 POST 請求。目前支援：
 
 - Gitea (也可以是 GET 請求)
 - Gogs
 - Slack
 - Discord
-- Dingtalk（钉钉）
+- Dingtalk（釘釘）
 - Telegram
 - Microsoft Teams
 - Feishu
-- Wechatwork（企业微信）
+- Wechatwork（企業微信）
 - Packagist
 
-### 事件信息
+### 事件資訊
 
-**警告**：自 Gitea 1.13.0 版起，payload 中的 `secret` 字段已被弃用，並将在 1.14.0 版中移除：https://github.com/go-gitea/gitea/issues/11755
+**警告**：自 Gitea 1.13.0 版起，payload 中的 `secret` 欄位已被棄用，並將在 1.14.0 版中移除：https://github.com/go-gitea/gitea/issues/11755
 
-以下是 Gitea 将发送给 payload URL 的事件信息示例：
+以下是 Gitea 將發送給 payload URL 的事件資訊範例：
 
 ```http
 X-GitHub-Delivery: f6266f16-1bf3-46a5-9ea4-602e06ead473
@@ -108,19 +108,19 @@ X-Gitea-Event: push
 }
 ```
 
-### 示例
+### 範例
 
-这是一个示例，演示如何使用 Webhooks 在推送請求到达存放庫时运行一个 php 脚本。
-在你的存放庫设置中，在 Webhooks 下，设置一个如下的 Gitea webhook：
+這是一個範例，演示如何使用 Webhooks 在推送請求到達存放庫時運行一個 php 腳本。
+在你的存放庫設定中，在 Webhooks 下，設定一個如下的 Gitea webhook：
 
-- 目标 URL：http://mydomain.com/webhook.php
+- 目標 URL：http://mydomain.com/webhook.php
 - HTTP 方法：POST
 - POST Content Type：application/json
 - Secret：123
-- 触发条件：推送事件
+- 觸發條件：推送事件
 - 激活：勾選
 
-現在在你的服务器上建立 php 文件 webhook.php。
+現在在你的伺服器上建立 php 文件 webhook.php。
 
 ```php
 <?php
@@ -178,8 +178,8 @@ if (json_last_error() !== JSON_ERROR_NONE) {
 // success, do something
 ```
 
-在 Webhook 设置中有一个“测试推送（Test Delivery）”按钮，可以测试配置，還有一个“最近推送记录（Recent Deliveries）”的列表。
+在 Webhook 設定中有一個“測試推送（Test Delivery）”按鈕，可以測試設定，還有一個“最近推送記錄（Recent Deliveries）”的列表。
 
-### 授权头（Authorization header）
+### 授權頭（Authorization header）
 
-**从 1.19 版本开始**，Gitea 的 Webhook 可以配置為向 Webhook 目标发送一个 [授权头（authorization header）](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Authorization)。
+**從 1.19 版本開始**，Gitea 的 Webhook 可以設定為向 Webhook 目標發送一個 [授權頭（authorization header）](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Authorization)。

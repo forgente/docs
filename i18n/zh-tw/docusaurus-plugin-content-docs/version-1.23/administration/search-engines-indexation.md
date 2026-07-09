@@ -15,7 +15,7 @@ aliases:
 
 要讓 Gitea 為頂層安裝提供自訂的 `robots.txt`（預設：空的 404），請在 [`custom` 資料夾或 `CustomPath`](../administration/customizing-gitea.md) 中建立一個路徑為 `public/robots.txt` 的檔案。
 
-如何配置 `robots.txt` 的範例可以在 [https://moz.com/learn/seo/robotstxt](https://moz.com/learn/seo/robotstxt) 找到。
+如何設定 `robots.txt` 的範例可以在 [https://moz.com/learn/seo/robotstxt](https://moz.com/learn/seo/robotstxt) 找到。
 
 ```txt
 User-agent: *

@@ -10,18 +10,18 @@ aliases:
 
 Gitea 提供了一個 Helm Chart 以允許在 kubernetes 上安裝。
 
-可以使用以下命令進行非自定義安裝：
+可以使用以下命令進行非自訂安裝：
 
 ```
 helm repo add gitea-charts https://dl.gitea.com/charts/
 helm install gitea gitea-charts/gitea
 ```
 
-如果您想自定義安裝，包括 kubernetes ingress，請參閱完整的 [Gitea helm chart 配置詳細信息](https://gitea.com/gitea/helm-chart/)
+如果您想自訂安裝，包括 kubernetes ingress，請參閱完整的 [Gitea helm chart 設定詳細資訊](https://gitea.com/gitea/helm-chart/)
 
 ## 健康檢查端點
 
-Gitea 帶有一個健康檢查端點 `/api/healthz`，您可以在 kubernetes 中這樣配置它：
+Gitea 帶有一個健康檢查端點 `/api/healthz`，您可以在 kubernetes 中這樣設定它：
 
 ```yaml
 livenessProbe:
@@ -35,7 +35,7 @@ livenessProbe:
   failureThreshold: 10
 ```
 
-成功的健康檢查響應將返回 http 代碼 `200`，示例如下：
+成功的健康檢查響應將返回 http 程式碼 `200`，範例如下：
 
 ```json
 HTTP/1.1 200 OK
@@ -60,4 +60,4 @@ HTTP/1.1 200 OK
 }
 ```
 
-有關更多信息，請參考 kubernetes 文檔 [定義 liveness HTTP 請求](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/#define-a-liveness-http-request)
+有關更多資訊，請參考 kubernetes 文件 [定義 liveness HTTP 請求](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/#define-a-liveness-http-request)

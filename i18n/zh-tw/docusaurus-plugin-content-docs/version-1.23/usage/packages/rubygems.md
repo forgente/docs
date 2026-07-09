@@ -6,13 +6,13 @@ sidebar_position: 110
 
 # RubyGems 套件註冊表
 
-為您的用戶或組織發布 [RubyGems](https://guides.rubygems.org/) 套件。
+為您的使用者或組織發布 [RubyGems](https://guides.rubygems.org/) 套件。
 
 ## 需求
 
 要使用 RubyGems 套件註冊表，您需要使用 [gem](https://guides.rubygems.org/command-reference/) 命令行工具來消費和發布套件。
 
-## 配置套件註冊表
+## 設定套件註冊表
 
 要註冊套件註冊表，請編輯 `~/.gem/credentials` 文件並添加：
 
@@ -24,7 +24,7 @@ https://gitea.example.com/api/packages/{owner}/rubygems: Bearer {token}
 | 參數    | 描述                                                           |
 | ------- | -------------------------------------------------------------- |
 | `owner` | 套件的擁有者。                                                 |
-| `token` | 您的 [個人訪問令牌](development/api-usage.md#authentication)。 |
+| `token` | 您的 [個人存取權杖](development/api-usage.md#認證)。 |
 
 例如：
 
@@ -106,7 +106,7 @@ gem install --host https://gitea.example.com/api/packages/{owner}/rubygems {pack
 gem install --host https://gitea.example.com/api/packages/testuser/rubygems test_package
 ```
 
-## 支持的命令
+## 支援的命令
 
 ```
 gem install

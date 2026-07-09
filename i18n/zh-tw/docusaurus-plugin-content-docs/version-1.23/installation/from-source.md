@@ -6,25 +6,25 @@ aliases:
   - /zh-tw/install-from-source
 ---
 
-# 從源代碼安裝
+# 從源程式碼安裝
 
-您應該[安裝 go](https://go.dev/doc/install) 並正確設置您的 go 環境。特別是，建議設置 `$GOPATH` 環境變量並添加 go bin 目錄或目錄 `${GOPATH//://bin:}/bin` 到 `$PATH`。請參閱 Go wiki 條目 [GOPATH](https://github.com/golang/go/wiki/GOPATH)。
+您應該[安裝 go](https://go.dev/doc/install) 並正確設定您的 go 環境。特別是，建議設定 `$GOPATH` 環境變量並添加 go bin 目錄或目錄 `${GOPATH//://bin:}/bin` 到 `$PATH`。請參閱 Go wiki 條目 [GOPATH](https://github.com/golang/go/wiki/GOPATH)。
 
-接下來，[安裝帶有 npm 的 Node.js](https://nodejs.org/en/download/)，這是構建 JavaScript 和 CSS 文件所必需的。支持的最低 Node.js 版本是 @minNodeVersion@，建議使用最新的 LTS 版本。
+接下來，[安裝帶有 npm 的 Node.js](https://nodejs.org/en/download/)，這是構建 JavaScript 和 CSS 文件所必需的。支援的最低 Node.js 版本是 @minNodeVersion@，建議使用最新的 LTS 版本。
 
 :::note
-需要 Go 版本 @minGoVersion@ 或更高版本。但是，建議獲取與我們的持續集成相同的版本，請參閱[在 Gitea 上進行黑客攻擊](development/hacking-on-gitea.md) 中的建議
+需要 Go 版本 @minGoVersion@ 或更高版本。但是，建議獲取與我們的持續整合相同的版本，請參閱[在 Gitea 上進行黑客攻擊](development/hacking-on-gitea.md) 中的建議
 :::
 
 ## 下載
 
-首先，我們必須檢索源代碼。由於 go 模塊的出現，最簡單的方法是直接使用 Git，因為我們不再需要在 GOPATH 中構建 Gitea。
+首先，我們必須檢索源程式碼。由於 go 模組的出現，最簡單的方法是直接使用 Git，因為我們不再需要在 GOPATH 中構建 Gitea。
 
 ```bash
 git clone https://github.com/go-gitea/gitea
 ```
 
-（本文檔的早期版本建議使用 `go get`。這不再是必需的。）
+（本文件的早期版本建議使用 `go get`。這不再是必需的。）
 
 決定要構建和安裝的 Gitea 版本。目前，有多種選擇可供選擇。`main` 分支代表當前的開發版本。要使用 main 構建，請跳到[構建部分](#build)。
 
@@ -41,7 +41,7 @@ git checkout @sourceBranch@
 git fetch origin pull/xyz/head:pr-xyz
 ```
 
-要從特定標記版本（如 @sourceVersion@）的源代碼構建 Gitea，請列出可用標記並檢出特定標記。
+要從特定標記版本（如 @sourceVersion@）的源程式碼構建 Gitea，請列出可用標記並檢出特定標記。
 
 使用以下命令列出可用標籤。
 
@@ -52,7 +52,7 @@ git checkout @sourceVersion@  # 或 git checkout pr-xyz
 
 ## 構建
 
-要從源代碼構建，系統上必須存在以下程序：
+要從源程式碼構建，系統上必須存在以下程式：
 
 - `go` @minGoVersion@ 或更高版本，請參閱[此處](https://go.dev/dl/)
 - `node` @minNodeVersion@ 或更高版本，帶有 `npm`，請參閱[此處](https://nodejs.org/en/download/)
@@ -63,8 +63,8 @@ git checkout @sourceVersion@  # 或 git checkout pr-xyz
 根據要求，可以包括以下構建標籤。
 
 - `bindata`：構建單個整體二進制文件，包含所有資產。生產構建所需。
-- `sqlite sqlite_unlock_notify`：啟用對 [SQLite3](https://sqlite.org/) 數據庫的支持。僅建議用於小型安裝。
-- `pam`：啟用對 PAM（Linux 可插拔身份驗證模塊）的支持。可用於驗證本地用戶或擴展身份驗證到 PAM 可用的方法。
+- `sqlite sqlite_unlock_notify`：啟用對 [SQLite3](https://sqlite.org/) 資料庫的支援。僅建議用於小型安裝。
+- `pam`：啟用對 PAM（Linux 可插拔身份驗證模組）的支援。可用於驗證本地使用者或擴展身份驗證到 PAM 可用的方法。
 - `gogit`：（實驗性）使用 go-git 變體的 Git 命令。
 
 將所有資產（JS/CSS/模板等）捆綁到二進制文件中。使用 `bindata` 構建標籤是生產部署所必需的。當您開發/測試 Gitea 或能夠正確分離資產時，可以排除 `bindata`。
@@ -75,7 +75,7 @@ git checkout @sourceVersion@  # 或 git checkout pr-xyz
 TAGS="bindata" make build
 ```
 
-在我們的持續集成系統的默認發布構建中，構建標籤是：`TAGS="bindata sqlite sqlite_unlock_notify"`。因此，從源代碼構建的最簡單推薦方法是：
+在我們的持續整合系統的預設發布構建中，構建標籤是：`TAGS="bindata sqlite sqlite_unlock_notify"`。因此，從源程式碼構建的最簡單推薦方法是：
 
 ```bash
 TAGS="bindata sqlite sqlite_unlock_notify" make build
@@ -95,21 +95,21 @@ TAGS="bindata" make backend
 ## 測試
 
 按照上述步驟操作後，工作目錄中將有一個 `gitea` 二進制文件。
-可以從此目錄進行測試或移動到具有測試數據的目錄。當 Gitea 從命令行手動啟動時，可以通過按 `Ctrl + C` 將其終止。
+可以從此目錄進行測試或移動到具有測試資料的目錄。當 Gitea 從命令行手動啟動時，可以透過按 `Ctrl + C` 將其終止。
 
 ```bash
 ./gitea web
 ```
 
-## 更改默認路徑
+## 更改預設路徑
 
-Gitea 將從 _`CustomPath`_ 中搜索許多內容。默認情況下，這是運行 Gitea 時當前工作目錄中的 `custom/` 目錄。它還將在 `$(CustomPath)/conf/app.ini` 中查找其配置文件，並將當前工作目錄用作許多可配置值的相對基本路徑 _`AppWorkPath`_。最後，靜態文件將從 _`StaticRootPath`_ 提供，默認為 _`AppWorkPath`_。
+Gitea 將從 _`CustomPath`_ 中搜索許多內容。預設情況下，這是運行 Gitea 時當前工作目錄中的 `custom/` 目錄。它還將在 `$(CustomPath)/conf/app.ini` 中查找其設定文件，並將當前工作目錄用作許多可設定值的相對基本路徑 _`AppWorkPath`_。最後，靜態文件將從 _`StaticRootPath`_ 提供，預設為 _`AppWorkPath`_。
 
-這些值雖然在開發時很有用，但可能會與下游用戶的偏好發生衝突。
+這些值雖然在開發時很有用，但可能會與下游使用者的偏好發生衝突。
 
-一種選擇是使用腳本文件來影子 `gitea` 二進制文件並在運行 Gitea 之前創建適當的環境。但是，在構建時，您可以使用 `make` 的 `LDFLAGS` 環境變量更改這些默認值。適當的設置如下
+一種選擇是使用腳本文件來影子 `gitea` 二進制文件並在運行 Gitea 之前建立適當的環境。但是，在構建時，您可以使用 `make` 的 `LDFLAGS` 環境變量更改這些預設值。適當的設定如下
 
-- 要設置 _`CustomPath`_，請使用 `LDFLAGS="-X \"code.gitea.io/gitea/modules/setting.CustomPath=custom-path\""`
+- 要設定 _`CustomPath`_，請使用 `LDFLAGS="-X \"code.gitea.io/gitea/modules/setting.CustomPath=custom-path\""`
 - 對
 
 ---

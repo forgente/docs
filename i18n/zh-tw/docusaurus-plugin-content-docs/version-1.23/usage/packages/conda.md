@@ -6,13 +6,13 @@ sidebar_position: 25
 
 # Conda 套件註冊表
 
-為您的用戶或組織發布 [Conda](https://docs.conda.io/en/latest/) 套件。
+為您的使用者或組織發布 [Conda](https://docs.conda.io/en/latest/) 套件。
 
 ## 需求
 
 要使用 Conda 套件註冊表，您需要使用 [conda](https://docs.conda.io/projects/conda/en/stable/user-guide/install/index.html)。
 
-## 配置套件註冊表
+## 設定套件註冊表
 
 要註冊套件註冊表並提供憑證，請編輯您的 `.condarc` 文件：
 
@@ -28,7 +28,7 @@ default_channels:
 | ------- | -------------- |
 | `owner` | 套件的擁有者。 |
 
-請參閱 [官方文檔](https://conda.io/projects/conda/en/latest/user-guide/configuration/use-condarc.html) 以了解各個設置的說明。
+請參閱 [官方文件](https://conda.io/projects/conda/en/latest/user-guide/configuration/use-condarc.html) 以瞭解各個設定的說明。
 
 如果您需要提供憑證，您可以將它們嵌入到頻道 URL 中（`https://user:password@gitea.example.com/...`）。
 
@@ -54,11 +54,11 @@ curl --user your_username:your_password_or_token \
      https://gitea.example.com/api/packages/testuser/conda/package-1.0.conda
 ```
 
-如果您使用 2FA 或 OAuth，請使用 [個人訪問令牌](development/api-usage.md#authentication) 代替密碼。
+如果您使用 2FA 或 OAuth，請使用 [個人存取權杖](development/api-usage.md#認證) 代替密碼。
 
 如果已經存在同名同版本的套件，您不能發布該套件。您必須先刪除現有的套件。
 
-服務器響應以下 HTTP 狀態碼。
+伺服器響應以下 HTTP 狀態碼。
 
 | HTTP 狀態碼       | 含義                               |
 | ----------------- | ---------------------------------- |

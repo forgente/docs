@@ -6,16 +6,16 @@ sidebar_position: 60
 
 # Maven 套件註冊表
 
-為您的用戶或組織發布 [Maven](https://maven.apache.org) 套件。
+為您的使用者或組織發布 [Maven](https://maven.apache.org) 套件。
 
 ## 需求
 
 要使用 Maven 套件註冊表，您可以使用 [Maven](https://maven.apache.org/install.html) 或 [Gradle](https://gradle.org/install/)。
 以下範例使用 `Maven` 和 `Gradle Groovy`。
 
-## 配置套件註冊表
+## 設定套件註冊表
 
-要註冊套件註冊表，您首先需要將訪問令牌添加到 [`settings.xml`](https://maven.apache.org/settings.html) 文件中：
+要註冊套件註冊表，您首先需要將存取權杖添加到 [`settings.xml`](https://maven.apache.org/settings.html) 文件中：
 
 ```xml
 <settings>
@@ -35,7 +35,7 @@ sidebar_position: 60
 </settings>
 ```
 
-之後將以下部分添加到您的項目 `pom.xml` 文件中：
+之後將以下部分添加到您的專案 `pom.xml` 文件中：
 
 ```xml
 <repositories>
@@ -58,12 +58,12 @@ sidebar_position: 60
 
 | 參數           | 描述                                                           |
 | -------------- | -------------------------------------------------------------- |
-| `access_token` | 您的 [個人訪問令牌](development/api-usage.md#authentication)。 |
+| `access_token` | 您的 [個人存取權杖](development/api-usage.md#認證)。 |
 | `owner`        | 套件的擁有者。                                                 |
 
 ### Gradle 變體
 
-當您計劃在項目中添加來自 Gitea 實例的一些套件時，應該將其添加到倉庫部分：
+當您計劃在專案中添加來自 Gitea 實例的一些套件時，應該將其添加到儲存庫部分：
 
 ```groovy
 repositories {
@@ -123,7 +123,7 @@ mvn deploy:deploy-file -Durl=https://gitea.example.com/api/packages/{owner}/mave
 
 ## 安裝套件
 
-要從套件註冊表中安裝 Maven 套件，請在項目 `pom.xml` 文件中添加新的依賴項：
+要從套件註冊表中安裝 Maven 套件，請在專案 `pom.xml` 文件中添加新的依賴項：
 
 ```xml
 <dependency>
@@ -145,7 +145,7 @@ implementation "com.test.package:test_project:1.0.0"
 mvn install
 ```
 
-## 支持的命令
+## 支援的命令
 
 ```
 mvn install

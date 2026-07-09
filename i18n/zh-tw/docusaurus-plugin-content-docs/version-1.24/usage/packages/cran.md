@@ -4,17 +4,17 @@ slug: "cran"
 sidebar_position: 35
 ---
 
-# CRAN 軟體包註冊表
+# CRAN 套件註冊表
 
-将 [R](https://www.r-project.org/) 軟體包發佈到您的使用者或組織的类似 [CRAN](https://cran.r-project.org/) 的註冊表。
+將 [R](https://www.r-project.org/) 套件發佈到您的使用者或組織的類似 [CRAN](https://cran.r-project.org/) 的註冊表。
 
 ## 要求
 
-要使用CRAN軟體包註冊表，您需要安裝 [R](https://cran.r-project.org/)。
+要使用CRAN套件註冊表，您需要安裝 [R](https://cran.r-project.org/)。
 
-## 配置軟體包註冊表
+## 設定套件註冊表
 
-要注册軟體包註冊表，您需要将其添加到 `Rprofile.site` 文件中，可以是系统级别、使用者级别 `~/.Rprofile` 或项目级别：
+要註冊套件註冊表，您需要將其添加到 `Rprofile.site` 文件中，可以是系統級別、使用者級別 `~/.Rprofile` 或專案級別：
 
 ```
 options("repos" = c(getOption("repos"), c(gitea="https://gitea.example.com/api/packages/{owner}/cran")))
@@ -22,15 +22,15 @@ options("repos" = c(getOption("repos"), c(gitea="https://gitea.example.com/api/p
 
 | 參數    | 描述           |
 | ------- | -------------- |
-| `owner` | 軟體包的所有者 |
+| `owner` | 套件的所有者 |
 
-如果需要提供凭据，可以将它们嵌入到URL(`https://user:password@gitea.example.com/...`)中。
+如果需要提供憑據，可以將它們嵌入到URL(`https://user:password@gitea.example.com/...`)中。
 
-## 發佈軟體包
+## 發佈套件
 
-要發佈 R 軟體包，請執行带有軟體包内容的 HTTP `PUT` 操作。
+要發佈 R 套件，請執行帶有套件內容的 HTTP `PUT` 操作。
 
-源代码軟體包：
+源程式碼套件：
 
 ```
 PUT https://gitea.example.com/api/packages/{owner}/cran/src
@@ -38,9 +38,9 @@ PUT https://gitea.example.com/api/packages/{owner}/cran/src
 
 | 參數    | 描述           |
 | ------- | -------------- |
-| `owner` | 軟體包的所有者 |
+| `owner` | 套件的所有者 |
 
-二進制軟體包：
+二進制套件：
 
 ```
 PUT https://gitea.example.com/api/packages/{owner}/cran/bin?platform={platform}&rversion={rversion}
@@ -48,7 +48,7 @@ PUT https://gitea.example.com/api/packages/{owner}/cran/bin?platform={platform}&
 
 | 參數       | 描述           |
 | ---------- | -------------- |
-| `owner`    | 軟體包的所有者 |
+| `owner`    | 套件的所有者 |
 | `platform` | 平台的名稱     |
 | `rversion` | 二進制的R版本  |
 
@@ -60,11 +60,11 @@ curl --user your_username:your_password_or_token \
      https://gitea.example.com/api/packages/testuser/cran/bin?platform=windows&rversion=4.2
 ```
 
-如果同名和版本的軟體包已存在，则無法發佈軟體包。您必須首先删除現有的軟體包。
+如果同名和版本的套件已存在，則無法發佈套件。您必須首先刪除現有的套件。
 
-## 安裝軟體包
+## 安裝套件
 
-要从軟體包註冊表中安裝R軟體包，請執行以下命令：
+要從套件註冊表中安裝R套件，請執行以下命令：
 
 ```shell
 install.packages("{package_name}")

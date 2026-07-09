@@ -10,18 +10,18 @@ aliases:
 
 # 本地化
 
-Gitea 的本地化是通过我们的[Crowdin 项目](https://crowdin.com/project/gitea)进行的。
+Gitea 的本地化是通過我們的[Crowdin 專案](https://crowdin.com/project/gitea)進行的。
 
-对于对**英语翻译**的更改，可以发出 pull-request，来更改[英语语言环境](https://github.com/go-gitea/gitea/blob/main/options/locale/locale_en-US.ini)中合适的关键字。
+對於對**英語翻譯**的更改，可以發出 pull-request，來更改[英語語言環境](https://github.com/go-gitea/gitea/blob/main/options/locale/locale_en-US.ini)中合適的關鍵字。
 
-有关对**非英语**翻译的更改，请参阅上面的 Crowdin 项目。
+有關對**非英語**翻譯的更改，請參閱上面的 Crowdin 專案。
 
-## 支持的语言
+## 支援的語言
 
-上述 Crowdin 项目中列出的任何语言一旦翻译了 25% 或更多都将得到支持。
+上述 Crowdin 專案中列出的任何語言一旦翻譯了 25% 或更多都將得到支援。
 
-翻译被接受后，它将在下一次 Crowdin 同步后反映在主存储库中，这通常是在任何 PR 合并之后。
+翻譯被接受後，它將在下一次 Crowdin 同步後反映在主儲存庫中，這通常是在任何 PR 合併之後。
 
-在撰写本文时，这意味着更改后的翻译可能要到 Gitea 的下一个版本才会出现。
+在撰寫本文時，這意味著更改後的翻譯可能要到 Gitea 的下一個版本纔會出現。
 
-如果使用开发版本，则在同步更改内容后，它应该会在更新后立即显示。
+如果使用開發版本，則在同步更改內容後，它應該會在更新後立即顯示。

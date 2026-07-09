@@ -7,18 +7,18 @@ aliases:
   - /zh-tw/git-lfs-setup
 ---
 
-# Git LFS 设置
+# Git LFS 設定
 
-要使用 Gitea 内置的 LFS 支持，您需要更新 `app.ini` 文件：
+要使用 Gitea 內置的 LFS 支援，您需要更新 `app.ini` 文件：
 
 ```ini
 [server]
-; 启用 git-lfs 支持。true 或 false，默认为 false。
+; 啟用 git-lfs 支持。true 或 false，默認為 false。
 LFS_START_SERVER = true
 
 [lfs]
-; 存放 LFS 文件的路径，默认为 data/lfs。
+; 存放 LFS 文件的路徑，默認為 data/lfs。
 PATH = /home/gitea/data/lfs
 ```
 
-**注意**：LFS 服务器支持需要服务器上安装 Git v2.1.2 以上版本。
+**注意**：LFS 伺服器支援需要伺服器上安裝 Git v2.1.2 以上版本。

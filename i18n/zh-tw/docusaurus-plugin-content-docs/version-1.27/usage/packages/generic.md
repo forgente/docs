@@ -4,31 +4,31 @@ slug: "generic"
 sidebar_position: 500
 ---
 
-# 通用软件包注册表
+# 通用套件註冊表
 
-发布通用文件，如发布二进制文件或其他输出，供您的用户或组织使用。
+發佈通用文件，如發佈二進制文件或其他輸出，供您的使用者或組織使用。
 
-## 身份验证软件包注册表
+## 身份驗證套件註冊表
 
-要身份验证软件包注册表，您需要提供[自定义 HTTP 头或使用 HTTP 基本身份验证](development/api-usage.md#通过-api-认证)。
+要身份驗證套件註冊表，您需要提供[自訂 HTTP 頭或使用 HTTP 基本身份驗證](development/api-usage.md#透過-api-認證)。
 
-## 发布软件包
+## 發佈套件
 
-要发布通用软件包，请执行 HTTP `PUT` 操作，并将软件包内容放入请求主体中。
-您无法向软件包中多次发布具有相同名称的文件。您必须首先删除现有的软件包版本。
+要發佈通用套件，請執行 HTTP `PUT` 操作，並將套件內容放入請求主體中。
+您無法向套件中多次發佈具有相同名稱的文件。您必須首先刪除現有的套件版本。
 
 ```
 PUT https://gitea.example.com/api/packages/{owner}/generic/{package_name}/{package_version}/{file_name}
 ```
 
-| 参数              | 描述                                                                                                                        |
+| 參數              | 描述                                                                                                                        |
 | ----------------- | --------------------------------------------------------------------------------------------------------------------------- |
-| `owner`           | 软件包的所有者。                                                                                                            |
-| `package_name`    | 软件包名称。它只能包含小写字母 (`a-z`)、大写字母 (`A-Z`)、数字 (`0-9`)、点号 (`.`)、连字符 (`-`)、加号 (`+`) 或下划线 (`_`) |
-| `package_version` | 软件包版本，一个非空字符串，不包含前导或尾随空格                                                                            |
-| `file_name`       | 文件名。它只能包含小写字母 (`a-z`)、大写字母 (`A-Z`)、数字 (`0-9`)、点号 (`.`)、连字符 (`-`)、加号 (`+`) 或下划线 (`_`)     |
+| `owner`           | 套件的所有者。                                                                                                            |
+| `package_name`    | 套件名稱。它只能包含小寫字母 (`a-z`)、大寫字母 (`A-Z`)、數字 (`0-9`)、點號 (`.`)、連字符 (`-`)、加號 (`+`) 或下劃線 (`_`) |
+| `package_version` | 套件版本，一個非空字符串，不包含前導或尾隨空格                                                                            |
+| `file_name`       | 文件名。它只能包含小寫字母 (`a-z`)、大寫字母 (`A-Z`)、數字 (`0-9`)、點號 (`.`)、連字符 (`-`)、加號 (`+`) 或下劃線 (`_`)     |
 
-使用 HTTP 基本身份验证的示例请求：
+使用 HTTP 基本身份驗證的範例請求：
 
 ```shell
 curl --user your_username:your_password_or_token \
@@ -36,62 +36,62 @@ curl --user your_username:your_password_or_token \
      https://gitea.example.com/api/packages/testuser/generic/test_package/1.0.0/file.bin
 ```
 
-如果您使用 2FA 或 OAuth，请使用[个人访问令牌](development/api-usage.md#通过-api-认证)替代密码。
+如果您使用 2FA 或 OAuth，請使用[個人存取權杖](development/api-usage.md#透過-api-認證)替代密碼。
 
-服务器将使用以下 HTTP 状态代码进行响应。
+伺服器將使用以下 HTTP 狀態程式碼進行響應。
 
-| HTTP 状态码       | 意义                               |
+| HTTP 狀態碼       | 意義                               |
 | ----------------- | ---------------------------------- |
-| `201 Created`     | 软件包已发布                       |
-| `400 Bad Request` | 软件包名称和/或版本和/或文件名无效 |
-| `409 Conflict`    | 具有相同名称的文件已存在于软件包中 |
+| `201 Created`     | 套件已發佈                       |
+| `400 Bad Request` | 套件名稱和/或版本和/或文件名無效 |
+| `409 Conflict`    | 具有相同名稱的文件已存在於套件中 |
 
-## 下载软件包
+## 下載套件
 
-要下载通用软件包，请执行 HTTP `GET` 操作。
+要下載通用套件，請執行 HTTP `GET` 操作。
 
 ```
 GET https://gitea.example.com/api/packages/{owner}/generic/{package_name}/{package_version}/{file_name}
 ```
 
-| 参数              | 描述           |
+| 參數              | 描述           |
 | ----------------- | -------------- |
-| `owner`           | 软件包的所有者 |
-| `package_name`    | 软件包名称     |
-| `package_version` | 软件包版本     |
+| `owner`           | 套件的所有者 |
+| `package_name`    | 套件名稱     |
+| `package_version` | 套件版本     |
 | `file_name`       | 文件名         |
 
-文件内容将在响应主体中返回。响应的内容类型为 `application/octet-stream`。
+文件內容將在響應主體中返回。響應的內容類型為 `application/octet-stream`。
 
-服务器将使用以下 HTTP 状态代码进行响应。
+伺服器將使用以下 HTTP 狀態程式碼進行響應。
 
 ```shell
 curl --user your_username:your_token_or_password \
      https://gitea.example.com/api/packages/testuser/generic/test_package/1.0.0/file.bin
 ```
 
-服务器会以以下 HTTP 状态码进行响应：
+伺服器會以以下 HTTP 狀態碼進行響應：
 
-| HTTP 状态码     | 含义                 |
+| HTTP 狀態碼     | 含義                 |
 | --------------- | -------------------- |
 | `200 OK`        | 成功                 |
-| `404 Not Found` | 找不到软件包或者文件 |
+| `404 Not Found` | 找不到套件或者文件 |
 
-## 删除软件包
+## 刪除套件
 
-要删除通用软件包，请执行 HTTP DELETE 操作。这将同时删除该版本的所有文件。
+要刪除通用套件，請執行 HTTP DELETE 操作。這將同時刪除該版本的所有文件。
 
 ```
 DELETE https://gitea.example.com/api/packages/{owner}/generic/{package_name}/{package_version}
 ```
 
-| 参数              | 描述           |
+| 參數              | 描述           |
 | ----------------- | -------------- |
-| `owner`           | 软件包的所有者 |
-| `package_name`    | 软件包名称     |
-| `package_version` | 软件包版本     |
+| `owner`           | 套件的所有者 |
+| `package_name`    | 套件名稱     |
+| `package_version` | 套件版本     |
 
-服务器将使用以下 HTTP 状态代码进行响应。
+伺服器將使用以下 HTTP 狀態程式碼進行響應。
 
 ```shell
 curl --user your_username:your_token_or_password -X DELETE \
@@ -100,36 +100,36 @@ curl --user your_username:your_token_or_password -X DELETE \
 
 The server responds with the following HTTP Status codes.
 
-| HTTP 状态码      | 意义         |
+| HTTP 狀態碼      | 意義         |
 | ---------------- | ------------ |
 | `204 No Content` | 成功         |
-| `404 Not Found`  | 找不到软件包 |
+| `404 Not Found`  | 找不到套件 |
 
-## 删除软件包文件
+## 刪除套件文件
 
-要删除通用软件包的文件，请执行 HTTP `DELETE` 操作。如果没有文件留下，这将同时删除软件包版本。
+要刪除通用套件的文件，請執行 HTTP `DELETE` 操作。如果沒有文件留下，這將同時刪除套件版本。
 
 ```
 DELETE https://gitea.example.com/api/packages/{owner}/generic/{package_name}/{package_version}/{filename}
 ```
 
-| 参数              | 描述           |
+| 參數              | 描述           |
 | ----------------- | -------------- |
-| `owner`           | 软件包的所有者 |
-| `package_name`    | 软件包名称     |
-| `package_version` | 软件包版本     |
+| `owner`           | 套件的所有者 |
+| `package_name`    | 套件名稱     |
+| `package_version` | 套件版本     |
 | `filename`        | 文件名         |
 
-使用 HTTP 基本身份验证的示例请求：
+使用 HTTP 基本身份驗證的範例請求：
 
 ```shell
 curl --user your_username:your_token_or_password -X DELETE \
      https://gitea.example.com/api/packages/testuser/generic/test_package/1.0.0/file.bin
 ```
 
-服务器将使用以下 HTTP 状态代码进行响应：
+伺服器將使用以下 HTTP 狀態程式碼進行響應：
 
-| HTTP 状态码      | 含义               |
+| HTTP 狀態碼      | 含義               |
 | ---------------- | ------------------ |
 | `204 No Content` | 成功               |
-| `404 Not Found`  | 找不到软件包或文件 |
+| `404 Not Found`  | 找不到套件或文件 |

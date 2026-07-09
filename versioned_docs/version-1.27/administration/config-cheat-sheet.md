@@ -976,7 +976,7 @@ Release attachment has its own config options in `[repository.release]` section.
 
   - `PATH`: **attachments**: Path to store attachments only available when STORAGE_TYPE is `local`, relative paths will be resolved to `{AppDataPath}/{attachment.PATH}`.
 
-  For `STORAGE_TYPE = minio`, the configurations can be found at [Storage Minio](#storage_minio), you can override some configurations like below.
+  For `STORAGE_TYPE = minio`, the configurations can be found at [Storage Minio](#minio-storage-configuration-storage_minio), you can override some configurations like below.
 
   - `MINIO_BASE_PATH`: **attachments/**: Minio base path on the bucket only available when STORAGE_TYPE is `minio`
 
@@ -1495,7 +1495,7 @@ is `data/lfs` and the default of `MINIO_BASE_PATH` is `lfs/`.
 
 - `PATH`: **./data/lfs**: Where to store LFS files, only available when `STORAGE_TYPE` is `local`. If not set it fall back to deprecated LFS_CONTENT_PATH value in [server] section.
 
-  For `STORAGE_TYPE = minio`, the configurations can be found at [Storage Minio](#storage_minio), you can also define configurations like below to override derived or default values.
+  For `STORAGE_TYPE = minio`, the configurations can be found at [Storage Minio](#minio-storage-configuration-storage_minio), you can also define configurations like below to override derived or default values.
 
   - `MINIO_BASE_PATH`: **attachments/**: Minio base path on the bucket only available when STORAGE_TYPE is `minio`
 
@@ -1646,7 +1646,7 @@ is `data/repo-archive` and the default of `MINIO_BASE_PATH` is `repo-archive/`.
 
   - `PATH`: **./data/repo-archive**: Where to store archive files, only available when `STORAGE_TYPE` is `local`.
 
-  For `STORAGE_TYPE = minio`, the configurations can be found at [Storage Minio](#storage_minio), you can override some configurations like below.
+  For `STORAGE_TYPE = minio`, the configurations can be found at [Storage Minio](#minio-storage-configuration-storage_minio), you can override some configurations like below.
 
   - `MINIO_BASE_PATH`: **repo-archive/**: Minio base path on the bucket only available when `STORAGE_TYPE` is `minio`
 

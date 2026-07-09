@@ -6,23 +6,23 @@ aliases:
   - /zh-tw/linux-service
 ---
 
-# 在 Linux 中以 service 方式运行
+# 在 Linux 中以 service 方式運行
 
-## 在 Ubuntu 16.04 LTS 中以 service 方式运行
+## 在 Ubuntu 16.04 LTS 中以 service 方式運行
 
 ### systemd 方式
 
-在 terminal 中执行以下命令：
+在 terminal 中執行以下命令：
 
 ```
 sudo vim /etc/systemd/system/gitea.service
 ```
 
-接着拷贝示例代码 [gitea.service](https://github.com/go-gitea/gitea/blob/main/contrib/systemd/gitea.service) 并取消对任何需要运行在主机上的服务部分的注释，譬如 MySQL。
+接著拷貝範例程式碼 [gitea.service](https://github.com/go-gitea/gitea/blob/main/contrib/systemd/gitea.service) 並取消對任何需要運行在主機上的服務部分的註釋，譬如 MySQL。
 
-修改 user，home 目录以及其他必须的初始化参数，如果使用自定义端口，则需修改 PORT 参数，反之如果使用默认端口则需删除 -p 标记。
+修改 user，home 目錄以及其他必須的初始化參數，如果使用自訂端口，則需修改 PORT 參數，反之如果使用預設端口則需刪除 -p 標記。
 
-激活 gitea 并将它作为系统自启动服务：
+激活 gitea 並將它作為系統自啟動服務：
 
 ```
 sudo systemctl enable gitea
@@ -31,31 +31,31 @@ sudo systemctl start gitea
 
 ### 使用 supervisor
 
-在 terminal 中执行以下命令安装 supervisor：
+在 terminal 中執行以下命令安裝 supervisor：
 
 ```
 sudo apt install supervisor
 ```
 
-为 supervisor 配置日志路径：
+為 supervisor 設定日誌路徑：
 
 ```
 # assuming gitea is installed in /home/git/gitea/
 mkdir /home/git/gitea/log/supervisor
 ```
 
-在文件编辑器中打开 supervisor 的配置文件：
+在文件編輯器中打開 supervisor 的設定文件：
 
 ```
 sudo vim /etc/supervisor/supervisord.conf
 ```
 
-增加如下示例配置
+增加如下範例設定
 [supervisord config](https://github.com/go-gitea/gitea/blob/main/contrib/supervisor/gitea)。
 
-将 user(git) 和 home(/home/git) 设置为与上文部署中匹配的值。如果使用自定义端口，则需修改 PORT 参数，反之如果使用默认端口则需删除 -p 标记。
+將 user(git) 和 home(/home/git) 設定為與上文部署中匹配的值。如果使用自訂端口，則需修改 PORT 參數，反之如果使用預設端口則需刪除 -p 標記。
 
-最后激活 supervisor 并将它作为系统自启动服务：
+最後激活 supervisor 並將它作為系統自啟動服務：
 
 ```
 sudo systemctl enable supervisor

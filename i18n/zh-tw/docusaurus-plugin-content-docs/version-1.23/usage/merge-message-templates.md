@@ -10,7 +10,7 @@ aliases:
 
 ## 文件名
 
-PR 默認合併消息模板的可能文件名：
+PR 預設合併消息模板的可能文件名：
 
 - `.gitea/default_merge_message/MERGE_TEMPLATE.md`
 - `.gitea/default_merge_message/REBASE_TEMPLATE.md`
@@ -23,12 +23,12 @@ PR 默認合併消息模板的可能文件名：
 
 您可以在這些模板中使用以下變量，這些變量包含在 `${}` 中，遵循 [os.Expand](https://pkg.go.dev/os#Expand) 語法：
 
-- BaseRepoOwnerName: 此拉取請求的基礎倉庫所有者名稱
-- BaseRepoName: 此拉取請求的基礎倉庫名稱
-- BaseBranch: 此拉取請求的基礎倉庫目標分支名稱
-- HeadRepoOwnerName: 此拉取請求的頭部倉庫所有者名稱
-- HeadRepoName: 此拉取請求的頭部倉庫名稱
-- HeadBranch: 此拉取請求的頭部倉庫分支名稱
+- BaseRepoOwnerName: 此拉取請求的基礎儲存庫所有者名稱
+- BaseRepoName: 此拉取請求的基礎儲存庫名稱
+- BaseBranch: 此拉取請求的基礎儲存庫目標分支名稱
+- HeadRepoOwnerName: 此拉取請求的頭部儲存庫所有者名稱
+- HeadRepoName: 此拉取請求的頭部儲存庫名稱
+- HeadBranch: 此拉取請求的頭部儲存庫分支名稱
 - PullRequestTitle: 拉取請求的標題
 - PullRequestDescription: 拉取請求的描述
 - PullRequestPosterName: 拉取請求的發起人名稱

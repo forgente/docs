@@ -8,57 +8,57 @@ aliases:
 
 # 使用二進制文件安裝
 
-所有打包的二進制程序均包含 SQLite，MySQL 和 PostgreSQL 的数据库连接支持，同时网站的静态资源均已嵌入到可執行程序中，这一点和曾经的 Gogs 有所不同。
+所有打包的二進製程式均包含 SQLite，MySQL 和 PostgreSQL 的資料庫連接支援，同時網站的靜態資源均已嵌入到可執行程式中，這一點和曾經的 Gogs 有所不同。
 
-## 下载
+## 下載
 
-你可以从 [下载页面](https://dl.gitea.com/gitea/) 選择对應平台的二進制文件。
+你可以從 [下載頁面](https://dl.gitea.com/gitea/) 選擇對應平台的二進制文件。
 
-### 選择架构
+### 選擇架構
 
-- **對於 Linux**，`linux-amd64` 适用于 64-bit 的 Intel/AMD 平台。更多架构包含 `arm64` (Raspberry PI 4)，`386` (32-bit)，`arm-5` 以及 `arm-6`。
+- **對於 Linux**，`linux-amd64` 適用於 64-bit 的 Intel/AMD 平台。更多架構包含 `arm64` (Raspberry PI 4)，`386` (32-bit)，`arm-5` 以及 `arm-6`。
 
-- **對於 Windows**，`windows-4.0-amd64` 适用于 64-bit 的 Intel/AMD 平台，`386` 适用于 32-bit 的 Intel/AMD 平台。（提示：`gogit-windows` 版本内建了 gogit 可能缓解在旧的 Windows 平台上 Go 程序调用 git 子程序时面临的 [性能问题](https://github.com/go-gitea/gitea/pull/15482)）
+- **對於 Windows**，`windows-4.0-amd64` 適用於 64-bit 的 Intel/AMD 平台，`386` 適用於 32-bit 的 Intel/AMD 平台。（提示：`gogit-windows` 版本內建了 gogit 可能緩解在舊的 Windows 平台上 Go 程式調用 git 子程式時面臨的 [性能問題](https://github.com/go-gitea/gitea/pull/15482)）
 
-- **對於 macOS**，`darwin-arm64` 适用于 Apple Silicon 架构，`darwin-amd64` 适用于 Intel 架构.
+- **對於 macOS**，`darwin-arm64` 適用於 Apple Silicon 架構，`darwin-amd64` 適用於 Intel 架構.
 
-- **對於 FreeBSD**，`freebsd12-amd64` 适用于 64-bit 的 Intel/AMD 平台。
+- **對於 FreeBSD**，`freebsd12-amd64` 適用於 64-bit 的 Intel/AMD 平台。
 
-### 使用 wget 下载
+### 使用 wget 下載
 
-使用以下命令下载适用于 64-bit Linux 平台的二進制文件。
+使用以下命令下載適用於 64-bit Linux 平台的二進制文件。
 
 ```sh
 wget -O gitea https://dl.gitea.com/gitea/@version@/gitea-@version@-linux-amd64
 chmod +x gitea
 ```
 
-## 驗證 GPG 签名
+## 驗證 GPG 簽名
 
-Gitea 对打包的二進制文件使用 [GPG 密钥](https://keys.openpgp.org/search?q=teabot%40gitea.io) 签名以防止篡改。
-請根据对應文件名 `.asc` 中包含的校验码检验文件的一致性。
+Gitea 對打包的二進制文件使用 [GPG 密鑰](https://keys.openpgp.org/search?q=teabot%40gitea.io) 簽名以防止篡改。
+請根據對應文件名 `.asc` 中包含的校驗碼檢驗文件的一致性。
 
 ```sh
 gpg --keyserver hkps://keys.openpgp.org --recv 7C9E68152594688862D62AF62D9AE806EC1592E2
 gpg --verify gitea-@version@-linux-amd64.asc gitea-@version@-linux-amd64
 ```
 
-校验正确时的信息為 `Good signature from "Teabot <teabot@gitea.io>"`。
-校验错误时的信息為 `This key is not certified with a trusted signature!`。
+校驗正確時的資訊為 `Good signature from "Teabot <teabot@gitea.io>"`。
+校驗錯誤時的資訊為 `This key is not certified with a trusted signature!`。
 
-## 服务器设置
+## 伺服器設定
 
-**提示：** `GITEA_WORK_DIR` 表示 Gitea 工作的路径。以下路径可以通過 [环境变量](../administration/environment-variables.md) 初始化。
+**提示：** `GITEA_WORK_DIR` 表示 Gitea 工作的路徑。以下路徑可以透過 [環境變量](../administration/environment-variables.md) 初始化。
 
-### 准备环境
+### 準備環境
 
-检查是否安裝 Git。要求 Git 版本 >= 2.0。
+檢查是否安裝 Git。要求 Git 版本 >= 2.0。
 
 ```sh
 git --version
 ```
 
-建立使用者（推荐使用名稱 `git`）
+建立使用者（推薦使用名稱 `git`）
 
 ```sh
 # On Ubuntu/Debian:
@@ -83,7 +83,7 @@ adduser \
    git
 ```
 
-### 建立工作路径
+### 建立工作路徑
 
 ```sh
 mkdir -p /var/lib/gitea/{custom,data,log}
@@ -94,112 +94,112 @@ chown root:git /etc/gitea
 chmod 770 /etc/gitea
 ```
 
-> **注意：** 為了让 Web 安裝程序可以写入配置文件，我们临时為 `/etc/gitea` 路径授予了组外使用者 `git` 写入权限。建议在安裝结束后将配置文件的权限设置為只读。
+> **注意：** 為了讓 Web 安裝程式可以寫入設定文件，我們臨時為 `/etc/gitea` 路徑授予了組外使用者 `git` 寫入權限。建議在安裝結束後將設定文件的權限設定為只讀。
 >
 > ```sh
 > chmod 750 /etc/gitea
 > chmod 640 /etc/gitea/app.ini
 > ```
 
-如果您不希望通過 Web 安裝程序建立配置文件，可以将配置文件设置為僅供 Gitea 使用者只读（owner/group `root:git`, mode `0640`）並手工建立配置文件：
+如果您不希望通過 Web 安裝程式建立設定文件，可以將設定文件設定為僅供 Gitea 使用者只讀（owner/group `root:git`, mode `0640`）並手工建立設定文件：
 
-- 设置 `INSTALL_LOCK=true` 关闭安裝界面
-- 手动配置数据库连接參數
+- 設定 `INSTALL_LOCK=true` 關閉安裝介面
+- 手動設定資料庫連接參數
 - 使用 `gitea generate secret` 建立 `SECRET_KEY` 和 `INTERNAL_TOKEN`
-- 提供所有必要的密钥
+- 提供所有必要的密鑰
 
-详情参考 [命令行文檔](../administration/command-line.md) 中有关 `gitea generate secret` 的内容。
+詳情參考 [命令行文件](../administration/command-line.md) 中有關 `gitea generate secret` 的內容。
 
-### 配置 Gitea 工作路径
+### 設定 Gitea 工作路徑
 
-**提示：** 如果使用 Systemd 管理 Gitea 的 Linux 服务，你可以采用 `WorkingDirectory` 參數来配置工作路径。 否则，使用环境变量 `GITEA_WORK_DIR` 来明确指出程序工作和数据存放路径。
+**提示：** 如果使用 Systemd 管理 Gitea 的 Linux 服務，你可以採用 `WorkingDirectory` 參數來設定工作路徑。 否則，使用環境變量 `GITEA_WORK_DIR` 來明確指出程式工作和資料存放路徑。
 
 ```sh
 export GITEA_WORK_DIR=/var/lib/gitea/
 ```
 
-### 复制二進制文件到全局位置
+### 複製二進制文件到全域位置
 
 ```sh
 cp gitea /usr/local/bin/gitea
 ```
 
-### 添加 bash/zsh 自动补全（从 1.19 版本开始）
+### 添加 bash/zsh 自動補全（從 1.19 版本開始）
 
-可以在 [`contrib/autocompletion/bash_autocomplete`](https://raw.githubusercontent.com/go-gitea/gitea/main/contrib/autocompletion/bash_autocomplete) 找到启用 bash 自动补全的脚本。可以将其复制到 `/usr/share/bash-completion/completions/gitea`，或在 `.bashrc` 中引用。
+可以在 [`contrib/autocompletion/bash_autocomplete`](https://raw.githubusercontent.com/go-gitea/gitea/main/contrib/autocompletion/bash_autocomplete) 找到啟用 bash 自動補全的腳本。可以將其複製到 `/usr/share/bash-completion/completions/gitea`，或在 `.bashrc` 中引用。
 
-同样地，zsh 自动补全的脚本可以在 [`contrib/autocompletion/zsh_autocomplete`](https://raw.githubusercontent.com/go-gitea/gitea/main/contrib/autocompletion/zsh_autocomplete) 找到。您可以将其复制到 `/usr/share/zsh/_gitea`，或在您的 `.zshrc` 中引用。
+同樣地，zsh 自動補全的腳本可以在 [`contrib/autocompletion/zsh_autocomplete`](https://raw.githubusercontent.com/go-gitea/gitea/main/contrib/autocompletion/zsh_autocomplete) 找到。您可以將其複製到 `/usr/share/zsh/_gitea`，或在您的 `.zshrc` 中引用。
 
-具體情况可能会有所不同，这些脚本可能需要進一步的改進。
+具體情況可能會有所不同，這些腳本可能需要進一步的改進。
 
-## 运行 Gitea
+## 運行 Gitea
 
-完成以上步骤后，可以通過两种方式运行 Gitea：
+完成以上步驟後，可以透過兩種方式運行 Gitea：
 
-### 1. 建立服务自动启动 Gitea（推荐）
+### 1. 建立服務自動啟動 Gitea（推薦）
 
-学习建立 [Linux 服务](installation/run-as-service-in-ubuntu.md)
+學習建立 [Linux 服務](installation/run-as-service-in-ubuntu.md)
 
-### 2. 通過命令行终端运行
+### 2. 通過命令行終端運行
 
 ```sh
 GITEA_WORK_DIR=/var/lib/gitea/ /usr/local/bin/gitea web -c /etc/gitea/app.ini
 ```
 
-## 升级到最新版本
+## 升級到最新版本
 
-您可以通過停止程序，替换 `/usr/local/bin/gitea` 並重启来更新到新版本。直接替换可執行程序时不要更改或使用新的文件名稱，以避免数据出错。
+您可以透過停止程式，替換 `/usr/local/bin/gitea` 並重啟來更新到新版本。直接替換可執行程式時不要更改或使用新的文件名稱，以避免資料出錯。
 
-建议您在更新之前進行[备份](../administration/backup-and-restore.md)。
+建議您在更新之前進行[備份](../administration/backup-and-restore.md)。
 
-如果您按照上述描述執行了安裝步骤，二進制文件的通用名稱應為 gitea。請勿更改此名稱，即不要包含版本号。
+如果您按照上述描述執行了安裝步驟，二進制文件的通用名稱應為 gitea。請勿更改此名稱，即不要包含版本號。
 
-### 1. 使用 systemd 重新启动 Gitea（推荐）
+### 1. 使用 systemd 重新啟動 Gitea（推薦）
 
-我们建议使用 systemd 作為服务管理器，使用 `systemctl restart gitea` 安全地重启程序。
+我們建議使用 systemd 作為服務管理器，使用 `systemctl restart gitea` 安全地重啟程式。
 
-### 2. 非 systemd 重启方法
+### 2. 非 systemd 重啟方法
 
-使用 SIGHUP 信号关闭程序：查询到 Gitea 程序的 PID，使用 `kill -1 $GITEA_PID`，或者 `killall -1 gitea`。
+使用 SIGHUP 信號關閉程式：查詢到 Gitea 程式的 PID，使用 `kill -1 $GITEA_PID`，或者 `killall -1 gitea`。
 
-更优雅的停止指令可能包括 `kill $GITEA_PID` 或者 `killall gitea`。
+更優雅的停止指令可能包括 `kill $GITEA_PID` 或者 `killall gitea`。
 
-**提示：** 我们不建议使用 SIGKILL 信号（`-9`），这会强制停止 Gitea 程序，但不会正确关闭队列、索引器等任务。
+**提示：** 我們不建議使用 SIGKILL 信號（`-9`），這會強制停止 Gitea 程式，但不會正確關閉隊列、索引器等任務。
 
-請参阅下面的疑难解答说明，以在 Gitea 版本更新后修复损坏的存放庫。
+請參閱下面的疑難解答說明，以在 Gitea 版本更新後修復損壞的存放庫。
 
 ## 排查故障
 
-### 旧版 glibc
+### 舊版 glibc
 
-旧版 Linux 发行版（例如 Debian 7 和 CentOS 6）可能無法加载 Gitea 二進制文件，通常会产生类似于 `./gitea: /lib/x86_64-linux-gnu/libc.so.6:
-version 'GLIBC\_2.14' not found (required by ./gitea)` 的错误。这是由于 dl.gitea.com 提供的二進制文件中集成了 SQLite 支持。在这种情况下，通常可以選择[从源代码安裝](installation/from-source.md)，而不包括 SQLite 支持。
+舊版 Linux 發行版（例如 Debian 7 和 CentOS 6）可能無法加載 Gitea 二進制文件，通常會產生類似於 `./gitea: /lib/x86_64-linux-gnu/libc.so.6:
+version 'GLIBC\_2.14' not found (required by ./gitea)` 的錯誤。這是由於 dl.gitea.com 提供的二進制文件中整合了 SQLite 支援。在這種情況下，通常可以選擇[從源程式碼安裝](installation/from-source.md)，而不包括 SQLite 支援。
 
-### 在另一个端口上运行 Gitea
+### 在另一個端口上運行 Gitea
 
-對於出現类似于 `702 runWeb()] [E] Failed to start server: listen tcp 0.0.0.0:3000:
-bind: address already in use` 的错误，需要将 Gitea 启动在另一个空闲端口上。您可以使用 `./gitea web -p $PORT` 来实現。可能已经有另一个 Gitea 实例在运行。
+對於出現類似於 `702 runWeb()] [E] Failed to start server: listen tcp 0.0.0.0:3000:
+bind: address already in use` 的錯誤，需要將 Gitea 啟動在另一個空閒端口上。您可以使用 `./gitea web -p $PORT` 來實現。可能已經有另一個 Gitea 實例在運行。
 
-### 在 Raspbian 上运行 Gitea
+### 在 Raspbian 上運行 Gitea
 
-从 v1.8 版本开始，arm7 版本的 Gitea 存在问题，無法在树莓派和类似设备上运行。
+從 v1.8 版本開始，arm7 版本的 Gitea 存在問題，無法在樹莓派和類似設備上運行。
 
-建议切换到 arm6 版本，該版本经過测试並已被证明可以在树莓派和类似设备上运行。
+建議切換到 arm6 版本，該版本經過測試並已被證明可以在樹莓派和類似設備上運行。
 
-### 更新到新版本的 Gitea 后出現的 Git 错误
+### 更新到新版本的 Gitea 後出現的 Git 錯誤
 
-如果在更新過程中，二進制文件的名稱已更改為新版本的 Gitea，则現有存放庫中的 Git 钩子将不再起作用。在这种情况下，当推送到存放庫时，会显示 Git 错误。
+如果在更新過程中，二進制文件的名稱已更改為新版本的 Gitea，則現有存放庫中的 Git 鉤子將不再起作用。在這種情況下，當推送到存放庫時，會顯示 Git 錯誤。
 
 ```
 remote: ./hooks/pre-receive.d/gitea: line 2: [...]: No such file or directory
 ```
 
-错误信息中的 `[...]` 部分将包含您先前 Gitea 二進制文件的路径。
+錯誤資訊中的 `[...]` 部分將包含您先前 Gitea 二進制文件的路徑。
 
-要解决此问题，請转到管理選项，並运行任务 `Resynchronize pre-receive, update and post-receive hooks of all repositories`，以将所有钩子更新為包含新的二進制文件路径。請注意，这将覆盖所有 Git 钩子，包括自定义的钩子。
+要解決此問題，請轉到管理選項，並運行任務 `Resynchronize pre-receive, update and post-receive hooks of all repositories`，以將所有鉤子更新為包含新的二進制文件路徑。請注意，這將覆蓋所有 Git 鉤子，包括自訂的鉤子。
 
-如果您没有使用 Gitea 内置的 SSH 服务器，您還需要通過在管理選项中运行任务 `Update the '.ssh/authorized_keys' file with Gitea SSH keys.` 来重新编写授权密钥文件。
+如果您沒有使用 Gitea 內置的 SSH 伺服器，您還需要通過在管理選項中運行任務 `Update the '.ssh/authorized_keys' file with Gitea SSH keys.` 來重新編寫授權密鑰文件。
 
-> 更多经验总结，請参考英文版 [Troubleshooting](https://docs.gitea.com/installation/install-from-binary#troubleshooting)
+> 更多經驗總結，請參考英文版 [Troubleshooting](https://docs.gitea.com/installation/install-from-binary#troubleshooting)
 
-如果从本页中没有找到你需要的内容，請访问 [帮助页面](help/support.md)
+如果從本頁中沒有找到你需要的內容，請前往 [幫助頁面](help/support.md)

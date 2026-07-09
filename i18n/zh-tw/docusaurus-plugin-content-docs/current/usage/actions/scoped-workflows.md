@@ -87,7 +87,7 @@ SCOPED_WORKFLOW_DIRS = .gitea/scoped_workflows
 <來源儲存庫全名>: <工作流程顯示名稱> / <job> (<event>)
 ```
 
-設定頁面會為每個工作流程預覽這些 “Expected status checks（預期狀態檢查）”，並標記出與你的模式相符的項目，便於你確認模式是否正確。一種常見模式是對 job 和 event 使用萬用字元，例如 `my-org/ci-repo: Lint / *`。
+設定頁面會為每個工作流程預覽這些 “Expected status checks（預期狀態檢查）”，並標記出與你的模式相符的專案，便於你確認模式是否正確。一種常見模式是對 job 和 event 使用萬用字元，例如 `my-org/ci-repo: Lint / *`。
 
 強制範圍：
 

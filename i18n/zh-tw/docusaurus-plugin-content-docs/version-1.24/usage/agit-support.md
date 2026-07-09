@@ -8,37 +8,37 @@ aliases:
 
 # AGit
 
-在 Gitea `1.13` 版本中，添加了对 [AGit](https://git-repo.info/zh/2020/03/agit-flow-and-git-repo/) 的支持。AGit 允许使用者在没有存放庫写入权限的情况下直接建立拉取請求，也不需要分叉存放庫。这有助于减少重复存放庫的数量，降低不必要的硬碟使用量。
+在 Gitea `1.13` 版本中，添加了對 [AGit](https://git-repo.info/zh/2020/03/agit-flow-and-git-repo/) 的支援。AGit 允許使用者在沒有存放庫寫入權限的情況下直接建立拉取請求，也不需要分叉存放庫。這有助於減少重複存放庫的數量，降低不必要的硬碟使用量。
 
 :::note
-服务器端需要 Git 版本 2.29 或更高版本才能正常运行。
+伺服器端需要 Git 版本 2.29 或更高版本才能正常運行。
 :::
 
 ## 使用 AGit 建立 PR
 
-AGit 允许在推送代码到远程存放庫时建立 PR（合並請求）。
-通過在推送时使用特定的 refspec（git 中已知的位置标识符），可以实現这一功能。
-下面的示例说明了这一点：
+AGit 允許在推送程式碼到遠程存放庫時建立 PR（合併請求）。
+通過在推送時使用特定的 refspec（git 中已知的位置標識符），可以實現這一功能。
+下面的範例說明了這一點：
 
 ```shell
 git push origin HEAD:refs/for/main
 ```
 
-該命令的结构如下：
+該命令的結構如下：
 
-- `HEAD`：目标分支
-- `refs/<for|draft|for-review>/<branch>`：目标 PR 類型
-  - `for`：建立一个以 `<branch>` 為目标分支的普通 PR
-  - `draft`/`for-review`：目前被静默忽略
-- `<branch>/<session>`：要打开 PR 的目标分支
-- `-o <topic|title|description>`：PR 的選项
-  - `title`：PR 的标题
-  - `topic`：PR 應該打开的分支名稱
+- `HEAD`：目標分支
+- `refs/<for|draft|for-review>/<branch>`：目標 PR 類型
+  - `for`：建立一個以 `<branch>` 為目標分支的普通 PR
+  - `draft`/`for-review`：目前被靜默忽略
+- `<branch>/<session>`：要打開 PR 的目標分支
+- `-o <topic|title|description>`：PR 的選項
+  - `title`：PR 的標題
+  - `topic`：PR 應該打開的分支名稱
   - `description`：PR 的描述
-  - `force-push=true`: 是否强制更新目标分支
-    - 注意: 如果不传值，只用 `-o force-push` 也同样可以正常工作。
+  - `force-push=true`: 是否強制更新目標分支
+    - 注意: 如果不傳值，只用 `-o force-push` 也同樣可以正常工作。
 
-下面是另一个高级示例，用于建立一个以 `topic`、`title` 和 `description` 為參數的新 PR，目标分支是 `main`：
+下面是另一個高級範例，用於建立一個以 `topic`、`title` 和 `description` 為參數的新 PR，目標分支是 `main`：
 
 ```shell
 git push origin HEAD:refs/for/main -o topic="Topic of my PR" -o title="Title of the PR" -o description="# The PR Description\nThis can be **any** markdown content.\n- [x] Ok"

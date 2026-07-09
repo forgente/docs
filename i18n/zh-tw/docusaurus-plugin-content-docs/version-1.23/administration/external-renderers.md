@@ -11,7 +11,7 @@ aliases:
 Gitea 支援透過外部二進位檔案進行自訂檔案渲染（例如 Jupyter 筆記本、asciidoc 等），只需：
 
 - 安裝外部二進位檔案
-- 在 `app.ini` 檔案中添加一些配置
+- 在 `app.ini` 檔案中添加一些設定
 - 重新啟動你的 Gitea 實例
 
 這支援整個檔案的渲染。如果你想在 markdown 中渲染程式碼區塊，你需要使用 JavaScript。請參閱 [自訂 Gitea](../administration/customizing-gitea.md) 頁面上的一些範例。
@@ -35,7 +35,7 @@ RUN pipx install jupyter docutils --include-deps --global
 # 添加任何其他你可能需要安裝的 Python 套件
 ```
 
-## `app.ini` 檔案配置
+## `app.ini` 檔案設定
 
 在你的自訂 `app.ini` 中為每個外部渲染器添加一個 `[markup.XXXXX]` 部分：
 
@@ -84,9 +84,9 @@ RENDER_COMMAND  = pandoc -f markdown -t html --katex
 
 **注意**：如果規則定義在渲染器 ini 部分之上或名稱不匹配渲染器，則應用於每個渲染器。
 
-一旦你的配置更改完成，重新啟動 Gitea 以使更改生效。
+一旦你的設定更改完成，重新啟動 Gitea 以使更改生效。
 
-**注意**：在 Gitea 1.12 之前，有一個單一的 `markup.sanitiser` 部分，具有為多個規則重新定義的鍵，但這種配置方法存在重大問題，因此需要通過多個部分進行配置。
+**注意**：在 Gitea 1.12 之前，有一個單一的 `markup.sanitiser` 部分，具有為多個規則重新定義的鍵，但這種設定方法存在重大問題，因此需要通過多個部分進行設定。
 
 ### 範例：HTML
 

@@ -3,15 +3,15 @@
     "message": "Gitea"
   },
   "item.label.Docs": {
-    "message": "文档"
+    "message": "文件"
   },
   "item.label.Code": {
-    "message": "开源代码"
+    "message": "開源程式碼"
   },
   "item.label.Support": {
-    "message": "支持"
+    "message": "支援"
   },
   "item.label.Blog": {
-    "message": "博客"
+    "message": "部落格"
   }
 }

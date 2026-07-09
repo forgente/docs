@@ -7,12 +7,12 @@ aliases:
   - /zh-tw/clone-filters
 ---
 
-# 克隆过滤器 (部分克隆)
+# 克隆過濾器 (部分克隆)
 
-Git 引入了 `--filter` 选项用于 `git clone` 命令，该选项可以过滤掉大文件和对象（如 blob），从而创建一个仓库的部分克隆。克隆过滤器对于大型仓库和/或按流量计费的连接特别有用，因为完全克隆（不使用 `--filter`）可能会很昂贵（需要下载所有历史数据）。
+Git 引入了 `--filter` 選項用於 `git clone` 命令，該選項可以過濾掉大文件和對象（如 blob），從而建立一個儲存庫的部分克隆。克隆過濾器對於大型儲存庫和/或按流量計費的連接特別有用，因為完全克隆（不使用 `--filter`）可能會很昂貴（需要下載所有歷史資料）。
 
-这需要 Git 2.22 或更高版本，无论是在 Gitea 服务器上还是在客户端上都需要如此。为了使克隆过滤器正常工作，请确保客户端上的 Git 版本至少与服务器上的版本相同（或更高）。以管理员身份登录到 Gitea，然后转到管理后台 -> 应用配置，查看服务器的 Git 版本。
+這需要 Git 2.22 或更高版本，無論是在 Gitea 伺服器上還是在客戶端上都需要如此。為了使克隆過濾器正常工作，請確保客戶端上的 Git 版本至少與伺服器上的版本相同（或更高）。以管理員身份登入到 Gitea，然後轉到管理後臺 -> 應用設定，查看伺服器的 Git 版本。
 
-默认情况下，克隆过滤器是启用的，除非在 `[git]` 下将 `DISABLE_PARTIAL_CLONE` 设置为 `true`。
+預設情況下，克隆過濾器是啟用的，除非在 `[git]` 下將 `DISABLE_PARTIAL_CLONE` 設定為 `true`。
 
-请参阅 [GitHub 博客文章：了解部分克隆](https://github.blog/2020-12-21-get-up-to-speed-with-partial-clone-and-shallow-clone/) 以获取克隆过滤器的常见用法（无 Blob 和无树的克隆），以及 [GitLab 部分克隆文档](https://docs.gitlab.com/ee/topics/git/partial_clone.html) 以获取更高级的用法（例如按文件大小过滤和取消过滤以将部分克隆转换为完全克隆）。
+請參閱 [GitHub 部落格文章：瞭解部分克隆](https://github.blog/2020-12-21-get-up-to-speed-with-partial-clone-and-shallow-clone/) 以獲取克隆過濾器的常見用法（無 Blob 和無樹的克隆），以及 [GitLab 部分克隆文件](https://docs.gitlab.com/ee/topics/git/partial_clone.html) 以獲取更高級的用法（例如按文件大小過濾和取消過濾以將部分克隆轉換為完全克隆）。
