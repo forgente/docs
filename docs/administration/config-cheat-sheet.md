@@ -1308,8 +1308,10 @@ Synchronize external user data (only LDAP user synchronization is supported)
 
 ### Git - Config options (`git.config`)
 
-The key/value pairs in this section will be used as git config.
-This section only does "set" config, a removed config key from this section won't be removed from git config automatically. The format is `some.configKey = value`.
+The key/value pairs in this section will be used as git config. The format is `some.configKey = value`.
+These options are written into the gitconfig file under `[git] HOME_PATH` when Gitea starts, and are applied **after** Gitea's built-in defaults — so values set here take precedence over the defaults listed below.
+
+**Note:** This section only does "set" config; a removed config key from this section won't be removed from git config automatically. Some config options might affect the behavior of git and cause Gitea's git operations to fail — make sure you know what you are doing before making changes.
 
 - `diff.algorithm`: **histogram**
 - `core.logAllRefUpdates`: **true**
