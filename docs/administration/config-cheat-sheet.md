@@ -36,6 +36,11 @@ A full restart is required for Gitea configuration changes to take effect.
 
 Gitea supports setting `app.ini` values via environment variables of the form `GITEA__<section>__<KEY>`. These require running `gitea config edit-ini --in-place --apply-env` before starting Gitea to write them into `app.ini`. The official Docker images do this automatically on container startup.
 
+:::info
+If `<section>` or `<KEY>` contains a `.`, replace that with `_0X2E_`; if it contains a `-`, replace it with `_0X2C_`
+:::
+
+
 For example, to configure the database connection via environment variables:
 
 ```
