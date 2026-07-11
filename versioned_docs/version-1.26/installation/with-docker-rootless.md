@@ -24,7 +24,7 @@ don't switch to the other one by changing the compose file's `image` value.
 
 ## Basics
 
-The most simple setup just creates a volume and a network and starts the `docker.gitea.com/gitea:latest-rootless`
+The most simple setup just creates a volume and a network and starts the `docker.io/forgente/forgente:latest-rootless`
 image as a service. Since there is no database available, one can be initialized using SQLite3.
 
 Create a directory for `data` and `config`:
@@ -40,7 +40,7 @@ Then paste the following content into a file named `docker-compose.yml`:
 ```yaml
 services:
   server:
-    image: docker.gitea.com/gitea:@dockerVersion@-rootless
+    image: docker.io/forgente/forgente:@dockerVersion@-rootless
     restart: always
     volumes:
       - ./data:/var/lib/gitea
@@ -84,7 +84,7 @@ named volumes; Docker will deal with that automatically.
 +
 services:
   server:
-    image: docker.gitea.com/gitea:@dockerVersion@-rootless
+    image: docker.io/forgente/forgente:@dockerVersion@-rootless
     restart: always
     volumes:
 -      - ./data:/var/lib/gitea
@@ -109,7 +109,7 @@ Please make sure that the mounted folders are writable by the user.
 ```diff
 services:
   server:
-    image: docker.gitea.com/gitea:@dockerVersion@-rootless
+    image: docker.io/forgente/forgente:@dockerVersion@-rootless
     restart: always
 +    user: 1001
     volumes:

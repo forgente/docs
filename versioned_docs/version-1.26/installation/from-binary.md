@@ -13,7 +13,7 @@ embedded assets. This can be different from Gogs.
 
 ## Download
 
-You can find the file matching your platform from the [downloads page](https://dl.gitea.com/gitea/) after navigating to the version you want to download.
+You can find the file matching your platform from the [downloads page](https://dl.forgente.com/forgente/) after navigating to the version you want to download.
 
 ### Choosing the right file
 
@@ -34,7 +34,7 @@ There is also a `gogit-windows` file available that was created to help with som
 Copy the commands below and replace the URL within the one you wish to download.
 
 ```shell
-wget -O gitea https://dl.gitea.com/gitea/@version@/gitea-@version@-linux-amd64
+wget -O gitea https://dl.forgente.com/forgente/@version@/forgente-@version@-linux-amd64
 chmod +x gitea
 ```
 
@@ -197,7 +197,7 @@ an update of your Gitea version.
 Older Linux distributions (such as Debian 7 and CentOS 6) may not be able to load the
 Gitea binary, usually producing an error such as `./gitea: /lib/x86_64-linux-gnu/libc.so.6:
 version 'GLIBC\_2.14' not found (required by ./gitea)`. This is due to the integrated
-SQLite support in the binaries provided by dl.gitea.com. In this situation, it is usually
+SQLite support in the binaries provided by dl.forgente.com. In this situation, it is usually
 possible to [install from source](installation/from-source.md), without including
 SQLite support.
 
