@@ -171,9 +171,9 @@ const versions = {
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: "Gitea Documentation",
+  title: "Forgente Documentation",
   tagline: "Git with a cup of tea",
-  url: "https://docs.gitea.com",
+  url: "https://docs.forgente.com",
   baseUrl: "/",
   onBrokenLinks: "warn",
   favicon: "img/favicon.png",

@@ -1,0 +1,36 @@
+name: Build and Publish Docs site
+run-name: docusaurus build docs site
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-docs:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v7
+      - uses: pnpm/action-setup@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: pnpm
+      - name: prepare awesome list
+        run: |
+          make prepare-awesome-latest prepare-awesome\#25 prepare-awesome\#24 prepare-awesome\#23 prepare-awesome\#22
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+      - name: build site
+        run: |
+          make build
+      - name: aws credential configure
+        uses: aws-actions/configure-aws-credentials@v6
+        with:
+          aws-access-key-id: ${{ secrets.AWS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY}}
+          aws-region: ${{ secrets.AWS_REGION}}
+      - name: Copy files to the production website with the AWS CLI
+        run: |
+          aws s3 sync build/ s3://forgente-docs --delete
+          aws cloudfront create-invalidation --distribution-id ${{ secrets.AWS_DISTRIBUTION }} --paths '/*'
