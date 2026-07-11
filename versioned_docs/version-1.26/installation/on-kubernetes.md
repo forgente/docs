@@ -13,11 +13,11 @@ Gitea provides a Helm Chart to allow for installation on kubernetes.
 A non-customized install can be done with:
 
 ```
-helm repo add gitea-charts https://dl.gitea.com/charts/
-helm install gitea gitea-charts/gitea
+helm repo add forgente-charts https://dl.forgente.com/charts/
+helm install forgente forgente-charts/forgente
 ```
 
-If you would like to customize your install, which includes kubernetes ingress, please refer to the complete [Gitea helm chart configuration details](https://gitea.com/gitea/helm-chart/)
+If you would like to customize your install, which includes kubernetes ingress, please refer to the complete [Forgente helm chart configuration details](https://github.com/forgente/helm-forgente)
 
 ## Health check endpoint
 
