@@ -16,11 +16,12 @@ clone_awesome: create_dir
 
 .PHONY: prepare-awesome-latest
 prepare-awesome-latest: clone_awesome
-	cp .tmp/upstream-awesome/README.md docs/awesome.md
+	@# tolerate upstream gitea.com being down: keep a stub instead of failing the build
+	cp .tmp/upstream-awesome/README.md docs/awesome.md 2>/dev/null || printf '# Awesome Gitea\n\nTemporarily unavailable (upstream source unreachable during build).\n' > docs/awesome.md
 
 .PHONY: prepare-awesome\#%
 prepare-awesome\#%:
-	cp .tmp/upstream-awesome/README.md  versioned_docs/version-1.$*/awesome.md
+	cp .tmp/upstream-awesome/README.md  versioned_docs/version-1.$*/awesome.md 2>/dev/null || printf '# Awesome Gitea\n\nTemporarily unavailable (upstream source unreachable during build).\n' > versioned_docs/version-1.$*/awesome.md
 
 .PHONY: install
 install:
