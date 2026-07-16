@@ -1,0 +1,23 @@
+name: checks
+
+on:
+  - pull_request
+
+jobs:
+  build-docs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: pnpm/action-setup@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: pnpm
+      - name: prepare awesome list
+        run: |
+          make prepare-awesome-latest prepare-awesome\#25 prepare-awesome\#24 prepare-awesome\#23 prepare-awesome\#22
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+      - name: build site
+        run: |
+          make build
