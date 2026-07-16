@@ -1,0 +1,32 @@
+name: update swagger files
+
+on:
+  schedule:
+    - cron: '0 */12 * * *' # every 12 hours on the hour
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-swagger:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - run: |
+          set -euo pipefail
+
+          make update-api-docs
+
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          if git status --porcelain | grep -q .; then
+            git add --all
+            # no [skip ci]: the publish workflow must rebuild the site so
+            # the refreshed swagger files actually go live
+            git commit -m "docs: update swagger files"
+            git push
+          else
+            echo "No API doc changes detected; skipping commit"
+          fi
