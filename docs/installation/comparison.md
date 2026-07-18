@@ -64,7 +64,7 @@ _Symbols used in table:_
 | Repository code search                      | ✓                                                   | ✓                                                   | ✓         | ✓         | ✓         | ✓         | ✓            | ✓            |
 | Global code search                          | ✓                                                   | ✓                                                   | ✓         | ✘         | ✓         | ✓         | ✓            | ✓            |
 | Git LFS 2.0                                 | ✓                                                   | ✓                                                   | ✓         | ✓         | ✓         | ✓         | ✓            | ✓            |
-| Group Milestones                            | [✘](https://github.com/go-gitea/gitea/issues/14622) | [✘](https://github.com/go-gitea/gitea/issues/14622) | ✘         | ✓         | ✓         | ✘         | ✘            | ✘            |
+| Group Milestones                            | ⁄                                                   | [✘](https://github.com/go-gitea/gitea/issues/14622) | ✘         | ✓         | ✓         | ✘         | ✘            | ✘            |
 | Granular user roles (Code, Issues, Wiki, …) | ✓                                                   | ✓                                                   | ✘         | ✓         | ✓         | ✘         | ✘            | ✘            |
 | Verified Committer                          | ⁄                                                   | ⁄                                                   | ?         | ✓         | ✓         | ✓         | ✘            | ✘            |
 | GPG Signed Commits                          | ✓                                                   | ✓                                                   | ✓         | ✓         | ✓         | ✓         | ✓            | ✓            |
@@ -92,7 +92,7 @@ _Symbols used in table:_
 | Labels                        | ✓                                                   | ✓                                                   | ✓         | ✓         | ✓         | ✘         | ✘            | ✘            |
 | Time tracking                 | ✓                                                   | ✓                                                   | ✓         | ✓         | ✓         | ✘         | ✘            | ✘            |
 | Multiple assignees for issues | ✓                                                   | ✓                                                   | ✓         | ✘         | ✓         | ✘         | ✘            | ✘            |
-| Related issues                | ✘                                                   | ✘                                                   | ⁄         | ✓         | ✓         | ✘         | ✘            | ✘            |
+| Related issues                | ✓                                                   | ✘                                                   | ⁄         | ✓         | ✓         | ✘         | ✘            | ✘            |
 | Confidential issues           | [✘](https://github.com/go-gitea/gitea/issues/3217)  | [✘](https://github.com/go-gitea/gitea/issues/3217)  | ✘         | ✓         | ✓         | ✘         | ✘            | ✘            |
 | Comment reactions             | ✓                                                   | ✓                                                   | ✓         | ✓         | ✓         | ✘         | ✘            | ✘            |
 | Lock Discussion               | ✓                                                   | ✓                                                   | ✓         | ✓         | ✓         | ✘         | ✘            | ✘            |
@@ -101,9 +101,9 @@ _Symbols used in table:_
 | Create branch from issue      | ✓                                                   | [✘](https://github.com/go-gitea/gitea/issues/20226) | ✘         | ✓         | ✓         | ✘         | ✘            | ✘            |
 | Convert comment to new issue  | ✓                                                   | ✓                                                   | ✓         | ✓         | ✓         | ✘         | ✘            | ✘            |
 | Issue search                  | ✓                                                   | ✓                                                   | ✓         | ✓         | ✓         | ✓         | ✘            | ✘            |
-| Global issue search           | [/](https://github.com/go-gitea/gitea/issues/2434)  | [/](https://github.com/go-gitea/gitea/issues/2434)  | ✓         | ✓         | ✓         | ✓         | ✘            | ✘            |
+| Global issue search           | ✓                                                   | [/](https://github.com/go-gitea/gitea/issues/2434)  | ✓         | ✓         | ✓         | ✓         | ✘            | ✘            |
 | Issue dependency              | ✓                                                   | ✓                                                   | ✘         | ✘         | ✘         | ✘         | ✘            | ✘            |
-| Create issue via email        | [✘](https://github.com/go-gitea/gitea/issues/6226)  | [✘](https://github.com/go-gitea/gitea/issues/6226)  | ✘         | ✓         | ✓         | ✓         | ✘            | ✘            |
+| Create issue via email        | ✓                                                   | [✘](https://github.com/go-gitea/gitea/issues/6226)  | ✘         | ✓         | ✓         | ✓         | ✘            | ✘            |
 | Service Desk                  | [✘](https://github.com/go-gitea/gitea/issues/6219)  | [✘](https://github.com/go-gitea/gitea/issues/6219)  | ✘         | ✓         | ✓         | ✘         | ✘            | ✘            |
 
 ## Pull/Merge requests
