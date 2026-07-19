@@ -44,7 +44,7 @@ _Symbols used in table:_
 | Custom Theme Support                             | ✓                                                   | ✓                                                   | ✘         | ✘         | ✘         | ✓         | ✓            | ✓            |
 | Markdown support                                 | ✓                                                   | ✓                                                   | ✓         | ✓         | ✓         | ✓         | ✓            | ✓            |
 | CSV support                                      | ✓                                                   | ✓                                                   | ✓         | ✘         | ✘         | ✓         | ✘            | ✘            |
-| 'GitHub / GitLab pages'                          | [⚙️][gitea-pages-server], [⚙️][gitea-caddy-plugin]  | [⚙️][gitea-pages-server], [⚙️][gitea-caddy-plugin]  | ✓         | ✓         | ✓         | ✘         | ✘            | ✘            |
+| 'GitHub / GitLab pages'                          | [✓][forgente-pages]                                 | [⚙️][gitea-pages-server], [⚙️][gitea-caddy-plugin]  | ✓         | ✓         | ✓         | ✘         | ✘            | ✘            |
 | Gists / Snippets                                 | [⚙️][opengist]                                      | [⚙️][opengist]                                      | ✓         | ✓         | ✓         | ✓         | ✓            | ✓            |
 | Repo-specific wiki (as a repo itself)            | ✓                                                   | ✓                                                   | ✓         | ✓         | ✓         | /         | ✘            | ✘            |
 | Deploy Tokens                                    | ✓                                                   | ✓                                                   | ✓         | ✓         | ✓         | ✓         | ✓            | ✓            |
@@ -143,5 +143,6 @@ _Symbols used in table:_
 | Incorporate external CI/CD                     | ✓                                                  | ✓                                                  | ✓         | ✓         | ✓         | ✓         | ✓            | ✓            |
 
 [gitea-caddy-plugin]: https://github.com/42wim/caddy-gitea
+[forgente-pages]: https://github.com/forgente/pages
 [gitea-pages-server]: https://codeberg.org/Codeberg/pages-server
 [opengist]: https://github.com/thomiceli/opengist
