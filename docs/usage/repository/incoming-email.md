@@ -32,6 +32,19 @@ An example using email sub-addressing may look like this: `incoming+%{token}@exa
 
 If a catch-all mailbox is used, the placeholder may be used anywhere in the user part of the address: `incoming+%{token}@example.com`, `incoming_%{token}@example.com`, `%{token}@example.com`
 
+## Creating issues by email
+
+When incoming email is configured, Forgente lets you create an issue by sending an email, in addition to replying to existing issues and pull requests by email.
+
+On a repository's issue list, users with issue-write permission see a **New issue via email** link. Selecting it opens a mail client addressed to a personal, tokenized address for that repository. Sending a message there creates an issue:
+
+- The email subject becomes the issue title.
+- The email body becomes the issue description.
+
+The issue is created as the user the token belongs to, so keep the address private the same way you would a reply-by-email token. A blank subject is rejected and the issue is not created. Attachments on the email are not attached to the created issue.
+
+The link only appears when `[email.incoming]` is enabled and the repository is not archived.
+
 ## Security
 
 Be careful when choosing the domain used for receiving incoming email.
