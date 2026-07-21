@@ -5,6 +5,13 @@ on:
   push:
     branches:
       - main
+  workflow_dispatch:
+
+# serialize deploys: without this, two close merges race and an older build
+# can overwrite a newer one on S3 (happened 2026-07-21)
+concurrency:
+  group: publish-docs
+  cancel-in-progress: false
 
 jobs:
   build-docs:
