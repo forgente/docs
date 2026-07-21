@@ -10,7 +10,7 @@ aliases:
 
 To help decide if Gitea is suited for your needs, here is how it compares to other Git self hosted options.
 
-[Forgente](https://forgente.com) is a soft fork of Gitea that closely tracks upstream, so it inherits every feature in the Gitea column and its releases are based on the matching Gitea version (e.g. Forgente v1.27.0-1 is based on Gitea 1.27.0). The Forgente column reflects its current status and will be updated as the two diverge.
+[Forgente](https://forgente.com) started from Gitea and hard-forked in July 2026, so it inherits every feature in the Gitea column as of the fork point (releases up to v1.27.0-1 were based on the matching Gitea version). Upstream security fixes are still cherry-picked, and Forgente maintains API compatibility with Gitea's ecosystem tooling. The Forgente column reflects its current status and will be updated as the two diverge.
 
 Be warned that we don't regularly check for feature changes in other products, so this list may be outdated. If you find anything that needs to be updated in the table below, please [open an issue](https://github.com/go-gitea/gitea/issues/new/choose).
 
