@@ -80,7 +80,17 @@ const globalVariables = {
     sourceVersion: "main",
     sourceBranch: "main",
     dockerVersion: "nightly",
-    displayVersion: "1.28-dev",
+    displayVersion: "2.x-dev",
+  },
+  "2.0": {
+    goVersion: "1.26",
+    minGoVersion: "1.26",
+    minNodeVersion: "24",
+    version: "2.0.0",
+    sourceVersion: "v2.0.0",
+    sourceBranch: "forgente/v2.0",
+    dockerVersion: "2.0.0",
+    displayVersion: "2.0.0",
   },
   "1.27": {
     goVersion: "1.26",
@@ -148,6 +158,9 @@ const versions = {
   "current": {
     label: globalVariables["current"].displayVersion, // path is kept as next for dev (so users can always find "nightly" docs)
     banner: "unreleased",
+  },
+  "2.0": {
+    label: globalVariables["2.0"].displayVersion,
   },
   "1.27": {
     label: globalVariables["1.27"].displayVersion,
@@ -287,7 +300,7 @@ const config = {
             }/${docPath}`;
           },
           versions: versions,
-          lastVersion: "1.27",
+          lastVersion: "2.0",
           async sidebarItemsGenerator({
             defaultSidebarItemsGenerator,
             ...args
